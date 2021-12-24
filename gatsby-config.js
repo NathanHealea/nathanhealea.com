@@ -1,18 +1,19 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "NathanHealea.com",
+    siteUrl: 'https://www.yourdomain.tld',
+    title: 'NathanHealea.com'
   },
   plugins: [
-    "gatsby-plugin-sass",
-    "gatsby-plugin-mdx",
+    'gatsby-plugin-postcss',
+
+    'gatsby-plugin-mdx',
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "pages",
-        path: "./src/pages/",
+        name: 'pages',
+        path: './src/pages/'
       },
-      __key: "pages",
-    },
-  ],
+      __key: 'pages'
+    }
+  ]
 };

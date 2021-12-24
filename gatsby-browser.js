@@ -9,6 +9,9 @@
 import PageWrapper from "./src/wrappers/PageElement"
 import RootWrapper from "./src/wrappers/RootElement"
 
+// Tailwind
+import './src/styles/tailwind.css'
+
 
 export const wrapPageElement = PageWrapper
 export const wrapRootElement = RootWrapper
