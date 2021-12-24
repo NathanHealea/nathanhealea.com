@@ -9,6 +9,9 @@
 import PageWrapper from "./src/wrappers/PageElement"
 import RootWrapper from "./src/wrappers/RootElement"
 
+// FontAwesome 
+import "@fortawesome/fontawesome-free/js/all.js" 
+
 // Tailwind
 import './src/styles/tailwind.css'
 
