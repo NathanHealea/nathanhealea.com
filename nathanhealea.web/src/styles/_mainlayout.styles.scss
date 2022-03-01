@@ -1,0 +1,148 @@
+@import '../../node_modules/bootstrap/scss/variables';
+
+/* Header */
+.header {
+  position: static;
+  width: inherit;
+  height: auto;
+
+  overflow-y: auto;
+
+  /* Forefox scrollbar */
+  scrollbar-color: rgba(0, 0, 0, 0.2) $primary;
+  scrollbar-width: thin;
+
+  /* Chrome webkit scrollbar */
+  &::-webkit-scrollbar {
+    width: 6px;
+    background-color: $primary;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    @include border-radius(0.5rem);
+  }
+
+  
+  // Navbar Toggler
+  .navbar-toggler {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  // Profile Name
+  .profile-name {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff;
+
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 1.2rem;
+
+    a {
+      color: #fff;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  // Profile - Social Media List
+  .social-list {
+    a {
+      width: 32px;
+      height: 32px;
+      padding-top: 5px;
+      display: inline-block;
+      text-align: center;
+      @include border-radius(50%);
+      @include transition(all 0.4s ease-in-out);
+      background-color: #fff;
+      &:hover {
+        color: darken($primary, 10%);
+        background-color: rgba(256, 256, 256, 0.8);
+      }
+    }
+  }
+
+  // Navigation Links
+  .nav-item {
+    font-weight: bold;
+    .nav-link {
+      &.active {
+        color: rgba(0, 0, 0, 0.5);
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .nav-link {
+      color: rgba(256, 256, 256, 0.8);
+      &:hover {
+        //text-decoration: underline;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+
+    .nav-link[aria-expanded='true'] {
+      color: rgba(0, 0, 0, 0.5);
+    }
+
+    .dropdown-menu {
+      position: static;
+      background: darken($primary, 5%);
+      border: none;
+      @include border-radius(0);
+      padding: 0;
+      margin: 0;
+      .dropdown-item {
+        color: #fff;
+        padding: 0.5rem;
+        font-size: 0.875rem;
+        padding-left: 2.25rem;
+        font-weight: bold;
+        &:hover,
+        &:active,
+        &:focus,
+        &.active {
+          background: darken($primary, 10%);
+        }
+      }
+    }
+  }
+}
+
+// Main Wrapper
+.main-wrapper {
+  margin-left: 0;
+  background: #fff;
+}
+
+/**
+  Medium and up screen size (≥768px)
+**/
+@include media-breakpoint-up(md) {
+  .header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: $navigation-width;
+
+    // Profile Name
+    .profile-name {
+      width: inherit;
+      position: inherit;
+      left: auto;
+      top: auto;
+    }
+  }
+
+  // Main Wrapper
+  .main-wrapper {
+    margin-left: $navigation-width;
+  }
+}

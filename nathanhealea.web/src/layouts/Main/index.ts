@@ -1,2 +1,2 @@
-import Main from './Main.component'
+import Main from './MainLayout.component'
 export default Main

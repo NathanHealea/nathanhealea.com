@@ -6,6 +6,7 @@ module.exports = {
   plugins: [
     "gatsby-plugin-sass",
     "gatsby-plugin-image",
+    "gatsby-plugin-anchor-links",
     "gatsby-plugin-react-helmet",
     {
       resolve: "gatsby-plugin-manifest",

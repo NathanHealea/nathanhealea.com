@@ -1,2 +1,79 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import "../../node_modules/bootstrap/scss/functions";
 
-@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+// 2. Include any default variable overrides here
+
+$primary: #20c997;
+
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+$spacers: (
+  0: 0,
+  0\.5: 0.125rem,
+  1: 0.25rem,
+  1\.5: 0.375rem,
+  2: 0.5rem,
+  2\.5: 0.625rem,
+  3: 0.75rem,
+  3\.5: 0.875rem,
+  4: $spacer,
+  5: $spacer * 1.25,
+  6: $spacer * 1.5,
+  7: $spacer * 1.75,
+  8: $spacer * 2,
+  9: $spacer * 2.25,
+  10: $spacer * 2.5,
+  11: $spacer * 2.75,
+  12: $spacer * 3,
+  13: $spacer * 3.5,
+  14: $spacer * 4,
+  15: $spacer * 5,
+  16: $spacer * 6,
+  17: $spacer * 7,
+  18: $spacer * 8,
+  19: $spacer * 9,
+  20: $spacer * 10,
+  30: $spacer * 20,
+  40: $spacer * 30,
+  // 50: $spacer * 40,
+  60: $spacer * 50,
+  70: $spacer * 60,
+  80: $spacer * 70,
+  90: $spacer * 80,
+  // 100: $spacer * 90
+);
+
+// Navigation Width 
+$navigation-width: 16rem;
+
+
+// 4. Include any optional Bootstrap CSS as needed
+@import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/reboot";
+@import "../../node_modules/bootstrap/scss/type";
+@import "../../node_modules/bootstrap/scss/images";
+
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/helpers";
+@import "../../node_modules/bootstrap/scss/buttons";
+@import "../../node_modules/bootstrap/scss/nav";
+@import "../../node_modules/bootstrap/scss/navbar";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/list-group";
+@import "../../node_modules/bootstrap/scss/dropdown";
+@import "../../node_modules/bootstrap/scss/transitions";
+
+
+// 5. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import './utilities.styles';
+@import './mixins';
+
+@import "../../node_modules/bootstrap/scss/utilities/api";
+
+// 6. Add additional custom code here
+@import "./mainlayout.styles";
