@@ -9,11 +9,17 @@
 import PageWrapper from "./src/wrappers/PageElement"
 import RootWrapper from "./src/wrappers/RootElement"
 
-// FontAwesome 
-import "@fortawesome/fontawesome-free/js/all.js" 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import { far } from '@fortawesome/free-regular-svg-icons'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+
 
 // Tailwind
 import './src/styles/tailwind.css'
+
+
+library.add(fas, far, fab);
 
 
 export const wrapPageElement = PageWrapper
