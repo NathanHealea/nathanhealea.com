@@ -34,12 +34,12 @@ const MainLayout = (props: IMainLayoutProps) => {
     <>
       <Disclosure
         as='nav'
-        className='static md:fixed md:top-0 md:left-0 w-full md:w-60 h-auto md:h-screen p-4 md:p-0 text-center text-white bg-gray-800'>
+        className='static lg:fixed lg:top-0 lg:left-0 w-full lg:w-80 h-auto lg:h-screen p-4 lg:p-0 text-center text-white bg-gray-800'>
         {({ open }) => (
           <>
             {/* Navbar header */}
             <div className='flex items-center relative'>
-              <Disclosure.Button className='md:hidden absolute inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
+              <Disclosure.Button className='lg:hidden absolute inline-flex items-center justify-center p-2 rounded text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
                 <span className='sr-only'>Open main menu</span>
                 {open ? (
                   <FontAwesomeIcon icon={faTimes} />
@@ -50,19 +50,19 @@ const MainLayout = (props: IMainLayoutProps) => {
 
               {/* Navbar Title */}
               <div className='flex-grow text-center'>
-                <h1 className='font-bold text-2xl mb-0 md:pt-4'>
+                <h1 className='font-bold text-2xl mb-0 lg:pt-4'>
                   Nathan Healea
                 </h1>
               </div>
             </div>
 
-            <Disclosure.Panel static={up('md', width)}>
+            <Disclosure.Panel static={up('lg', width)}>
               <div className='p-6'>
                 {/* Profile Picture */}
                 <img
                   src={ProfilePictureCasual}
                   alt='Casual Profile Picture of Nathan Healea'
-                  className='rounded-lg w-40 h-40 mx-auto mb-3'
+                  className='rounded w-40 h-40 mx-auto mb-3'
                 />
 
                 {/* Profile Bio */}
@@ -98,7 +98,7 @@ const MainLayout = (props: IMainLayoutProps) => {
                 <div className='flex flex-col justify-center items-center '>
                   <AnchorLink
                     to='/'
-                    className=' flex justify-center rounded-lg w-40 py-2 px-4 mb-3 hover:bg-gray-600 bg-gray'
+                    className=' flex justify-center rounded w-40 py-2 px-4 mb-3 hover:bg-gray-600 bg-gray'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
@@ -106,7 +106,7 @@ const MainLayout = (props: IMainLayoutProps) => {
                   </AnchorLink>
                   <AnchorLink
                     to='/resume'
-                    className=' flex justify-center rounded-lg w-40 py-2 px-4 mb-3 hover:bg-gray-600'
+                    className=' flex justify-center rounded w-40 py-2 px-4 mb-3 hover:bg-gray-600'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
@@ -120,7 +120,7 @@ const MainLayout = (props: IMainLayoutProps) => {
       </Disclosure>
 
       {/* Main Wrapper */}
-      <main className='ml-0 md:ml-60'>
+      <main className='ml-0 lg:ml-80'>
         {props.children}
       </main>
     </>
