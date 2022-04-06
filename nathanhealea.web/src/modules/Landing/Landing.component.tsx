@@ -1,6 +1,7 @@
 // --- Imports --- //
 import React from 'react';
 import AboutMe from './Sections/AboutMe.component';
+import Skills from './Sections/Skills.component';
 /**
  * Landing Interface
  */
@@ -14,6 +15,7 @@ const Landing = (props:ILandingProps) => {
   return (
     <>
       <AboutMe />
+      <Skills />
     </>
   );
 }
