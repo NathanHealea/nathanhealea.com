@@ -16,7 +16,7 @@ interface IContactProps {}
  */
 const Contact = (props: IContactProps) => {
   return (
-    <section className='flex items-center text-center text-white bg-slate-500 min-h-[450px]'>
+    <section className='flex grow items-center text-center text-white bg-slate-500 min-h-[450px]'>
       <div className='content-center p-4 mx-auto md:p-12'>
         <h2 className='mb-4 text-4xl font-bold'>Lets Chat!</h2>
         <p className='mb-4'>
