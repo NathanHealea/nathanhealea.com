@@ -19,6 +19,8 @@ import {
   faLinkedinIn
 } from '@fortawesome/free-brands-svg-icons';
 
+import packageJson from '../../../package.json'
+
 /**
  * MainLayout Interface
  */
@@ -62,18 +64,18 @@ const MainLayout = (props: IMainLayoutProps) => {
                 <img
                   src={ProfilePictureCasual}
                   alt='Casual Profile Picture of Nathan Healea'
-                  className='w-40 h-40 mx-auto mb-3 rounded'
+                  className='w-40 h-40 mx-auto mb-6 rounded'
                 />
 
                 {/* Profile Bio */}
-                <div className='mb-3 text-sm'>
+                <div className='mb-4 text-sm'>
                   I'm Nathan Healea, thank you for visiting. I am a Software
                   Engineer and Full Stack developer. Make sure to check out my
                   GitHub, and Resume with the link below!
                 </div>
 
                 {/* Social Media Icon Links */}
-                <div className='flex flex-row justify-center mx-auto mb-3'>
+                <div className='flex flex-row justify-center mx-auto mb-4'>
                   <a
                     href=''
                     className='flex items-center justify-center w-8 h-8 mr-2 text-gray-800 bg-white rounded-full hover:bg-gray-300'>
@@ -92,26 +94,26 @@ const MainLayout = (props: IMainLayoutProps) => {
                 </div>
 
                 {/* Divider */}
-                <hr className='mb-3 opacity-60' />
+                <hr className='mb-4 opacity-60' />
 
                 {/* Navigation Links */}
                 <div className='flex flex-col items-center justify-center '>
-                  <AnchorLink
+                  {/* <AnchorLink
                     to='/'
-                    className='flex justify-center w-40 px-4 py-2 mb-3 rounded hover:bg-gray-600 bg-gray'
+                    className='flex justify-center w-40 px-4 py-2 mb-4 rounded hover:bg-gray-600 bg-gray'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
                     About
-                  </AnchorLink>
-                  <AnchorLink
+                  </AnchorLink> */}
+                  {/* <AnchorLink
                     to='/resume'
-                    className='flex justify-center w-40 px-4 py-2 mb-3 rounded hover:bg-gray-600'
+                    className='flex justify-center w-40 px-4 py-2 mb-4 rounded hover:bg-gray-600'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
                     Resume
-                  </AnchorLink>
+                  </AnchorLink> */}
                 </div>
               </div>
             </Disclosure.Panel>
@@ -120,8 +122,12 @@ const MainLayout = (props: IMainLayoutProps) => {
       </Disclosure>
 
       {/* Main Wrapper */}
-      <main className='flex flex-col min-h-screen ml-0  lg:ml-80'>
+      <main className='flex flex-col min-h-screen ml-0 lg:ml-80'>
         {props.children}
+        <footer className='py-2 text-center text-white bg-slate-800'>
+          <p className='mb-2'>Nathan Healea &copy; {new Date().getFullYear()}</p>
+          <p className='text-sm'>Version {packageJson.version}</p>
+        </footer>
       </main>
     </>
   );
