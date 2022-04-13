@@ -10,7 +10,7 @@ interface ISkillsProps {}
  */
 const Skills = (props: ISkillsProps) => {
   return (
-    <section className=''>
+    <section className='flex items-center min-h-[450px]'>
       <div className='container p-4 mx-auto md:p-12'>
         <h2 className='relative pl-6 mb-4 text-4xl font-bold before:bg-gray-800 before:inline-block before:h-full before:absolute before:top-0 before:left-0 before:w-2 '>
           What I Do
