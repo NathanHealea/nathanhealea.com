@@ -98,7 +98,7 @@ const MainLayout = (props: IMainLayoutProps) => {
                 <div className='flex flex-col items-center justify-center '>
                   <AnchorLink
                     to='/'
-                    className='flex justify-center w-40 px-4 py-2 mb-3 rounded  hover:bg-gray-600 bg-gray'
+                    className='flex justify-center w-40 px-4 py-2 mb-3 rounded hover:bg-gray-600 bg-gray'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
@@ -106,7 +106,7 @@ const MainLayout = (props: IMainLayoutProps) => {
                   </AnchorLink>
                   <AnchorLink
                     to='/resume'
-                    className='flex justify-center w-40 px-4 py-2 mb-3 rounded  hover:bg-gray-600'
+                    className='flex justify-center w-40 px-4 py-2 mb-3 rounded hover:bg-gray-600'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
@@ -120,7 +120,7 @@ const MainLayout = (props: IMainLayoutProps) => {
       </Disclosure>
 
       {/* Main Wrapper */}
-      <main className='ml-0 lg:ml-80'>
+      <main className='flex flex-col min-h-screen ml-0  lg:ml-80'>
         {props.children}
       </main>
     </>
