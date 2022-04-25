@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '../node_modules/paper-css/paper.css';
+
+
+/* overrides */
+body.letter .sheet {
+  height: 100%;
+}
