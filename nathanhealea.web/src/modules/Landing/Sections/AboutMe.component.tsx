@@ -31,22 +31,22 @@ const AboutMe = (props: IAboutMeProps) => {
                 I'm a software engineer and full stack developer specializing in
                 React and .Net Core applications. Want to know how I may help
                 your project? 
-                {/* Check out my{' '}
+                Check out my{' '}
                 <Link
-                  to='/'
+                  to='/resume'
                   className='text-gray-800 hover:text-gray-600 active:text-gray-700'>
                   {' '}
                   online resume
-                </Link> */}
+                </Link>
                 .
               </p>
               <div className='mb-4'>
-                {/* <Link
+                <Link
                   to='/resume'
                   className='inline-block px-4 py-2 text-white bg-gray-800 rounded hover:bg-gray-600 active:bg-gray-700'>
                   <FontAwesomeIcon icon={faFileLines} className='mr-2' /> View
                   Resume
-                </Link> */}
+                </Link>
               </div>
             </div>
           </div>
