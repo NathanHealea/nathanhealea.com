@@ -35,7 +35,6 @@ const AboutMe = (props: IAboutMeProps) => {
                 <Link
                   to='/resume'
                   className='text-gray-800 hover:text-gray-600 active:text-gray-700'>
-                  {' '}
                   online resume
                 </Link>
                 .

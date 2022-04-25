@@ -1,6 +1,6 @@
 // --- Imports --- //
 import React from 'react';
-import DownloadResume from './Sections/DownloadResume.component';
+import DownloadResume from './Sections/DownloadResume/DownloadResume.component';
 
 import Paper from './Sections/ResumeContent/components/Paper.component';
 import ResumeContent from './Sections/ResumeContent/ResumeContent.component';
