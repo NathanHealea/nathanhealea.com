@@ -98,22 +98,22 @@ const MainLayout = (props: IMainLayoutProps) => {
 
                 {/* Navigation Links */}
                 <div className='flex flex-col items-center justify-center '>
-                  {/* <AnchorLink
+                  <AnchorLink
                     to='/'
                     className='flex justify-center w-40 px-4 py-2 mb-4 rounded hover:bg-gray-600 bg-gray'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
                     About
-                  </AnchorLink> */}
-                  {/* <AnchorLink
+                  </AnchorLink>
+                  <AnchorLink
                     to='/resume'
                     className='flex justify-center w-40 px-4 py-2 mb-4 rounded hover:bg-gray-600'
                     gatsbyLinkProps={{
                       activeClassName: 'bg-gray-700'
                     }}>
                     Resume
-                  </AnchorLink> */}
+                  </AnchorLink>
                 </div>
               </div>
             </Disclosure.Panel>
