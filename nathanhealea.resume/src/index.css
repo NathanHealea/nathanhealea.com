@@ -4,8 +4,14 @@
 
 @import '../node_modules/paper-css/paper.css';
 
-
 /* overrides */
 body.letter .sheet {
   height: 100%;
+}
+
+@page {
+  height: 0;
+  page-break-before: always;
+  margin: 0;
+  border-top: none;
 }

@@ -76,7 +76,7 @@ const Resume = (props: IResumeProps) => {
       <Divider />
 
       {/* Object */}
-      <div className='py-2 mb-2 '>
+      <div className='mb-4 '>
         <p className='text-sm text-gray-800'>
           Driven, energetic Software Developer with a passion for developing
           applications that improve processes and user experience. Experienced

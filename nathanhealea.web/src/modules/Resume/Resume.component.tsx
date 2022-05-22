@@ -19,7 +19,7 @@ const Resume = (props: IResumeProps) => {
       {/* TODO: Resume download section */}
       <DownloadResume />
 
-      <div className='container flex items-center justify-center px-12 my-12'>
+      <div className='flex items-center justify-center px-12 my-12 '>
         <Paper>
           <ResumeContent />
         </Paper>

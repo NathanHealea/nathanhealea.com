@@ -40,7 +40,7 @@ const Experience = (props: IExperienceProps) => {
       return (
         <List className='ml-8 list-disc '>
           {props.accomplishments?.map((accomplishment) => (
-            <li className='text-sm'>{accomplishment}</li>
+            <li className='mb-2 text-sm'>{accomplishment}</li>
           ))}
         </List>
       );

@@ -18,7 +18,7 @@ const Paper = (props: IPaperProps) => {
   }, []);
 
   return (
-    <div className='shadow-2xl'>
+    <div className='shadow-2xl w-[240mm]'>
       <div className='m-12'>{props.children}</div>
     </div>
   );
