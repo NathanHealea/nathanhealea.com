@@ -5,7 +5,7 @@ module.exports = {
   },
   plugins: [
     'gatsby-plugin-postcss',
-
+    `gatsby-plugin-fontawesome-css`,
     'gatsby-plugin-mdx',
     {
       resolve: 'gatsby-source-filesystem',

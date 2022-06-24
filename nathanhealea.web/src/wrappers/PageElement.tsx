@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MainLayout from '../layouts/MainLayout/MainLayout.compoent';
+import MainLayout from '../layouts/MainLayout/MainLayout.component';
 
 // Layout Import
 
