@@ -101,7 +101,11 @@ const Resume = (props: IResumeProps) => {
               title='Software Developer'
               company='Maps Credit Union'
               start='Mar 2022'
-              overview='Working with an amazing team to create exceptional member interfaces with MAPS CU'
+              overview='Working to provide members with digital channel to meet their Financial needs.'
+              accomplishments={[
+                'Improved onboarding documentation for new employees.',
+                'Improved member digital experience by developing features quickly and accuracy. ',
+              ]}
             />
 
             <Experience
@@ -109,8 +113,12 @@ const Resume = (props: IResumeProps) => {
               company='PacificSource'
               start='Aug 2021'
               end='Mar 2022'
-              overview='Working with an amazing team to provide better health, better
-              care, and better cost to the people and communities we serve.'
+              overview='Working with an amazing team to provide better health, better care, and better cost to the people and communities we serve.'
+              accomplishments={[
+                'Refactoring code to improve readability and maintainability.',
+                'Improved documentation for new employees',
+                'Working with team members to support large enterprise systems.'
+              ]}
             />
 
             <Experience
