@@ -142,6 +142,8 @@ const Resume = (props: IResumeProps) => {
               ]}
             />
 
+            <div className='print:py-2'/>
+
             <Experience
               title='Software Developer II'
               company='Northwest Community Credit Union'

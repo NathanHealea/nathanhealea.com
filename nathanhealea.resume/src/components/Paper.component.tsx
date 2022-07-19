@@ -17,7 +17,7 @@ const Paper = (props: IPaperProps) => {
     document.body.classList.add('letter');
   }, []);
 
-  return <div className='sheet p-[10mm] print:p-0 m-[10mm] print:pb-[25mm]'>{props.children}</div>;
+  return <div className='sheet p-[10mm] print:p-0 m-[10mm]'>{props.children}</div>;
 };
 
 // Default Return
