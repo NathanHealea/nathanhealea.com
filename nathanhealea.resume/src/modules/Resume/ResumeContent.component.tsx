@@ -147,8 +147,8 @@ const Resume = (props: IResumeProps) => {
             <Experience
               title='Software Developer II'
               company='Northwest Community Credit Union'
-              start='Sep 2020'
-              end='Aug 2017'
+              start='Aug 2017'
+              end='Sep 2020'
               overview='Developed applications for internal business units and member facing products.
               Led deployment of applications into Microsoft Azure. Maintained legacy
               applications and databases and performed domain migrations for said
