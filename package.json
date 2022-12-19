@@ -1,12 +1,31 @@
 {
   "name": "nathanhealea.com",
+  "author": {
+    "name": "Nathan Healea",
+    "email": "nate.healea@gmail.com",
+    "url": "https://nathanhealea.com/social"
+  },
+  "description": "My personal website, blog, shared resources, you name it.",
+  "categories": [
+    "TypeScript",
+    "NextJS",
+    "TailwindCSS",
+    "Personal",
+    "Website"
+  ],
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "clean": "npx rimraf .next",
     "dev": "next dev",
+    "prod": "npm run clean && npm run build && npm start",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "npx prettier --write .",
+    "version:major": "npm version major --force",
+    "version:minor": "npm version minor --force",
+    "version:patch": "npm version patch --force"
   },
   "dependencies": {
     "@next/font": "13.0.7",
@@ -19,5 +38,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "4.9.4"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.1"
   }
 }
