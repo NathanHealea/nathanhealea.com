@@ -1,8 +1,6 @@
-import { FC } from 'react';
-
 import { NextPage, AppProps } from '../next.types';
-
 import '../styles/globals.css';
+import { FC } from 'react';
 
 /**
  * Determines if a page has a page layout.
