@@ -38,7 +38,7 @@
     @apply uppercase tracking-widest;
   }
 
-  a {
+  /* a {
     @apply font-bold uppercase tracking-widest no-underline;
-  }
+  } */
 }

@@ -9,7 +9,6 @@ const addButton = (addComponents, theme, e) => {
     .map((color) => `.btn-${color}`)
     .join(', ');
 
-  console.log(colorClassNames);
   addComponents({
     '.btn': {
       paddingTop: theme('spacing.2'),
@@ -20,6 +19,8 @@ const addButton = (addComponents, theme, e) => {
       borderTopLeftRadius: theme('borderRadius.md'),
       borderBottomRightRadius: theme('borderRadius.md'),
       borderBottomLeftRadius: theme('borderRadius.md'),
+      textTransform: 'uppercase',
+      letterSpacing: '.2rem',
       cursor: 'pointer',
     },
     '.btn:hover, .btn:focus, .btn:active, .btn.active': {

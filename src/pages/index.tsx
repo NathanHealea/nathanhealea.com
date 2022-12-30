@@ -140,6 +140,52 @@ export default function Home() {
             <div className='btn btn-outlined btn-peach'>Button</div>
           </div>
         </section>
+        <section className='w-full flex flex-col py-8 my-8 max-w-5xl gap-y-8'>
+          <h2>Links</h2>
+          <div>
+            <a href='#'>Link</a>
+          </div>
+          <div>
+            <a href='#' className='link-strawberry'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-apricot'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-lemon'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-apple'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-blueberry'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-plum'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-grape'>
+              Link
+            </a>
+          </div>
+          <div>
+            <a href='#' className='link-peach'>
+              Link
+            </a>
+          </div>
+        </section>
       </main>
     </>
   );

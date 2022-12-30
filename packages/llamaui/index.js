@@ -1,8 +1,8 @@
 const plugin = require('tailwindcss/plugin');
 
 const colors = require('./src/colors');
-const addButton = require('./src/buttons');
-
+const addButtons = require('./src/buttons');
+const addLinks = require('./src/links');
 const llmamauiPlugin = ({
   addUtilities,
   matchUtilities,
@@ -18,7 +18,8 @@ const llmamauiPlugin = ({
 }) => {
   console.log('🦙 LlamaUI');
 
-  addButton(addComponents, theme, e);
+  addButtons(addComponents, theme, e);
+  addLinks(addComponents, theme, e);
 };
 
 module.exports = plugin(llmamauiPlugin, {
