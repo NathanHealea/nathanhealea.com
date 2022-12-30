@@ -1,3 +1,4 @@
+import MainLayout from 'layouts/Main';
 import { NextPage } from 'next.types';
 import Head from 'next/head';
 
@@ -21,7 +22,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 };
 
 HomePage.getLayout = (page) => {
-  return <>{page}</>;
+  return <MainLayout>{page}</MainLayout>;
 };
 
 export default HomePage;

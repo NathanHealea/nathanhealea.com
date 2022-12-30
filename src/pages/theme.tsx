@@ -1,3 +1,4 @@
+import MainLayout from 'layouts/Main';
 import { NextPage } from 'next.types';
 import Head from 'next/head';
 
@@ -207,4 +208,7 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
   );
 };
 
+ThemePage.getLayout = (page) => {
+  return <MainLayout>{page}</MainLayout>;
+};
 export default ThemePage;

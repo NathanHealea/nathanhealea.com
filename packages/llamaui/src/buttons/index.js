@@ -24,24 +24,31 @@ const addButton = ({ addComponents, theme, e }) => {
       cursor: 'pointer',
     },
     '.btn:hover, .btn:focus, .btn:active, .btn.active': {
-      backgroundColor: Color(theme('colors.black')).alpha(0.2).hsl().toString(),
+      backgroundColor: Color(theme('colors.black.DEFAULT'))
+        .alpha(0.2)
+        .hsl()
+        .toString(),
+      fontWeight: 'bold',
     },
 
     '.btn.btn-contained': {
-      color: theme('colors.white'),
-      backgroundColor: Color(theme('colors.black')).alpha(0.8).hsl().toString(),
+      color: theme('colors.white.DEFAULT'),
+      backgroundColor: Color(theme('colors.black.DEFAULT'))
+        .alpha(0.8)
+        .hsl()
+        .toString(),
     },
     [`.btn:hover.btn-contained:not(${colorClassNames}), .btn:active.btn-contained:not(${colorClassNames}), .btn:focus.btn-contained:not(${colorClassNames}), .btn.active.btn-contained:not(${colorClassNames})`]:
       {
-        backgroundColor: theme('colors.black'),
+        backgroundColor: theme('colors.black.DEFAULT'),
       },
 
     '.btn.btn-outlined': {
       borderWidth: theme('borderWidth.2'),
     },
     [`.btn:hover.btn-outlined:not(${colorClassNames})`]: {
-      color: theme('colors.black'),
-      borderColor: theme('color.black'),
+      color: theme('colors.black.DEFAULT'),
+      borderColor: theme('colors.black.DEFAULT'),
     },
   });
 

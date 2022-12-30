@@ -6,7 +6,6 @@ const addButtons = require('./src/buttons');
 const addLinks = require('./src/links');
 const llmamauiPlugin = (props) => {
   console.log('🦙 LlamaUI');
-
   addTypography(props);
   addButtons(props);
   addLinks(props);
@@ -14,6 +13,8 @@ const llmamauiPlugin = (props) => {
 
 module.exports = plugin(llmamauiPlugin, {
   theme: {
-    colors: colors,
+    extend: {
+      colors,
+    },
   },
 });

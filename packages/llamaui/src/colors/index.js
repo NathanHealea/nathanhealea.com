@@ -1,7 +1,14 @@
 const generateColor = require('./createColor');
 
-const white = '#F8F9FA';
-const black = '#212529';
+const white = {
+  DEFAULT: '#F8F9FA',
+  content: '#212529',
+};
+
+const black = {
+  DEFAULT: '#212529',
+  content: '#F8F9FA',
+};
 
 const strawberry = generateColor('#FFADAD');
 const apricot = generateColor('#FFD6A5');

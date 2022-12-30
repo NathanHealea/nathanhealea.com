@@ -17,6 +17,10 @@ const createButton = (name, color, e) => {
         backgroundColor: color.dark,
         color: color.content,
       },
+    [`.btn-outlined.btn-${name}`]: {
+      borderColor: color.DEFAULT,
+      color: color.content,
+    },
   };
   return button;
 };
