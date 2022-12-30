@@ -1,6 +1,10 @@
 import { NextPage, AppProps } from '../next.types';
 import '../styles/globals.css';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { FC } from 'react';
+
+config.autoAddCss = false;
 
 /**
  * Determines if a page has a page layout.

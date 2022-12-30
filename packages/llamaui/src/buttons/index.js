@@ -50,6 +50,12 @@ const addButton = ({ addComponents, theme, e }) => {
       color: theme('colors.black.DEFAULT'),
       borderColor: theme('colors.black.DEFAULT'),
     },
+    ['.btn-square']: {
+      paddingTop: theme('spacing.2'),
+      paddingBottom: theme('spacing.2'),
+      paddingLeft: theme('spacing.2'),
+      paddingRight: theme('spacing.2'),
+    },
   });
 
   Object.keys(colors).forEach((color) => {
