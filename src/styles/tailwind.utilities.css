@@ -1,0 +1,22 @@
+@tailwind utilities;
+@layer utilities {
+  /* 
+   * Should match 'button' tag styling
+   */
+  .text-btn {
+    @apply uppercase tracking-widest;
+  }
+  .text-overline {
+    @apply text-xs uppercase tracking-widest;
+  }
+  .text-sub {
+    @apply text-sm;
+  }
+
+  /* 
+   * Should match 'a' tag styling
+   */
+  .text-link {
+    @apply font-bold uppercase tracking-widest no-underline;
+  }
+}
