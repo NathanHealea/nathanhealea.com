@@ -1,11 +1,11 @@
 @tailwind base;
 @layer base {
   html {
-    font-family: 'Space Mono', monospace;
+    /* font-family: 'Space Mono', monospace; */
 
     @apply bg-white text-black;
   }
-  h1,
+  /* h1,
   h2,
   h3,
   h4,
@@ -36,7 +36,7 @@
 
   button {
     @apply uppercase tracking-widest;
-  }
+  } */
 
   /* a {
     @apply font-bold uppercase tracking-widest no-underline;

@@ -26,7 +26,6 @@ export default function Home() {
           <h5>Heading 5</h5>
           <h6>Heading 6</h6>
           <p>Here is some text</p>
-          <p>some more text</p>
           <span className='block text-sub'>subtext</span>
           <span className='block text-overline'>overline</span>
           <span className='block text-button'>button</span>
