@@ -1,44 +1,6 @@
 @tailwind base;
 @layer base {
   html {
-    /* font-family: 'Space Mono', monospace; */
-
     @apply bg-white text-black;
   }
-  /* h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Comfortaa', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-      'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  h1 {
-    @apply text-6xl;
-  }
-  h2 {
-    @apply text-5xl;
-  }
-  h3 {
-    @apply text-4xl;
-  }
-  h4 {
-    @apply text-2xl;
-  }
-  h5 {
-    @apply text-xl;
-  }
-  h6 {
-    @apply text-lg;
-  }
-
-  button {
-    @apply uppercase tracking-widest;
-  } */
-
-  /* a {
-    @apply font-bold uppercase tracking-widest no-underline;
-  } */
 }
