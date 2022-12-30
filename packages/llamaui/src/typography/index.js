@@ -1,4 +1,4 @@
-const addTypography = (addBase, addUtilities, theme, e) => {
+const addTypography = ({ addBase, addUtilities, theme, e }) => {
   const headingFontFamily =
     "'Comfortaa','Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif";
 
@@ -45,6 +45,12 @@ const addTypography = (addBase, addUtilities, theme, e) => {
         fontFamily: headingFontFamily,
       },
     },
+    {
+      name: 'p',
+      styles: {
+        fontSize: theme('fontSize.base'),
+      },
+    },
   ];
 
   typography.forEach((type) => {
@@ -55,17 +61,37 @@ const addTypography = (addBase, addUtilities, theme, e) => {
     addUtilities({
       [`.text-${type.name}`]: type.styles,
     });
+  });
 
-    addUtilities({
-      '.text-sub': {
-        fontSize: theme('fontSize.lg'),
-      },
-      '.text-overline': {
-        fontSize: theme('fontSize.sm'),
-        textTransform: 'uppercase',
-        letterSpacing: '.2rem',
-      },
-    });
+  addBase({
+    html: {
+      fontFamily: "'Space Mono', monospace",
+    },
+    button: {
+      textTransform: 'uppercase',
+      letterSpacing: '.2rem',
+    },
+    a: {
+      textTransform: 'uppercase',
+      letterSpacing: '.2rem',
+    },
+    'a:hover, a:active, a:focus, a.active': {
+      fontWeight: 'bold',
+    },
+  });
+
+  addUtilities({
+    '.text-body': {
+      fontSize: theme('fontSize.base'),
+    },
+    '.text-sub': {
+      fontSize: theme('fontSize.lg'),
+    },
+    '.text-overline': {
+      fontSize: theme('fontSize.sm'),
+      textTransform: 'uppercase',
+      letterSpacing: '.2rem',
+    },
   });
 };
 

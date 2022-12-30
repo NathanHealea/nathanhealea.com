@@ -1,7 +1,7 @@
 const Color = require('color');
 const createButton = require('./createButton');
 
-const addButton = (addComponents, theme, e) => {
+const addButton = ({ addComponents, theme, e }) => {
   console.log('  Adding Buttons..');
 
   const colors = theme('colors');

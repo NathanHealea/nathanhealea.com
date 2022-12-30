@@ -1,6 +1,6 @@
 const createLink = require('./createLink');
 
-const addLinks = (addComponents, theme, e) => {
+const addLinks = ({ addComponents, theme, e }) => {
   console.log('  Adding Links..');
 
   const colors = theme('colors');

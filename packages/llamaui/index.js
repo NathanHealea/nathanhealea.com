@@ -4,24 +4,12 @@ const colors = require('./src/colors');
 const addTypography = require('./src/typography');
 const addButtons = require('./src/buttons');
 const addLinks = require('./src/links');
-const llmamauiPlugin = ({
-  addUtilities,
-  matchUtilities,
-  addComponents,
-  matchComponents,
-  addBase,
-  addVariant,
-  matchVariant,
-  theme,
-  config,
-  coreFPlugins,
-  e,
-}) => {
+const llmamauiPlugin = (props) => {
   console.log('🦙 LlamaUI');
 
-  addTypography(addBase, addUtilities, theme, e);
-  addButtons(addComponents, theme, e);
-  addLinks(addComponents, theme, e);
+  addTypography(props);
+  addButtons(props);
+  addLinks(props);
 };
 
 module.exports = plugin(llmamauiPlugin, {

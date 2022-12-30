@@ -19,17 +19,31 @@ export default function Home() {
         </header>
         <section className='w-full flex flex-col py-8 my-8 max-w-5xl gap-y-8'>
           <h1>Typography</h1>
-          <h1>Heading 1</h1>
-          <h2>Heading 2</h2>
-          <h3>Heading 3</h3>
-          <h4>Heading 4</h4>
-          <h5>Heading 5</h5>
-          <h6>Heading 6</h6>
-          <p>Here is some text</p>
-          <span className='block text-sub'>subtext</span>
-          <span className='block text-overline'>overline</span>
-          <span className='block text-button'>button</span>
-          <span className='block text-link'>link</span>
+          <div className='flex flex-1'>
+            <div className='flex flex-col flex-1 gap-y-8'>
+              <h1>Heading 1</h1>
+              <h2>Heading 2</h2>
+              <h3>Heading 3</h3>
+              <h4>Heading 4</h4>
+              <h5>Heading 5</h5>
+              <h6>Heading 6</h6>
+              <p>Here is some text</p>
+              <span className='block text-sub'>subtext</span>
+              <span className='block text-overline'>overline</span>
+              <span className='block text-button'>button</span>
+              <span className='block text-link'>link</span>
+            </div>
+
+            <div className='flex flex-col flex-1 gap-y-8'>
+              <span className='block text-h1'>.text-h1</span>
+              <span className='block text-h2'>.text-h2</span>
+              <span className='block text-h3'>.text-h3</span>
+              <span className='block text-h4'>.text-h4</span>
+              <span className='block text-h5'>.text-h5</span>
+              <span className='block text-h6'>.text-h6</span>
+              <span className='block text-body'>.text-body</span>
+            </div>
+          </div>
         </section>
         <section className='w-full flex flex-col py-8 my-8 max-w-5xl gap-y-8'>
           <h2>Colors</h2>
