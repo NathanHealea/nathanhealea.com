@@ -1,4 +1,4 @@
-import { Head } from 'components';
+import { Head, Logo } from 'components';
 import Link from 'next/link';
 import { FC, ReactNode } from 'react';
 
@@ -15,7 +15,11 @@ const MainLayout: FC<MainLayoutProps> = (props) => {
 
       <header className='bg-white text-white-content sticky'>
         <div className='flex flex-row justify-center items-center max-w-7xl mx-auto p-4 py-8'>
-          <span className='text-h4'>Nathan Healea</span>
+          <div className='flex flex-row justify-center items-center gap-x-4'>
+            <Link href='/'>
+              <Logo />
+            </Link>
+          </div>
           <nav className='flex-1 gap-x-4 justify-end items-center flex'>
             {/* <Link href='/'>Home</Link> */}
             {/* <Link href='/projects'>Projects</Link> */}

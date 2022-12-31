@@ -99,6 +99,8 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
               <div className=' bg-peach-dark flex-1 h-4' />
               <div className=' bg-peach-content flex-1 h-4' />
             </div>
+
+            <div className='flex overflow-hidden items-end w-16 h-64 max-h-16 max-w-[64px] bg-black rounded'></div>
           </div>
         </section>
         <section className='w-full flex flex-col py-8 my-8 max-w-5xl gap-y-8'>
