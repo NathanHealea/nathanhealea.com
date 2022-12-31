@@ -11,13 +11,13 @@ enum SizeEnum {
 }
 
 interface LogoProps {
-  size: keyof typeof SizeEnum;
+  size?: keyof typeof SizeEnum | undefined;
   animate?: boolean | undefined;
   className?: string | undefined;
 }
 
 const Logo: FC<LogoProps> = (props) => {
-  const { size, animate, className } = props;
+  const { size = 'md', animate, className } = props;
 
   const width = SizeEnum[size] * 16;
   const height = SizeEnum[size] * 16 * 2;
