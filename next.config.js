@@ -8,7 +8,7 @@ const nextConfig = {
       redirects.push({
         source: '/theme',
         destination: '/',
-        permanent: 'true',
+        permanent: true,
       });
     }
 
