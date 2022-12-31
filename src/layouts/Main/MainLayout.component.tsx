@@ -1,3 +1,5 @@
+import { faCopyright } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Head, Logo } from 'components';
 import Link from 'next/link';
 import { FC, ReactNode } from 'react';
@@ -35,7 +37,8 @@ const MainLayout: FC<MainLayoutProps> = (props) => {
       <footer className='bg-black text-black-content'>
         <div className=' flex flex-col justify-center items-center max-w-7xl mx-auto p-4 py-8 text-center'>
           <p className='p-2'>
-            Copyright &copy; {new Date().getFullYear()} Nathan Healea
+            Copyright <FontAwesomeIcon icon={faCopyright} />{' '}
+            {new Date().getFullYear()} Nathan Healea
           </p>
           <p className='p-2'>
             Built with LLamaUI, TailwindCSS, NextJS, &amp; ❤️
