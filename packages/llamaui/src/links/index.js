@@ -10,7 +10,7 @@ const addLinks = ({ addComponents, theme, e }) => {
 
   addComponents({
     'a, .link': {
-      textTransform: 'uppercase',
+      textTransform: 'capitalize',
       letterSpacing: '.2rem',
     },
     'a:hover, a:active, a:focus, a.active, .link:hover, .link:active, .link:focus, .link.active':
