@@ -16,7 +16,7 @@ const MainLayout: FC<MainLayoutProps> = (props) => {
       <Head />
 
       <header className='bg-white text-white-content sticky'>
-        <div className='flex flex-row justify-center items-center max-w-7xl mx-auto p-4 py-8'>
+        <div className='flex flex-row justify-center items-center max-w-7xl mx-auto  h-32'>
           <div className='flex flex-row justify-center items-center gap-x-4'>
             <Link href='/'>
               <Logo />
