@@ -6,6 +6,7 @@ const createButton = (name, color, e) => {
       color: color.DEFAULT,
       '&:hover, &:active, &:focus, &.active': {
         backgroundColor: Color(color.DEFAULT).alpha(0.2).hsl().toString(),
+        color: color.content,
       },
     },
     [`.btn-contained.btn-${name}`]: {
@@ -15,7 +16,6 @@ const createButton = (name, color, e) => {
     [`.btn:hover.btn-contained.btn-${name}, .btn:active.btn-contained.btn-${name}, .btn:focus.btn-contained.btn-${name}, .btn.active.btn-contained.btn-${name}`]:
       {
         backgroundColor: color.dark,
-        color: color.content,
       },
     [`.btn-outlined.btn-${name}`]: {
       borderColor: color.DEFAULT,

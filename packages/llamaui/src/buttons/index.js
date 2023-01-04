@@ -28,7 +28,7 @@ const addButton = ({ addComponents, theme, e }) => {
         .alpha(0.2)
         .hsl()
         .toString(),
-      fontWeight: 'bold',
+      // fontWeight: 'bold',
     },
 
     '.btn.btn-contained': {

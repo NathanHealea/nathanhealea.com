@@ -9,14 +9,11 @@ const addLinks = ({ addComponents, theme, e }) => {
     .join(', ');
 
   addComponents({
-    'a, .link': {
-      textTransform: 'capitalize',
+    '.link': {
+      textTransform: 'Uppercase',
       letterSpacing: '.2rem',
     },
-    'a:hover, a:active, a:focus, a.active, .link:hover, .link:active, .link:focus, .link.active':
-      {
-        fontWeight: 'bold',
-      },
+    '.link:hover, .link:active, .link:focus, .link.active': {},
   });
 
   Object.keys(colors).forEach((color) => {

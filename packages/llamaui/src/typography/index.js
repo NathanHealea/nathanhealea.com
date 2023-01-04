@@ -54,9 +54,7 @@ const addTypography = ({ addBase, addComponents, addUtilities, theme, e }) => {
       textTransform: 'uppercase',
       letterSpacing: '.2rem',
     },
-    'a:hover, a:active, a:focus, a.active': {
-      fontWeight: 'bold',
-    },
+    'a:hover, a:active, a:focus, a.active': {},
   });
 
   addComponents({
