@@ -6,10 +6,10 @@ import {
   faObjectGroup,
 } from '@fortawesome/free-regular-svg-icons';
 import {
+  faBrain,
   faLaptopCode,
   faLayerGroup,
   faServer,
-  faSitemap,
   faToolbox,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -140,7 +140,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
               <div>
                 <div className='flex flex-center h-16 w-16 bg-lemon text-lemon-content  rounded-md'>
-                  <FontAwesomeIcon icon={faSitemap} size='2x' />
+                  <FontAwesomeIcon icon={faBrain} size='2x' />
                 </div>
               </div>
               <div>
