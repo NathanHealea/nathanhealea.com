@@ -25,7 +25,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   return (
     <>
       <Head title="Hello! I'm an experienced full stack developer and software engineer" />
-      <header id='hero' className='min-h-screen flex flex-center -mt-32'>
+      <header id='hero' className='min-h-screen flex flex-center md:-mt-32'>
         <div className='content flex flex-col-reverse md:flex-row flex-center gap-y-8'>
           <div className='flex-1 text-center md:text-start'>
             <h2>Hello,</h2>
@@ -63,12 +63,12 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             <p>The person I am.</p>
           </div>
 
-          <p className='my-2'>
+          <p className='my-2 text-center md:text-start'>
             I am a React and .NET full stack developer with{' '}
             {new Date().getFullYear() - 2015} years of experience developing
             applications in Healthcare, Finance, and Education.
           </p>
-          <p className='my-2'>
+          <p className='my-2 text-center md:text-start'>
             I bring my passion for development into every project I work on,
             fulled by the excitement of turing ideas in to feature rich
             applications. I strive to create user interfaces that empowers my
@@ -76,7 +76,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             patterns. I excel in learning new technologies, always looking for
             solutions to best meet a projects needs.
           </p>
-          <p className='my-2'>
+          <p className='my-2 text-center md:text-start'>
             You can find me on{' '}
             <a
               href='https://github.com/NathanHealea'

@@ -72,8 +72,6 @@ const addTypography = ({ addBase, addComponents, addUtilities, theme, e }) => {
       letterSpacing: '.2rem',
     },
   });
-
-  console.log(theme('spacing'));
 };
 
 module.exports = addTypography;
