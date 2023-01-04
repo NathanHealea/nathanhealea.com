@@ -8,4 +8,8 @@
   .flex-start {
     @apply items-start justify-start;
   }
+
+  .flex-end {
+    @apply items-end justify-end;
+  }
 }

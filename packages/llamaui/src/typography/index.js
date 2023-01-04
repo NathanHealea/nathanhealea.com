@@ -71,7 +71,6 @@ const addTypography = ({ addBase, addComponents, addUtilities, theme, e }) => {
       textTransform: 'uppercase',
       letterSpacing: '.2rem',
     },
-    '.text-title': { ...typography.h2, marginBottom: theme('spacing.8') },
   });
 
   console.log(theme('spacing'));

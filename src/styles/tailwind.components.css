@@ -39,4 +39,24 @@
   .content {
     @apply mx-auto w-full max-w-7xl p-8 py-8;
   }
+
+  /* --- Sections --- */
+  section .section-title {
+    @apply mb-4 flex flex-col justify-center text-center;
+  }
+
+  section .section-title > h2 {
+  }
+
+  section .section-title > p {
+    @apply text-overline;
+  }
+
+  section .section-title.start {
+    @apply md:justify-start md:text-start;
+  }
+
+  section .section-title.end {
+    @apply md:justify-end md:text-end;
+  }
 }

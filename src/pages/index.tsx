@@ -1,10 +1,11 @@
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import {
+  faEnvelope,
   faFileLines,
   faFloppyDisk,
   faObjectGroup,
 } from '@fortawesome/free-regular-svg-icons';
 import {
-  faAnglesDown,
   faLaptopCode,
   faLayerGroup,
   faServer,
@@ -56,10 +57,10 @@ const HomePage: NextPage<HomePageProps> = (props) => {
       </header>
 
       <section id='about-me'>
-        <div className='content text-center md:text-start'>
-          <div className='text-title'>
+        <div className='content'>
+          <div className='section-title start'>
             <h2>Get to know me!</h2>
-            <p className='text-overline'>The person I am.</p>
+            <p>The person I am.</p>
           </div>
 
           <p className='my-2'>
@@ -98,9 +99,9 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
       <section id='what-im-good-at'>
         <div className='content'>
-          <div className='text-title text-center md:text-right'>
-            <h2 className=''>What I&apos;m Good AT</h2>
-            <p className=' text-overline'>The value and experience I bring.</p>
+          <div className='section-title end'>
+            <h2>What I&apos;m Good AT</h2>
+            <p>The value and experience I bring.</p>
           </div>
           <div className='flex md:grid flex-col md:flex-row flex-wrap grid-cols-2  gap-8 my-8 '>
             <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
@@ -175,9 +176,9 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
       <section id='what-i-use'>
         <div className='content'>
-          <div className='text-title text-center md:text-start'>
-            <h2 className=''>Technologies I work with</h2>
-            <p className=' text-overline'>The skill set I have</p>
+          <div className='section-title start'>
+            <h2>Technologies I work with</h2>
+            <p>The skill set I have</p>
           </div>
           <div className='flex md:grid flex-col md:flex-row flex-wrap grid-cols-2  gap-8 my-8 '>
             <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
@@ -267,6 +268,46 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               <FontAwesomeIcon icon={faFileLines} /> View my Resume
             </Link>
           </div> */}
+        </div>
+      </section>
+
+      <section>
+        <div className='content'>
+          <div className='section-title end'>
+            <h2>Lets Connect!</h2>
+            <p>The collaboration I&apos;m looking for.</p>
+          </div>
+          <div className='flex flex-col md:flex-row flex-center md:flex-end gap-8'>
+            <a
+              href='https://github.com/NathanHealea'
+              target='_blank'
+              rel='noreferrer'
+              className='btn btn-outlined btn-strawberry flex flex-center gap-4'
+            >
+              <FontAwesomeIcon icon={faGithub} size='2x' />
+              Github
+            </a>
+
+            <a
+              href='https://www.linkedin.com/in/nathanhealea'
+              target='_blank'
+              rel='noreferrer'
+              className='btn btn-outlined btn-apricot flex flex-center gap-4'
+            >
+              <FontAwesomeIcon icon={faLinkedinIn} size='2x' />
+              LinkedIn
+            </a>
+
+            <a
+              href='mailto:connect@nathanhealea.com'
+              target='_blank'
+              rel='noreferrer'
+              className='btn btn-outlined btn-lemon flex flex-center gap-4'
+            >
+              <FontAwesomeIcon icon={faEnvelope} size='2x' />
+              Email Me
+            </a>
+          </div>
         </div>
       </section>
     </>
