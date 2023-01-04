@@ -15,9 +15,9 @@ const MainLayout: FC<MainLayoutProps> = (props) => {
     <>
       <Head />
 
-      <header className='bg-white text-white-content sticky'>
-        <div className='flex flex-row justify-center items-center max-w-7xl mx-auto p-4 py-8'>
-          <div className='flex flex-row justify-center items-center gap-x-4'>
+      <header className='nav bg-white text-white-content sticky'>
+        <div className='content flex flex-row flex-center h-32'>
+          <div className='flex flex-row flex-center gap-x-4'>
             <Link href='/'>
               <Logo />
             </Link>
@@ -33,9 +33,9 @@ const MainLayout: FC<MainLayoutProps> = (props) => {
           </nav>
         </div>
       </header>
-      <main className='flex flex-1'>{children}</main>
+      <main className='flex flex-1 flex-col w-full'>{children}</main>
       <footer className='bg-black text-black-content'>
-        <div className=' flex flex-col justify-center items-center max-w-7xl mx-auto p-4 py-8 text-center'>
+        <div className='content flex flex-col flex-center text-center'>
           <p className='p-2'>
             Copyright <FontAwesomeIcon icon={faCopyright} />{' '}
             {new Date().getFullYear()} Nathan Healea

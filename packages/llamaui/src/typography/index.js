@@ -1,65 +1,44 @@
-const addTypography = ({ addBase, addUtilities, theme, e }) => {
+const addTypography = ({ addBase, addComponents, addUtilities, theme, e }) => {
   const headingFontFamily =
     "'Comfortaa','Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif";
 
-  const typography = [
-    {
-      name: 'h1',
-      styles: {
-        fontSize: theme('fontSize.6xl'),
-        fontFamily: headingFontFamily,
-      },
+  const typography = {
+    h1: {
+      fontSize: theme('fontSize.6xl'),
+      fontFamily: headingFontFamily,
     },
-    {
-      name: 'h2',
-      styles: {
-        fontSize: theme('fontSize.5xl'),
-        fontFamily: headingFontFamily,
-      },
+    h2: {
+      fontSize: theme('fontSize.5xl'),
+      fontFamily: headingFontFamily,
     },
-    {
-      name: 'h3',
-      styles: {
-        fontSize: theme('fontSize.4xl'),
-        fontFamily: headingFontFamily,
-      },
+    h3: {
+      fontSize: theme('fontSize.4xl'),
+      fontFamily: headingFontFamily,
     },
-    {
-      name: 'h4',
-      styles: {
-        fontSize: theme('fontSize.3xl'),
-        fontFamily: headingFontFamily,
-      },
+    h4: {
+      fontSize: theme('fontSize.3xl'),
+      fontFamily: headingFontFamily,
     },
-    {
-      name: 'h5',
-      styles: {
-        fontSize: theme('fontSize.2xl'),
-        fontFamily: headingFontFamily,
-      },
+    h5: {
+      fontSize: theme('fontSize.2xl'),
+      fontFamily: headingFontFamily,
     },
-    {
-      name: 'h6',
-      styles: {
-        fontSize: theme('fontSize.xl'),
-        fontFamily: headingFontFamily,
-      },
+    h6: {
+      fontSize: theme('fontSize.xl'),
+      fontFamily: headingFontFamily,
     },
-    {
-      name: 'p',
-      styles: {
-        fontSize: theme('fontSize.base'),
-      },
+    P: {
+      fontSize: theme('fontSize.base'),
     },
-  ];
+  };
 
-  typography.forEach((type) => {
+  Object.keys(typography).forEach((type) => {
     addBase({
-      [type.name]: type.styles,
+      [type]: typography[type],
     });
 
-    addUtilities({
-      [`.text-${type.name}`]: type.styles,
+    addComponents({
+      [`.text-${type}`]: type,
     });
   });
 
@@ -80,7 +59,7 @@ const addTypography = ({ addBase, addUtilities, theme, e }) => {
     },
   });
 
-  addUtilities({
+  addComponents({
     '.text-body': {
       fontSize: theme('fontSize.base'),
     },
@@ -93,6 +72,8 @@ const addTypography = ({ addBase, addUtilities, theme, e }) => {
       letterSpacing: '.2rem',
     },
   });
+
+  console.log(theme('spacing'));
 };
 
 module.exports = addTypography;

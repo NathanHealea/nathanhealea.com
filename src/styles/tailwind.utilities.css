@@ -1,38 +1,15 @@
 @tailwind utilities;
 @layer utilities {
-  @-webkit-keyframes flip-vertical-ltr {
-    0% {
-      -webkit-transform: rotateY(0);
-      transform: rotateY(0);
-    }
-    50% {
-      -webkit-transform: rotateY(-180deg);
-      transform: rotateY(-180deg);
-    }
-    100% {
-      -webkit-transform: rotateY(0);
-      transform: rotateY(0);
-    }
-  }
-  @keyframes flip-vertical-ltr {
-    0% {
-      -webkit-transform: rotateY(0);
-      transform: rotateY(0);
-    }
-    50% {
-      -webkit-transform: rotateY(-180deg);
-      transform: rotateY(-180deg);
-    }
-    100% {
-      -webkit-transform: rotateY(0);
-      transform: rotateY(0);
-    }
+  /* Centers content */
+  .flex-center {
+    @apply items-center justify-center;
   }
 
-  .flip-vertical-ltr {
-    -webkit-animation: flip-vertical-ltr 3s
-      cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite both;
-    animation: flip-vertical-ltr 3s cubic-bezier(0.455, 0.03, 0.515, 0.955)
-      infinite both;
+  .flex-start {
+    @apply items-start justify-start;
+  }
+
+  .flex-end {
+    @apply items-end justify-end;
   }
 }
