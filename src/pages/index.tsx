@@ -30,7 +30,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
             <h2>Hello,</h2>
             <h1>I&apos;m Nathan Healea</h1>
             <h3>Full Stack Developer &amp; Software Engineer</h3>
-            <div
+            {/* <div
               id='hero-actions'
               className='flex flex-col md:flex-row gap-y-4 my-4'
             >
@@ -41,7 +41,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                   className=' fa-beat-fade'
                 />
               </a>
-            </div>
+            </div> */}
           </div>
           <div className='flex flex-center'>
             <Image
@@ -65,12 +65,15 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           <p className='my-2'>
             I am a React and .NET full stack developer with{' '}
             {new Date().getFullYear() - 2015} years of experience developing
-            application in Healthcare, Finance, and Education.
+            applications in Healthcare, Finance, and Education.
           </p>
           <p className='my-2'>
-            I am passionate about turing ideas into feature rich applications,
-            improving user experiences, automating process, learning new
-            technologies, and simplifying software development.
+            I bring my passion for development into every project I work on,
+            fulled by the excitement of turing ideas in to feature rich
+            applications. I strive to create user interfaces that empowers my
+            users, by listening to feedback and following common design
+            patterns. I excel in learning new technologies, always looking for
+            solutions to best meet a projects needs.
           </p>
           <p className='my-2'>
             You can find me on{' '}
@@ -107,11 +110,11 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 </div>
               </div>
               <div>
-                <h4>Full Stack Developer</h4>
+                <h4>Full Stack Development</h4>
                 <p className='my-2'>
                   Frontend, Backend, Scripts, Programs, Services you name it I
-                  have built or have worked on it. My experience has covered a
-                  wide range of frameworks, environments, libraries and more.
+                  have built or worked on it. My experience has covered a wide
+                  range of frameworks, environments, libraries and more.
                 </p>
               </div>
             </div>
@@ -123,12 +126,12 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 </div>
               </div>
               <div>
-                <h4>UI/UX</h4>
+                <h4>UI/UX Design</h4>
                 <p className='my-2'>
-                  No one wants to use an application with a incomprehensible
-                  user interface and experience. That is why I develop
-                  applications from the user perspective ensuring a
-                  comprehensible interface and empowering experience.
+                  No one wants to use an application with a bad user interface
+                  and experiences. That is why I develop and design application
+                  from the end user perspective to ensure a intuitive and
+                  familiar.
                 </p>
               </div>
             </div>
@@ -140,11 +143,12 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 </div>
               </div>
               <div>
-                <h4>Architecture</h4>
+                <h4>Problem Solving</h4>
                 <p className='my-2'>
-                  API, MVC, MVVM, CMS, Server less, Cloud oh my! Over the years
-                  have collaborated and architected solutions to meet business
-                  needs to while ensuring the maintainability of applications.
+                  I speak complex problems and can interpret non-technical.
+                  Whether it&apos;s find a solution to an existing problem or
+                  brainstorming new innovated ideas, I have collaborated and
+                  implemented solutions that are future proof and maintainable.
                 </p>
               </div>
             </div>
@@ -160,7 +164,8 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 <p className='my-2'>
                   Too many stacks, tribal knowledge, clunky workflows? I have
                   worked with development teams and management to create
-                  standards to improve the software development life cycle.
+                  standards, processes, and documentation to improve the
+                  software development life cycle.
                 </p>
               </div>
             </div>
@@ -190,7 +195,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                   <li>Redux</li>
                   <li>TailwindCSS</li>
                   <li>SASS</li>
-                  <li>PostCSS</li>
+
                   <li>HTML</li>
                   <li>CSS</li>
                 </ul>
@@ -256,12 +261,12 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               </div>
             </div>
           </div>
-          <div className=' flex flex-center  flex-col text-center gap-8'>
+          {/* <div className='flex flex-center  flex-col text-center gap-8'>
             <h4>Want more details on my work experience?</h4>
             <Link href='/resume' className='btn btn-contained btn-blueberry'>
               <FontAwesomeIcon icon={faFileLines} /> View my Resume
             </Link>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
