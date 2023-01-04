@@ -1,11 +1,15 @@
 import {
   faFileLines,
+  faFloppyDisk,
   faObjectGroup,
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faAnglesDown,
+  faLaptopCode,
   faLayerGroup,
+  faServer,
   faSitemap,
+  faToolbox,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Head } from 'components';
@@ -105,7 +109,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               </div>
               <div>
                 <h4>Full Stack Developer</h4>
-                <p className='py-2'>
+                <p className='my-2'>
                   Frontend, Backend, Scripts, Programs, Services you name it I
                   have built or have worked on it. My experience has covered a
                   wide range of frameworks, environments, libraries and more.
@@ -121,7 +125,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
               </div>
               <div>
                 <h4>UI/UX</h4>
-                <p className='py-2'>
+                <p className='my-2'>
                   No one wants to use an application with a incomprehensible
                   user interface and experience. That is why I develop
                   applications from the user perspective ensuring a
@@ -132,13 +136,13 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
             <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
               <div>
-                <div className='flex flex-center h-16 w-16 bg-apple text-apple-content  rounded-md'>
+                <div className='flex flex-center h-16 w-16 bg-lemon text-lemon-content  rounded-md'>
                   <FontAwesomeIcon icon={faSitemap} size='2x' />
                 </div>
               </div>
               <div>
                 <h4>Architecture</h4>
-                <p className='py-2'>
+                <p className='my-2'>
                   API, MVC, MVVM, CMS, Server less, Cloud oh my! Over the years
                   have collaborated and architected solutions to meet business
                   needs to while ensuring the maintainability of applications.
@@ -148,19 +152,116 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 
             <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
               <div>
-                <div className='flex flex-center h-16 w-16 bg-blueberry text-blueberry-content  rounded-md'>
+                <div className='flex flex-center h-16 w-16 bg-apple text-apple-content  rounded-md'>
                   <FontAwesomeIcon icon={faFileLines} size='2x' />
                 </div>
               </div>
               <div>
                 <h4>Standardization</h4>
-                <p className='py-2'>
+                <p className='my-2'>
                   Too many stacks, tribal knowledge, clunky workflows? I have
                   worked with development teams and management to create
                   standards to improve the software development life cycle.
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id='what-i-use'>
+        <div className='content'>
+          <div className='text-title text-center md:text-start'>
+            <h2 className=''>Technologies I work with</h2>
+            <p className=' text-overline'>The skill set I have</p>
+          </div>
+          <div className='flex md:grid flex-col md:flex-row flex-wrap grid-cols-2  gap-8 my-8 '>
+            <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div>
+                <div className='flex flex-center h-16 w-16 bg-blueberry text-blueberry-content rounded-md'>
+                  <FontAwesomeIcon icon={faLaptopCode} size='2x' />
+                </div>
+              </div>
+              <div>
+                <h4>Frontend</h4>
+                <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <li>Typescript</li>
+                  <li>React</li>
+                  <li>NextJS</li>
+                  <li>Redux</li>
+                  <li>TailwindCSS</li>
+                  <li>SASS</li>
+                  <li>PostCSS</li>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div>
+                <div className='flex flex-center h-16 w-16 bg-plum text-plum-content rounded-md'>
+                  <FontAwesomeIcon icon={faServer} size='2x' />
+                </div>
+              </div>
+              <div>
+                <h4>Backend</h4>
+                <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <li>C#</li>
+                  <li>.NET Core</li>
+                  <li>PostgresSQL</li>
+                  <li>Entity Framework Core</li>
+                  <li>NodeJS</li>
+                  <li>ExpressJS</li>
+                  <li>ElectronJS</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div>
+                <div className='flex flex-center h-16 w-16 bg-grape text-grape-content  rounded-md'>
+                  <FontAwesomeIcon icon={faToolbox} size='2x' />
+                </div>
+              </div>
+              <div>
+                <h4>Tools</h4>
+                <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <li>NPM</li>
+                  <li>YARN</li>
+                  <li>Git</li>
+                  <li>Git Actions</li>
+                  <li>Azure</li>
+                  <li>Vercel</li>
+                  <li>Docker</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div>
+                <div className='flex flex-center h-16 w-16 bg-peach text-peach-content  rounded-md'>
+                  <FontAwesomeIcon icon={faFloppyDisk} size='2x' />
+                </div>
+              </div>
+              <div>
+                <h4>Software</h4>
+                <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <li>Jira</li>
+                  <li>Confluence</li>
+                  <li>Github</li>
+                  <li>Figma</li>
+                  <li>Illustrator</li>
+                  <li>Photoshop</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className=' flex flex-center  flex-col text-center gap-8'>
+            <h4>Want more details on my work experience?</h4>
+            <Link href='/resume' className='btn btn-contained btn-blueberry'>
+              <FontAwesomeIcon icon={faFileLines} /> View my Resume
+            </Link>
           </div>
         </div>
       </section>
