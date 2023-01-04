@@ -39,7 +39,6 @@ const HomePage: NextPage<HomePageProps> = (props) => {
                 <FontAwesomeIcon
                   icon={faAnglesDown}
                   className=' fa-beat-fade'
-                  style={{ ['--fa-animation-duration']: '3s' }}
                 />
               </a>
             </div>
