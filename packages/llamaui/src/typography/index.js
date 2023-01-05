@@ -38,7 +38,7 @@ const addTypography = ({ addBase, addComponents, addUtilities, theme, e }) => {
     });
 
     addComponents({
-      [`.text-${type}`]: type,
+      [`.text-${type}`]: typography[type],
     });
   });
 

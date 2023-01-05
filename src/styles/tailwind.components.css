@@ -41,6 +41,9 @@
   }
 
   /* --- Sections --- */
+  .section {
+    @apply my-32;
+  }
   section .section-title {
     @apply mb-4 flex flex-col justify-center text-center;
   }
