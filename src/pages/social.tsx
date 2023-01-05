@@ -4,13 +4,18 @@ import {
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
-import { faComputer, faLaptop } from '@fortawesome/free-solid-svg-icons';
+import { faLaptop } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Head } from 'components';
 import { useBreakpoints } from 'hooks/useBreakpoints';
 import { NextPage } from 'next.types';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+
+/**
+ * NextJS Declaration of a SafeNumber
+ */
+type SafeNumber = number | `${number}`;
 
 type ProfileImageDimensions = {
   width: SafeNumber | undefined;
@@ -52,10 +57,11 @@ const SocialPage: NextPage<SocialPageProps> = (props) => {
               className='rounded-full'
               src='/images/nathan-healea-profile-picture.jpg'
               alt='Profile picture of Nathan Healea'
-              height={`${profileImageDimensions.height}`}
-              width={`${profileImageDimensions.width}`}
+              height={profileImageDimensions.height}
+              width={profileImageDimensions.width}
             />
             <h1 className='text-h4'>@nathanhealea</h1>
+            <p>Let&apos;s Connect!</p>
 
             <div className=' max-w-xs flex flex-center flex-col gap-8'>
               <a
@@ -124,6 +130,8 @@ const SocialPage: NextPage<SocialPageProps> = (props) => {
                 </div>
               </a>
             </div>
+
+            <p className='text-overline'>... More coming soon 😁!</p>
           </div>
         </section>
       </main>
