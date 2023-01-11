@@ -25,6 +25,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   return (
     <>
       <Head title="Hello! I'm an experienced full stack developer and software engineer" />
+      {/* Hero */}
       <header id='hero' className='min-h-screen flex flex-center md:-mt-32'>
         <div className='content flex flex-col-reverse md:flex-row flex-center gap-y-8'>
           <div className='flex-1 text-center md:text-start'>
@@ -56,7 +57,8 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         </div>
       </header>
 
-      <section id='about-me'>
+      {/* Get To Know Me! */}
+      <section id='get-to-know-me'>
         <div className='content'>
           <div className='section-title start'>
             <h2>Get to know me!</h2>
@@ -97,6 +99,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         </div>
       </section>
 
+      {/* What I'm Good At */}
       <section id='what-im-good-at'>
         <div className='content'>
           <div className='section-title end'>
@@ -174,7 +177,8 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         </div>
       </section>
 
-      <section id='what-i-use'>
+      {/* Technologies I Work With */}
+      <section id='technologies-i-work-with'>
         <div className='content'>
           <div className='section-title start'>
             <h2>Technologies I work with</h2>
@@ -271,7 +275,8 @@ const HomePage: NextPage<HomePageProps> = (props) => {
         </div>
       </section>
 
-      <section>
+      {/* Lets Connect */}
+      <section id='let-connect'>
         <div className='content'>
           <div className='section-title end'>
             <h2>Lets Connect!</h2>
