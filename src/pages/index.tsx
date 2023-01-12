@@ -72,7 +72,7 @@ const HomePage: NextPage<HomePageProps> = (props) => {
           </p>
           <p className='my-2 text-center md:text-start'>
             I bring my passion for development into every project I work on,
-            fulled by the excitement of turing ideas in to feature rich
+            fulled by the excitement of turning ideas in to feature rich
             applications. I strive to create user interfaces that empowers my
             users, by listening to feedback and following common design
             patterns. I excel in learning new technologies, always looking for
