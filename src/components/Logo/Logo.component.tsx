@@ -17,7 +17,7 @@ interface LogoProps {
 }
 
 const Logo: FC<LogoProps> = (props) => {
-  const { size = 'md', animate, className } = props;
+  const { size = 'lg', animate, className } = props;
 
   const width = SizeEnum[size] * 16;
   const height = SizeEnum[size] * 16 * 2;
@@ -39,7 +39,7 @@ const Logo: FC<LogoProps> = (props) => {
 };
 
 Logo.defaultProps = {
-  size: 'md',
+  size: 'lg',
   animate: true,
 };
 
