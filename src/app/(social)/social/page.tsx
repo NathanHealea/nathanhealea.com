@@ -8,6 +8,7 @@ import { faLaptop } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NextPage } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface SocialPageProps {}
 
@@ -80,8 +81,8 @@ const SocialPage: NextPage<SocialPageProps> = (props) => {
                   <span className='flex-1 text-center'>Email Me</span>
                 </div>
               </a>
-              <a
-                href='https://nathanhealea.com'
+              <Link
+                href='/'
                 target='_blank'
                 rel='noreferrer'
                 className='btn btn-contained btn-blueberry w-full'
@@ -92,7 +93,7 @@ const SocialPage: NextPage<SocialPageProps> = (props) => {
                   </span>
                   <span className='flex-1 text-center'>View My Website</span>
                 </div>
-              </a>
+              </Link>
             </div>
 
             <p className='text-overline'>... More coming soon 😁!</p>

@@ -1,13 +1,8 @@
-import '../../styles/globals.css';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Logo } from 'components/Logo';
 import Link from 'next/link';
 import { FC, ReactNode } from 'react';
-
-config.autoAddCss = false;
 
 interface LayoutProps {
   children: ReactNode;
