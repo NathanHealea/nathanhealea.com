@@ -4,15 +4,41 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Logo } from 'components/Logo';
+import { Metadata } from 'next';
 import Link from 'next/link';
 import { FC, ReactNode } from 'react';
 
 config.autoAddCss = false;
 
-
 interface LayoutProps {
   children: ReactNode;
 }
+
+export const metadata: Metadata = {
+  title: 'Nathan Healea - Full Stack Developer & Software Engineer',
+  description:
+    'Experienced Full Stack Developer, engineering solutions in healthcare, fiance, and education. Passion for transforming ideas into feature rich applications.',
+    themeColor: '#f8f9fa',
+    // manifest: '',
+    // twitter: {
+    //   card: 'summary_large_image',
+    //   title: 'Next.js',
+    //   description: 'The React Framework for the Web',
+    //   siteId: '1467726470533754880',
+    //   creator: '@nextjs',
+    //   creatorId: '1467726470533754880',
+    //   images: ['https://nextjs.org/og.png'],
+    // },
+    viewport: {
+      width: 'device-width',
+      initialScale: 1,
+      maximumScale: 1,
+    },
+    other: {
+      'msapplicatoin-Title-Color': '#f8f9fa' 
+    }
+};
+
 
 const Layout: FC<LayoutProps> = (props) => {
   const { children } = props;

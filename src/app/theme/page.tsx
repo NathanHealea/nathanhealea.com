@@ -1,4 +1,3 @@
-import MainLayout from 'layouts/Main';
 import { NextPage } from 'next.types';
 import Head from 'next/head';
 
@@ -7,15 +6,6 @@ interface ThemePageProps {}
 const ThemePage: NextPage<ThemePageProps> = (props) => {
   return (
     <>
-      <Head>
-        <title>Nathan Healea - Full Stack Developer & Software Engineer</title>
-        <meta
-          name='description'
-          content='Nathan Healea: Full Stack Developer and Software Engineer'
-        />
-        <meta name='viewport' content='width=device-width, initial-scale=1' />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
       <main className='flex flex-col items-center justify-center min-h-screen'>
         <header className='w-full py-8 my-8 max-w-5xl'>
           <h1 className='uppercase'>nathanhealea.com</h1>
@@ -210,7 +200,4 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
   );
 };
 
-ThemePage.getLayout = (page) => {
-  return <MainLayout>{page}</MainLayout>;
-};
 export default ThemePage;
