@@ -1,5 +1,4 @@
-import { NextPage } from 'next.types';
-import Head from 'next/head';
+import { NextPage } from 'next';
 
 interface ThemePageProps {}
 
