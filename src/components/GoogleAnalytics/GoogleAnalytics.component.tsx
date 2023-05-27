@@ -13,7 +13,7 @@ const GoogleAnalytics: FC<GoogleAnalyticsProps> = (props) => {
   const { gaTrackingID } = props;
 
   if (gaTrackingID == undefined) {
-    throw new Error('GoogleAnalytics gaTrackingID is undefined');
+    return null;
   }
 
   return (
