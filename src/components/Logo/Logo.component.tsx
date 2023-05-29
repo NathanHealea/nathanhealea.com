@@ -1,19 +1,16 @@
 import Image from 'next/image';
 import { FC, useEffect, useState } from 'react';
 
-
-interface LogoProps {
-}
-
+interface LogoProps {}
 
 const Logo: FC<LogoProps> = (props) => {
-
   return (
     <Image
-      src='/images/nathan-healea-logo.svg'
+      className='h-[64px] w-[64px]'
+      src='/images/nathan-healea-logo.png'
       alt='Nathan Healea Logo'
-      height={96}
-      width={48}
+      height={1024}
+      width={1024}
     />
   );
 };
