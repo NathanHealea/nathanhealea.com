@@ -1,4 +1,6 @@
 const addTypography = ({ addBase, addComponents, addUtilities, theme, e }) => {
+  console.log('  Adding Typography..');
+
   const headingFontFamily =
     "'Comfortaa','Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,'Open Sans','Helvetica Neue',sans-serif";
 

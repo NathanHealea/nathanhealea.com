@@ -4,9 +4,6 @@ const addLinks = ({ addComponents, theme, e }) => {
   console.log('  Adding Links..');
 
   const colors = theme('colors');
-  const colorClassNames = Object.keys(colors)
-    .map((color) => `.link-${color}`)
-    .join(', ');
 
   addComponents({
     '.link': {
