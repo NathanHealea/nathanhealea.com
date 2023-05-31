@@ -66,18 +66,59 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
             </div>
 
             <p className='my-2 text-center md:text-start'>
-              I am a React and .NET full stack developer with{' '}
-              {new Date().getFullYear() - 2015} years of experience developing
-              applications in Healthcare, Finance, and Education.
+              I am a passionate and skilled software engineer with{' '}
+              <span
+                className=' text-strawberry
+              '
+              >
+                over {new Date().getFullYear() - 2014} years of experience
+              </span>{' '}
+              of{' '}
+              <span className='text-apricot'>
+                full-stack web development in Healthcare, Higher Education, and
+                Finance
+              </span>
+              . My expertise lies in building scalable and maintainable
+              solutions using technologies such as{' '}
+              <span className='text-lemon '>
+                ReactJS, .Net, C#, and JavaScript
+              </span>
+              . I thrive on turning ideas into feature-rich applications and
+              enjoy creating user interfaces that empower users, incorporating
+              feedback and following industry-standard design patterns. My focus
+              is always on creating intuitive and seamless user experiences that
+              address user needs and provide value.
             </p>
             <p className='my-2 text-center md:text-start'>
-              I bring my passion for development into every project I work on,
-              fulled by the excitement of turning ideas in to feature rich
-              applications. I strive to create user interfaces that empowers my
-              users, by listening to feedback and following common design
-              patterns. I excel in learning new technologies, always looking for
-              solutions to best meet a projects needs.
+              <span className='text-apple'>Constant learning</span> is a driving
+              force in my career, and I{' '}
+              <span className='text-blueberry'>
+                actively seek new challenges and opportunities
+              </span>{' '}
+              to expand my skills. I embrace the ever-evolving nature of
+              software development and stay up-to-date with industry trends and
+              technologies. This allows me to bring{' '}
+              <span className='text-grape'>
+                fresh perspectives and innovative solutions
+              </span>{' '}
+              to every project I undertake.
             </p>
+            <p className='my-2 text-center md:text-start'>
+              I am a dedicated software engineer with a{' '}
+              <span className='text-plum'>
+                passion for delivering high-quality, user-centric applications
+              </span>
+              . With a track record of{' '}
+              <span className='text-peach'>
+                successfully collaborating with cross-functional teams and
+                meeting project goals
+              </span>
+              , I bring a wealth of experience in full-stack web development. My
+              commitment to continuous learning ensures that I am always ready
+              to embrace new challenges and contribute to the dynamic field of
+              software development.
+            </p>
+
             <p className='my-2 text-center md:text-start'>
               You can find me on{' '}
               <a

@@ -60,7 +60,7 @@ const Layout: FC<LayoutProps> = (props) => {
     <html lang='en'>
       <GoogleAnalytics gaTrackingID={process.env.GOOGLE_ANALYTICS} />
       <body className='flex flex-col min-h-screen w-ful'>
-        <header className='nav bg-white text-white-content sticky'>
+        <header className='nav bg-black text-black-content sticky'>
           <div className='content flex flex-row flex-center h-32 py-0'>
             <div className='flex flex-row flex-center gap-x-4'>
               <Link href='/'>
