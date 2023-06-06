@@ -125,6 +125,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 href='https://github.com/NathanHealea'
                 target='_blank'
                 rel='noreferrer'
+                className='link hover:link-strawberry'
               >
                 Github
               </a>{' '}
@@ -133,6 +134,8 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 href='https://www.linkedin.com/in/nathanhealea'
                 target='_blank'
                 rel='noreferrer'
+                className='link hover:link-apricot'
+
               >
                 LinkedIn
               </a>
