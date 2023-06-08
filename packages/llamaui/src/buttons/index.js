@@ -1,33 +1,24 @@
-const Color = require('color');
 const createButton = require('./createButton');
 
 const addButton = ({ addComponents, theme, e }) => {
   console.log('  Adding Buttons..');
 
   const colors = theme('colors');
-  const colorClassNames = Object.keys(colors)
-    .map((color) => `.btn-${color}`)
-    .join(', ');
 
   addComponents({
     '.btn': {
-      paddingTop: theme('spacing.2'),
-      paddingBottom: theme('spacing.2'),
+      borderRadius: theme('borderRadius.md'),
+      borderColor: 'transparent',
+      borderWidth: theme('borderWidth.2'),
+      cursor: 'pointer',
+      letterSpacing: '.2rem',
+      padding: theme('spacing.2'),
       paddingLeft: theme('spacing.4'),
       paddingRight: theme('spacing.4'),
-      borderTopRightRadius: theme('borderRadius.md'),
-      borderTopLeftRadius: theme('borderRadius.md'),
-      borderBottomRightRadius: theme('borderRadius.md'),
-      borderBottomLeftRadius: theme('borderRadius.md'),
       textTransform: 'uppercase',
-      letterSpacing: '.2rem',
-      cursor: 'pointer',
-      borderWidth: theme('borderWidth.2'),
-      borderColor: 'transparent',
+      transition: 'all 0.25s ease-in-out',
     },
     ['.btn-square']: {
-      paddingTop: theme('spacing.2'),
-      paddingBottom: theme('spacing.2'),
       paddingLeft: theme('spacing.2'),
       paddingRight: theme('spacing.2'),
     },

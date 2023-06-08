@@ -5,7 +5,7 @@ const createButton = (name, color, e) => {
     // Button
     [`.btn-${name}`]: {
       color: color.DEFAULT,
-      transition: 'all 0.25s ease-in-out',
+      
       '&:hover, &:active, &:focus, &.active': {
         backgroundColor: Color(color.light).alpha(0.1).rgb().string(),
         color: color.dark,

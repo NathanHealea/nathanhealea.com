@@ -12,6 +12,8 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
             <h3>Theme</h3>
           </div>
         </section>
+
+        {/* Typography */}
         <section className='w-full py-8 my-8 max-w-5xl '>
           <div className='content flex flex-col gap-y-8'>
             <h1>Typography</h1>
@@ -42,6 +44,8 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
             </div>
           </div>
         </section>
+
+        {/* Colors */}
         <section className='w-full py-8 my-8 max-w-5xl '>
           <div className='content flex flex-col gap-y-8'>
             <h2>Colors</h2>
@@ -99,6 +103,7 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
           </div>
         </section>
 
+        {/* Gradients */}
         <section className='w-full py-8 my-8 max-w-5xl '>
           <div className='content flex flex-col gap-y-8'>
             <h2>Gradients</h2>
@@ -107,61 +112,74 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
             </div>
           </div>
         </section>
+
+        {/* Buttons */}
         <section className='w-full py-8 my-8 max-w-5xl '>
           <div className='content flex flex-col gap-y-8'>
             <h2>Buttons</h2>
-            <div className='flex gap-8'>
-              <div className='btn'>Button</div>
-              <div className='btn btn-contained'>Button</div>
-              <div className='btn btn-outlined'>Button</div>
+
+            <div className='flex flex-col gap-y-8'>
+              <h4>colors / variants </h4>
+              <div className='flex gap-8'>
+                <div className='btn'>Button</div>
+                <div className='btn btn-contained'>Button</div>
+                <div className='btn btn-outlined'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-strawberry'>Button</div>
+                <div className='btn btn-contained btn-strawberry'>Button</div>
+                <div className='btn btn-outlined btn-strawberry'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-apricot'>Button</div>
+                <div className='btn btn-contained btn-apricot'>Button</div>
+                <div className='btn btn-outlined btn-apricot'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-lemon'>Button</div>
+                <div className='btn btn-contained btn-lemon'>Button</div>
+                <div className='btn btn-outlined btn-lemon'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-apple'>Button</div>
+                <div className='btn btn-contained btn-apple'>Button</div>
+                <div className='btn btn-outlined btn-apple'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-blueberry'>Button</div>
+                <div className='btn btn-contained btn-blueberry'>Button</div>
+                <div className='btn btn-outlined btn-blueberry'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-plum'>Button</div>
+                <div className='btn btn-contained btn-plum'>Button</div>
+                <div className='btn btn-outlined btn-plum'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-grape'>Button</div>
+                <div className='btn btn-contained btn-grape'>Button</div>
+                <div className='btn btn-outlined btn-grape'>Button</div>
+              </div>
+
+              <div className='flex gap-8'>
+                <div className='btn btn-peach'>Button</div>
+                <div className='btn btn-contained btn-peach'>Button</div>
+                <div className='btn btn-outlined btn-peach'>Button</div>
+              </div>
             </div>
 
-            <div className='flex gap-8'>
-              <div className='btn btn-strawberry'>Button</div>
-              <div className='btn btn-contained btn-strawberry'>Button</div>
-              <div className='btn btn-outlined btn-strawberry'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-apricot'>Button</div>
-              <div className='btn btn-contained btn-apricot'>Button</div>
-              <div className='btn btn-outlined btn-apricot'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-lemon'>Button</div>
-              <div className='btn btn-contained btn-lemon'>Button</div>
-              <div className='btn btn-outlined btn-lemon'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-apple'>Button</div>
-              <div className='btn btn-contained btn-apple'>Button</div>
-              <div className='btn btn-outlined btn-apple'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-blueberry'>Button</div>
-              <div className='btn btn-contained btn-blueberry'>Button</div>
-              <div className='btn btn-outlined btn-blueberry'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-plum'>Button</div>
-              <div className='btn btn-contained btn-plum'>Button</div>
-              <div className='btn btn-outlined btn-plum'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-grape'>Button</div>
-              <div className='btn btn-contained btn-grape'>Button</div>
-              <div className='btn btn-outlined btn-grape'>Button</div>
-            </div>
-
-            <div className='flex gap-8'>
-              <div className='btn btn-peach'>Button</div>
-              <div className='btn btn-contained btn-peach'>Button</div>
-              <div className='btn btn-outlined btn-peach'>Button</div>
+            <div className='flex flex-col gap-y-8'>
+              <h4>shape</h4>
+              <div>
+                <div className='btn btn-square'>square</div>
+              </div>
             </div>
           </div>
         </section>
