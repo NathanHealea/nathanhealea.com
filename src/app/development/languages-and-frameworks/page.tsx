@@ -4,7 +4,7 @@ import { FC } from 'react';
 
 interface LanguagesAndFrameworksPageProps {}
 
-const PAGE_TITLE = 'Language and Framework List';
+const PAGE_TITLE = 'Languages and Frameworks List';
 const PAGE_DESCRIPTION =
   'My personal language and framework ranking list, complete with pros, cons, and thoughts. ';
 
