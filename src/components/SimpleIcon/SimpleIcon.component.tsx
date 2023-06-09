@@ -15,7 +15,6 @@ const colors: { [key: string]: string } = Object.keys(theme.colors).reduce(
       ...Object.keys(color).reduce(
         (colorValueDic, currentColorValue: string) => {
           const value = color[currentColorValue];
-          console.log(value);
 
           if (currentColorValue === 'DEFAULT') {
             return {
