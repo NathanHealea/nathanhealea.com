@@ -1,6 +1,6 @@
-import { Metadata, NextPage } from 'next';
+import SimpleIcon from 'components/SimpleIcon';
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { FC } from 'react';
 
 interface LanguagesAndFrameworksPageProps {}
 
@@ -17,16 +17,89 @@ const LanguagesAndFrameworksPage = (props: LanguagesAndFrameworksPageProps) => {
   return (
     <>
       <main className='flex flex-col flex-1 justify-center items-center'>
-        <div className=' max-w-7xl mx-auto flex flex-col text-center gap-y-4'>
-          <h1>✨ Coming Soon ✨</h1>
-          <h3 className='text-overline'>{PAGE_TITLE}.</h3>
-          <p>{PAGE_DESCRIPTION}</p>
+        <div className='content flex flex-col space-y-32'>
+          {/* 🦄 Tier */}
 
-          <p>Lets try one of these links ⛛</p>
-          <div className='flex flex-col justify-center items-center gap-x-4'>
-            <Link href='/' className='btn btn-outlined btn-strawberry'>
-              Home
-            </Link>
+          <div className='flex flex-col justify-center items-center border-strawberry border-2 rounded-lg p-4 bg-strawberry/10 relative space-y-4'>
+            <p className='w-32 text-white rounded-md text-center absolute -top-3 left-4 bg-strawberry'>
+              🦄 Tier
+            </p>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon
+                  name='JavaScript'
+                  slug='javascript'
+                  color='strawberry'
+                />
+              </div>
+
+              <p className='w-full text-center'>JavaScript</p>
+            </div>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon
+                  name='TypeScript'
+                  slug='typescript'
+                  color='strawberry'
+                />
+              </div>
+
+              <p className='w-full text-center'>TypeScript</p>
+            </div>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon name='React' slug='react' color='strawberry' />
+              </div>
+
+              <p className='w-full text-center'>ReactJS</p>
+            </div>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon
+                  name='TailwindCSS'
+                  slug='tailwindcss'
+                  color='strawberry'
+                />
+              </div>
+
+              <p className='w-full text-center'>Tailwind </p>
+            </div>
+
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon name='NextS' slug='nextdotjs' color='strawberry' />
+              </div>
+
+              <p className='w-full text-center'>NextJS</p>
+            </div>
+          </div>
+
+          {/* ✨ Tier */}
+          <div className='flex flex-col justify-center items-center border-apricot border-2 rounded-lg p-4 bg-apricot/10 relative space-y-4'>
+            <p className='w-32 text-white rounded-md text-center absolute -top-3 left-4 bg-apricot'>
+              ✨ Tier
+            </p>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon name='C#' slug='csharp' color='apricot' />
+              </div>
+
+              <p className='w-full text-center'>C#</p>
+            </div>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon name='.NET' slug='dotnet' color='apricot' />
+              </div>
+
+              <p className='w-full text-center'>.NET</p>
+            </div>
+            <div className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'>
+              <div className=' flex justify-center w-12'>
+                <SimpleIcon name='express' slug='express' color='apricot' />
+              </div>
+
+              <p className='w-full text-center'>ExpressJS</p>
+            </div>
           </div>
         </div>
       </main>
