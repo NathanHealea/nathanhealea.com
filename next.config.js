@@ -14,6 +14,17 @@ const nextConfig = {
 
     return redirects;
   },
+
+  images: {
+    dangerouslyAllowSVG: true,
+
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.simpleicons.org',
+      },
+    ],
+  },
 };
 
 module.exports = nextConfig;

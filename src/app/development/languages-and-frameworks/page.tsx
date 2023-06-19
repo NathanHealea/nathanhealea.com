@@ -1,6 +1,7 @@
-import { Metadata, NextPage } from 'next';
+import technologies from './page.data';
+import SimpleIcon from 'components/SimpleIcon';
+import { Metadata } from 'next';
 import Link from 'next/link';
-import { FC } from 'react';
 
 interface LanguagesAndFrameworksPageProps {}
 
@@ -17,17 +18,42 @@ const LanguagesAndFrameworksPage = (props: LanguagesAndFrameworksPageProps) => {
   return (
     <>
       <main className='flex flex-col flex-1 justify-center items-center'>
-        <div className=' max-w-7xl mx-auto flex flex-col text-center gap-y-4'>
-          <h1>✨ Coming Soon ✨</h1>
-          <h3 className='text-overline'>{PAGE_TITLE}.</h3>
-          <p>{PAGE_DESCRIPTION}</p>
-
-          <p>Lets try one of these links ⛛</p>
-          <div className='flex flex-col justify-center items-center gap-x-4'>
-            <Link href='/' className='btn btn-outlined btn-strawberry'>
-              Home
-            </Link>
-          </div>
+        <div className='content flex flex-col space-y-32'>
+          {technologies.map((technologyGroup, index) => {
+            const { color } = technologyGroup;
+            return (
+              <div
+                key={index}
+                className={`flex flex-col justify-center items-center border-${color} border-2 rounded-lg p-4 bg-${color}/10 relative space-y-4`}
+              >
+                <p
+                  className={`w-32 p-2 text-white rounded-md text-center absolute  -top-6 left-4 bg-black  border-${color} border-2`}
+                >
+                  {technologyGroup.name}
+                </p>
+                {technologyGroup.list.map((technology, index) => {
+                  let technologyColor = technology.color || color;
+                  return (
+                    <div
+                      key={`${technology.icon}-${index}`}
+                      className='flex flex-row  items-center space-x-2 w-full max-w-[256px]'
+                    >
+                      <div className=' flex justify-center w-12'>
+                        {technology.icon && (
+                          <SimpleIcon
+                            name={technology.name}
+                            slug={technology.icon}
+                            color={technologyColor}
+                          />
+                        )}
+                      </div>
+                      <p className='w-full text-center'>{technology.name}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
         </div>
       </main>
     </>
