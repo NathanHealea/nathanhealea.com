@@ -19,19 +19,24 @@ const LanguagesAndFrameworksPage = (props: LanguagesAndFrameworksPageProps) => {
     <>
       <main className='flex flex-col flex-1 justify-center items-center'>
         <div className='content flex flex-col space-y-32'>
-          {technologies.map((technologyGroup, index) => {
-            const { color } = technologyGroup;
+          {technologies.map((TechnologyTier, index) => {
+            const { color } = TechnologyTier;
             return (
               <div
                 key={index}
-                className={`flex flex-col justify-center items-center border-${color} border-2 rounded-lg p-4 bg-${color}/10 relative space-y-4`}
+                className={`group flex flex-col justify-center items-center border-${color} border-2 rounded-lg p-4 bg-${color}/10 relative space-y-4`}
               >
                 <p
-                  className={`w-32 p-2 text-white rounded-md text-center absolute  -top-6 left-4 bg-black  border-${color} border-2`}
+                  className={` w-32 p-2 text-white rounded-md text-center absolute -top-6 left-4 bg-black border-${color} border-2 `}
                 >
-                  {technologyGroup.name}
+                  {TechnologyTier.name}
                 </p>
-                {technologyGroup.list.map((technology, index) => {
+                <p
+                  className={`group-hover:opacity-100 transition-all bg-${color} text-${color}-content opacity-0 absolute w-32 h-16 p-2 rounded-md text-center -top-12 left-4 flex justify-center items-center`}
+                >
+                  {TechnologyTier.description}
+                </p>
+                {TechnologyTier.list.map((technology, index) => {
                   let technologyColor = technology.color || color;
                   return (
                     <div

@@ -6,8 +6,9 @@ export type Technology = {
   color?: Color;
 };
 
-export type TechnologyGroup = {
+export type TechnologyTier = {
   name: string;
+  description: string
   color: Color;
   list: Array<Technology>;
 };

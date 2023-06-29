@@ -1,8 +1,9 @@
-import { TechnologyGroup } from './page.type';
+import { TechnologyTier } from './page.type';
 
-const technologies: Array<TechnologyGroup> = [
+const technologies: Array<TechnologyTier> = [
   {
     name: '🦄 Tier',
+    description: 'Mythical Tier',
     color: 'strawberry',
     list: [
       {
@@ -29,6 +30,7 @@ const technologies: Array<TechnologyGroup> = [
   },
   {
     name: '✨ Tier',
+    description: 'Awesome Tier',
     color: 'apricot',
     list: [
       {
@@ -51,6 +53,7 @@ const technologies: Array<TechnologyGroup> = [
   },
   {
     name: '〰️ Tier',
+    description: 'Meh Tier',
     color: 'lemon',
     list: [
       {
@@ -61,6 +64,7 @@ const technologies: Array<TechnologyGroup> = [
   },
   {
     name: '💩 Tier',
+    description: 'Shit Tier',
     color: 'apple',
     list: [
       { name: 'PHP', icon: 'php' },
@@ -72,6 +76,7 @@ const technologies: Array<TechnologyGroup> = [
   },
   {
     name: '⚰️ Tier',
+    description: 'I Rather Be Dead Tier',
     color: 'blueberry',
     list: [
       {
