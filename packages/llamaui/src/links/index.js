@@ -10,7 +10,10 @@ const addLinks = ({ addComponents, theme, e }) => {
       textTransform: 'Uppercase',
       letterSpacing: '.2rem',
     },
-    '.link:hover, .link:active, .link:focus, .link.active': {},
+    '.link:hover, .link:active, .link:focus, .link.active': {
+      borderBottom: '.125rem solid',
+      paddingBottom: '.125rem'
+    },
   });
 
   Object.keys(colors).forEach((color) => {

@@ -26,9 +26,9 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
         {/* Hero */}
         <section id='hero' className='min-h-screen flex flex-center md:-mt-32'>
           <div className='content flex flex-col-reverse md:flex-row flex-center gap-y-8 gap-x-2'>
-            <div className='flex-1 text-center md:text-start'>
-              <h2>Hello,</h2>
-              <h1>I&apos;m Nathan Healea</h1>
+            <div className='flex flex-col flex-1 text-center md:text-start '>
+              <h1 className='text-h2'>Hello,</h1>
+              <h2 className='text-h1'>I&apos;m Nathan Healea</h2>
               <h3>Full Stack Developer &amp; Software Engineer</h3>
               {/* <div
               id='hero-actions'
@@ -44,7 +44,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
             </div> */}
             </div>
             <div className='flex flex-center'>
-              <div className='bg-rainbow p-2 rounded-md'>
+              <div className='bg-rainbow p-2 rounded-xl'>
                 <Image
                   className='rounded-md'
                   src='/images/nathan-healea-profile-picture.jpg'

@@ -183,6 +183,7 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
             </div>
           </div>
         </section>
+
         <section className='w-full py-8 my-8 max-w-5xl '>
           <div className='content flex flex-col gap-y-8'>
             <h2>Links</h2>
@@ -190,42 +191,42 @@ const ThemePage: NextPage<ThemePageProps> = (props) => {
               <a href='#'>Link</a>
             </div>
             <div>
-              <a href='#' className='link-strawberry'>
+              <a href='#' className='link link-strawberry'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-apricot'>
+              <a href='#' className='link link-apricot'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-lemon'>
+              <a href='#' className='link link-lemon'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-apple'>
+              <a href='#' className='link link-apple'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-blueberry'>
+              <a href='#' className='link link-blueberry'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-plum'>
+              <a href='#' className='link link-plum'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-grape'>
+              <a href='#' className='link link-grape'>
                 Link
               </a>
             </div>
             <div>
-              <a href='#' className='link-peach'>
+              <a href='#' className='link link-peach'>
                 Link
               </a>
             </div>
