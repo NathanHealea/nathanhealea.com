@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* ====== COLORS ====== */
+:root {
+  /* ====== COLOR - STRAWBERRY ====== */
+  --strawberry-50: 254 242 242;
+  --strawberry-100: 255 225 225;
+  --strawberry-200: 255 200 200;
+  --strawberry-300: 255 173 173;
+  --strawberry-400: 253 108 108;
+  --strawberry-500: 245 62 62;
+  --strawberry-600: 226 32 32;
+  --strawberry-700: 190 23 23;
+  --strawberry-800: 157 23 23;
+  --strawberry-900: 130 26 26;
+  --strawberry-950: 71 8 8;
+
+  --strawberry-default: var(--strawberry-300);
+  --strawberry-light: var(--strawberry-200);
+  --strawberry-dark: var(--strawberry-400);
+  --strawberry-content: var(--strawberry-950);
+
+  /* ====== COLOR - APRICOT ====== */
+  --apricot-50: 255 247 237;
+  --apricot-100: 255 237 213;
+  --apricot-200: 255 214 165;
+  --apricot-300: 255 187 114;
+  --apricot-400: 253 148 58;
+  --apricot-500: 252 117 19;
+  --apricot-600: 237 89 9;
+  --apricot-700: 196 66 10;
+  --apricot-800: 156 52 16;
+  --apricot-900: 125 45 17;
+  --apricot-950: 68 21 6;
+
+  --apricot-default: var(--apricot-300);
+  --apricot-light: var(--apricot-200);
+  --apricot-dark: var(--apricot-400);
+  --apricot-content: var(--apricot-950);
+
+  /*  ====== COLOR - LEMON ======  */
+  --lemon-50: 254 254 232;
+  --lemon-100: 253 255 182;
+  --lemon-200: 255 254 136;
+  --lemon-300: 255 247 68;
+  --lemon-400: 254 233 17;
+  --lemon-500: 238 207 4;
+  --lemon-600: 205 162 1;
+  --lemon-700: 164 116 4;
+  --lemon-800: 135 91 12;
+  --lemon-900: 115 74 16;
+  --lemon-950: 67 39 5;
+
+  --lemon-default: var(--lemon-300);
+  --lemon-light: var(--lemon-200);
+  --lemon-dark: var(--lemon-400);
+  --lemon-content: var(--lemon-950);
+
+  /* ====== COLOR - APPLE ====== */
+  --apple-50: 242 255 238;
+  --apple-100: 222 255 216;
+  --apple-200: 202 255 191;
+  --apple-300: 141 253 120;
+  --apple-400: 83 242 54;
+  --apple-500: 44 219 12;
+  --apple-600: 30 182 3;
+  --apple-700: 27 142 7;
+  --apple-800: 26 112 11;
+  --apple-900: 22 91 12;
+  --apple-950: 6 51 0;
+
+  --apple-default: var(--apple-300);
+  --apple-light: var(--apple-200);
+  --apple-dark: var(--apple-400);
+  --apple-content: var(--apple-950);
+
+  /* ====== COLORS - BLUEBERRY ====== */
+  --blueberry-50: 235 255 255;
+  --blueberry-100: 205 252 255;
+  --blueberry-200: 155 246 255;
+  --blueberry-300: 98 238 254;
+  --blueberry-400: 27 219 245;
+  --blueberry-500: 0 190 219;
+  --blueberry-600: 2 151 184;
+  --blueberry-700: 10 121 148;
+  --blueberry-800: 18 97 120;
+  --blueberry-900: 19 80 102;
+  --blueberry-950: 6 53 70;
+
+  --blueberry-default: var(--blueberry-300);
+  --blueberry-light: var(--blueberry-200);
+  --blueberry-dark: var(--blueberry-400);
+  --blueberry-content: var(--blueberry-950);
+
+  /* ====== COLORS - PLUM ====== */
+  --plum-50: 239 245 255;
+  --plum-100: 218 231 255;
+  --plum-200: 190 213 255;
+  --plum-300: 160 196 255;
+  --plum-400: 93 150 253;
+  --plum-500: 55 111 250;
+  --plum-600: 33 79 239;
+  --plum-700: 25 58 220;
+  --plum-800: 27 49 178;
+  --plum-900: 28 47 140;
+  --plum-950: 22 30 85;
+
+  --plum-default: var(--plum-300);
+  --plum-light: var(--plum-200);
+  --plum-dark: var(--plum-400);
+  --plum-content: var(--plum-950);
+
+  /*  ====== COLORS - GRAPE ====== */
+  --grape-50: 244 243 255;
+  --grape-100: 235 232 255;
+  --grape-200: 217 213 255;
+  --grape-300: 189 178 255;
+  --grape-400: 157 136 253;
+  --grape-500: 126 88 250;
+  --grape-600: 111 53 242;
+  --grape-700: 96 35 222;
+  --grape-800: 80 29 186;
+  --grape-900: 67 26 152;
+  --grape-950: 39 14 103;
+
+  --grape-default: var(--grape-300);
+  --grape-light: var(--grape-200);
+  --grape-dark: var(--grape-400);
+  --grape-content: var(--grape-950);
+
+  /* ====== COLORS - PEACH ====== */
+  --peach-50: 255 244 255;
+  --peach-100: 255 231 255;
+  --peach-200: 255 198 255;
+  --peach-300: 254 169 250;
+  --peach-400: 252 118 244;
+  --peach-500: 243 66 231;
+  --peach-600: 215 34 200;
+  --peach-700: 178 25 161;
+  --peach-800: 146 22 132;
+  --peach-900: 119 24 105;
+  --peach-950: 80 2 70;
+
+  --peach-default: var(--peach-300);
+  --peach-light: var(--peach-200);
+  --peach-dark: var(--peach-400);
+  --peach-content: var(--peach-950);
+}
+
+@layer base {
+  body {
+    @apply bg-white text-white-content dark:bg-black dark:text-black-content;
+  }
+}
+
+/* ====== TYPOGRAPHY ====== */
+:root {
+  --body-font-family: 'Space Mono', monospace;
+  --header--font-family: 'Comfortaa', 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+@layer base {
+  html {
+    font-family: var(--body-font-family);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .text-h1,
+  .text-h2,
+  .text-h3,
+  .text-h4,
+  .text-h5,
+  .text-h6 {
+    font-family: var(--header--font-family);
+  }
+
+  h1,
+  .text-h1 {
+    font-size: theme('fontSize.6xl');
+  }
+
+  h2,
+  .text-h2 {
+    font-size: theme('fontSize.5xl');
+  }
+
+  h3,
+  .text-h3 {
+    font-size: theme('fontSize.4xl');
+  }
+
+  h4,
+  .text-h4 {
+    font-size: theme('fontSize.3xl');
+  }
+
+  h5,
+  .text-h5 {
+    font-size: theme('fontSize.2xl');
+  }
+
+  h6,
+  .text-h6 {
+    font-size: theme('fontSize.xl');
+  }
+
+  p,
+  a,
+  button,
+  .text-overline {
+    font-family: var(--body-font-family);
+    font-size: theme('fontSize.base');
+  }
+
+  p {
+    @apply text-base;
+  }
+  a {
+    @apply uppercase tracking-2x;
+  }
+
+  button {
+    @apply uppercase tracking-2x;
+  }
+
+  .text-overline {
+    @apply text-sm uppercase tracking-2x;
+  }
+}
+
+/* ====== STRUCTURE ====== */
+@layer components {
+  .content {
+    @apply mx-auto w-full max-w-7xl p-8 py-8;
+  }
+}
+
+/* ====== Background =====*/
+:root {
+  --bg-gradient-rainbow: linear-gradient(
+    135deg,
+    rgb(var(--strawberry-default)) 0%,
+    rgb(var(--apricot-default)) 14.28571%,
+    rgb(var(--lemon-default)) 28.57143%,
+    rgb(var(--apple-default)) 42.85714%,
+    rgb(var(--blueberry-default)) 57.14286%,
+    rgb(var(--plum-default)) 71.42857%,
+    rgb(var(--grape-default)) 85.71429%,
+    rgb(var(--peach-default)) 100%
+  );
+}
+@layer components {
+  .bg-gradient-rainbow {
+    background: var(--bg-gradient-rainbow);
+  }
+}
