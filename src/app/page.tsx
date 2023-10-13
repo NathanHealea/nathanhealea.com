@@ -24,8 +24,11 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
       {/* <Head title="Hello! I'm an experienced full stack developer and software engineer" /> */}
       <main className='flex w-full flex-col'>
         {/* Hero */}
-        <section id='hero' className='min-h-screen flex flex-center md:-mt-32'>
-          <div className='content flex flex-col-reverse md:flex-row flex-center gap-y-8 gap-x-2'>
+        <section
+          id='hero'
+          className='min-h-screen flex items-center justify-center md:-mt-32'
+        >
+          <div className='content flex flex-col-reverse md:flex-row items-center justify-center gap-y-8 gap-x-2'>
             <div className='flex flex-col flex-1 text-center md:text-start '>
               <h1 className='text-h2'>Hello,</h1>
               <h2 className='text-h1'>I&apos;m Nathan Healea</h2>
@@ -43,8 +46,8 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
               </a>
             </div> */}
             </div>
-            <div className='flex flex-center'>
-              <div className='bg-rainbow p-2 rounded-xl'>
+            <div className='flex items-center justify-center'>
+              <div className='bg-gradient-rainbow p-2 rounded-xl'>
                 <Image
                   className='rounded-md'
                   src='/images/nathan-healea-profile-picture.jpg'
@@ -58,19 +61,16 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
         </section>
 
         {/* Get To Know Me! */}
-        <section id='get-to-know-me'>
+        <section id='get-to-know-me' className='my-32'>
           <div className='content'>
-            <div className='section-title start'>
+            <div className='mb-4 flex flex-col justify-center text-center md:justify-start md:text-start'>
               <h2>Get to know me!</h2>
               <p>The person I am.</p>
             </div>
 
             <p className='my-2 text-center md:text-start'>
               I am a passionate and skilled software engineer with{' '}
-              <span
-                className=' text-strawberry
-              '
-              >
+              <span className=' text-strawberry'>
                 over {new Date().getFullYear() - 2014} years of experience
               </span>{' '}
               of{' '}
@@ -125,7 +125,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 href='https://github.com/NathanHealea'
                 target='_blank'
                 rel='noreferrer'
-                className='link hover:link-strawberry'
+                className='hover:text-strawberry hover:underline  hover:underline-offset-8 transition-all duration-300 ease-in-out '
               >
                 Github
               </a>{' '}
@@ -134,8 +134,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 href='https://www.linkedin.com/in/nathanhealea'
                 target='_blank'
                 rel='noreferrer'
-                className='link hover:link-apricot'
-
+                className='hover:text-apricot hover:underline  hover:underline-offset-8 transition-all duration-300 ease-in-out'
               >
                 LinkedIn
               </a>
@@ -144,16 +143,16 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
         </section>
 
         {/* What I'm Good At */}
-        <section id='what-im-good-at'>
+        <section id='what-im-good-at' className='my-32'>
           <div className='content'>
-            <div className='section-title end'>
+            <div className='mb-4 flex flex-col justify-center text-center md:justify-end md:text-end'>
               <h2>What I&apos;m Good AT</h2>
               <p>The value and experience I bring.</p>
             </div>
             <div className='flex md:grid flex-col md:flex-row flex-wrap grid-cols-2  gap-8 my-8 '>
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-strawberry text-strawberry-content rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-strawberry text-strawberry-content rounded-md'>
                     <FontAwesomeIcon icon={faLayerGroup} size='2x' />
                   </div>
                 </div>
@@ -167,9 +166,9 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
 
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-apricot text-apricot-content rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-apricot text-apricot-content rounded-md'>
                     <FontAwesomeIcon icon={faObjectGroup} size='2x' />
                   </div>
                 </div>
@@ -184,9 +183,9 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
 
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-lemon text-lemon-content  rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-lemon text-lemon-content  rounded-md'>
                     <FontAwesomeIcon icon={faBrain} size='2x' />
                   </div>
                 </div>
@@ -202,9 +201,9 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
 
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-apple text-apple-content  rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-apple text-apple-content  rounded-md'>
                     <FontAwesomeIcon icon={faFileLines} size='2x' />
                   </div>
                 </div>
@@ -223,22 +222,22 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
         </section>
 
         {/* Technologies I Work With */}
-        <section id='technologies-i-work-with'>
+        <section id='technologies-i-work-with' className='my-32'>
           <div className='content'>
-            <div className='section-title start'>
+            <div className='mb-4 flex flex-col justify-center text-center md:justify-start md:text-start'>
               <h2>Technologies I work with</h2>
               <p>The skill set I have</p>
             </div>
             <div className='flex md:grid flex-col md:flex-row flex-wrap grid-cols-2  gap-8 my-8 '>
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-blueberry text-blueberry-content rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-blueberry text-blueberry-content rounded-md'>
                     <FontAwesomeIcon icon={faLaptopCode} size='2x' />
                   </div>
                 </div>
                 <div>
                   <h4>Frontend</h4>
-                  <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <ul className='flex flex-row flex-wrap gap-4 items-center justify-center md:items-start md:justify-start list-disc list-inside my-2'>
                     <li>Typescript</li>
                     <li>React</li>
                     <li>NextJS</li>
@@ -252,15 +251,15 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
 
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-plum text-plum-content rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-plum text-plum-content rounded-md'>
                     <FontAwesomeIcon icon={faServer} size='2x' />
                   </div>
                 </div>
                 <div>
                   <h4>Backend</h4>
-                  <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <ul className='flex flex-row flex-wrap gap-4 items-center justify-center md:items-start md:justify-start list-disc list-inside my-2'>
                     <li>C#</li>
                     <li>.NET Core</li>
                     <li>PostgresSQL</li>
@@ -272,15 +271,15 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
 
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-grape text-grape-content  rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-grape text-grape-content  rounded-md'>
                     <FontAwesomeIcon icon={faToolbox} size='2x' />
                   </div>
                 </div>
                 <div>
                   <h4>Tools</h4>
-                  <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <ul className='flex flex-row flex-wrap gap-4 items-center justify-center md:items-start md:justify-start list-disc list-inside my-2'>
                     <li>NPM</li>
                     <li>YARN</li>
                     <li>Git</li>
@@ -292,15 +291,15 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
 
-              <div className='flex flex-col md:flex-row gap-4 flex-1 flex-center md:flex-start text-center md:text-start'>
+              <div className='flex flex-col md:flex-row gap-4 flex-1 items-center justify-center md:items-start md:justify-start text-center md:text-start'>
                 <div>
-                  <div className='flex flex-center h-16 w-16 bg-peach text-peach-content  rounded-md'>
+                  <div className='flex items-center justify-center h-16 w-16 bg-peach text-peach-content  rounded-md'>
                     <FontAwesomeIcon icon={faFloppyDisk} size='2x' />
                   </div>
                 </div>
                 <div>
                   <h4>Software</h4>
-                  <ul className='flex flex-row flex-wrap gap-4 flex-center md:flex-start list-disc list-inside my-2'>
+                  <ul className='flex flex-row flex-wrap gap-4 items-center justify-center md:items-start md:justify-start list-disc list-inside my-2'>
                     <li>Jira</li>
                     <li>Confluence</li>
                     <li>Github</li>
@@ -311,7 +310,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 </div>
               </div>
             </div>
-            {/* <div className='flex flex-center  flex-col text-center gap-8'>
+            {/* <div className='flex items-center justify-center  flex-col text-center gap-8'>
             <h4>Want more details on my work experience?</h4>
             <Link href='/resume' className='btn btn-contained btn-blueberry'>
               <FontAwesomeIcon icon={faFileLines} /> View my Resume
@@ -321,30 +320,36 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
         </section>
 
         {/* Lets Connect */}
-        <section id='let-connect'>
+        <section id='let-connect' className='my-32'>
           <div className='content'>
-            <div className='section-title end'>
+            <div className='mb-4 flex flex-col justify-center text-center md:justify-end md:text-end'>
               <h2>Lets Connect!</h2>
               <p>The collaboration I&apos;m looking for.</p>
             </div>
-            <div className='flex flex-col md:flex-row flex-center md:flex-end gap-8'>
+            <div className='flex flex-col md:flex-row items-center justify-center md:items-end md:justify-end gap-8'>
               <a
                 href='https://github.com/NathanHealea'
                 target='_blank'
                 rel='noreferrer'
-                className='btn btn-outlined btn-strawberry flex flex-center gap-4'
+                className=' min-w-[165px] border border-white rounded p-2 px-4 flex items-center  gap-4 transition-all ease-in-out duration-300 hover:text-strawberry hover:border-strawberry'
               >
-                <FontAwesomeIcon icon={faGithub} size='2x' />
-                Github
+                <span className='h-9 w-9 flex justify-center items-center'>
+                  <FontAwesomeIcon icon={faGithub} size='2x' />
+                </span>
+                <span className='flex grow justify-center items-center'>
+                  Github
+                </span>
               </a>
 
               <a
                 href='https://www.linkedin.com/in/nathanhealea'
                 target='_blank'
                 rel='noreferrer'
-                className='btn btn-outlined btn-apricot flex flex-center gap-4'
+                className='min-w-[165px] border border-white rounded p-2 px-4 flex items-center  gap-4 transition-all ease-in-out duration-300 hover:text-apricot hover:border-apricot'
               >
-                <FontAwesomeIcon icon={faLinkedinIn} size='2x' />
+                <span className='h-9 w-9 flex justify-center items-center'>
+                  <FontAwesomeIcon icon={faLinkedinIn} size='2x' />
+                </span>
                 LinkedIn
               </a>
 
@@ -352,9 +357,11 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
                 href='mailto:connect@nathanhealea.com'
                 target='_blank'
                 rel='noreferrer'
-                className='btn btn-outlined btn-lemon flex flex-center gap-4'
+                className='min-w-[165px] border border-white rounded p-2 px-4 flex items-center gap-4 transition-all ease-in-out duration-300 hover:text-lemon hover:border-lemon'
               >
-                <FontAwesomeIcon icon={faEnvelope} size='2x' />
+                <span className='h-9 w-9 flex justify-center items-center'>
+                  <FontAwesomeIcon icon={faEnvelope} size='2x' />
+                </span>
                 Email Me
               </a>
             </div>
