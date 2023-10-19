@@ -23,6 +23,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "npx prettier --write .",
+    "ladle": "npx ladle serve",
     "version:major": "npm version major --force",
     "version:minor": "npm version minor --force",
     "version:patch": "npm version patch --force"

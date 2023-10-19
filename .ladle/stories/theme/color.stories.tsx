@@ -31,11 +31,11 @@ const Swatch = (props: { color: string; variant?: string; shade?: string }) => {
   return (
     <div
       onClick={handleCopyBackgroundHexValue}
-      className='flex items-center gap-x-3 w-full cursor-pointer sm:block sm:space-y-1.5'
+      className=' gap-x-3 w-full cursor-pointer block space-y-1.5'
     >
       <div
         ref={swatchRef}
-        className='h-10 w-10 rounded dark:ring-1 dark:ring-inset dark:ring-white/10 sm:w-full'
+        className='h-10 rounded dark:ring-1 dark:ring-inset dark:ring-white/10 w-full'
         style={{
           backgroundColor: `rgb(var(--${[color, variant, shade]
             .filter(Boolean)
@@ -54,7 +54,7 @@ const Swatch = (props: { color: string; variant?: string; shade?: string }) => {
   );
 };
 
-export const Overview: Story = () => {
+export const Colors: Story = () => {
   const colors = [
     'strawberry',
     'apricot',
@@ -89,7 +89,7 @@ export const Overview: Story = () => {
       {colors.map((color) => (
         <section key={uuidv4()} className='flex flex-col gap-4 my-4'>
           <h2 className='capitalize'>{color}</h2>
-          <div className='flex justify-center gap-4'>
+          <div className='flex flex-row gap-4'>
             {variants.map((variant) => (
               <Swatch key={uuidv4()} color={color} variant={variant} />
             ))}
@@ -103,5 +103,9 @@ export const Overview: Story = () => {
       ))}
     </>
   );
+};
+
+export default {
+  title: 'Theme',
 };
 
