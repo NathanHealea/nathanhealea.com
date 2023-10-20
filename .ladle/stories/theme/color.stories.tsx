@@ -61,8 +61,8 @@ export const Colors: Story = () => {
     'lemon',
     'apple',
     'blueberry',
-    'grape',
     'plum',
+    'grape',
     'peach',
   ];
   const variants = ['default', 'light', 'dark', 'content'];

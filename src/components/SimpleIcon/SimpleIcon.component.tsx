@@ -7,45 +7,17 @@ import { FC } from 'react';
 
 type SafeNumber = number | `${number}`;
 
-// const colors: { [key: string]: string } = Object.keys(theme.colors).reduce(
-//   (colorsDic, currentColor: string) => {
-//     const color = theme.colors[currentColor] as { [key: string]: string };
-//     return {
-//       ...colorsDic,
-//       ...Object.keys(color).reduce(
-//         (colorValueDic, currentColorValue: string) => {
-//           const value = color[currentColorValue];
-
-//           if (currentColorValue === 'DEFAULT') {
-//             return {
-//               ...colorValueDic,
-//               [`${currentColor}`]: value.replace('#', ''),
-//             };
-//           }
-
-//           return {
-//             ...colorValueDic,
-//             [`${currentColor}-${currentColorValue}`]: value.replace('#', ''),
-//           };
-//         },
-//         {}
-//       ),
-//     };
-//   },
-//   {}
-// );
-
 const colors: { [key: string]: string } = {
   white: '',
   black: '',
-  strawberry: '',
-  apricot: '',
-  lemon: '',
-  apple: '',
-  blueberry: '',
-  plum: '',
-  grape: '',
-  peach: '',
+  strawberry: 'FFADAD',
+  apricot: 'FFBB72',
+  lemon: 'FFF744',
+  apple: '8DFD78',
+  blueberry: '62EEFE',
+  plum: 'A0C4FF',
+  grape: 'BDB2FF',
+  peach: 'FEA9FA',
 };
 
 interface SimpleIconProps {
@@ -63,9 +35,6 @@ const SimpleIcon: FC<SimpleIconProps> = (props) => {
 
   const getSimpleIconUrl = () => {
     const baseURL = 'https://cdn.simpleicons.org';
-
-    console.log([baseURL, slug, colors[color]].join('/'));
-
     return [baseURL, slug, colors[color]].join('/');
   };
 

@@ -1,3 +1,7 @@
+/* ------
+TODO:
+- Fix styling values on mobile views
+------ */
 import type { Story } from '@ladle/react';
 import Color from 'color';
 import React, { useEffect, useRef, useState } from 'react';
@@ -29,7 +33,32 @@ const Typing = (props: Typing) => {
           title
         )}
       </div>
-      <div className='flex flex-col w-full md:w-1/2'></div>
+      <div className='flex flex-col w-full md:w-1/2 gap-2 text-xs'>
+        <div className='flex flex-row gap-4 '>
+          <div className='w-32 font-semibold'>Font Family</div>
+          <div className='text-start'>{styles?.fontFamily.split(',')[0]}</div>
+        </div>
+        <div className='flex flex-row gap-4  '>
+          <div className='w-32 font-semibold'>Font Size</div>
+          <div className='text-start'>{styles?.fontSize}</div>
+        </div>
+        <div className='flex flex-row gap-4  '>
+          <div className='w-32 font-semibold'>Line Height</div>
+          <div className='text-start'>{styles?.lineHeight}</div>
+        </div>
+        {ele && (
+          <div className='flex flex-row gap-4  '>
+            <div className='w-32 font-semibold'>Element</div>
+            <div className='text-start'>{ele}</div>
+          </div>
+        )}
+        {className && (
+          <div className='flex flex-row gap-4  '>
+            <div className='w-32 font-semibold'>Class</div>
+            <div className='text-start'>{className}</div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

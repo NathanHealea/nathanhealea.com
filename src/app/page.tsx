@@ -62,13 +62,13 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
 
         {/* Get To Know Me! */}
         <section id='get-to-know-me' className='my-32'>
-          <div className='content'>
+          <div className='content flex flex-col gap-4'>
             <div className='mb-4 flex flex-col justify-center text-center md:justify-start md:text-start'>
               <h2>Get to know me!</h2>
               <p>The person I am.</p>
             </div>
 
-            <p className='my-2 text-center md:text-start'>
+            <p className=' text-center md:text-start'>
               I am a passionate and skilled software engineer with{' '}
               <span className=' text-strawberry'>
                 over {new Date().getFullYear() - 2014} years of experience
@@ -89,7 +89,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
               is always on creating intuitive and seamless user experiences that
               address user needs and provide value.
             </p>
-            <p className='my-2 text-center md:text-start'>
+            <p className=' text-center md:text-start'>
               <span className='text-apple'>Constant learning</span> is a driving
               force in my career, and I{' '}
               <span className='text-blueberry'>
@@ -103,7 +103,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
               </span>{' '}
               to every project I undertake.
             </p>
-            <p className='my-2 text-center md:text-start'>
+            <p className=' text-center md:text-start'>
               I am a dedicated software engineer with a{' '}
               <span className='text-plum'>
                 passion for delivering high-quality, user-centric applications
@@ -119,7 +119,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
               software development.
             </p>
 
-            <p className='my-2 text-center md:text-start'>
+            <p className=' text-center md:text-start'>
               You can find me on{' '}
               <a
                 href='https://github.com/NathanHealea'
@@ -144,7 +144,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
 
         {/* What I'm Good At */}
         <section id='what-im-good-at' className='my-32'>
-          <div className='content'>
+          <div className='content flex flex-col gap-4'>
             <div className='mb-4 flex flex-col justify-center text-center md:justify-end md:text-end'>
               <h2>What I&apos;m Good AT</h2>
               <p>The value and experience I bring.</p>
@@ -223,7 +223,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
 
         {/* Technologies I Work With */}
         <section id='technologies-i-work-with' className='my-32'>
-          <div className='content'>
+          <div className='content flex flex-col gap-4'>
             <div className='mb-4 flex flex-col justify-center text-center md:justify-start md:text-start'>
               <h2>Technologies I work with</h2>
               <p>The skill set I have</p>
@@ -321,7 +321,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
 
         {/* Lets Connect */}
         <section id='let-connect' className='my-32'>
-          <div className='content'>
+          <div className='content flex flex-col gap-4'>
             <div className='mb-4 flex flex-col justify-center text-center md:justify-end md:text-end'>
               <h2>Lets Connect!</h2>
               <p>The collaboration I&apos;m looking for.</p>

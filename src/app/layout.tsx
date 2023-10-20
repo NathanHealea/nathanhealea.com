@@ -57,40 +57,42 @@ const Layout: FC<LayoutProps> = (props) => {
   const { children } = props;
 
   return (
-    <html lang='en' className='dark'>
+    <html lang='en' className='dark scroll-smooth'>
       <GoogleAnalytics gaTrackingID={process.env.GOOGLE_ANALYTICS} />
       <body className='flex flex-col min-h-screen w-ful'>
-        <header className='sticky bg-white text-white-content dark:text-black-content dark:bg-black'>
-          <div className='content flex flex-row items-center h-32 py-0'>
-            <div className='flex flex-row items-center gap-x-4'>
-              <Link href='/'>
-                <Logo />
-              </Link>
-            </div>
-            <nav className='flex-1 gap-x-4 justify-end items-center flex'>
-              {/* <Link
-                href='/'
-                className='hover:text-strawberry hover:underline  hover:underline-offset-8 transition-all duration-300 ease-in-out'
-              >
-                Home
-              </Link> */}
-              {/* <Link
+        <header className=' bg-gradient-rainbow'>
+          <div className='w-full bg-white text-white-content dark:bg-black dark:text-black-content mb-1'>
+            <div className='content flex flex-row items-center h-32 py-0'>
+              <div className='flex flex-row items-center gap-x-4'>
+                <Link href='/'>
+                  <Logo />
+                </Link>
+              </div>
+              <nav className='flex-1 gap-x-4 justify-end items-center flex'>
+                <Link
+                  href='/'
+                  className='hover:text-strawberry hover:underline  hover:underline-offset-8 transition-all duration-300 ease-in-out'
+                >
+                  Home
+                </Link>
+                {/* <Link
                 href='/projects'
                 className='hover:text-apricot hover:underline hover:underline-offset-8 transition-all duration-300 ease-in-out'
               >
                 Projects
               </Link> */}
-              {/* <Link
+                {/* <Link
                 href='/Notebook'
                 className='hover:text-lemon hover:underline hover:underline-offset-8 transition-all duration-300 ease-in-out'
               >
                 Notebook
               </Link> */}
-              {/* <Link href='/Resume'>Resume</Link> */}
-              {/* <Link href='/lets-connect' className='btn btn-outlined btn-plum'>
+                {/* <Link href='/Resume'>Resume</Link> */}
+                {/* <Link href='/lets-connect' className='btn btn-outlined btn-plum'>
               Lets Connect
             </Link> */}
-            </nav>
+              </nav>
+            </div>
           </div>
         </header>
         {children}
