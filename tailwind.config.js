@@ -4,11 +4,11 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
     './.ladle/**/*.stories.{js,ts,jsx,tsx}',
   ],
-  safelist: [
-    {
-      pattern: /(bg|border|text|color)-.+/,
-    },
-  ],
+  // safelist: [
+  //   {
+  //     // pattern: /(bg|border|text|color)-.+/,
+  //   },
+  // ],
   darkMode: 'class',
   theme: {
     colors: {
