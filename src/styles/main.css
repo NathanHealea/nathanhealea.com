@@ -186,32 +186,38 @@
 
   h1,
   .text-h1 {
-    font-size: theme('fontSize.6xl');
+    /* font-size: theme('fontSize.6xl'); */
+    @apply text-4xl md:text-5xl lg:text-6xl;
   }
 
   h2,
   .text-h2 {
-    font-size: theme('fontSize.5xl');
+    /* font-size: theme('fontSize.5xl'); */
+    @apply text-3xl md:text-4xl lg:text-5xl;
   }
 
   h3,
   .text-h3 {
-    font-size: theme('fontSize.4xl');
+    /* font-size: theme('fontSize.4xl'); */
+    @apply text-2xl md:text-3xl lg:text-4xl;
   }
 
   h4,
   .text-h4 {
-    font-size: theme('fontSize.3xl');
+    /* font-size: theme('fontSize.3xl'); */
+    @apply text-xl md:text-2xl lg:text-3xl;
   }
 
   h5,
   .text-h5 {
-    font-size: theme('fontSize.2xl');
+    /* font-size: theme('fontSize.2xl'); */
+    @apply text-lg md:text-xl lg:text-2xl;
   }
 
   h6,
   .text-h6 {
-    font-size: theme('fontSize.xl');
+    /* font-size: theme('fontSize.xl'); */
+    @apply text-base md:text-lg lg:text-xl;
   }
 
   p,

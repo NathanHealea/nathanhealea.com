@@ -29,7 +29,7 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
           className='min-h-screen flex items-center justify-center md:-mt-32'
         >
           <div className='content flex flex-col-reverse md:flex-row items-center justify-center gap-y-8 gap-x-2'>
-            <div className='flex flex-col flex-1 text-center md:text-start '>
+            <div className='flex flex-col flex-1 text-center md:text-start gap-4'>
               <h1 className='text-h2'>Hello,</h1>
               <h2 className='text-h1'>I&apos;m Nathan Healea</h2>
               <h3>Full Stack Developer &amp; Software Engineer</h3>
@@ -47,13 +47,13 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
             </div> */}
             </div>
             <div className='flex items-center justify-center'>
-              <div className='bg-gradient-rainbow p-2 rounded-xl'>
-                <Image
-                  className='rounded-md'
+              <div className='bg-gradient-rainbow  p-1 lg:p-2 rounded-xl'>
+                <img
+                  className='rounded-md h-40 w-40 lg:h-80 lg:w-80'
                   src='/images/nathan-healea-profile-picture.jpg'
                   alt='Profile picture of Nathan Healea'
-                  height='320'
-                  width='320'
+                  // height='320'
+                  // width='320'
                 />
               </div>
             </div>
@@ -320,50 +320,52 @@ const IndexPage: NextPage<IndexPageProps> = (props) => {
         </section>
 
         {/* Lets Connect */}
-        <section id='let-connect' className='my-32'>
-          <div className='content flex flex-col gap-4'>
-            <div className='mb-4 flex flex-col justify-center text-center md:justify-end md:text-end'>
-              <h2>Lets Connect!</h2>
-              <p>The collaboration I&apos;m looking for.</p>
-            </div>
-            <div className='flex flex-col md:flex-row items-center justify-center md:items-end md:justify-end gap-8'>
-              <a
-                href='https://github.com/NathanHealea'
-                target='_blank'
-                rel='noreferrer'
-                className=' min-w-[165px] border border-white rounded p-2 px-4 flex items-center  gap-4 transition-all ease-in-out duration-300 hover:text-strawberry hover:border-strawberry'
-              >
-                <span className='h-9 w-9 flex justify-center items-center'>
-                  <FontAwesomeIcon icon={faGithub} size='2x' />
-                </span>
-                <span className='flex grow justify-center items-center'>
-                  Github
-                </span>
-              </a>
+        <section id='let-connect' className='my-32 p-2 bg-gradient-rainbow'>
+          <div className='backdrop-blur-md bg-black/30 rounded'>
+            <div className='content flex flex-col gap-4 '>
+              <div className='mb-4 flex flex-col justify-center text-center items-center'>
+                <h2>Lets Connect!</h2>
+                <p>The collaboration I&apos;m looking for.</p>
+              </div>
+              <div className='flex flex-wrap md:flex-row items-center justify-center gap-4'>
+                <a
+                  href='https://github.com/NathanHealea'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='min-w-[8rem] rounded p-2 px-4 flex items-center  gap-4 transition-all ease-in-out duration-300 hover:text-strawberry hover:border-strawberry'
+                >
+                  <span className='h-9 w-9 flex justify-center items-center'>
+                    <FontAwesomeIcon icon={faGithub} size='2x' />
+                  </span>
+                  <span className='flex grow justify-center items-center'>
+                    Github
+                  </span>
+                </a>
 
-              <a
-                href='https://www.linkedin.com/in/nathanhealea'
-                target='_blank'
-                rel='noreferrer'
-                className='min-w-[165px] border border-white rounded p-2 px-4 flex items-center  gap-4 transition-all ease-in-out duration-300 hover:text-apricot hover:border-apricot'
-              >
-                <span className='h-9 w-9 flex justify-center items-center'>
-                  <FontAwesomeIcon icon={faLinkedinIn} size='2x' />
-                </span>
-                LinkedIn
-              </a>
+                <a
+                  href='https://www.linkedin.com/in/nathanhealea'
+                  target='_blank'
+                  rel='noreferrer'
+                  className=' rounded p-2 px-4 flex items-center  gap-4 transition-all ease-in-out duration-300 hover:text-apricot hover:border-apricot'
+                >
+                  <span className='h-9 w-9 flex justify-center items-center'>
+                    <FontAwesomeIcon icon={faLinkedinIn} size='2x' />
+                  </span>
+                  LinkedIn
+                </a>
 
-              <a
-                href='mailto:connect@nathanhealea.com'
-                target='_blank'
-                rel='noreferrer'
-                className='min-w-[165px] border border-white rounded p-2 px-4 flex items-center gap-4 transition-all ease-in-out duration-300 hover:text-lemon hover:border-lemon'
-              >
-                <span className='h-9 w-9 flex justify-center items-center'>
-                  <FontAwesomeIcon icon={faEnvelope} size='2x' />
-                </span>
-                Email Me
-              </a>
+                <a
+                  href='mailto:connect@nathanhealea.com'
+                  target='_blank'
+                  rel='noreferrer'
+                  className=' rounded p-2 px-4 flex items-center gap-4 transition-all ease-in-out duration-300 hover:text-lemon hover:border-lemon'
+                >
+                  <span className='h-9 w-9 flex justify-center items-center'>
+                    <FontAwesomeIcon icon={faEnvelope} size='2x' />
+                  </span>
+                  Email Me
+                </a>
+              </div>
             </div>
           </div>
         </section>
