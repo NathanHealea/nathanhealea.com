@@ -1,5 +1,7 @@
 'use client';
 
+import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
 import { Logo } from 'components';
@@ -40,7 +42,7 @@ const Header = () => {
             </Link>
           </div>
           <div className='flex-1'></div>
-          <nav className='hidden md:flex gap-x-4 justify-end items-center '>
+          {/* <nav className='hidden md:flex gap-x-4 justify-end items-center '>
             {links.map((link) => (
               <Link
                 key={uuidv4()}
@@ -62,9 +64,16 @@ const Header = () => {
                 {link.title}
               </Link>
             ))}
-          </nav>
-          <Menu as='nav' className='block md:hidden'>
-            <Menu.Button>More</Menu.Button>
+          </nav> */}
+          {/* <Menu as='nav' className='block md:hidden'>
+            <Menu.Button className='flex justify-center items-center h-16 w-16 '>
+              {({ open }) => (
+                <FontAwesomeIcon
+                  className='fa-2x'
+                  icon={open ? faTimes : faBars}
+                />
+              )}
+            </Menu.Button>
 
             <Transition.Root
               style={{
@@ -119,7 +128,7 @@ const Header = () => {
                 </Menu.Items>
               </Transition.Child>
             </Transition.Root>
-          </Menu>
+          </Menu> */}
         </div>
       </div>
     </header>
