@@ -60,8 +60,5 @@
     "prettier": "^2.8.1",
     "prettier-plugin-tailwindcss": "^0.2.1",
     "tailwindcss": "^3.2.4"
-  },
-  "workspaces": [
-    "packages\\llamaui"
-  ]
+  }
 }
