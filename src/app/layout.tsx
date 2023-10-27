@@ -1,15 +1,11 @@
-'use client';
-
 import '../styles/main.css';
 import Header from './components/Header.component';
-import { config as LayoutConfig } from './layout.conf';
 import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import GoogleAnalytics from 'components/GoogleAnalytics';
 import { Metadata } from 'next';
-import { usePathname } from 'next/navigation';
 import { FC, ReactNode } from 'react';
 
 FontAwesomeConfig.autoAddCss = false;
@@ -59,16 +55,11 @@ export const metadata: Metadata = {
 const Layout: FC<LayoutProps> = (props) => {
   const { children } = props;
 
-  const pathname = usePathname();
-  console.log(pathname);
-
   return (
     <html lang='en' className='dark scroll-smooth'>
       <GoogleAnalytics gaTrackingID={process.env.GOOGLE_ANALYTICS} />
       <body className='flex flex-col min-h-screen w-ful'>
-        {!LayoutConfig.hideHeader.find((path) => pathname.includes(path)) && (
-          <Header />
-        )}
+        <Header />
         {children}
         <footer className=''>
           <div className='content flex flex-col items-center text-center'>
