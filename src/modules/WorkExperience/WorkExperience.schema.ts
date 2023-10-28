@@ -1,6 +1,6 @@
 import { Rule, SchemaTypeDefinition } from 'sanity';
 
-const WorkExperience: SchemaTypeDefinition = {
+const WorkExperienceSchema: SchemaTypeDefinition = {
   name: 'workExperience',
   type: 'document',
   title: 'Work Experience',
@@ -78,12 +78,12 @@ const WorkExperience: SchemaTypeDefinition = {
       of: [{ type: 'string' }],
     },
     {
-      name: 'workExperience',
+      name: 'description',
       type: 'array',
-      title: 'Work Experience',
+      title: 'Description',
       of: [{ type: 'block' }],
     },
   ],
 };
 
-export default WorkExperience;
+export default WorkExperienceSchema;

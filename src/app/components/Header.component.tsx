@@ -1,11 +1,11 @@
 'use client';
 
+import { Logo } from '@/components';
+import { useWindowScrollPositions } from '@/hooks/useWindowScrollPosition.hook';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
-import { Logo } from 'components';
-import { useWindowScrollPositions } from 'hooks/useWindowScrollPosition.hook';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
@@ -19,23 +19,10 @@ const links = [
 ];
 
 const Header = () => {
-  const position = useWindowScrollPositions();
-
-  useEffect(() => {
-    console.log(position);
-  }, [position]);
   return (
-    <header className='sticky top-0 bg-gradient-rainbow'>
+    <header className='bg-gradient-rainbow'>
       <div className='w-full bg-white text-white-content dark:bg-black dark:text-black-content mb-1'>
-        <div
-          className={classNames(
-            'content flex flex-row items-center transition-all ease-in-out duration-200',
-            {
-              'h-32': position.scrollY <= 256,
-              'h-20': position.scrollY > 256,
-            }
-          )}
-        >
+        <div className='content flex flex-row items-center transition-all ease-in-out duration-200 h-32'>
           <div className='flex flex-row items-center gap-x-4'>
             <Link href='/'>
               <Logo />
