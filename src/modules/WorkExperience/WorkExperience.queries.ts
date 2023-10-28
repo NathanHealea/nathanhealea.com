@@ -9,6 +9,15 @@ export const getWorkExperienceQuery = `*[_type == "workExperience"] | order(star
 export const getWorkExperience = async (): Promise<
   Array<WorkExperienceDocument>
 > =>
-  await client.fetch<Array<WorkExperienceDocument>>(getWorkExperienceQuery, {
-    revalidate: 30,
-  });
+  await client.fetch<Array<WorkExperienceDocument>>(
+    getWorkExperienceQuery,
+    {
+      revalidate: 30,
+    },
+    {
+      cache: 'force-cache',
+      next: {
+        tags: ['work-experiences'],
+      },
+    }
+  );
