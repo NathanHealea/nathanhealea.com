@@ -6,10 +6,6 @@ import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Menu, Transition } from '@headlessui/react';
 import classNames from 'classnames';
-<<<<<<< HEAD
-import { Logo } from 'components';
-=======
->>>>>>> feature/sanity
 import Link from 'next/link';
 
 const links = [
