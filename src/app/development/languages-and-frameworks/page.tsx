@@ -1,5 +1,5 @@
 import technologies from './page.data';
-import SimpleIcon from 'components/SimpleIcon';
+import SimpleIcon from '@/components/SimpleIcon';
 import { Metadata } from 'next';
 import Link from 'next/link';
 

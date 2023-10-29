@@ -1,16 +1,14 @@
 import '../styles/main.css';
 import Header from './components/Header.component';
-import { config } from '@fortawesome/fontawesome-svg-core';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
+import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import GoogleAnalytics from 'components/GoogleAnalytics';
-import { Logo } from 'components/Logo';
 import { Metadata } from 'next';
-import Link from 'next/link';
 import { FC, ReactNode } from 'react';
 
-config.autoAddCss = false;
+FontAwesomeConfig.autoAddCss = false;
 
 interface LayoutProps {
   children: ReactNode;
@@ -60,7 +58,7 @@ const Layout: FC<LayoutProps> = (props) => {
   return (
     <html lang='en' className='dark scroll-smooth'>
       <GoogleAnalytics gaTrackingID={process.env.GOOGLE_ANALYTICS} />
-      <body className='flex flex-col min-h-screen w-ful'>
+      <body className='flex flex-col min-h-screen w-full'>
         <Header />
         {children}
         <footer className=''>
