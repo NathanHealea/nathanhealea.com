@@ -1,10 +1,18 @@
 import { WorkExperience, getWorkExperience } from '@/modules/WorkExperience';
-import { PortableText } from '@portabletext/react';
+import { getWorkExperienceQuery } from '@/modules/WorkExperience/WorkExperience.queries';
+import { WorkExperienceDocument } from '@/modules/WorkExperience/WorkExperience.types';
+import { sanityFetch } from '@sanity-client/lib/sanityFetch';
 
 interface WorkExperiencePageProps {}
 
+const getWorkExperiences = async (): Promise<Array<WorkExperienceDocument>> =>
+  await sanityFetch({
+    query: getWorkExperienceQuery,
+    tags: ['page:work-experience'],
+  });
+
 const WorkExperiencePage = async (props: WorkExperiencePageProps) => {
-  const workExperiences = await getWorkExperience();
+  const workExperiences = await getWorkExperiences();
 
   console.log(workExperiences);
 
