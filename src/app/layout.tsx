@@ -5,7 +5,7 @@ import { config as FontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { faCopyright } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Metadata } from 'next';
+import { Metadata, Viewport } from 'next';
 import { FC, ReactNode } from 'react';
 
 FontAwesomeConfig.autoAddCss = false;
@@ -20,10 +20,14 @@ const DEFAULT_DESCRIPTION =
   'Experienced Full Stack Developer, engineering solutions in healthcare, fiance, and education. Passion for transforming ideas into feature rich applications.';
 const DEFAULT_SITE_COLOR = '#f8f9fa';
 
+export const viewport: Viewport = {
+  themeColor: DEFAULT_SITE_COLOR,
+};
+
 export const metadata: Metadata = {
   title: DEFAULT_TITLE,
   description: DEFAULT_DESCRIPTION,
-  themeColor: DEFAULT_SITE_COLOR,
+  metadataBase: new URL('https://nathanhealea.com'),
   // manifest: '',
   twitter: {
     card: 'summary_large_image',

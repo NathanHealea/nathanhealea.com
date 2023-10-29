@@ -1,4 +1,4 @@
-import { WorkExperience, getWorkExperience } from '@/modules/WorkExperience';
+import { WorkExperience } from '@/modules/WorkExperience';
 import { getWorkExperienceQuery } from '@/modules/WorkExperience/WorkExperience.queries';
 import { WorkExperienceDocument } from '@/modules/WorkExperience/WorkExperience.types';
 import { sanityFetch } from '@sanity-client/lib/sanityFetch';
