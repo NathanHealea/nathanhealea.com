@@ -19,23 +19,10 @@ const links = [
 ];
 
 const Header = () => {
-  const position = useWindowScrollPositions();
-
-  useEffect(() => {
-    console.log(position);
-  }, [position]);
   return (
-    <header className='sticky top-0 bg-gradient-rainbow'>
+    <header className='bg-gradient-rainbow'>
       <div className='w-full bg-white text-white-content dark:bg-black dark:text-black-content mb-1'>
-        <div
-          className={classNames(
-            'content flex flex-row items-center transition-all ease-in-out duration-200',
-            {
-              'h-32': position.scrollY <= 256,
-              'h-20': position.scrollY > 256,
-            }
-          )}
-        >
+        <div className='content flex flex-row items-center transition-all ease-in-out duration-200 h-24'>
           <div className='flex flex-row items-center gap-x-4'>
             <Link href='/'>
               <Logo />
