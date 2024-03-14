@@ -1,0 +1,97 @@
+@layer base {
+  :root {
+    --font-family-header: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
+
+    --font-family-body: 'Nunito', ui-sans-serif, system-ui, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
+
+    --font-size-sm: 0.75rem;
+    --font-size-base: 1rem;
+    --font-size-md: 1.25rem;
+    --font-size-lg: 1.5rem;
+    --font-size-lgp: 1.75;
+    --font-size-xl: 2rem;
+    --font-size-2xl: 2.5rem;
+    --font-size-3xl: 3rem;
+    --font-size-4xl: 3.5rem;
+    --font-size-5xl: 4rem;
+    --font-size-6xl: 4.5rem;
+
+    --line-height-sm: 1rem;
+    --line-height-base: 1.25rem;
+    --line-height-md: 1.5rem;
+    --line-height-lg: 1.75rem;
+    --line-height-lgp: 2rem;
+    --line-height-xl: 2.25rem;
+    --line-height-2xl: 2.75rem;
+    --line-height-3xl: 3.25rem;
+    --line-height-4xl: 3.75rem;
+    --line-height-5xl: 4.25rem;
+    --line-height-6xl: 4.75rem;
+
+    --letter-space-2xl: 1rem;
+    --letter-spacing-xl: 0.75rem;
+    --letter-spacing-lg: 0.5rem;
+    --letter-spacing-md: 0.25rem;
+    --letter-spacing-base: 0;
+    --letter-spacing--md: -0.25rem;
+    --letter-spacing--lg: -0.5rem;
+    --letter-spacing--xl: -0.75rem;
+    --letter-spacing--2xl: -1rem;
+  }
+
+  html {
+    font-family: var(--font-family-body);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-family-header);
+  }
+  h1,
+  .text-h1 {
+    @apply text-4xl leading-4xl md:text-5xl md:leading-5xl lg:text-6xl lg:leading-6xl;
+  }
+
+  h2,
+  .text-h2 {
+    @apply text-3xl leading-3xl md:text-4xl md:leading-4xl lg:text-5xl lg:leading-5xl;
+  }
+
+  h3,
+  .text-h3 {
+    @apply text-2xl leading-2xl md:text-3xl md:leading-3xl lg:text-4xl lg:leading-4xl;
+  }
+
+  h4,
+  .text-h4 {
+    @apply text-xl leading-xl md:text-2xl md:leading-2xl lg:text-3xl lg:leading-3xl;
+  }
+
+  h5,
+  .text-h5 {
+    @apply text-base leading-base md:text-xl md:leading-xl lg:text-2xl lg:leading-2xl;
+  }
+
+  h6,
+  .text-h6 {
+    @apply text-sm leading-sm md:text-base md:leading-base lg:text-lgp lg:leading-lgp;
+  }
+
+  p,
+  .text-body,
+  a,
+  .text-link {
+    @apply text-sm leading-sm md:text-base md:leading-base lg:text-lg lg:leading-lg;
+  }
+
+  button,
+  .text-btn {
+    @apply text-sm uppercase leading-sm tracking-md md:text-base md:leading-base lg:text-lg lg:leading-lg;
+  }
+}

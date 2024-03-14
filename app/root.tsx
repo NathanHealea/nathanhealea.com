@@ -6,6 +6,7 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  useRouteError,
 } from '@remix-run/react';
 
 import stylesheet from '~/styles/global.css';
@@ -13,6 +14,27 @@ import stylesheet from '~/styles/global.css';
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: stylesheet },
 ];
+
+export function ErrorBoundary() {
+  const error = useRouteError();
+  return (
+    <html lang='en'>
+      <head>
+        <title>Oh no!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {/* add the UI you want your users to see */}
+        <div className='flex grow flex-col items-center justify-center'>
+          <h1>{error.status}</h1>
+          <h2>{error.statusText}</h2>
+        </div>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
 
 export default function App() {
   return (
