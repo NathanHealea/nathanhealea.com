@@ -31,18 +31,22 @@ export default {
       '7xl': 'var(--line-height-7xl)',
     },
     letterSpacing: {
-      '-2xl':'var(--letter-spacing--2xl)',
-      '-xl':'var(--letter-spacing--xl)',
-      '-lg':'var(--letter-spacing--lg)',
-      '-md':'var(--letter-spacing--md)',
-      'base':'var(--letter-spacing-base)',
-      'md':'var(--letter-spacing-md)',
-      'lg':'var(--letter-spacing-lg)',
-      'xl':'var(--letter-spacing-xl)',
-      '2xl':'var(--letter-spacing-2xl)',
+      '-2xl': 'var(--letter-spacing--2xl)',
+      '-xl': 'var(--letter-spacing--xl)',
+      '-lg': 'var(--letter-spacing--lg)',
+      '-md': 'var(--letter-spacing--md)',
+      base: 'var(--letter-spacing-base)',
+      md: 'var(--letter-spacing-md)',
+      lg: 'var(--letter-spacing-lg)',
+      xl: 'var(--letter-spacing-xl)',
+      '2xl': 'var(--letter-spacing-2xl)',
     },
 
     extend: {},
   },
-  plugins: [],
+  plugins: [require('daisyui')],
+
+  daisyui: {
+    themes: ['light'],
+  },
 } satisfies Config;
