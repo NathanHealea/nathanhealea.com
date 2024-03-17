@@ -26,11 +26,16 @@ export function ErrorBoundary() {
       </head>
       <body>
         {/* add the UI you want your users to see */}
-        <div className='flex grow flex-col items-center justify-center'>
-          <h1>{error.status}</h1>
-          <h2>{error.statusText}</h2>
-        </div>
+        <main className='page'>
+          <section className='section items-center justify-center'>
+            <div className='section__content text-center'>
+              <h1>{error.status}</h1>
+              <h2>{error.statusText}</h2>
+            </div>
+          </section>
+        </main>
         <Scripts />
+        <LiveReload />
       </body>
     </html>
   );
