@@ -1,4 +1,12 @@
-import type { MetaFunction } from '@remix-run/node';
+import { type MetaFunction } from '@remix-run/node';
+
+import Page from '~/components/Page';
+import HeroSection from './components/Hero';
+import AboutMeSection from './components/AboutMe';
+import SkillsSection from './components/Skills';
+import { Link } from '@remix-run/react';
+import SectionContent from '~/components/Section/SectionContent';
+import Section from '~/components/Section';
 
 export const meta: MetaFunction = () => {
   return [
@@ -9,16 +17,11 @@ export const meta: MetaFunction = () => {
 
 const IndexPage = () => {
   return (
-    <>
-      <h1>Heading 1</h1>
-      <h2>Heading 2</h2>
-      <h3>Heading 3</h3>
-      <h4>Heading 4</h4>
-      <h5>Heading 5</h5>
-      <h6>Heading 6</h6>
-      <p>Body</p>
-      <div className='text-btn'>Button</div>
-    </>
+    <Page>
+      <HeroSection />
+      <AboutMeSection />
+      <SkillsSection />
+    </Page>
   );
 };
 
