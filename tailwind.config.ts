@@ -44,7 +44,7 @@ export default {
 
     extend: {},
   },
-  plugins: [require('daisyui')],
+  plugins: [require('daisyui'), require('@headlessui/tailwindcss')],
 
   daisyui: {
     themes: ['light'],
