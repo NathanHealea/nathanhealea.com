@@ -1,0 +1,30 @@
+import { Skill } from '../skills/skills.types';
+
+export type Experience =
+  | string
+  | {
+      title: string;
+      details: Array<string>;
+    };
+
+export type Role = {
+  title: string;
+  details: Array<string>;
+  start: string;
+  end?: string;
+};
+
+export type WorkExperience = {
+  position: string;
+  company: string;
+  department?: string;
+  dates: {
+    start: string;
+    end?: string;
+  };
+  summary: string;
+  experiences: Array<Experience>;
+  roles: Array<Role>;
+  languages: Array<Skill>;
+  technologies: Array<Skill>;
+};

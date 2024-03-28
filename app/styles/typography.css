@@ -1,12 +1,10 @@
 @layer base {
   :root {
-    --font-family-header: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-      'Noto Color Emoji';
+    --font-family-header: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --font-family-body: 'Nunito', ui-sans-serif, system-ui, sans-serif,
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-      'Noto Color Emoji';
+    --font-family-body: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol', 'Noto Color Emoji';
 
     --font-size-sm: 0.75rem;
     --font-size-base: 1rem;
@@ -92,6 +90,6 @@
 
   button,
   .text-btn {
-    @apply text-base  uppercase leading-base;
+    @apply text-base uppercase leading-base tracking-md;
   }
 }

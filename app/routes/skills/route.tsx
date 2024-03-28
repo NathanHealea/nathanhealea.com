@@ -1,12 +1,12 @@
-import { LoaderFunctionArgs, type MetaFunction } from '@remix-run/node';
+import { type MetaFunction } from '@remix-run/node';
 import { Link, Outlet } from '@remix-run/react';
 import Page from '~/components/Page';
 import Section from '~/components/Section';
 import SectionContent from '~/components/Section/SectionContent';
 
-import Technologies from '~/data/Technologies';
-import Competencies from '~/data/Competencies';
-import { Languages, Skill } from '~/data/Languages';
+import Technologies from '~/data/skills/Technologies';
+import Competencies from '~/data/skills/Competencies';
+import { Languages, Skill } from '~/data/skills/Languages';
 export const meta: MetaFunction = () => {
   return [{ title: 'New Remix App' }, { name: 'description', content: 'Welcome to Remix!' }];
 };
@@ -31,7 +31,7 @@ const SkillsPage = () => {
 
                   {currentLanguage.technical && (
                     <div className='flex flex-wrap justify-center gap-8'>
-                      {currentLanguage.technical.map((technicalLanguage) => {
+                      {currentLanguage.technical.map((technicalLanguage: Skill) => {
                         return (
                           <Link
                             key={technicalLanguage.machineName}

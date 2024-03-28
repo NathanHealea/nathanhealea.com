@@ -1,16 +1,5 @@
 import { ReactNode } from 'react';
-
-export type Skill = {
-  machineName?: string;
-  title: string;
-  icon?: ReactNode;
-  nested?: Array<Omit<Skill, 'nested'>>;
-  technical?: Array<Skill>;
-};
-
-export type Skills = {
-  [key: string]: Skill;
-};
+import { Skill, Skills } from './skills.types';
 
 // ---- C Sharp ---- //
 export const DotNetCore: Skill = {
@@ -193,7 +182,17 @@ export const EnterpriseArchitecture: Skill = {
   title: 'Enterprise Architecture',
 };
 
-const AllLanguages: Skills = {
+export const Languages: Skills = {
+  CSharp,
+  JavaScript,
+  NodeJS,
+  PHP,
+  Python,
+  CSS,
+  HTML,
+};
+
+export default {
   // C#
   DotNetCore,
   DotNetFramework,
@@ -243,15 +242,3 @@ const AllLanguages: Skills = {
   TeamLeadership,
   EnterpriseArchitecture,
 };
-
-export const Languages: Skills = {
-  CSharp,
-  JavaScript,
-  NodeJS,
-  PHP,
-  Python,
-  CSS,
-  HTML,
-};
-
-export default AllLanguages;
