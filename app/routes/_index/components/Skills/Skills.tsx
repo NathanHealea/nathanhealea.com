@@ -15,24 +15,19 @@ import {
   GraphicDesign,
   TeamLeadership,
   EnterpriseArchitecture,
-} from '~/data/Languages';
+} from '~/data/skills/Languages';
 import { Link } from '@remix-run/react';
 import {
   Database,
   Methodologies,
   SoftwareArchitecture,
   SoftwareDevelopmentLifeCycle,
-} from '~/data/Competencies';
-import {
-  Atlassian,
-  AzureDevOps,
-  Cloud,
-  VirtualizationContainerization,
-} from '~/data/Technologies';
+} from '~/data/skills/Competencies';
+import { Atlassian, AzureDevOps, Cloud, VirtualizationContainerization } from '~/data/skills/Technologies';
 
 export interface SkillsSectionProps {}
 
-const SkillsSection = (pros: SkillsSectionProps) => {
+const SkillsSection = (props: SkillsSectionProps) => {
   return (
     <>
       <Section>
@@ -50,33 +45,17 @@ const SkillsSection = (pros: SkillsSectionProps) => {
             <SkillCard
               title='Software Engineering'
               description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
-              skills={[
-                SoftwareArchitecture,
-                Cloud,
-                Database,
-                VirtualizationContainerization,
-                Networking,
-              ]}
+              skills={[SoftwareArchitecture, Cloud, Database, VirtualizationContainerization, Networking]}
             />
             <SkillCard
               title='Project Management'
               description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
-              skills={[
-                Methodologies,
-                SoftwareDevelopmentLifeCycle,
-                Atlassian,
-                AzureDevOps,
-              ]}
+              skills={[Methodologies, SoftwareDevelopmentLifeCycle, Atlassian, AzureDevOps]}
             />
             <SkillCard
               title='Growth'
               description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
-              skills={[
-                UIUX,
-                GraphicDesign,
-                TeamLeadership,
-                EnterpriseArchitecture,
-              ]}
+              skills={[UIUX, GraphicDesign, TeamLeadership, EnterpriseArchitecture]}
             />
           </div>
         </SectionContent>
