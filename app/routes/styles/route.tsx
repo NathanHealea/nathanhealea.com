@@ -1,10 +1,8 @@
 import { type MetaFunction } from '@remix-run/node';
+import Page from '~/components/Page';
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
-  ];
+  return [{ title: 'New Remix App' }, { name: 'description', content: 'Welcome to Remix!' }];
 };
 
 export const loader = async () => {
@@ -22,18 +20,20 @@ export const loader = async () => {
 
 const TypographySection = () => {
   return (
-    <section className='flex flex-col gap-4'>
-      <h2>Typography</h2>
-      <div className='flex flex-col gap-8'>
-        <h1>Heading 1</h1>
-        <h2>Heading 2</h2>
-        <h3>Heading 3</h3>
-        <h4>Heading 4</h4>
-        <h5>Heading 5</h5>
-        <h6>Heading 6</h6>
-        <p>Body</p>
-        <a href='#'>Link</a>
-        <button className='w-fit'>Button</button>
+    <section className='section '>
+      <div className='section__content flex flex-col gap-4'>
+        <h2>Typography</h2>
+        <div className='flex flex-col gap-8'>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
+          <h5>Heading 5</h5>
+          <h6>Heading 6</h6>
+          <p>Body</p>
+          <a href='#'>Link</a>
+          <button className='w-fit'>Button</button>
+        </div>
       </div>
     </section>
   );
@@ -41,9 +41,9 @@ const TypographySection = () => {
 
 const StylesPage = () => {
   return (
-    <div className='flex w-full max-w-7xl grow flex-col gap-32 px-4'>
+    <Page>
       <TypographySection />
-    </div>
+    </Page>
   );
 };
 
