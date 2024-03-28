@@ -32,7 +32,7 @@ const Navigation = (props: NavigationProps) => {
               <Bars3Icon className='h-8 w-8' />
             </Menu.Button>
           </div>
-          <div className='flex-1 justify-end'>
+          <div className='hidden flex-1 justify-end md:flex'>
             <ul className='menu menu-horizontal'>
               {Children.map(children, (child) => {
                 return (
