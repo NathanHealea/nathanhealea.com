@@ -21,10 +21,10 @@ const AboutMeSection = (pros: AboutMeSectionProps) => {
           </p>
           <div className='flex flex-row items-center justify-center gap-4'>
             <h6 className='w-fit'>Let Connect</h6>
-            <a href='' className='btn btn-square'>
+            <a href='' className='btn btn-square btn-ghost'>
               <SiGithub className='fill-base-content' />
             </a>
-            <a href='' className='btn btn-square'>
+            <a href='' className='btn btn-square btn-ghost'>
               <SiLinkedin className='fill-base-content' />
             </a>
           </div>

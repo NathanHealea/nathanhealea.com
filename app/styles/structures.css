@@ -8,7 +8,7 @@
   }
 
   .section {
-    @apply my-16 flex items-center justify-center py-16;
+    @apply flex items-center justify-center py-32;
   }
 
   .section--narrow {

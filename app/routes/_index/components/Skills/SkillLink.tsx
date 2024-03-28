@@ -1,5 +1,5 @@
 import { Link } from '@remix-run/react';
-import { Skill } from '~/data/skills';
+import { Skill } from '~/data/Languages';
 
 export interface SkillLinkProps extends Skill {}
 

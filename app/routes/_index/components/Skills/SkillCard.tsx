@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Skill } from '~/data/skills';
+import { Skill } from '~/data/Languages';
 
 export interface SkillCardProps {
   icon?: ReactNode;
@@ -22,7 +22,7 @@ const SkillCard = (props: SkillCardProps) => {
             <div className='' key={skill.machineName}>
               <a
                 href={`/skills/${skill.machineName}`}
-                className='btn btn-outline'
+                className='btn btn-ghost'
               >
                 {skill.title}
               </a>

@@ -10,21 +10,25 @@ import {
   SQL,
   CSS,
   HTML,
-  SoftwareArchitecture,
-  Cloud,
-  Database,
-  VirtualizationContainerization,
   Networking,
-  Atlassian,
-  Methodologies,
-  AzureDevOps,
-  SoftwareDevelopmentLifeCycle,
   UIUX,
   GraphicDesign,
   TeamLeadership,
   EnterpriseArchitecture,
-} from '~/data/skills';
+} from '~/data/Languages';
 import { Link } from '@remix-run/react';
+import {
+  Database,
+  Methodologies,
+  SoftwareArchitecture,
+  SoftwareDevelopmentLifeCycle,
+} from '~/data/Competencies';
+import {
+  Atlassian,
+  AzureDevOps,
+  Cloud,
+  VirtualizationContainerization,
+} from '~/data/Technologies';
 
 export interface SkillsSectionProps {}
 
@@ -78,7 +82,7 @@ const SkillsSection = (pros: SkillsSectionProps) => {
         </SectionContent>
       </Section>
 
-      <Section className='py-4'>
+      <Section className='py-16'>
         <SectionContent className='flex flex-col items-center justify-center gap-8 text-center'>
           <h5>Want to see my entire knowledge base and skill set?</h5>
           <Link to='/resume' className='btn'>
