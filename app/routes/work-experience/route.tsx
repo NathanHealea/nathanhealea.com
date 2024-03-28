@@ -6,6 +6,7 @@ import Section from '~/components/Section';
 import SectionContent from '~/components/Section/SectionContent';
 import { Skill } from '~/data/skills/skills.types';
 import { WorkExperience, getWorkExperienceAsArray } from '~/data/work-experiences';
+import { Experience } from '~/data/work-experiences/work-experiences.type';
 
 export interface WorkExperiencePageProps {}
 
@@ -27,12 +28,12 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
         return (
           <Section key={v4()}>
             <SectionContent>
-              <h2>{workExperience.Position}</h2>
+              <h2>{workExperience}</h2>
               <h4>
-                {workExperience.Company} {workExperience.Department && `| ${workExperience.Department}`}
+                {workExperience.company} {workExperience.department && `| ${workExperience.department}`}
               </h4>
 
-              {workExperience.Experiences.map((experience) => {
+              {workExperience.experiences.map((experience: Array<Experience>) => {
                 console.log(typeof experience === 'string');
                 if (typeof experience === 'string') {
                   return <p key={v4()}>{experience}</p>;
@@ -41,9 +42,9 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
                 if (typeof experience === 'object') {
                   return (
                     <>
-                      <p>{experience.Title}</p>
+                      <p>{experience.title}</p>
                       <ul className='list-inside list-disc'>
-                        {experience.Details.map((detail) => {
+                        {experience.details.map((detail) => {
                           return <li key={v4()}>{detail}</li>;
                         })}
                       </ul>
@@ -54,7 +55,7 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
 
               <h4>Languages and Frameworks</h4>
               <div className='pag-4 flex flex-wrap'>
-                {workExperience.Languages.map((language: Skill) => {
+                {workExperience.languages.map((language: Skill) => {
                   return (
                     <Link className='btn btn-link' to={`/skills/${language.machineName}`}>
                       {language.title}
@@ -64,7 +65,7 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
               </div>
               <h4>Technologies</h4>
               <div className='pag-4 flex flex-wrap'>
-                {workExperience.Technologies.map((technology: Skill) => {
+                {workExperience.technologies.map((technology: Skill) => {
                   return (
                     <Link className='btn btn-link' to={`/skills/${technology.machineName}`}>
                       {technology.title}

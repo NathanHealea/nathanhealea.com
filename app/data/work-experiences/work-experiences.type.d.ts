@@ -3,28 +3,28 @@ import { Skill } from '../skills/skills.types';
 export type Experience =
   | string
   | {
-      Title: string;
-      Details: Array<string>;
+      title: string;
+      details: Array<string>;
     };
 
 export type Role = {
-  Title: string;
-  Details: Array<string>;
-  Start: string;
-  End?: string;
+  title: string;
+  details: Array<string>;
+  start: string;
+  end?: string;
 };
 
 export type WorkExperience = {
-  Position: string;
-  Company: string;
-  Department?: string;
-  Dates: {
-    Start: string;
-    End?: string;
+  position: string;
+  company: string;
+  department?: string;
+  dates: {
+    start: string;
+    end?: string;
   };
-  Summary: string;
-  Experiences: Array<Experience>;
-  Roles: Array<Role>;
-  Languages: Array<Skill>;
-  Technologies: Array<Skill>;
+  summary: string;
+  experiences: Array<Experience>;
+  roles: Array<Role>;
+  languages: Array<Skill>;
+  technologies: Array<Skill>;
 };
