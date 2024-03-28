@@ -1,6 +1,6 @@
 // ---- Project Management Methodologies ---- //
 
-import { Skill } from './Languages';
+import { Skill } from './skills.types';
 
 export const Agile: Skill = {
   machineName: 'agile',

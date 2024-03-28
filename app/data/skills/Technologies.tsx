@@ -1,4 +1,4 @@
-import { Skill } from './Languages';
+import { Skill } from './skills.types';
 
 // ---- Atlassian ---- //
 
@@ -138,6 +138,23 @@ export const SQLDatabase: Skill = {
   technical: [MSSQL, MySQL, Oracle, PostgreSQL],
 };
 
+// --- Interactive Development Environments ---- //
+
+// JetBrains
+
+// Microsoft
+export const MSSMS: Skill = {
+  machineName: 'microsoft-sql-server-management-studio',
+  title: 'Microsoft SQL Server Management Studios',
+};
+
+// Group
+export const IDE: Skill = {
+  machineName: 'interactive-development-environments',
+  title: 'Interactive Development Environments (IDE)',
+  technical: [MSSMS],
+};
+
 // ---- No SQL Database ---- //
 
 export const MongoDB: Skill = {
@@ -149,6 +166,45 @@ export const NoSQLDatabase: Skill = {
   machineName: 'nosql-database',
   title: 'NoSQL Databases',
   technical: [MongoDB],
+};
+
+// ---- Microsoft Power Platform ---- //
+
+export const MicrosoftDataverse: Skill = {
+  machineName: 'microsoft-dataverse',
+  title: 'Microsoft Dataverse',
+};
+
+export const MicrosoftPowerApps: Skill = {
+  machineName: 'microsoft-power-apps',
+  title: 'Microsoft Power Apps',
+};
+
+export const MicrosoftPowerAutomate: Skill = {
+  machineName: 'microsoft-power-automate',
+  title: 'Microsoft Power Automate',
+};
+
+export const MicrosoftPowerPages: Skill = {
+  machineName: 'microsoft-power-apps',
+  title: 'Microsoft Power Pages',
+};
+
+export const MicrosoftPowerPlatform: Skill = {
+  machineName: 'microsoft-power-platform',
+  title: 'Microsoft Power Platform',
+  technical: [MicrosoftPowerApps, MicrosoftPowerAutomate, MicrosoftPowerPages],
+};
+
+// ---- Miscellaneous ---- //
+export const XRMToolBox: Skill = {
+  machineName: 'xrmtoolbox',
+  title: 'XRM Toolbox',
+};
+
+export const TeamDynamics: Skill = {
+  machineName: 'team-dynamics',
+  title: 'Team Dynamics',
 };
 
 // ---- Virtualization  & Containerization ---- //
@@ -211,9 +267,24 @@ export default {
   PostgreSQL,
   SQLDatabase,
 
+  // IDE
+  MSSMS,
+  IDE,
+
   // NoSQL
   MongoDB,
   NoSQLDatabase,
+
+  // Microsoft Power Platform
+  MicrosoftDataverse,
+  MicrosoftPowerApps,
+  MicrosoftPowerAutomate,
+  MicrosoftPowerPages,
+  MicrosoftPowerPlatform,
+
+  // Mis
+  XRMToolBox,
+  TeamDynamics,
 
   // Virtualization & Containerization
   Docker,
