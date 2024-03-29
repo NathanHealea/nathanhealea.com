@@ -10,16 +10,28 @@ import WorkExperienceTitle from './components/WorkExperienceTitle';
 
 export interface WorkExperienceSectionProps extends WorkExperience {
   isAlternate: boolean;
+  defaultOpen?: boolean;
 }
 
 const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
-  const { position, company, department, dates, summary, experiences, roles, languages, technologies, isAlternate } =
-    props;
+  const {
+    position,
+    company,
+    department,
+    dates,
+    summary,
+    experiences,
+    roles,
+    languages,
+    technologies,
+    isAlternate,
+    defaultOpen = false,
+  } = props;
 
   return (
     <Section>
       <SectionContent className='flex flex-col gap-16 '>
-        <Disclosure>
+        <Disclosure defaultOpen={defaultOpen}>
           <SectionTitle
             className={clsx('flex flex-col gap-8', {
               'md:flex-row': isAlternate,
@@ -28,7 +40,7 @@ const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
             <div className='flex w-full items-center justify-center md:w-72'>
               <div className='my-4 h-60 w-full rounded-2xl bg-slate-300 md:w-60' />
             </div>
-
+            {/* <WorkExperienceHeroImage img={}/> */}
             <WorkExperienceTitle
               {...{
                 position,
@@ -40,7 +52,6 @@ const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
               <Disclosure.Button className='btn btn-ghost'>View More</Disclosure.Button>
             </WorkExperienceTitle>
           </SectionTitle>
-
           <Transition
             enter='transition duration-100 ease-out'
             enterFrom='transform scale-95 opacity-0'

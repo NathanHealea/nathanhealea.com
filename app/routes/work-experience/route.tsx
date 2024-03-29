@@ -26,6 +26,7 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
       {workExperiences.map((workExperience: WorkExperienceType, index) => {
         return (
           <WorkExperienceSection
+            defaultOpen
             key={workExperience.machineName}
             isAlternate={Boolean(index % 2)}
             {...workExperience}
