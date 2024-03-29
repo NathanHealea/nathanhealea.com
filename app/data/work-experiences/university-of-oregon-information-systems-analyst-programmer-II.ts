@@ -1,5 +1,6 @@
 import { NodeJS, CSharp, DotNetCore, Drupal, HTML, JQuery, JavaScript, PHP, SQL, CSS } from '../skills/Languages';
 import {
+  Bitbucket,
   Confluence,
   Jira,
   MSSMS,
@@ -13,6 +14,8 @@ import {
 import { Skill } from '../skills/skills.types';
 import { Experience, Role, WorkExperience } from './work-experiences.type';
 
+export const MachineName = 'uo-is-apii';
+
 export const Position = 'Analyst Programmer II';
 
 export const Company = 'University of Oregon';
@@ -21,10 +24,10 @@ export const Department = 'Information Services';
 
 export const Dates = {
   start: 'January.2023',
-  end: '',
 };
 
-export const Summary = '';
+export const Summary =
+  'faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc';
 
 export const Experiences: Array<Experience> = [
   {
@@ -50,8 +53,12 @@ export const Experiences: Array<Experience> = [
       'Created archive project plan, Jira tickets, documented archive procedures, and provided multiple weekly project status updates to upper management.',
     ],
   },
-  'Provided maintenance of COVID 19 Test response application build in Microsoft Power Apps.',
-  'Modified Quartics surveys, using jQuery, JavaScript, HTML and CSS, to improve web accessibility.',
+  {
+    title: 'Provided maintenance of COVID 19 Test response application build in Microsoft Power Apps.',
+  },
+  {
+    title: 'Modified Quartics surveys, using jQuery, JavaScript, HTML and CSS, to improve web accessibility.',
+  },
 ];
 
 export const Roles: Array<Role> = [
@@ -75,15 +82,15 @@ export const Roles: Array<Role> = [
 ];
 
 export const Languages: Array<Skill> = [
-  NodeJS,
-  Drupal,
-  PHP,
   DotNetCore,
   CSharp,
-  MySQL,
-  SQL,
+  Drupal,
+  PHP,
   JavaScript,
   JQuery,
+  MySQL,
+  NodeJS,
+  SQL,
   CSS,
   HTML,
 ];
@@ -91,6 +98,7 @@ export const Languages: Array<Skill> = [
 export const Technologies: Array<Skill> = [
   Jira,
   Confluence,
+  Bitbucket,
   MicrosoftPowerApps,
   MicrosoftPowerAutomate,
   MicrosoftDataverse,
@@ -100,6 +108,7 @@ export const Technologies: Array<Skill> = [
 ];
 
 export default {
+  machineName: MachineName,
   position: Position,
   company: Company,
   department: Department,

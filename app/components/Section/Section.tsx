@@ -1,14 +1,16 @@
 import clsx from 'clsx';
 import { HTMLAttributes } from 'react';
 
-export interface SectionProps extends HTMLAttributes<'main'> {
+export interface SectionProps extends HTMLAttributes<'div'> {
   as?: 'div' | 'section' | 'header' | 'footer';
 }
 
 const Section = (props: SectionProps) => {
   const { as: Component = 'div', className, children } = props;
 
-  return <Component className={clsx('section', className)}>{children}</Component>;
+  return (
+    <Component className={clsx('section', className)}>{children}</Component>
+  );
 };
 
 export default Section;

@@ -1,11 +1,9 @@
 import { Skill } from '../skills/skills.types';
 
-export type Experience =
-  | string
-  | {
-      title: string;
-      details: Array<string>;
-    };
+export type Experience = {
+  title: string;
+  details?: Array<string>;
+};
 
 export type Role = {
   title: string;
@@ -15,6 +13,7 @@ export type Role = {
 };
 
 export type WorkExperience = {
+  machineName: string;
   position: string;
   company: string;
   department?: string;

@@ -53,43 +53,47 @@
   }
   h1,
   .text-h1 {
-    @apply text-3xl leading-3xl md:text-4xl md:leading-4xl;
+    @apply text-3xl  md:text-4xl;
   }
 
   h2,
   .text-h2 {
-    @apply text-2xl leading-2xl md:text-3xl md:leading-3xl;
+    @apply text-2xl  md:text-3xl;
   }
 
   h3,
   .text-h3 {
-    @apply text-xl leading-xl md:text-2xl md:leading-2xl;
+    @apply text-xl md:text-2xl;
   }
 
   h4,
   .text-h4 {
-    @apply text-lg leading-lg md:text-xl md:leading-xl;
+    @apply text-lg  md:text-xl;
   }
 
   h5,
   .text-h5 {
-    @apply text-md leading-md md:text-lg md:leading-lg;
+    @apply text-md  md:text-lg;
   }
 
   h6,
   .text-h6 {
-    @apply text-base leading-base md:text-md md:leading-md;
+    @apply text-base md:text-md;
   }
 
   p,
   .text-body,
   a,
   .text-link {
-    @apply text-base leading-base;
+    @apply text-base;
   }
 
   button,
   .text-btn {
-    @apply text-base uppercase leading-base tracking-md;
+    @apply text-base uppercase  tracking-md;
+  }
+
+  .text-overline {
+    @apply uppercase tracking-md;
   }
 }

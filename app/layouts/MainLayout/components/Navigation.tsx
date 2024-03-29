@@ -13,7 +13,7 @@ const Navigation = (props: NavigationProps) => {
     <>
       <Menu
         as='nav'
-        className='relative inset-0 -z-10 w-full  before:backdrop-blur'
+        className='relative inset-0 -z-10 flex w-full justify-center before:backdrop-blur'
       >
         <div
           className={clsx(
