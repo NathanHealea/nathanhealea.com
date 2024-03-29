@@ -52,6 +52,12 @@ export const AzureAppServices: Skill = {
 };
 
 // ---- Cloud ---- //
+export const AWS: Skill = {
+  machineName: 'aws',
+  title: 'Amazon Web Server',
+  technical: [AzureFunctions, AzureSQLDatabase, AzureAppServices],
+};
+
 export const Azure: Skill = {
   machineName: 'azure',
   title: 'Azure',
@@ -89,6 +95,10 @@ export const NPM: Skill = {
   machineName: 'npm',
   title: 'NPM',
 };
+export const NVM: Skill = {
+  machineName: 'nvm',
+  title: 'Node Version Manager',
+};
 
 export const Yarn: Skill = {
   machineName: 'yarn',
@@ -108,13 +118,13 @@ export const Nuget: Skill = {
 export const PackageManagers: Skill = {
   machineName: 'package-managers',
   title: 'Package Managers',
-  technical: [NPM, Yarn, Composer, Nuget],
+  technical: [NPM, NVM, Yarn, Composer, Nuget],
 };
 
 // ---- SQL Databases ---- //
 export const MSSQL: Skill = {
   machineName: 'mssql',
-  title: 'MSSQL',
+  title: 'Microsoft SQL Server',
 };
 
 export const MySQL: Skill = {
@@ -207,6 +217,21 @@ export const TeamDynamics: Skill = {
   title: 'Team Dynamics',
 };
 
+export const Auth0: Skill = {
+  machineName: 'auth0',
+  title: 'Auth0',
+};
+
+export const Octopus: Skill = {
+  machineName: 'octopus',
+  title: 'Octopus',
+};
+
+export const Saleforce: Skill = {
+  machineName: 'saleforce',
+  title: 'Saleforce',
+};
+
 // ---- Virtualization  & Containerization ---- //
 export const Docker: Skill = {
   machineName: 'docker',
@@ -246,6 +271,7 @@ export default {
   AzureDevOps,
 
   // Cloud
+  AWS,
   Azure,
   Google,
   DigitalOcean,
@@ -255,6 +281,7 @@ export default {
 
   // Package Managers
   NPM,
+  NVM,
   Yarn,
   Composer,
   Nuget,
@@ -285,6 +312,9 @@ export default {
   // Mis
   XRMToolBox,
   TeamDynamics,
+  Auth0,
+  Octopus,
+  Saleforce,
 
   // Virtualization & Containerization
   Docker,

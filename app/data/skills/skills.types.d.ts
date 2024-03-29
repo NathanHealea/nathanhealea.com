@@ -2,7 +2,7 @@ export type Skill = {
   machineName?: string;
   title: string;
   icon?: ReactNode;
-  nested?: Array<Omit<Skill, 'nested'>>;
+  versions?: Array<string>;
   technical?: Array<Skill>;
 };
 

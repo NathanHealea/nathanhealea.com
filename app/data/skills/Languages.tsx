@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-import { Skill, Skills } from './skills.types';
+import { Skill } from './skills.types';
 
 // ---- C Sharp ---- //
 export const DotNetCore: Skill = {
@@ -28,6 +27,7 @@ export const ReactJS: Skill = {
 export const Angular: Skill = {
   machineName: 'angular',
   title: 'Angular',
+  versions: ['8', '9', '11'],
 };
 
 export const Vue: Skill = {
@@ -42,13 +42,23 @@ export const JQuery: Skill = {
 
 export const TypeScript: Skill = {
   machineName: 'typescript',
-  title: 'typescript',
+  title: 'TypeScript',
+};
+
+export const MaterialUI: Skill = {
+  machineName: 'material-ui',
+  title: 'Materia UI',
+};
+
+export const KendoUI: Skill = {
+  machineName: 'kendo-ui',
+  title: 'Kendo UI',
 };
 
 export const JavaScript: Skill = {
   machineName: 'javascript',
   title: 'JavaScript',
-  technical: [ReactJS, Angular, Vue, JQuery],
+  technical: [ReactJS, Angular, Vue, JQuery, MaterialUI, KendoUI],
 };
 
 // --- NodeJS ---- //
@@ -182,7 +192,7 @@ export const EnterpriseArchitecture: Skill = {
   title: 'Enterprise Architecture',
 };
 
-export const Languages: Skills = {
+export const Languages = {
   CSharp,
   JavaScript,
   NodeJS,
@@ -204,6 +214,8 @@ export default {
   Vue,
   JQuery,
   Angular,
+  MaterialUI,
+  KendoUI,
   JavaScript,
 
   // Node

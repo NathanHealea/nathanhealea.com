@@ -15,7 +15,6 @@ export const loader: LoaderFunction = () => {
 
 const WorkExperiencePage = (props: WorkExperiencePageProps) => {
   const workExperiences: Array<WorkExperienceType> = useLoaderData<typeof loader>();
-  console.log(workExperiences);
   return (
     <Page>
       <Section as='header'>
@@ -23,60 +22,15 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
           <h1>Work Experience</h1>
         </SectionContent>
       </Section>
-      {workExperiences.map((workExperience: WorkExperienceType) => {
-        return <WorkExperienceSection key={workExperience.machineName} {...workExperience} />;
 
-        // return (
-        //   <Section key={v4()}>
-        //     <SectionContent>
-        //       <h2>{workExperience}</h2>
-        //       <h4>
-        //         {workExperience.company} {workExperience.department && `| ${workExperience.department}`}
-        //       </h4>
-
-        //       {workExperience.experiences.map((experience: Array<Experience>) => {
-        //         console.log(typeof experience === 'string');
-        //         if (typeof experience === 'string') {
-        //           return <p key={v4()}>{experience}</p>;
-        //         }
-
-        //         if (typeof experience === 'object') {
-        //           return (
-        //             <>
-        //               <p>{experience.title}</p>
-        //               <ul className='list-inside list-disc'>
-        //                 {experience.details.map((detail) => {
-        //                   return <li key={v4()}>{detail}</li>;
-        //                 })}
-        //               </ul>
-        //             </>
-        //           );
-        //         }
-        //       })}
-
-        //       <h4>Languages and Frameworks</h4>
-        //       <div className='pag-4 flex flex-wrap'>
-        //         {workExperience.languages.map((language: Skill) => {
-        //           return (
-        //             <Link className='btn btn-link' to={`/skills/${language.machineName}`}>
-        //               {language.title}
-        //             </Link>
-        //           );
-        //         })}
-        //       </div>
-        //       <h4>Technologies</h4>
-        //       <div className='pag-4 flex flex-wrap'>
-        //         {workExperience.technologies.map((technology: Skill) => {
-        //           return (
-        //             <Link className='btn btn-link' to={`/skills/${technology.machineName}`}>
-        //               {technology.title}
-        //             </Link>
-        //           );
-        //         })}
-        //       </div>
-        //     </SectionContent>
-        //   </Section>
-        // );
+      {workExperiences.map((workExperience: WorkExperienceType, index) => {
+        return (
+          <WorkExperienceSection
+            key={workExperience.machineName}
+            isAlternate={Boolean(index % 2)}
+            {...workExperience}
+          />
+        );
       })}
     </Page>
   );

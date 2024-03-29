@@ -10,7 +10,7 @@ const Experience = (props: ExperienceProps) => {
     <div className='flex flex-col gap-4 text-center md:text-start'>
       <p className='text-md'>{title}</p>
 
-      {details !== undefined && (
+      {details && (
         <ul className='flex flex-col gap-2 md:list-inside md:list-disc'>
           {details.map((detail) => (
             <li key={v4()}>{detail}</li>
