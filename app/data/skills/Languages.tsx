@@ -82,10 +82,15 @@ export const RemixRun: Skill = {
   title: 'Remix.Run',
 };
 
+export const Jest: Skill = {
+  machineName: 'jest',
+  title: 'Jest',
+};
+
 export const NodeJS: Skill = {
   machineName: 'nodejs',
   title: 'NodeJS',
-  technical: [Express, Electron, NextJS, RemixRun],
+  technical: [Express, Electron, NextJS, RemixRun, Jest],
 };
 
 // ---- PHP ---- //
@@ -154,10 +159,15 @@ export const Bulma: Skill = {
   title: 'Bulma',
 };
 
+export const SASS: Skill = {
+  machineName: 'sass',
+  title: 'SASS',
+};
+
 export const CSS: Skill = {
   machineName: 'css',
   title: 'CSS/CSS3',
-  technical: [Bootstrap, TailwindCSS, MaterialDesign, Bulma],
+  technical: [Bootstrap, TailwindCSS, MaterialDesign, Bulma, SASS],
 };
 
 // ---- HTML ---- //
@@ -166,6 +176,8 @@ export const HTML: Skill = {
   machineName: 'html',
   title: 'HTML/HTML5',
 };
+
+// ---- Growth ---- //
 
 export const Networking: Skill = {
   machineName: 'networking',
@@ -223,6 +235,7 @@ export default {
   Electron,
   NextJS,
   RemixRun,
+  Jest,
   NodeJS,
 
   // PHP
@@ -243,6 +256,7 @@ export default {
   TailwindCSS,
   MaterialDesign,
   Bulma,
+  SASS,
   CSS,
 
   // HTML

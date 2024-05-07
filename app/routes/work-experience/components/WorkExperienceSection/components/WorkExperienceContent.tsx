@@ -9,14 +9,14 @@ interface WorkExperienceContentProps {
 const WorkExperienceContent = (props: WorkExperienceContentProps) => {
   const { title, data, render: Component = 'div' } = props;
 
-  if (!data) {
+  if (!data || data.length == 0) {
     return null;
   }
 
   return (
     <>
       <h3>{title}</h3>
-      <div className='flex flex-wrap justify-center gap-2 md:justify-start'>
+      <div className="flex flex-wrap justify-center gap-6 md:justify-start">
         {data.map((d) => (
           <Component key={v4()} {...d} />
         ))}
