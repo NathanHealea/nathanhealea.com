@@ -12,12 +12,12 @@ export const Home: Route = {
 
 export const Projects: Route = {
   title: 'Projects',
-  getPath: () => '/Projects',
+  getPath: () => '/projects',
 };
 
 export const WorkExperience: Route = {
   title: 'Work Experience',
-  getPath: () => '/work-experience',
+  getPath: () => '/work-experiences',
 };
 
 export const Skills: Route = {

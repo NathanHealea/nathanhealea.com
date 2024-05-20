@@ -14,11 +14,12 @@ export const loader: LoaderFunction = () => {
 };
 
 const WorkExperiencePage = (props: WorkExperiencePageProps) => {
-  const workExperiences: Array<WorkExperienceType> = useLoaderData<typeof loader>();
+  const workExperiences: Array<WorkExperienceType> =
+    useLoaderData<typeof loader>();
   return (
     <Page>
-      <Section as='header'>
-        <SectionContent className='items-center justify-center text-center'>
+      <Section as="header">
+        <SectionContent className="items-center justify-center text-center">
           <h1>Work Experience</h1>
         </SectionContent>
       </Section>
@@ -26,7 +27,6 @@ const WorkExperiencePage = (props: WorkExperiencePageProps) => {
       {workExperiences.map((workExperience: WorkExperienceType, index) => {
         return (
           <WorkExperienceSection
-            defaultOpen
             key={workExperience.machineName}
             isAlternate={Boolean(index % 2)}
             {...workExperience}

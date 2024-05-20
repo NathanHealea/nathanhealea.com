@@ -22,7 +22,7 @@ const WorkExperienceTitle = (props: WorkExperienceTitleProps) => {
     children,
   } = props;
 
-  // TODO: Calulate the time spent in a position
+  // TODO: Calculate the time spent in a position
   // https://stackoverflow.com/questions/17732897/difference-between-two-dates-in-years-months-days-in-javascript
   console.log(new Date(start), end && new Date(end));
 
