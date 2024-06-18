@@ -44,7 +44,7 @@ export default {
 
     extend: {},
   },
-  plugins: [require('tailwind-scrollbar-hide'), require('daisyui'), require('@headlessui/tailwindcss')],
+  plugins: [require('daisyui'), require('@headlessui/tailwindcss')],
 
   daisyui: {
     themes: ['light'],
