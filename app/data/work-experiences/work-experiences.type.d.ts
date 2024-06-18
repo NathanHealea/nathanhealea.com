@@ -14,7 +14,7 @@ export type Role = {
 
 export type WorkExperience = {
   machineName: string;
-  employment: 'Full Time' | 'Contact';
+  employment: 'Full Time' | 'Contact' | 'Student Employee' | 'Internship';
   position: string;
   company: string;
   department?: string;

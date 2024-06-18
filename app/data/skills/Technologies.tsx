@@ -51,6 +51,18 @@ export const AzureAppServices: Skill = {
   title: 'Azure App Services',
 };
 
+// ---- CI/CD ---- //
+export const Octopus: Skill = {
+  machineName: 'octopus',
+  title: 'Octopus',
+};
+
+export const CICD: Skill = {
+  machineName: 'cicd',
+  title: 'Octopus',
+  technical: [Octopus, Bamboo],
+};
+
 // ---- Cloud ---- //
 export const AWS: Skill = {
   machineName: 'aws',
@@ -121,6 +133,32 @@ export const PackageManagers: Skill = {
   technical: [NPM, NVM, Yarn, Composer, Nuget],
 };
 
+// ---- Source Control  ---- //
+export const Git: Skill = {
+  machineName: 'git',
+  title: 'Git',
+};
+export const GitHub: Skill = {
+  machineName: 'github',
+  title: 'GitHub',
+};
+
+export const GitLab: Skill = {
+  machineName: 'gitlab',
+  title: 'Git Lab',
+};
+
+export const TeamFoundationServer: Skill = {
+  machineName: 'team-foundation-server',
+  title: 'Team Foundation Server',
+};
+
+export const SourceControl: Skill = {
+  machineName: 'source-control',
+  title: 'Source Control',
+  technical: [AzureDevOps, Git, GitLab, Bitbucket, TeamFoundationServer],
+};
+
 // ---- SQL Databases ---- //
 export const MSSQL: Skill = {
   machineName: 'mssql',
@@ -158,14 +196,24 @@ export const MSSMS: Skill = {
   title: 'Microsoft SQL Server Management Studios',
 };
 
-// Group
+export const VisualStudio: Skill = {
+  machineName: 'visual-studio',
+  title: 'Visual Studio',
+};
+
+// IDE
 export const IDE: Skill = {
   machineName: 'interactive-development-environments',
   title: 'Interactive Development Environments (IDE)',
-  technical: [MSSMS],
+  technical: [MSSMS, VisualStudio],
 };
 
 // ---- No SQL Database ---- //
+
+export const CosmosDB: Skill = {
+  machineName: 'cosmosdb',
+  title: 'CosmosDB',
+};
 
 export const MongoDB: Skill = {
   machineName: 'mongodb',
@@ -175,7 +223,7 @@ export const MongoDB: Skill = {
 export const NoSQLDatabase: Skill = {
   machineName: 'nosql-database',
   title: 'NoSQL Databases',
-  technical: [MongoDB],
+  technical: [MongoDB, CosmosDB],
 };
 
 // ---- Microsoft Power Platform ---- //
@@ -207,9 +255,25 @@ export const MicrosoftPowerPlatform: Skill = {
 };
 
 // ---- Miscellaneous ---- //
-export const XRMToolBox: Skill = {
-  machineName: 'xrmtoolbox',
-  title: 'XRM Toolbox',
+
+export const Auth0: Skill = {
+  machineName: 'auth0',
+  title: 'Auth0',
+};
+
+export const GoogleMaps: Skill = {
+  machineName: 'google-maps',
+  title: 'Google Maps',
+};
+
+export const SonarQube: Skill = {
+  machineName: 'sonarqube',
+  title: 'SonarQube',
+};
+
+export const Saleforce: Skill = {
+  machineName: 'saleforce',
+  title: 'Saleforce',
 };
 
 export const TeamDynamics: Skill = {
@@ -217,19 +281,9 @@ export const TeamDynamics: Skill = {
   title: 'Team Dynamics',
 };
 
-export const Auth0: Skill = {
-  machineName: 'auth0',
-  title: 'Auth0',
-};
-
-export const Octopus: Skill = {
-  machineName: 'octopus',
-  title: 'Octopus',
-};
-
-export const Saleforce: Skill = {
-  machineName: 'saleforce',
-  title: 'Saleforce',
+export const XRMToolBox: Skill = {
+  machineName: 'xrmtoolbox',
+  title: 'XRM Toolbox',
 };
 
 // ---- Virtualization  & Containerization ---- //
@@ -259,6 +313,23 @@ export const VirtualizationContainerization: Skill = {
   technical: [Docker, VirtualBox, VirtualBox, Vagrant],
 };
 
+// --- Web Servers --- //
+export const IIS: Skill = {
+  machineName: 'iis',
+  title: 'IIS',
+};
+
+export const LAMP: Skill = {
+  machineName: 'lamp',
+  title: 'LAMP Stack',
+};
+
+export const WebServers: Skill = {
+  machineName: 'web-servers',
+  title: 'WebServers',
+  technical: [IIS, LAMP],
+};
+
 export default {
   // Atlassian
   Atlassian,
@@ -269,6 +340,10 @@ export default {
 
   // Azure Devops
   AzureDevOps,
+
+  // CICD
+  Octopus,
+  CICD,
 
   // Cloud
   AWS,
@@ -287,6 +362,13 @@ export default {
   Nuget,
   PackageManagers,
 
+  // Source Control
+  Git,
+  GitLab,
+  GitHub,
+  TeamFoundationServer,
+  SourceControl,
+
   // SQL
   MSSQL,
   MySQL,
@@ -296,9 +378,11 @@ export default {
 
   // IDE
   MSSMS,
+  VisualStudio,
   IDE,
 
   // NoSQL
+  CosmosDB,
   MongoDB,
   NoSQLDatabase,
 
@@ -310,11 +394,12 @@ export default {
   MicrosoftPowerPlatform,
 
   // Mis
-  XRMToolBox,
-  TeamDynamics,
   Auth0,
-  Octopus,
+  GoogleMaps,
   Saleforce,
+  SonarQube,
+  TeamDynamics,
+  XRMToolBox,
 
   // Virtualization & Containerization
   Docker,
@@ -322,4 +407,9 @@ export default {
   VirtualMachines,
   Vagrant,
   VirtualizationContainerization,
+
+  // Web Servers
+  IIS,
+  LAMP,
+  WebServers,
 };

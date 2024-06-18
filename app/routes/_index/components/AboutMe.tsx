@@ -1,5 +1,4 @@
 import { SiGithub, SiLinkedin } from '@icons-pack/react-simple-icons';
-import { Link } from '@remix-run/react';
 import Section, { SectionSection } from '~/components/Section';
 
 import profilePicture from '~/images/nathan-healea-profile-picture.jpg';
@@ -9,8 +8,8 @@ interface AboutMeSectionProps {}
 const AboutMeSection = (pros: AboutMeSectionProps) => {
   return (
     <Section>
-      <SectionSection className='flex  flex-col items-center justify-center gap-8 md:flex-row '>
-        <div className='order-2 flex flex-1 flex-col gap-4 text-center md:order-1'>
+      <SectionSection className="flex  flex-col items-center justify-center gap-8 md:flex-row ">
+        <div className="order-2 flex flex-1 flex-col gap-4 text-center md:order-1">
           <div>
             <h2>Get to Know Me</h2>
             <h5>The person I am.</h5>
@@ -28,13 +27,13 @@ const AboutMeSection = (pros: AboutMeSectionProps) => {
             With a commitment to continuous learning, I collaborate effectively with cross-functional teams,
             contributing to the dynamic field of software development.
           </p>
-          <div className='flex flex-row items-center justify-center gap-4'>
-            <h6 className='w-fit'>Let Connect</h6>
-            <a href='' className='btn btn-square btn-ghost'>
-              <SiGithub className='fill-base-content' />
+          <div className="flex flex-row items-center justify-center gap-4">
+            <h6 className="w-fit">Let Connect</h6>
+            <a href="" className="btn btn-square btn-ghost">
+              <SiGithub className="fill-base-content" />
             </a>
-            <a href='' className='btn btn-square btn-ghost'>
-              <SiLinkedin className='fill-base-content' />
+            <a href="" className="btn btn-square btn-ghost">
+              <SiLinkedin className="fill-base-content" />
             </a>
           </div>
         </div>

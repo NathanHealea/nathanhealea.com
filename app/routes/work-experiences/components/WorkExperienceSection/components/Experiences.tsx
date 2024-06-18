@@ -7,11 +7,11 @@ const Experience = (props: ExperienceProps) => {
   const { title, details } = props;
 
   return (
-    <div className='flex flex-col gap-4 text-center md:text-start'>
-      <p className='text-md'>{title}</p>
+    <div className="flex flex-col gap-4 text-center md:text-start">
+      <p className="text-md">{title}</p>
 
       {details && (
-        <ul className='flex flex-col gap-2 md:list-inside md:list-disc'>
+        <ul className="flex flex-col gap-2 md:ml-4">
           {details.map((detail) => (
             <li key={v4()}>{detail}</li>
           ))}
