@@ -19,14 +19,13 @@ const SkillCard = (props: SkillCardProps) => {
       <div className='flex flex-wrap justify-center gap-4'>
         {skills.map((skill: Skill) => {
           return (
-            <div className='' key={skill.machineName}>
-              <a
-                href={`/skills/${skill.machineName}`}
-                className='btn btn-ghost'
-              >
-                {skill.title}
-              </a>
+            <div className='text-overline rounded-xl border p-2 px-4 text-sm ' key={skill.machineName}>
+              {skill.title}
             </div>
+            // TODO: Implement once other pages have been built out.
+            // <a key={skill.machineName} href={`/skills/${skill.machineName}`} className='btn btn-ghost'>
+            //   {skill.title}
+            // </a>
           );
         })}
       </div>
