@@ -12,7 +12,7 @@ const Navigation = (props: NavigationProps) => {
   return (
     <>
       <Menu as='nav' className='relative inset-0 z-10 flex w-full justify-center before:backdrop-blur'>
-        <div className={clsx('navbar w-full max-w-7xl rounded-2xl shadow-xl backdrop-blur ', className)}>
+        <div className={clsx('navbar w-full  min-w-80 max-w-7xl rounded-2xl shadow-xl backdrop-blur ', className)}>
           <div className='flex'>
             <Link to='/' className='btn btn-ghost '>
               Nathan Healea

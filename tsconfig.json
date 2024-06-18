@@ -17,7 +17,8 @@
       "~/*": ["./app/*"],
       "~/layouts/*": ["./app/layouts/*"],
       "~/styles/*": ["./app/styles/*"],
-      "~/data/*": ["./app/data/*"]
+      "~/data/*": ["./app/data/*"],
+      "~/images/*": ["./app/images/*"]
     },
 
     // Remix takes care of building everything in `remix build`.

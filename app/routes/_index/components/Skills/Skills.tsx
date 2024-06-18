@@ -39,22 +39,22 @@ const SkillsSection = (props: SkillsSectionProps) => {
           <div className='grid  grid-cols-1 items-start gap-16 md:grid-cols-2 '>
             <SkillCard
               title='Full Stack Development'
-              description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
+              description='Experienced in development to... '
               skills={[CSharp, JavaScript, NodeJS, PHP, Python, SQL, CSS, HTML]}
             />
             <SkillCard
               title='Software Engineering'
-              description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
+              description='Knowledgeable in technologies to engineer solutions.'
               skills={[SoftwareArchitecture, Cloud, Database, VirtualizationContainerization, Networking]}
             />
             <SkillCard
               title='Project Management'
-              description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
+              description='Proficient in management to  '
               skills={[Methodologies, SoftwareDevelopmentLifeCycle, Atlassian, AzureDevOps]}
             />
             <SkillCard
               title='Growth'
-              description='Lorem ipsum dolor sit amet consectetur. Placerat convallis elementum accumsan nunc.'
+              description='Eger in learning to constantly grow.'
               skills={[UIUX, GraphicDesign, TeamLeadership, EnterpriseArchitecture]}
             />
           </div>

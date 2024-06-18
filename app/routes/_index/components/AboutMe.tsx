@@ -2,6 +2,8 @@ import { SiGithub, SiLinkedin } from '@icons-pack/react-simple-icons';
 import { Link } from '@remix-run/react';
 import Section, { SectionSection } from '~/components/Section';
 
+import profilePicture from '~/images/nathan-healea-profile-picture.jpg';
+
 interface AboutMeSectionProps {}
 
 const AboutMeSection = (pros: AboutMeSectionProps) => {
@@ -14,10 +16,17 @@ const AboutMeSection = (pros: AboutMeSectionProps) => {
             <h5>The person I am.</h5>
           </div>
           <p>
-            Lorem ipsum dolor sit amet consectetur. Magna duis tincidunt id leo
-            tincidunt arcu vulputate. Aenean mattis faucibus lectus enim magna a
-            condimentum auctor. Augue nisi consequat sed in proin et pretium.
-            Augue enim non penatibus id risus nisl congue viverra.
+            As a passionate software engineer with 9 years of experience, I specialize in full-stack web development
+            across Healthcare, Higher Education, and Finance. My skills include building scalable solutions using
+            ReactJS, .Net, C#, and JavaScript.
+          </p>
+          <p>
+            I thrive on turning ideas into feature-rich applications, creating user-friendly interfaces, and following
+            industry standards. My focus is always on seamless user experiences that address needs and provide value.
+          </p>
+          <p>
+            With a commitment to continuous learning, I collaborate effectively with cross-functional teams,
+            contributing to the dynamic field of software development.
           </p>
           <div className='flex flex-row items-center justify-center gap-4'>
             <h6 className='w-fit'>Let Connect</h6>
@@ -31,7 +40,11 @@ const AboutMeSection = (pros: AboutMeSectionProps) => {
         </div>
 
         <div className='order-1 flex flex-1 items-center justify-center md:order-2'>
-          <div className='h-60 w-60 rounded-2xl bg-slate-400 md:h-80 md:w-80' />
+          <img
+            src={profilePicture}
+            alt='Nathan Healea'
+            className='h-60 w-60 rounded-2xl border shadow-xl md:h-80 md:w-80'
+          />
         </div>
       </SectionSection>
     </Section>

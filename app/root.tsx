@@ -15,7 +15,7 @@ export function ErrorBoundary() {
         <Meta />
         <Links />
       </head>
-      <body className=''>
+      <body className='min-width-[360px]'>
         <MainLayout>
           {/* add the UI you want your users to see */}
           <main className='page'>
@@ -43,7 +43,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className='min-width-[360px]'>
         <MainLayout>
           <Outlet />
           <ScrollRestoration />

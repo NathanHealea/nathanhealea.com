@@ -1,6 +1,6 @@
 @layer base {
   body {
-    @apply flex min-h-screen flex-col;
+    @apply flex min-h-screen min-w-80 flex-col overflow-x-hidden;
   }
 
   .page {
