@@ -11,16 +11,8 @@ const Navigation = (props: NavigationProps) => {
 
   return (
     <>
-      <Menu
-        as='nav'
-        className='relative inset-0 -z-10 flex w-full justify-center before:backdrop-blur'
-      >
-        <div
-          className={clsx(
-            'navbar w-full max-w-7xl rounded-2xl shadow-xl backdrop-blur ',
-            className
-          )}
-        >
+      <Menu as='nav' className='relative inset-0 z-10 flex w-full justify-center before:backdrop-blur'>
+        <div className={clsx('navbar w-full max-w-7xl rounded-2xl shadow-xl backdrop-blur ', className)}>
           <div className='flex'>
             <Link to='/' className='btn btn-ghost '>
               Nathan Healea
@@ -35,11 +27,7 @@ const Navigation = (props: NavigationProps) => {
           <div className='hidden flex-1 justify-end md:flex'>
             <ul className='menu menu-horizontal'>
               {Children.map(children, (child) => {
-                return (
-                  <li key={uuid()}>
-                    {cloneElement(child, { className: 'p-4 px-8' })}
-                  </li>
-                );
+                return <li key={uuid()}>{cloneElement(child, { className: 'p-4 px-8' })}</li>;
               })}
             </ul>
           </div>
@@ -52,8 +40,7 @@ const Navigation = (props: NavigationProps) => {
           enterTo='transform scale-100 opacity-100'
           leave='transition duration-75 ease-out'
           leaveFrom='transform scale-100 opacity-100'
-          leaveTo='transform scale-95 opacity-0'
-        >
+          leaveTo='transform scale-95 opacity-0'>
           <Menu.Items as='ul' className='menu'>
             {Children.map(children, (child) => {
               return (
