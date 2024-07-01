@@ -1,20 +1,22 @@
 @layer base {
   :root {
-    --font-family-header: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-family-header: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
 
-    --font-family-body: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-family-body: 'Nunito', ui-sans-serif, system-ui, sans-serif,
+      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+      'Noto Color Emoji';
 
     --font-size-sm: 0.75rem;
     --font-size-base: 1rem;
     --font-size-md: 1.25rem;
     --font-size-lg: 1.5rem;
-    --font-size-lgp: 1.75;
+    --font-size-lgp: 1.75rem;
     --font-size-xl: 2rem;
     --font-size-2xl: 2.5rem;
     --font-size-3xl: 3rem;
-    --font-size-4xl: 3.5rem;
+    --font-size-4xl: 4.5rem;
     --font-size-5xl: 4rem;
     --font-size-6xl: 4.5rem;
 
@@ -58,39 +60,46 @@
 
   h2,
   .text-h2 {
-    @apply text-2xl  md:text-3xl;
+    /* @apply text-2xl  md:text-3xl; */
+    font-size: clamp(var(--font-size-2xl), 6vw, var(--font-size-3xl));
   }
 
   h3,
   .text-h3 {
-    @apply text-xl md:text-2xl;
+    /* @apply text-xl md:text-2xl; */
+    font-size: clamp(var(--font-size-xl), 6vw, var(--font-size-2xl));
   }
 
   h4,
   .text-h4 {
-    @apply text-lg  md:text-xl;
+    /* @apply text-lg  md:text-xl; */
+    font-size: clamp(var(--font-size-lg), 6vw, var(--font-size-xl));
   }
 
   h5,
   .text-h5 {
-    @apply text-md  md:text-lg;
+    /* @apply text-md  md:text-lg; */
+    font-size: clamp(var(--font-size-md), 6vw, var(--font-size-lgp));
   }
 
   h6,
   .text-h6 {
-    @apply text-base md:text-md;
+    /* @apply text-base md:text-md; */
+    font-size: clamp(var(--font-size-base), 6vw, var(--font-size-lg));
   }
 
   p,
   .text-body,
   a,
   .text-link {
-    @apply text-base;
+    /* @apply text-base; */
+    font-size: clamp(var(--font-size-base), 6vw, var(--font-size-md));
   }
 
   button,
   .text-btn {
-    @apply text-base uppercase  tracking-md;
+    @apply uppercase  tracking-md;
+    font-size: clamp(var(--font-size-base), 6vw, var(--font-size-md));
   }
 
   .text-overline {

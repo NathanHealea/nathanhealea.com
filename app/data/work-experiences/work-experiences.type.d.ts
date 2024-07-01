@@ -18,6 +18,7 @@ export type WorkExperience = {
   position: string;
   company: string;
   department?: string;
+  logo?: string;
   dates: {
     start: string;
     end?: string;

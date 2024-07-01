@@ -1,4 +1,15 @@
-import { NodeJS, CSharp, DotNetCore, Drupal, HTML, JQuery, JavaScript, PHP, SQL, CSS } from '../skills/Languages';
+import {
+  CSS,
+  CSharp,
+  DotNetCore,
+  Drupal,
+  HTML,
+  JQuery,
+  JavaScript,
+  NodeJS,
+  PHP,
+  SQL,
+} from '../skills/Languages';
 import {
   Bitbucket,
   Confluence,
@@ -13,12 +24,15 @@ import {
 } from '../skills/Technologies';
 import { WorkExperience } from './work-experiences.type';
 
+import UniversityOfOregonLogo from '~/images/companies/university-of-oregon-logo.png';
+
 export default {
   machineName: 'uo-is-apii',
   employment: 'Full Time',
   position: 'Analyst Programmer II',
   company: 'University of Oregon',
   department: 'Information Services',
+  logo: UniversityOfOregonLogo,
   dates: {
     start: 'January.2023',
   },
@@ -35,8 +49,11 @@ export default {
       ],
     },
     {
-      title: 'Designed and implemented standards, workflows, and hierarchy for Jira.',
-      details: ['Created adoption plan to guide team members to Start tracking development work in Jira.'],
+      title:
+        'Designed and implemented standards, workflows, and hierarchy for Jira.',
+      details: [
+        'Created adoption plan to guide team members to Start tracking development work in Jira.',
+      ],
     },
     {
       title:
@@ -49,10 +66,12 @@ export default {
       ],
     },
     {
-      title: 'Provided maintenance of COVID 19 Test response application build in Microsoft Power Apps.',
+      title:
+        'Provided maintenance of COVID 19 Test response application build in Microsoft Power Apps.',
     },
     {
-      title: 'Modified Quartics surveys, using jQuery, JavaScript, HTML and CSS, to improve web accessibility.',
+      title:
+        'Modified Quartics surveys, using jQuery, JavaScript, HTML and CSS, to improve web accessibility.',
     },
   ],
   roles: [
@@ -74,7 +93,19 @@ export default {
       end: 'March.2023',
     },
   ],
-  languages: [DotNetCore, CSharp, Drupal, PHP, JavaScript, JQuery, MySQL, NodeJS, SQL, CSS, HTML],
+  languages: [
+    DotNetCore,
+    CSharp,
+    Drupal,
+    PHP,
+    JavaScript,
+    JQuery,
+    MySQL,
+    NodeJS,
+    SQL,
+    CSS,
+    HTML,
+  ],
   technologies: [
     Jira,
     Confluence,

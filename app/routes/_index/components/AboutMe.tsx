@@ -8,7 +8,7 @@ interface AboutMeSectionProps {}
 const AboutMeSection = (pros: AboutMeSectionProps) => {
   return (
     <Section>
-      <SectionSection className="flex  flex-col items-center justify-center gap-8 md:flex-row ">
+      <SectionSection className="flex  flex-col items-center justify-center gap-16 md:flex-row ">
         <div className="order-2 flex flex-1 flex-col gap-4 text-center md:order-1">
           <div>
             <h2>Get to Know Me</h2>

@@ -18,6 +18,7 @@ const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
     position,
     company,
     department,
+    logo,
     dates,
     summary,
     experiences,
@@ -39,7 +40,11 @@ const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
             })}
           >
             <div className="flex w-full items-center justify-center md:w-72">
-              <div className="my-4 h-60 w-full rounded-2xl bg-slate-300 md:w-60" />
+              <img
+                src={logo}
+                alt={company}
+                className="min-h-60 w-full max-w-80 rounded-2xl md:max-w-60"
+              />
             </div>
             {/* <WorkExperienceHeroImage img={}/> */}
             <WorkExperienceTitle

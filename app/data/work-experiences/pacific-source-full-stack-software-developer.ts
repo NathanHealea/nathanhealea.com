@@ -1,3 +1,4 @@
+import PacificSourceLogo from '~/images/companies/pacific-source-logo.png';
 import {
   Bootstrap,
   CSS,
@@ -8,12 +9,12 @@ import {
 } from '../skills/Languages';
 import { AzureDevOps, Git, MSSQL, VisualStudio } from '../skills/Technologies';
 import { WorkExperience } from './work-experiences.type';
-
 export default {
   machineName: 'ps-fsd',
   employment: 'Full Time',
   position: 'Software Developer',
-  company: 'Maps Credit Union',
+  company: 'Pacific Source Health Plans',
+  logo: PacificSourceLogo,
   dates: {
     start: 'August.2021',
     end: 'March.2022',

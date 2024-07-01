@@ -1,3 +1,4 @@
+import MapsCreditUnionLogo from '~/images/companies/maps-logo.svg';
 import {
   Bootstrap,
   CSS,
@@ -22,6 +23,7 @@ export default {
   employment: 'Full Time',
   position: 'Software Developer',
   company: 'Maps Credit Union',
+  logo: MapsCreditUnionLogo,
   dates: {
     start: 'March.2022',
     end: 'October.2022',
