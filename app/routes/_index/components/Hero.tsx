@@ -1,12 +1,12 @@
 import { Link } from '@remix-run/react';
-import Section, { SectionSection } from '~/components/Section';
+import Section, { SectionContent } from '~/components/Section';
 
 interface HeroSectionProps {}
 
 const HeroSection = (pros: HeroSectionProps) => {
   return (
     <Section as="header">
-      <SectionSection className="flex flex-col items-center justify-center gap-4 text-center">
+      <SectionContent className="flex flex-col items-center justify-center gap-4 text-center">
         <h1 className="text-h2">HI 👋🏻! I&apos;m,</h1>
         <h2 className="text-center text-[clamp(4rem,6vw,6rem)] font-bold ">
           <span className="z-0 inline-grid">
@@ -32,7 +32,7 @@ const HeroSection = (pros: HeroSectionProps) => {
             Resume
           </Link>
         </div>
-      </SectionSection>
+      </SectionContent>
     </Section>
   );
 };

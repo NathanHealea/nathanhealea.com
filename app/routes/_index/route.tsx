@@ -1,10 +1,10 @@
 import { type MetaFunction } from '@remix-run/node';
 
 import Page from '~/components/Page';
-import HeroSection from './components/Hero';
-import AboutMeSection from './components/AboutMe';
-import SkillsSection from './components/Skills';
 import { getDefaultMetaData } from '~/utils/meta';
+import AboutMeSection from './components/AboutMe';
+import HeroSection from './components/Hero';
+import WorkExperienceSection from './components/WorkExperience';
 
 export const meta: MetaFunction = () => getDefaultMetaData();
 
@@ -13,7 +13,8 @@ const IndexPage = () => {
     <Page>
       <HeroSection />
       <AboutMeSection />
-      <SkillsSection />
+      {/* <SkillsSection /> */}
+      <WorkExperienceSection />
     </Page>
   );
 };

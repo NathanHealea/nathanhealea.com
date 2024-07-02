@@ -26,9 +26,15 @@ const WorkExperiences: {
 };
 
 export const getWorkExperienceAsArray = (): Array<WorkExperience> => {
-  return Object.keys(WorkExperiences).map(
-    (workExperienceKey: string) => WorkExperiences[workExperienceKey]
+  const temp = Object.keys(WorkExperiences).reduce(
+    (workExperiences: Array<WorkExperience>, workExperienceKey: string) => {
+      return [...workExperiences, WorkExperiences[workExperienceKey]];
+    },
+    [] as Array<WorkExperience>
   );
+
+  console.log(temp);
+  return temp;
 };
 
 export default WorkExperiences;
