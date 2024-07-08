@@ -22,7 +22,6 @@ export const links: LinksFunction = () => [
 
 export function ErrorBoundary() {
   const error = useRouteError();
-  console.log(error);
   return (
     <html lang="en">
       <head>

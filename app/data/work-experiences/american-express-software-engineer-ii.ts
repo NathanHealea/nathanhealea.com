@@ -20,11 +20,13 @@ import {
 } from '../skills/Technologies';
 import { WorkExperience } from './work-experiences.type';
 
+import AmericanExpressLogo from '~/images/companies/american-express-logo.png';
 export default {
   machineName: 'ae-sw-ii',
   employment: 'Contact',
   position: 'Software Engineer II',
   company: 'American Express',
+  logo: AmericanExpressLogo,
   dates: {
     start: 'September.2020',
     end: 'August.2021',

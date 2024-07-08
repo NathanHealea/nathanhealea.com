@@ -1,3 +1,4 @@
+import SimplifiedComputingLogo from '~/images/companies/simplified-computing-logo.png';
 import { CSS, HTML, JavaScript } from '../skills/Languages';
 import { Skill } from '../skills/skills.types';
 import { WorkExperience } from './work-experiences.type';
@@ -7,6 +8,7 @@ export default {
   employment: 'Internship',
   position: 'Web Developer',
   company: 'Simplified Computing LLC ',
+  logo: SimplifiedComputingLogo,
   dates: {
     start: 'March.2014',
     end: 'Jun.2014',

@@ -1,4 +1,3 @@
-import { Link } from '@remix-run/react';
 import Section, { SectionContent } from '~/components/Section';
 
 interface HeroSectionProps {}
@@ -24,13 +23,16 @@ const HeroSection = (pros: HeroSectionProps) => {
         <h4 className="text-h5">
           Currently a Programmer Analyst II @ University of Oregon
         </h4>
-        <div className="mt-8 flex flex-row items-center justify-center gap-16">
+        {/* <div className="mt-8 flex flex-row items-center justify-center gap-16">
           <Link to={'/projects'} className="btn ">
             Projects
           </Link>
           <Link to={'/resume'} className="btn">
             Resume
           </Link>
+        </div> */}
+        <div className="my-16">
+          <div className="mouse" />
         </div>
       </SectionContent>
     </Section>

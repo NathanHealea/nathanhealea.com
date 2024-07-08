@@ -1,3 +1,4 @@
+import NorthwestCommunityCreditUnionLogo from '~/images/companies/northwest-community-credit-union-logo.png';
 import {
   Bootstrap,
   CSS,
@@ -33,9 +34,10 @@ export default {
   employment: 'Full Time',
   position: 'Programmer Analyst',
   company: 'Northwest Community Credit Union',
+  logo: NorthwestCommunityCreditUnionLogo,
   dates: {
     start: 'August.2017',
-    end: 'Oct 2019',
+    end: 'October.2019',
   },
   summary:
     'faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc',

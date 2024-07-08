@@ -1,3 +1,4 @@
+import OregonStateUniversityLogo from '~/images/companies/oregon-state-university-logo.png';
 import {
   Bootstrap,
   CSS,
@@ -23,6 +24,7 @@ export default {
   position: 'Software Engineer',
   company: 'Oregon State University',
   department: 'Technology Across the Curriculum',
+  logo: OregonStateUniversityLogo,
   dates: {
     start: 'July.2015',
     end: 'August.2017',

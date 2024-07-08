@@ -6,6 +6,10 @@ export {
   type SectionContentProps,
 } from './SectionContent';
 export {
+  default as SectionFooter,
+  type SectionFooterProps,
+} from './SectionFooter';
+export {
   default as SectionTitle,
   type SectionTitleProps,
 } from './SectionTitle';

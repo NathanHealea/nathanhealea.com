@@ -5,12 +5,13 @@ import Section from '~/components/Section';
 import SectionContent from '~/components/Section/SectionContent';
 
 export const meta: MetaFunction = () => {
-  return [{ title: 'New Remix App' }, { name: 'description', content: 'Welcome to Remix!' }];
+  return [
+    { title: 'New Remix App' },
+    { name: 'description', content: 'Welcome to Remix!' },
+  ];
 };
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  console.log(params);
-
   return params.skill;
 }
 
@@ -18,7 +19,7 @@ const StylesPage = () => {
   const skill = useLoaderData<typeof loader>();
   return (
     <Page>
-      <Section as='header' className='text-center'>
+      <Section as="header" className="text-center">
         <SectionContent>
           <h1>{skill}</h1>
         </SectionContent>

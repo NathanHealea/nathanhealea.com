@@ -39,12 +39,8 @@ const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
               'md:flex-row-reverse': !isAlternate,
             })}
           >
-            <div className="flex w-full items-center justify-center md:w-72">
-              <img
-                src={logo}
-                alt={company}
-                className="min-h-60 w-full max-w-80 rounded-2xl md:max-w-60"
-              />
+            <div className="flex min-h-60 w-full max-w-80 items-center justify-center rounded-2xl md:max-w-60">
+              <img src={logo} alt={company} className="" />
             </div>
             {/* <WorkExperienceHeroImage img={}/> */}
             <WorkExperienceTitle

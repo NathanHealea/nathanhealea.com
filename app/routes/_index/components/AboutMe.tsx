@@ -11,7 +11,7 @@ interface AboutMeSectionProps {}
 
 const AboutMeSection = (pros: AboutMeSectionProps) => {
   return (
-    <Section as="section">
+    <Section as="section" className="min-h-screen">
       <SectionContent className="flex flex-col-reverse items-center justify-center gap-16 md:flex-row ">
         <div className="flex flex-1 flex-col gap-4 text-center ">
           <SectionTitle>

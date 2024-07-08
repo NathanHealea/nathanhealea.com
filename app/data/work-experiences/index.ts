@@ -33,7 +33,6 @@ export const getWorkExperienceAsArray = (): Array<WorkExperience> => {
     [] as Array<WorkExperience>
   );
 
-  console.log(temp);
   return temp;
 };
 

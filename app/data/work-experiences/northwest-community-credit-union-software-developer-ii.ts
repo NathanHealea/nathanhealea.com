@@ -1,3 +1,4 @@
+import NorthwestCommunityCreditUnionLogo from '~/images/companies/northwest-community-credit-union-logo.png';
 import {
   Bootstrap,
   CSS,
@@ -26,6 +27,7 @@ import {
   SonarQube,
   TeamFoundationServer,
 } from '../skills/Technologies';
+
 import { WorkExperience } from './work-experiences.type';
 
 export default {
@@ -33,9 +35,10 @@ export default {
   employment: 'Full Time',
   position: 'Software Developer II',
   company: 'Northwest Community Credit Union',
+  logo: NorthwestCommunityCreditUnionLogo,
   dates: {
-    start: 'September.2020',
-    end: 'October 2019',
+    start: 'October.2019',
+    end: 'September.2020',
   },
   summary:
     'faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc',
