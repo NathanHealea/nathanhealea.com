@@ -29,7 +29,7 @@ export default {
     end: 'October.2022',
   },
   summary:
-    'faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc',
+    'From March 2022 to October 2022, I worked as a Full-Time Software Developer at Maps Credit Union. During this period, I led the refactoring of legacy React components, expanded online banking features using Test Driven Development, and created onboarding documentation for new employees. My technical expertise includes ReactJS, CSharp, DotNetFramework, and various other technologies.',
   experiences: [
     {
       title:

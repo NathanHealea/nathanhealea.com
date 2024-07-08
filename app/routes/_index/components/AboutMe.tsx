@@ -12,8 +12,8 @@ interface AboutMeSectionProps {}
 const AboutMeSection = (pros: AboutMeSectionProps) => {
   return (
     <Section as="section">
-      <SectionContent className="flex flex-col items-center justify-center gap-16 lg:flex-row ">
-        <div className="order-2 flex flex-1 flex-col gap-4 text-center lg:order-1">
+      <SectionContent className="flex flex-col-reverse items-center justify-center gap-16 md:flex-row ">
+        <div className="flex flex-1 flex-col gap-4 text-center ">
           <SectionTitle>
             <h2>Get to Know Me</h2>
             <h5>The person I am.</h5>
@@ -48,7 +48,7 @@ const AboutMeSection = (pros: AboutMeSectionProps) => {
           </SectionBody>
         </div>
 
-        <div className=" order-1 flex items-center justify-center lg:order-2">
+        <div className="  flex items-center justify-center ">
           <div className="z-0 inline-grid">
             <div
               className="pointer-events-none col-start-1 row-start-1 bg-[linear-gradient(90deg,theme(colors.error)_0%,theme(colors.secondary)_9%,theme(colors.secondary)_42%,theme(colors.primary)_47%,theme(colors.accent)_100%)] bg-clip-content blur-xl [-webkit-text-fill-color:transparent] [transform:translate3d(0,0,0)] before:content-[attr(data-text)] [@supports(color:oklch(0%_0_0))]:bg-[linear-gradient(90deg,oklch(var(--s))_4%,color-mix(in_oklch,oklch(var(--s)),oklch(var(--er)))_22%,oklch(var(--p))_45%,color-mix(in_oklch,oklch(var(--p)),oklch(var(--a)))_67%,oklch(var(--a))_100.2%)]"

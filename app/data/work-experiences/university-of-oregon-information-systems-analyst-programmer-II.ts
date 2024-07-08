@@ -37,7 +37,7 @@ export default {
     start: 'January.2023',
   },
   summary:
-    'faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc',
+    'Since January 2023, I have been working as a Full-Time Analyst Programmer II at the University of Oregon’s Information Services department. My responsibilities include supporting and developing Drupal websites, implementing Jira standards, and archiving COVID research data. I also serve on the Jira Subcommittee and have experience with a variety of programming languages and technologies, such as DotNetCore, CSharp, Drupal, PHP, JavaScript, and more.',
   experiences: [
     {
       title: 'Drupal support, maintenance, and development',

@@ -34,7 +34,7 @@ export default {
     end: 'January.2023',
   },
   summary:
-    'faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc',
+    'From November 2022 to January 2023, I worked as a Contract Software Engineer III at Providence Health Plans. During this time, I introduced a new technology stack to reduce development complexity, created a centralized error display application, and deployed applications using Azure DevOps and Octopus. I also collaborated on various projects, including implementing new insurance card displays and documenting processes in Confluence to streamline team operations. My technical skills include TypeScript, Angular, ReactJS, and several other programming languages and technologies.',
   experiences: [
     {
       title:
