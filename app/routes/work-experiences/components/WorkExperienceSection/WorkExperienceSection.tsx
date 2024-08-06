@@ -34,12 +34,12 @@ const WorkExperienceSection = (props: WorkExperienceSectionProps) => {
       <SectionContent className="flex flex-col gap-16 ">
         <Disclosure defaultOpen={defaultOpen}>
           <SectionTitle
-            className={clsx('flex flex-col gap-8', {
+            className={clsx('flex flex-col items-center justify-center gap-8', {
               'md:flex-row': isAlternate,
               'md:flex-row-reverse': !isAlternate,
             })}
           >
-            <div className="flex min-h-60 w-full max-w-80 items-center justify-center rounded-2xl md:max-w-60">
+            <div className="flex min-h-60 w-full max-w-80 items-center justify-center rounded-2xl md:max-w-60 ">
               <img src={logo} alt={company} className="" />
             </div>
             {/* <WorkExperienceHeroImage img={}/> */}

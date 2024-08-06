@@ -4,7 +4,7 @@ interface HeroSectionProps {}
 
 const HeroSection = (pros: HeroSectionProps) => {
   return (
-    <Section as="header">
+    <Section as="header" className='min-h-screen'>
       <SectionContent className="flex flex-col items-center justify-center gap-4 text-center">
         <h1 className="text-h2">HI 👋🏻! I&apos;m,</h1>
         <h2 className="text-center text-[clamp(4rem,6vw,6rem)] font-bold ">
