@@ -7,6 +7,7 @@ const config: Config = {
     "./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  plugins: [],
+  plugins: [    require('daisyui'),
+  ],
 };
 export default config;

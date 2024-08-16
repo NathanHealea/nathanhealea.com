@@ -1,3 +1,5 @@
+import {Header} from '../components';
+
 interface RootLayoutProps
   extends Readonly<{
     children: React.ReactNode;
@@ -8,6 +10,7 @@ const RootLayout = (props: RootLayoutProps) => {
   return (
     <html lang='en'>
       <body>
+        <Header />
         {children}
       </body>
     </html>

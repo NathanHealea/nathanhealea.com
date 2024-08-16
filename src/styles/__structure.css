@@ -2,6 +2,6 @@
 
 @layer base {
   body {
-    @apply flex min-h-screen min-w-full flex-col overflow-x-hidden;
+    @apply flex min-h-screen min-w-full flex-col overflow-x-hidden pt-20;
   }
 }
