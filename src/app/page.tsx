@@ -1,6 +1,17 @@
+import { HeroSection } from "./components";
 
-import {HomePage} from '@pages/home';
+
+interface HomePageProps {
+
+}
+
+const HomePage = (props:HomePageProps) => {
+
+
+  return (
+    <HeroSection/>
+  )
+}
 
 
 export default HomePage;
-
