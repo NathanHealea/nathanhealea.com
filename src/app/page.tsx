@@ -1,18 +1,5 @@
 
-interface HomePageProps {
-
-}
-
-
-const HomePage = (props: HomePageProps) => {
-
-  return (
-    <>
-        <p>Hello world</p>
-
-    </>
-  )
-}
+import {HomePage} from '@pages/home';
 
 
 export default HomePage;
