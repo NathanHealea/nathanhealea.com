@@ -2,7 +2,7 @@ interface HeroSectionProps {}
 
 const HeroSection = (pros: HeroSectionProps) => {
   return (
-    <section className='min-h-screen flex items-center justify-center '>
+    <section className=' flex flex-grow items-center justify-center '>
       <div className='flex flex-col items-center justify-center gap-4 text-center'>
         <h1 className='text-[clamp(3rem,6vw,6rem)]'>HI 👋🏻! I&apos;m,</h1>
         <h2 className='text-center text-[clamp(4rem,8vw,8rem)] font-bold '>

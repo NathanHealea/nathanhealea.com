@@ -1,4 +1,4 @@
-import {Header} from '../components';
+import { Header } from "../components";
 
 interface RootLayoutProps
   extends Readonly<{
@@ -8,9 +8,10 @@ interface RootLayoutProps
 const RootLayout = (props: RootLayoutProps) => {
   const { children } = props;
   return (
-    <html lang='en'>
+    <html lang="en">
       <body>
         <Header />
+        <div className="h-20" />
         {children}
       </body>
     </html>
@@ -18,4 +19,3 @@ const RootLayout = (props: RootLayoutProps) => {
 };
 
 export default RootLayout;
-
