@@ -1,3 +1,3 @@
 
 
-export {default as RootLayout} from './Root.layout';
+export {default as RootLayout, RootLayoutMeta} from './Root.layout';
