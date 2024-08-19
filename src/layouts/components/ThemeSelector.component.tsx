@@ -13,7 +13,6 @@ const ThemeSector = (props: ThemeSectorProps) => {
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
     setMounted(true)
-    console.log("hello from effect")
   }, [])
 
   if (!mounted) {

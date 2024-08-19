@@ -1,6 +1,4 @@
-import Script from "next/script";
 import { Header } from "../components";
-import Head from "next/head";
 import { Metadata } from "next";
 import { ThemeProvider } from "next-themes";
 
