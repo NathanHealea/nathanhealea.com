@@ -16,7 +16,7 @@ const RootLayout = (props: RootLayoutProps) => {
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="dark">
           <Header />
           <div className="h-20" />
           {children}

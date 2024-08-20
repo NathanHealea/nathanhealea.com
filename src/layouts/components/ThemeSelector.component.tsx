@@ -1,5 +1,5 @@
-
-'use client';
+"use client";
+import { useMounted } from "@/hooks/useMounted";
 import { LightBulbIcon, MoonIcon } from "@heroicons/react/24/solid";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -7,27 +7,17 @@ import { useEffect, useState } from "react";
 interface ThemeSectorProps {}
 
 const ThemeSector = (props: ThemeSectorProps) => {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
-
-  // useEffect only runs on the client, so now we can safely show the UI
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  if (!mounted) {
-    return null
-  }
-
+  const mounted = useMounted();
+  const { theme, setTheme } = useTheme();
   return (
     <>
-      {theme == "dark" && (
+      {mounted && theme == "dark" && (
         <button className="btn btn-ghost" onClick={() => setTheme("light")}>
           <LightBulbIcon className="h-6 w-6" />
         </button>
       )}
 
-      {theme == "light" && (
+      {mounted && theme == "light" && (
         <button className="btn btn-ghost" onClick={() => setTheme("dark")}>
           <MoonIcon className="h-6 w-6" />
         </button>
