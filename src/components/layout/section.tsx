@@ -4,9 +4,9 @@ import * as React from "react"
 
 
 
-function Section({...props}: React.ComponentProps<"section">){
+function Section({ className, ...props}: React.ComponentProps<"section">){
   return (
-    <section {...props} />
+    <section className={cn('flex justify-center items-center min-h-[512px]', className)} {...props} />
   )
 }
 
@@ -14,7 +14,7 @@ function Section({...props}: React.ComponentProps<"section">){
 function SectionContent({className, ...props}: React.ComponentProps<"div">){
   return (
     <div
-      className={(cn("container mx-auto px-6 py-20", className))}
+      className={(cn("container mx-auto px-6 py-20 ", className))}
       {...props}
     {...props} />
   )

@@ -44,43 +44,10 @@ export default function Home() {
               <span className="font-serif">Oregon, United States</span>
             </div>
           </div>
-
-          {/* <div>
-            <Image
-              src="/studio-ghibli-nathan-healea-circle-full.png"
-              width={1022}
-              height={1022}
-              alt="Profile Avatar"
-              className="w-32 h-32 rounded-full mx-auto mb-6 border-4 border-primary/20 shadow-lg"
-            />
-            <h1 className="text-5xl font-bold text-foreground mb-4 font-sans">
-              Nathan Healea
-            </h1>
-            <p className="text-xl text-muted-foreground font-serif max-w-2xl mx-auto leading-relaxed">
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="default" size="lg" className="">
-              <Mail className="w-4 h-4 mr-2" />
-              Contact Me
-            </Button>
-            <Button variant="outline" size="lg" className="bg-transparent">
-              <ExternalLink className="w-4 h-4 mr-2" />
-              View Resume
-            </Button>
-          </div>
-
-          <div className="flex justify-center gap-6 text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              <span className="font-serif">Oregon, United States</span>
-            </div>
-          </div> */}
         </SectionContent>
       </Section>
 
-      <Section>
+      <Section id="about" >
         <SectionContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex justify-center items-center">
@@ -117,7 +84,7 @@ export default function Home() {
 
       {/* Skills */}
 
-      <Section>
+      <Section id="skills" className='bg-primary/10'>
         <SectionContent>
           <h2 className="">
             Skills & Expertise
