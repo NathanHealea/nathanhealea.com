@@ -47,7 +47,7 @@ export default function Home() {
         </SectionContent>
       </Section>
 
-      <Section id="about" >
+      <Section id="about">
         <SectionContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="flex justify-center items-center">
@@ -84,11 +84,9 @@ export default function Home() {
 
       {/* Skills */}
 
-      <Section id="skills" className='bg-primary/10'>
+      <Section id="skills" className="bg-primary/10">
         <SectionContent>
-          <h2 className="">
-            Skills & Expertise
-          </h2>
+          <h2 className="">Skills & Expertise</h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {/* Frontend */}
@@ -98,16 +96,20 @@ export default function Home() {
                   <h3>Frontend</h3>
                 </CardTitle>
               </CardHeader>
-              <CardContent className='flex flex-wrap gap-2'>
-                <Pill>React</Pill>
+              <CardContent className="flex flex-wrap gap-2">
+                <Pill>ReactJS</Pill>
                 <Pill>NextJS</Pill>
-                <Pill>TypeScript</Pill>
-                <Pill>Tailwind</Pill>
-                <Pill>DaisyUI</Pill>
-                <Pill>ShadCN</Pill>
+                <Pill>VueJS</Pill>
+                <Pill>jQuery</Pill>
+                <Pill>Bootstrap</Pill>
+                <Pill>TailwindCSS</Pill>
                 <Pill>Material UI</Pill>
-                <Pill>SASS / CSS</Pill>
-                <Pill>HTML5 / HTML</Pill>
+                <Pill>KendoUI</Pill>
+                <Pill>TypeScript</Pill>
+                <Pill>Javascript</Pill>
+                <Pill>SCSS/SASS</Pill>
+                <Pill>CSS</Pill>
+                <Pill>HTML</Pill>
               </CardContent>
             </Card>
 
@@ -118,53 +120,113 @@ export default function Home() {
                   <h3>Backend</h3>
                 </CardTitle>
               </CardHeader>
-              <CardContent className='flex flex-wrap gap-2'>
+              <CardContent className="flex flex-wrap gap-2">
+                <Pill>NodeJS</Pill>
                 <Pill>Drupal</Pill>
-                <Pill>DotNet / C#</Pill>
                 <Pill>PHP</Pill>
+                <Pill>C#</Pill>
+                <Pill>.NET Framework</Pill>
+                <Pill>.NET Core</Pill>
                 <Pill>Python</Pill>
-                <Pill>SQL</Pill>
-                <Pill>MySQL</Pill>
-                <Pill>TSQL</Pill>
-                <Pill>PostgreSQL</Pill>
-                <Pill>Supabase</Pill>
               </CardContent>
             </Card>
 
-            {/* Tools & Designs */}
+            {/* Database */}
             <Card>
               <CardHeader>
                 <CardTitle>
-                  <h3>Tools & Designs</h3>
+                  <h3>Database</h3>
                 </CardTitle>
               </CardHeader>
-              <CardContent className='flex flex-wrap gap-2'>
-                <Pill>Figma</Pill>
-                <Pill>Adobe XD</Pill>
-                <Pill>Git</Pill>
-                <Pill>GitLab</Pill>
-                <Pill>GitHub</Pill>
-                <Pill>Azure</Pill>
-                <Pill>Google Cloud</Pill>
-                <Pill>Pantheon</Pill>
+              <CardContent className="flex flex-wrap gap-2">
+                <Pill>MSSQL</Pill>
+                <Pill>PostgreSQL</Pill>
+                <Pill>CosmosDB</Pill>
+                <Pill>DynamoDB</Pill>
+                <Pill>Microsoft Dataverse</Pill>
+                <Pill>MySQL</Pill>
+                <Pill>Oracle PL/SQL</Pill>
               </CardContent>
             </Card>
 
-            {/* Concepts & Methodologies */}
+            {/* Devops & Cloud */}
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <h3>DevOps & Cloud</h3>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-wrap gap-2">
+                <Pill>Azure</Pill>
+                <Pill>AWS XD</Pill>
+                <Pill>Pantheon</Pill>
+                <Pill>Microsoft IIS</Pill>
+                <Pill>Docker</Pill>
+                <Pill>Rancher</Pill>
+                <Pill>Vagrant/VirtualBox</Pill>
+                <Pill>Azure DevOps</Pill>
+                <Pill>Octopus</Pill>
+                <Pill>Bamboo</Pill>
+                <Pill>TFS</Pill>
+              </CardContent>
+            </Card>
+
+            {/* Tools & Workflows */}
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <h3>Tools & Workflows</h3>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex flex-wrap gap-2">
+                <Pill>Jira</Pill>
+                <Pill>Confluence</Pill>
+                <Pill>bitbucket</Pill>
+                <Pill>GitHub</Pill>
+                <Pill>Git</Pill>
+                <Pill>Team Dynamics</Pill>
+                <Pill>Workfront</Pill>
+                <Pill>XRM Toolbox</Pill>
+                <Pill>SQL Server Management Studio</Pill>
+                <Pill>SonarQube</Pill>
+                <Pill>Jest</Pill>
+              </CardContent>
+            </Card>
+
+            {/* Tools & Workflows */}
             <Card>
               <CardHeader>
                 <CardTitle>
                   <h3>Concepts & Methodologies</h3>
                 </CardTitle>
               </CardHeader>
-              <CardContent className='flex flex-wrap gap-2'>
-                <Pill>Software Development Life Cycle</Pill>
-                <Pill>Project Management</Pill>
-                <Pill>Microservices</Pill>
-                <Pill>Agile Methodologies</Pill>
-                <Pill>DevOps</Pill>
-                <Pill>CI / CD</Pill>
-                <Pill>Test-Driven Development</Pill>
+              <CardContent className="flex flex-wrap gap-2">
+                <Pill>
+                  Agile/Scrum (sprint planning, story estimation, code reviews)
+                </Pill>
+                <Pill>Test Driven Development (TDD)</Pill>
+                <Pill>
+                  CI/CD pipelines (Azure DevOps, Octopus, Bamboo, Docker)
+                </Pill>
+                <Pill>
+                  Code quality & security (refactoring, DRY principle, SonarQube
+                  vulnerability scanning)
+                </Pill>
+                <Pill>Accessibility compliance (WCAG AA standards)</Pill>
+                <Pill>
+                  Change management (formal review board participation)
+                </Pill>
+                <Pill>
+                  Data governance & compliance (CLIA, retention policies)
+                </Pill>
+                <Pill>
+                  System migrations & upgrades (Drupal 7/9 → 10, Aegir →
+                  Pantheon, NodeJS upgrades)
+                </Pill>
+                <Pill>
+                  Cross-team collaboration & documentation (Confluence,
+                  onboarding guides, knowledge capture)
+                </Pill>
               </CardContent>
             </Card>
           </div>
