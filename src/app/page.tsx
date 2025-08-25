@@ -11,13 +11,12 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Pill } from '@/components/ui/pill';
-import { ExternalLink, Mail, MapPin, Phone } from 'lucide-react';
+import { ExternalLink, Mail, MapPin, Phone, Pi } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-background via-card to-muted ">
-      {/* Hero */}
       <Section id="hero" className="relative overflow-hidden pt-6">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent/5 to-secondary/10" />
         <SectionContent className="relative text-center flex flex-col gap-4">
@@ -28,7 +27,7 @@ export default function Home() {
             applications
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button variant="default" size="lg" className="">
+            <Button variant="default" size="lg">
               <Mail className="w-4 h-4 mr-2" />
               Contact Me
             </Button>
@@ -65,10 +64,10 @@ export default function Home() {
                   <h2>About Me</h2>
                   <p>TBD</p>
                   <div className="flex flex-col md:flex-row gap-4 items-center">
-                    <div className="">
+                    <div>
                       <GitHubIcon className="size-8" />
                     </div>
-                    <div className="">
+                    <div>
                       <LinkedInSquareIcon className="size-12" />
                     </div>
                     <div className="h-8 w-8 fill-primary">
@@ -82,151 +81,162 @@ export default function Home() {
         </SectionContent>
       </Section>
 
-      {/* Skills */}
-
       <Section id="skills" className="bg-primary/10">
         <SectionContent>
-          <h2 className="">Skills & Expertise</h2>
+          <h2>Skills & Expertise</h2>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Frontend */}
-            <Card>
+            <Card className="grow h-full">
               <CardHeader>
                 <CardTitle>
                   <h3>Frontend</h3>
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-wrap gap-2">
-                <Pill>ReactJS</Pill>
-                <Pill>NextJS</Pill>
-                <Pill>VueJS</Pill>
-                <Pill>jQuery</Pill>
-                <Pill>Bootstrap</Pill>
-                <Pill>TailwindCSS</Pill>
-                <Pill>Material UI</Pill>
-                <Pill>KendoUI</Pill>
-                <Pill>TypeScript</Pill>
-                <Pill>Javascript</Pill>
-                <Pill>SCSS/SASS</Pill>
-                <Pill>CSS</Pill>
-                <Pill>HTML</Pill>
+                <div>
+                  <h4>Langauges</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>TypeScript</Pill>
+                    <Pill>JavaScript</Pill>
+                    <Pill>SCSS/SASS</Pill>
+                    <Pill>CSS</Pill>
+                    <Pill>HTML</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Frameworks & Libraries</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>ReactJS</Pill>
+                    <Pill>NextJS</Pill>
+                    <Pill>VueJS</Pill>
+                    <Pill>jQuery</Pill>
+                    <Pill>Bootstrap</Pill>
+                    <Pill>TailwindCSS</Pill>
+                    <Pill>DaisyUI</Pill>
+                    <Pill>Material UI</Pill>
+                    <Pill>Kendo UI</Pill>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
             {/* Backend */}
-            <Card>
+            <Card className="grow h-full">
               <CardHeader>
                 <CardTitle>
                   <h3>Backend</h3>
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-wrap gap-2">
-                <Pill>NodeJS</Pill>
-                <Pill>Drupal</Pill>
-                <Pill>PHP</Pill>
-                <Pill>C#</Pill>
-                <Pill>.NET Framework</Pill>
-                <Pill>.NET Core</Pill>
-                <Pill>Python</Pill>
+                <div>
+                  <h4>Langauges</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>C#</Pill>
+                    <Pill>.NET Framework</Pill>
+                    <Pill>.NET Core</Pill>
+                    <Pill>NodeJS</Pill>
+                    <Pill>PHP</Pill>
+                    <Pill>Python</Pill>
+                    <Pill>ExpressJS</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Databases</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>MySQL</Pill>
+                    <Pill>SQL</Pill>
+                    <Pill>Microsoft SQL Server</Pill>
+                    <Pill>PostgreSQL</Pill>
+                    <Pill>CostmosDB</Pill>
+                    <Pill>Oracle Pl/SQL</Pill>
+                    <Pill>AWS DynamoDB</Pill>
+                    <Pill>Miscrosft Database</Pill>
+                    <Pill>Supabase</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Content Management Systems</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>Drupal</Pill>
+                    <Pill>Wordpress</Pill>
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
             {/* Database */}
-            <Card>
+            <Card className=" col-span-1 md:col-span-2 grow h-full w-full">
               <CardHeader>
                 <CardTitle>
-                  <h3>Database</h3>
+                  <h3>Technologies &amp; Skills</h3>
                 </CardTitle>
               </CardHeader>
               <CardContent className="flex flex-wrap gap-2">
-                <Pill>MSSQL</Pill>
-                <Pill>PostgreSQL</Pill>
-                <Pill>CosmosDB</Pill>
-                <Pill>DynamoDB</Pill>
-                <Pill>Microsoft Dataverse</Pill>
-                <Pill>MySQL</Pill>
-                <Pill>Oracle PL/SQL</Pill>
-              </CardContent>
-            </Card>
-
-            {/* Devops & Cloud */}
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  <h3>DevOps & Cloud</h3>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                <Pill>Azure</Pill>
-                <Pill>AWS XD</Pill>
-                <Pill>Pantheon</Pill>
-                <Pill>Microsoft IIS</Pill>
-                <Pill>Docker</Pill>
-                <Pill>Rancher</Pill>
-                <Pill>Vagrant/VirtualBox</Pill>
-                <Pill>Azure DevOps</Pill>
-                <Pill>Octopus</Pill>
-                <Pill>Bamboo</Pill>
-                <Pill>TFS</Pill>
-              </CardContent>
-            </Card>
-
-            {/* Tools & Workflows */}
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  <h3>Tools & Workflows</h3>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                <Pill>Jira</Pill>
-                <Pill>Confluence</Pill>
-                <Pill>bitbucket</Pill>
-                <Pill>GitHub</Pill>
-                <Pill>Git</Pill>
-                <Pill>Team Dynamics</Pill>
-                <Pill>Workfront</Pill>
-                <Pill>XRM Toolbox</Pill>
-                <Pill>SQL Server Management Studio</Pill>
-                <Pill>SonarQube</Pill>
-                <Pill>Jest</Pill>
-              </CardContent>
-            </Card>
-
-            {/* Tools & Workflows */}
-            <Card>
-              <CardHeader>
-                <CardTitle>
-                  <h3>Concepts & Methodologies</h3>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                <Pill>
-                  Agile/Scrum (sprint planning, story estimation, code reviews)
-                </Pill>
-                <Pill>Test Driven Development (TDD)</Pill>
-                <Pill>
-                  CI/CD pipelines (Azure DevOps, Octopus, Bamboo, Docker)
-                </Pill>
-                <Pill>
-                  Code quality & security (refactoring, DRY principle, SonarQube
-                  vulnerability scanning)
-                </Pill>
-                <Pill>Accessibility compliance (WCAG AA standards)</Pill>
-                <Pill>
-                  Change management (formal review board participation)
-                </Pill>
-                <Pill>
-                  Data governance & compliance (CLIA, retention policies)
-                </Pill>
-                <Pill>
-                  System migrations & upgrades (Drupal 7/9 → 10, Aegir →
-                  Pantheon, NodeJS upgrades)
-                </Pill>
-                <Pill>
-                  Cross-team collaboration & documentation (Confluence,
-                  onboarding guides, knowledge capture)
-                </Pill>
+                <div>
+                  <h4>DevOps &amp; Cloud</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>Azure</Pill>
+                    <Pill>Azure DevOps</Pill>
+                    <Pill>AWS</Pill>
+                    <Pill>Docker</Pill>
+                    <Pill>Docker Swarm</Pill>
+                    <Pill>Octopuse</Pill>
+                    <Pill>Jenkins</Pill>
+                    <Pill>IIS</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Project &amp; Worklow Management</h4>
+                  <div className="flex flex-wrap gap-2`">
+                    <Pill>Jira</Pill>
+                    <Pill>Confluence</Pill>
+                    <Pill>BitBucket</Pill>
+                    <Pill>GitHub</Pill>
+                    <Pill>Git</Pill>
+                    <Pill>TFS</Pill>
+                    <Pill>SonarQube</Pill>
+                    <Pill>Bamboo</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Microsoft Ecosystem</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>Microsoft Power Apps</Pill>
+                    <Pill>Microsoft SQL Server Management Studio</Pill>
+                    <Pill>XRM TookBox</Pill>
+                    <Pill>Team Dynamics</Pill>
+                    <Pill>Docker Swarm</Pill>
+                    <Pill>Octopuse</Pill>
+                    <Pill>Jenkins</Pill>
+                    <Pill>IIS</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Other</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>AuthO</Pill>
+                    <Pill>Vagrant</Pill>
+                    <Pill>Birtrual Box</Pill>
+                    <Pill>Google Maps API</Pill>
+                    <Pill>Swagger</Pill>
+                    <Pill>Team Foundation Server (TFS)</Pill>
+                  </div>
+                </div>
+                <div>
+                  <h4>Methodologies</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Pill>Agile</Pill>
+                    <Pill>Scrum</Pill>
+                    <Pill>Kanban</Pill>
+                    <Pill>Waterfall</Pill>
+                    <Pill>Test-Driven Development (TDD)</Pill>
+                    <Pill>Change Management</Pill>
+                    <Pill>REST API</Pill>
+                    <Pill>Microservices</Pill>
+                    <Pill>Software Development Life Cycle</Pill>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </div>
