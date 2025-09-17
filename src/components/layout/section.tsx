@@ -6,8 +6,16 @@ import * as React from "react"
 
 function Section({ className, ...props}: React.ComponentProps<"section">){
   return (
-    <section className={cn('flex justify-center items-center min-h-[512px]', className)} {...props} />
+    <section className={cn('flex flex-col justify-center items-center min-h-[512px]', className)} {...props} />
   )
+}
+
+function SectionHeader({ className, children, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div className={cn("w-full container mx-auto px-6  my-8", className)} {...props}>
+      {children}
+    </div>
+  );
 }
 
 
@@ -22,4 +30,6 @@ function SectionContent({className, ...props}: React.ComponentProps<"div">){
 
 
 
-export {Section, SectionContent}
+
+
+export {Section, SectionHeader, SectionContent}
