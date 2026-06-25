@@ -1,3 +1,23 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://nathanhealea.com/'
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Nathan Healea — Full-Stack Software Engineer'
+theme = 'nathanhealea'
+
+[params]
+  description = "Nathan Healea is a Full-Stack Software Engineer based in Eugene, OR, specializing in React, TypeScript, Node.js, and Azure cloud architecture."
+  author = "Nathan Healea"
+  location = "Eugene, OR"
+  headline = "Full-Stack Software Engineer"
+  tagline = "Building thoughtful web experiences with React, TypeScript, and Node.js."
+  github = "https://github.com/NathanHealea"
+  linkedin = "https://linkedin.com/in/nathanhealea"
+
+[params.seo]
+  keywords = ["software engineer", "full-stack developer", "React developer", "TypeScript", "Node.js", "Azure", "Eugene Oregon", "web developer", "JavaScript"]
+
+disableKinds = ["taxonomy", "term"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
