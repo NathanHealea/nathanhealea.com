@@ -1,0 +1,6 @@
+name = "nathanhealea"
+license = "MIT"
+description = "Custom portfolio theme for nathanhealea.com"
+homepage = "https://nathanhealea.com"
+tags = ["portfolio", "personal", "minimal"]
+min_version = "0.110.0"
