@@ -1,81 +1,81 @@
 - company: University of Oregon
   title: Programmer Analyst II
   location: Eugene, OR
-  start: "2024"
+  start: "Jan 2024"
   end: "Present"
   current: true
   highlights:
     - Develop and maintain enterprise web applications supporting university operations and academic programs
     - Collaborate with cross-functional teams to deliver software solutions aligned with institutional requirements
     - Contribute to technology modernization initiatives within the university's IT infrastructure
-  tech: [TypeScript, PHP, React, SQL]
-
-- company: Northwest Community Credit Union
-  title: Software Developer II
-  location: Eugene, OR
-  start: "2022"
-  end: "2024"
-  current: false
-  highlights:
-    - Architected the first public-facing serverless application hosted in Microsoft Cloud by a Pacific Northwest credit union, establishing a new cloud deployment standard for the organization
-    - Designed and built React/Redux single-page applications powering member-facing digital banking features
-    - Led Azure cloud deployment initiatives, driving migration from on-premises infrastructure and reducing operational overhead
-  tech: [React, Redux, TypeScript, Azure, Node.js, Serverless]
-
-- company: American Express
-  title: Software Engineer II
-  location: Remote
-  start: "2021"
-  end: "2022"
-  current: false
-  highlights:
-    - Maintained and enhanced enterprise-scale software serving millions of cardmember transactions
-    - Expanded ad-hoc report querying UI, improving data accessibility for internal business analysts
-    - Led a Node.js runtime version upgrade across multiple services, improving security posture and performance
-  tech: [Node.js, JavaScript, React, SQL]
+  tech: [Node.js, Drupal, PHP, .NET Core, C#, MySQL, SQL, JavaScript, jQuery, HTML/CSS, Jira, Confluence, Microsoft Power Apps, Microsoft Dataverse, Pantheon]
 
 - company: Providence Health Plan
   title: Software Engineer III
   location: Portland, OR
-  start: "2020"
-  end: "2021"
+  start: "Nov 2022"
+  end: "Jan 2023"
   current: false
   highlights:
     - Delivered full-stack features for health plan member portal serving thousands of Oregon members
     - Collaborated with product and design teams to translate requirements into maintainable software solutions
     - Mentored junior engineers and led code reviews to uphold engineering standards
-  tech: [React, Node.js, TypeScript, REST APIs]
+  tech: [TypeScript, Angular, React, Next.js, C#, .NET Framework, Material UI, Kendo UI, JavaScript, HTML/CSS, AWS, Auth0, Azure DevOps, Octopus Deploy, Jira, Confluence, SQL Server, Salesforce]
 
 - company: Maps Credit Union
   title: Software Developer
   location: Salem, OR
-  start: "2019"
-  end: "2020"
+  start: "Mar 2022"
+  end: "Oct 2022"
   current: false
   highlights:
     - Built and maintained web applications supporting credit union member services and internal operations
     - Developed RESTful API integrations with third-party financial services platforms
-  tech: [JavaScript, PHP, REST APIs, SQL]
+  tech: [C#, .NET Framework, React, Bootstrap, SCSS/SASS, JavaScript, HTML/CSS, Azure, MSSQL, Cosmos DB, Azure DevOps, Git]
 
 - company: PacificSource Health Plans
   title: Full Stack Software Developer
   location: Oregon
-  start: "2018"
-  end: "2019"
+  start: "Aug 2021"
+  end: "Mar 2022"
   current: false
   highlights:
     - Designed and implemented full-stack features across member-facing and internal-facing health plan applications
     - Contributed to front-end and back-end codebases serving Oregon and Idaho health plan members
-  tech: [JavaScript, PHP, React, SQL]
+  tech: [C#, .NET Framework, Bootstrap, JavaScript, HTML/CSS, MSSQL, Azure DevOps, Git]
+
+- company: American Express
+  title: Software Engineer II
+  location: Remote
+  start: "Sep 2020"
+  end: "Aug 2021"
+  current: false
+  highlights:
+    - Maintained and enhanced enterprise-scale software serving millions of cardmember transactions
+    - Expanded ad-hoc report querying UI, improving data accessibility for internal business analysts
+    - Led a Node.js runtime version upgrade across multiple services, improving security posture and performance
+  tech: [React, Jest, C#, .NET Core, Bootstrap, SASS, TypeScript, JavaScript, HTML/CSS, Docker, Jira, Bitbucket, GitHub, Git, PostgreSQL]
+
+- company: Northwest Community Credit Union
+  title: Software Developer II
+  location: Eugene, OR
+  start: "Aug 2017"
+  end: "Sep 2020"
+  current: false
+  highlights:
+    - Architected the first public-facing serverless application hosted in Microsoft Cloud by a Pacific Northwest credit union, establishing a new cloud deployment standard for the organization
+    - Designed and built React/Redux single-page applications powering member-facing digital banking features
+    - Led Azure cloud deployment initiatives, driving migration from on-premises infrastructure and reducing operational overhead
+  tech: [React, Redux, C#, .NET Core, .NET Framework, Node.js, Express.js, Python, Bootstrap, Material UI, SASS/SCSS, JavaScript, HTML/CSS, Jira, Bitbucket, Bamboo, Confluence, SonarQube, TFS, Azure, IIS, Azure DevOps, MSSQL]
 
 - company: Oregon State University
   title: Software Engineer
   location: Corvallis, OR
-  start: "2016"
-  end: "2018"
+  start: "Jul 2015"
+  end: "Aug 2017"
   current: false
   highlights:
     - Built text analysis REST services to support academic research applications
     - Redesigned user interfaces for improved mobile responsiveness across university web platforms
     - Contributed to open-source educational tooling used by OSU faculty and students
-  tech: [PHP, JavaScript, REST APIs, Python]
+  tech: [PHP, Drupal, Bootstrap, JavaScript, HTML/CSS, LAMP Stack, Vagrant, VirtualBox, MySQL, GitHub, Git]
