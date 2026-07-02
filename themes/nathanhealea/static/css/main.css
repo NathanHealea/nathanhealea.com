@@ -36,6 +36,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -198,6 +199,14 @@ button {
   font-size: 0.8125rem;
 }
 
+.btn--square {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 /* ==============================
    HEADER / NAV
    ============================== */
@@ -205,6 +214,7 @@ button {
   position: sticky;
   top: 0;
   z-index: 100;
+  max-width: 100%;
   background-color: rgb(255 255 255 / 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -225,23 +235,8 @@ button {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-  background-color: var(--color-accent);
-  color: #ffffff;
-  border-radius: var(--radius-sm);
-  font-weight: 700;
-  font-size: 0.875rem;
   letter-spacing: 0.02em;
   flex-shrink: 0;
-  transition: background-color var(--transition);
-}
-
-.logo:hover {
-  background-color: var(--color-accent-dark);
 }
 
 .nav {
@@ -292,10 +287,14 @@ button {
 
 .nav-toggle {
   display: none;
+  width: 40px;
+  height: 40px;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 5px;
-  padding: 6px;
   border-radius: var(--radius-sm);
+  flex-shrink: 0;
 }
 
 .nav-toggle span {
@@ -906,7 +905,16 @@ button {
     margin-top: 4px;
   }
 
-  /* Timeline */
+  /* Timeline — hide the rail/markers on mobile, keep the cards */
+  .timeline {
+    padding-left: 0;
+  }
+
+  .timeline::before,
+  .timeline-marker {
+    display: none;
+  }
+
   .timeline-header {
     flex-direction: column;
     align-items: flex-start;
@@ -932,16 +940,12 @@ button {
     width: 100%;
   }
 
+  .btn--square {
+    width: 40px;
+  }
+
   .hero-social {
     gap: 20px;
-  }
-
-  .timeline {
-    padding-left: 24px;
-  }
-
-  .timeline-marker {
-    left: -24px;
   }
 
   .timeline-summary {
