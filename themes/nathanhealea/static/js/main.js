@@ -55,4 +55,22 @@
   }
 
   activateNavLink();
+
+  // Experience — expand/collapse all
+  var experienceTimeline = document.getElementById('experience-timeline');
+  var experienceToggleAll = document.getElementById('experience-toggle-all');
+
+  if (experienceTimeline && experienceToggleAll) {
+    var experienceItems = Array.prototype.slice.call(
+      experienceTimeline.querySelectorAll('details.timeline-item')
+    );
+
+    experienceToggleAll.addEventListener('click', function () {
+      var allOpen = experienceItems.every(function (item) { return item.open; });
+      var expand = !allOpen;
+      experienceItems.forEach(function (item) { item.open = expand; });
+      experienceToggleAll.setAttribute('aria-expanded', String(expand));
+      experienceToggleAll.classList.toggle('experience-toggle-all--expanded', expand);
+    });
+  }
 }());

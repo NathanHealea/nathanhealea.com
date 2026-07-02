@@ -1,81 +1,184 @@
 - company: University of Oregon
   title: Programmer Analyst II
   location: Eugene, OR
-  start: "2024"
+  start: "Jan 2023"
   end: "Present"
   current: true
   highlights:
-    - Develop and maintain enterprise web applications supporting university operations and academic programs
-    - Collaborate with cross-functional teams to deliver software solutions aligned with institutional requirements
-    - Contribute to technology modernization initiatives within the university's IT infrastructure
-  tech: [TypeScript, PHP, React, SQL]
-
-- company: Northwest Community Credit Union
-  title: Software Developer II
-  location: Eugene, OR
-  start: "2022"
-  end: "2024"
-  current: false
-  highlights:
-    - Architected the first public-facing serverless application hosted in Microsoft Cloud by a Pacific Northwest credit union, establishing a new cloud deployment standard for the organization
-    - Designed and built React/Redux single-page applications powering member-facing digital banking features
-    - Led Azure cloud deployment initiatives, driving migration from on-premises infrastructure and reducing operational overhead
-  tech: [React, Redux, TypeScript, Azure, Node.js, Serverless]
-
-- company: American Express
-  title: Software Engineer II
-  location: Remote
-  start: "2021"
-  end: "2022"
-  current: false
-  highlights:
-    - Maintained and enhanced enterprise-scale software serving millions of cardmember transactions
-    - Expanded ad-hoc report querying UI, improving data accessibility for internal business analysts
-    - Led a Node.js runtime version upgrade across multiple services, improving security posture and performance
-  tech: [Node.js, JavaScript, React, SQL]
+    - Led migration of 70 university websites from Aegir to Pantheon and upgraded Drupal 7/9 sites to Drupal 10
+    - Directed a CLIA-compliant COVID-19 research data archival project, building SQL and Node.js tooling and reporting to executive stakeholders
+    - Established Jira standards, workflows, and adoption plans as a Jira Subcommittee member
+    - Serve on the Business Applications Change Management Board, reviewing changes to university business systems
+  details:
+    - Provided Drupal support, maintenance, and development across the university's web platforms
+    - Worked on a team of 5 developers to migrate 70 websites from Aegir to Pantheon
+    - Created the migration workflow, managed migration work in Jira, and produced status reports for management
+    - Upgraded Drupal sites from versions 7 and 9 to Drupal 10
+    - Provided end-user support for Drupal-based sites
+    - Designed and implemented Jira standards, workflows, and issue hierarchy, and created an adoption plan to move development work tracking into Jira
+    - Served as a Jira Subcommittee member (Nov 2023–Present), creating standards for Information Systems staff and researching team usage patterns
+    - Led technical efforts to archive COVID-19 research data to meet CLIA and university data retention requirements, auditing data for classification and writing SQL scripts to retrieve data from Microsoft Dataverse
+    - Built a Node.js console application to download results from multiple Qualtrics surveys via API
+    - Created the archive project plan, Jira tickets, and documentation, and delivered weekly status updates to upper management
+    - Provided ongoing maintenance of the COVID-19 test response application built in Microsoft Power Apps
+    - Modified Qualtrics surveys using jQuery, JavaScript, HTML, and CSS to improve web accessibility
+    - Serves on the Business Applications Change Management Board (Feb 2023–Present), evaluating changes to university business applications and communicating impact to the team
+  tech: [Node.js, Drupal, PHP, .NET Core, C#, MySQL, SQL, JavaScript, jQuery, HTML/CSS, Jira, Confluence, Microsoft Power Apps, Microsoft Dataverse, Pantheon]
 
 - company: Providence Health Plan
   title: Software Engineer III
   location: Portland, OR
-  start: "2020"
-  end: "2021"
+  start: "Nov 2022"
+  end: "Jan 2023"
   current: false
   highlights:
-    - Delivered full-stack features for health plan member portal serving thousands of Oregon members
-    - Collaborated with product and design teams to translate requirements into maintainable software solutions
-    - Mentored junior engineers and led code reviews to uphold engineering standards
-  tech: [React, Node.js, TypeScript, REST APIs]
+    - Piloted a new technology stack, building a centralized error-display application shared across applications and third-party integrations
+    - Deployed applications to on-prem and cloud environments via Azure DevOps and Octopus
+    - Implemented new insurance card displays in HealthTrio CMS to meet year-end business goals
+    - Authored onboarding documentation and a Confluence knowledge base to reduce reliance on specific developers
+  details:
+    - Reduced development complexity by introducing a new technology stack
+    - Piloted the new stack by building a centralized error-display application shared among internal applications and third-party integrations
+    - Created onboarding documentation and onboarded new team members within their first few weeks
+    - Deployed applications to on-premises and cloud environments through Azure DevOps and Octopus
+    - Worked with the team to implement new insurance card displays within the HealthTrio CMS to meet business end-of-year goals
+    - Collaborated with team members on User Store creation, feature development, troubleshooting/debugging, and code review sessions
+    - Documented tribal knowledge and processes in Confluence to reduce dependency on specific developers
+    - Performed user management through Auth0 and AWS DynamoDB
+    - Provided solutions to end users and business units through Jira
+  tech: [TypeScript, Angular, React, Next.js, C#, .NET Framework, Material UI, Kendo UI, JavaScript, HTML/CSS, AWS, Auth0, Azure DevOps, Octopus Deploy, Jira, Confluence, SQL Server, Salesforce]
 
 - company: Maps Credit Union
   title: Software Developer
   location: Salem, OR
-  start: "2019"
-  end: "2020"
+  start: "Mar 2022"
+  end: "Oct 2022"
   current: false
   highlights:
-    - Built and maintained web applications supporting credit union member services and internal operations
-    - Developed RESTful API integrations with third-party financial services platforms
-  tech: [JavaScript, PHP, REST APIs, SQL]
+    - Led a refactor of legacy React components, applying the DRY principle and converting class components to function components
+    - Expanded Online Banking features using test-driven development
+    - Deployed applications to Azure via Azure DevOps
+  details:
+    - Led a refactor of legacy React components by applying the DRY principle, simplifying state management, and converting class components to function components
+    - Expanded Online Banking features using test-driven development
+    - Deployed applications to Azure using Azure DevOps
+    - Implemented onboarding documentation for new employees
+  tech: [C#, .NET Framework, React, Bootstrap, SCSS/SASS, JavaScript, HTML/CSS, Azure, MSSQL, Cosmos DB, Azure DevOps, Git]
 
 - company: PacificSource Health Plans
   title: Full Stack Software Developer
-  location: Oregon
-  start: "2018"
-  end: "2019"
+  location: Protland, OR
+  start: "Aug 2021"
+  end: "Mar 2022"
   current: false
   highlights:
-    - Designed and implemented full-stack features across member-facing and internal-facing health plan applications
-    - Contributed to front-end and back-end codebases serving Oregon and Idaho health plan members
-  tech: [JavaScript, PHP, React, SQL]
+    - Refactored the user interface to meet AA accessibility standards
+    - Collaborated across teams to standardize UI component design
+    - Migrated onboarding documentation from Word docs into Azure DevOps, improving the new-employee onboarding process
+  details:
+    - Refactored the user interface to achieve AA accessibility compliance
+    - Refactored code to improve readability and maintainability
+    - Collaborated across teams to standardize UI component designs
+    - Migrated documentation for new employees to Azure DevOps from Word documents
+    - Improved new employee onboarding documentation
+  tech: [C#, .NET Framework, Bootstrap, JavaScript, HTML/CSS, MSSQL, Azure DevOps, Git]
+
+- company: American Express
+  title: Software Engineer II
+  location: Phoenix, AZ
+  start: "Sep 2020"
+  end: "Aug 2021"
+  current: false
+  highlights:
+    - Expanded the ad-hoc report querying UI to support nested group-by/order-by clauses, with corresponding server-side logic
+    - Led a Node.js runtime upgrade across the enterprise application and authored developer upgrade documentation
+    - Owned code reviews, testing, and Docker container deployments to Rancher
+    - Defined the team's branching strategy and release-process standards
+  details:
+    - Maintained enterprise software by expanding features per user requests, fixing bugs, and enhancing code for maintainability
+    - Worked cohesively with a team of six on sprint planning, feature design discussions, and delivery estimates
+    - Responsible for code reviews, testing, and deployment of Docker containers to the Rancher environment
+    - Documented standards, release processes, and application features
+    - Created the branching strategy and development standards for the team
+    - Expanded the ad-hoc report querying UI to support nested group-by and order-by clauses, including new server-side logic to support advanced queries and future development
+    - Quickly mastered new skills and technologies to become a fully independent developer
+    - Led a Node.js runtime upgrade for the enterprise application and documented the process for upgrading local development environments
+  tech: [React, Jest, C#, .NET Core, Bootstrap, SASS, TypeScript, JavaScript, HTML/CSS, Docker, Jira, Bitbucket, GitHub, Git, PostgreSQL]
+
+- company: Northwest Community Credit Union
+  title: Software Developer II
+  location: Eugene, OR
+  start: "Oct 2019"
+  end: "Sep 2020"
+  current: false
+  highlights:
+    - Led deployment of member-facing and internal applications into Microsoft Azure, migrating from on-premises infrastructure
+    - Designed a single-page application architecture using React, Redux, and Re-Ducks patterns adopted across 4 public-facing projects
+    - Introduced modern JavaScript frameworks (React, Vue) and led the development team in adopting them
+    - Implemented SDLC improvements including SonarQube vulnerability scanning, used during a successful security audit
+  details:
+    - Developed applications for internal business units and member-facing products
+    - Led deployment of applications into Microsoft Azure and maintained legacy applications, databases, and domain migrations
+    - Designed a single-page application architecture using React, Redux, React Router, and the Re-Ducks pattern, which became the standard for public-facing applications and was reused across 4 projects
+    - Brought modern JavaScript frameworks (React, Vue) to the development team and led adoption of newer technologies to improve user experience
+    - Developed and implemented a Software Development Life Cycle aligned with project management and business operations, including SonarQube source-code vulnerability scanning used during a successful audit
+    - Documented and created onboarding procedures for new developers, including system, application, and database access and installation, and served as the go-to resource for new hires
+  tech: [React, Redux, C#, .NET Core, .NET Framework, Node.js, Express.js, Python, Bootstrap, Material UI, SASS/SCSS, JavaScript, HTML/CSS, Jira, Bitbucket, Bamboo, Confluence, SonarQube, TFS, Azure, IIS, Azure DevOps, MSSQL]
+
+- company: Northwest Community Credit Union
+  title: Programmer Analyst
+  location: Eugene, OR
+  start: "Aug 2017"
+  end: "Oct 2019"
+  current: false
+  highlights:
+    - Architected and deployed the first public-facing serverless application hosted in Microsoft Azure by a Pacific Northwest credit union
+    - Designed the credit union's first on-premise public-facing application for its Board of Directors
+    - Automated a 3-day, 2-person manual process into a full-stack web application completing in under 10 minutes
+    - Configured and administered Atlassian tools (Jira, Jira Service Desk, Bitbucket, Bamboo) for 300+ employees, including MSSQL and Active Directory integration
+  details:
+    - Responsible for the architecture, development, and deployment of the first public-facing serverless application hosted in Microsoft Azure by a credit union in the Pacific Northwest
+    - Designed the architecture and developed the first on-premise public-facing application used by the Northwest Community Credit Union Board of Directors
+    - Improved business processes by building a full-stack, web-based application that reduced a 3-day, 2-person manual process to an automated job completing in under 10 minutes
+    - Maintained a PL/SQL Oracle database script used for incentive data aggregation
+    - Designed and implemented MSSQL database schemas for new and legacy applications
+    - Designed and developed custom Bootstrap and Material UI themes based on marketing guidelines for use across new and legacy applications
+    - Worked with business units to define project requirements, translating non-technical requirements into technical requirements, and managed project breakdown and status updates using Jira and Workfront
+    - Configured and implemented the Atlassian suite (Jira Software, Jira Service Desk, Bitbucket, Bamboo) for 300+ employees, including server specification, MSSQL database configuration, cross-application integration, and integration with Microsoft Active Directory
+  tech: [React, C#, .NET Core, .NET Framework, Node.js, Express.js, Python, Bootstrap, Material UI, SASS/SCSS, JavaScript, HTML/CSS, Jira, Bitbucket, Bamboo, Confluence, SonarQube, TFS, Azure, IIS, Azure DevOps, MSSQL]
 
 - company: Oregon State University
-  title: Software Engineer
+  title: Software Engineer (Technology Across the Curriculum)
   location: Corvallis, OR
-  start: "2016"
-  end: "2018"
+  start: "Jul 2015"
+  end: "Aug 2017"
   current: false
   highlights:
-    - Built text analysis REST services to support academic research applications
-    - Redesigned user interfaces for improved mobile responsiveness across university web platforms
-    - Contributed to open-source educational tooling used by OSU faculty and students
-  tech: [PHP, JavaScript, REST APIs, Python]
+    - Built a text analysis REST service and companion Drupal module with data visualization for academic research
+    - Used Vagrant to build LAMP stack virtual machines replicating production for local development
+    - Introduced source control to the team and migrated a legacy project into GitHub
+    - Designed a MySQL schema and Python tooling to simplify research data for analysis
+  details:
+    - Developed a text analysis REST service using a LAMP stack, Bootstrap, and jQuery, along with a corresponding Drupal module that consumed the API and provided data visualization, and built an administration portal to maintain the service
+    - Used Vagrant to build LAMP stack virtual machines replicating production servers for local development, and documented setup and usage
+    - Introduced source control to the team, trained members on Git branching and merge procedures, and migrated a legacy project into GitHub repositories
+    - Met with internal customers biweekly to define project requirements, propose solutions, and demo progress
+    - Analyzed XML files to design a MySQL database schema simplifying data for researchers, wrote Python scripts to parse and upload the data, and built an administration portal to review and fix data inconsistencies
+  tech: [PHP, Drupal, Bootstrap, JavaScript, HTML/CSS, LAMP Stack, Vagrant, VirtualBox, MySQL, GitHub, Git]
+
+- company: Oregon State University
+  title: Software Engineer (Integrated Plant Protection Center)
+  location: Corvallis, OR
+  start: "Mar 2015"
+  end: "Jul 2015"
+  current: false
+  highlights:
+    - Redesigned an existing application's UI to be mobile-friendly using Bootstrap
+    - Integrated the Google Maps API to display geological location and relative data for selected parcels
+    - Collaborated with the team to architect new features from client requirements
+  details:
+    - Redesigned and implemented an existing application's user interface to be mobile-friendly using Bootstrap
+    - Worked with team members to architect new features from client requirements
+    - Integrated the Google Maps API to display geological location and a function for displaying relative data for the selected parcel
+    - Provided team support for database configuration and data access
+  tech: [C#, .NET Framework, SQL, jQuery, JavaScript, Bootstrap, HTML/CSS, IIS, TFS, SQL Server Management Studio, Google Maps API]

@@ -1,14 +1,20 @@
 <section class="section experience" id="experience">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">My professional journey building software across healthcare, financial services, and higher education.</p>
+      <div class="section-header__text">
+        <h2 class="section-title">Experience</h2>
+        <p class="section-subtitle">My professional journey building software across healthcare, financial services, and higher education.</p>
+      </div>
+      <button type="button" class="btn btn--outline btn--sm experience-toggle-all" id="experience-toggle-all" aria-expanded="false">
+        <span class="experience-toggle-all__show">Expand All</span>
+        <span class="experience-toggle-all__hide">Collapse All</span>
+      </button>
     </div>
-    <div class="timeline">
+    <div class="timeline" id="experience-timeline">
       {{ range hugo.Data.experience }}
-      <article class="timeline-item{{ if .current }} timeline-item--current{{ end }}">
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <div class="timeline-body">
+      <details class="timeline-item{{ if .current }} timeline-item--current{{ end }}">
+        <summary class="timeline-summary">
+          <div class="timeline-marker" aria-hidden="true"></div>
           <div class="timeline-header">
             <div class="timeline-meta">
               <h3 class="timeline-title">{{ .title }}</h3>
@@ -29,8 +35,22 @@
             {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
           </div>
           {{ end }}
+          {{ if .details }}
+          <span class="timeline-toggle">
+            <span class="timeline-toggle__show">Show full details</span>
+            <span class="timeline-toggle__hide">Hide full details</span>
+            <svg class="timeline-toggle__chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </span>
+          {{ end }}
+        </summary>
+        {{ with .details }}
+        <div class="timeline-details">
+          <ul class="timeline-highlights">
+            {{ range . }}<li>{{ . }}</li>{{ end }}
+          </ul>
         </div>
-      </article>
+        {{ end }}
+      </details>
       {{ end }}
     </div>
   </div>
