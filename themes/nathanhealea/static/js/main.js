@@ -56,6 +56,24 @@
 
   activateNavLink();
 
+  // Theme toggle — persist an explicit light/dark choice
+  var themeToggle = document.getElementById('theme-toggle');
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var root = document.documentElement;
+      var explicit = root.getAttribute('data-theme');
+      var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      var isDark = explicit ? explicit === 'dark' : systemDark;
+      var next = isDark ? 'light' : 'dark';
+
+      root.setAttribute('data-theme', next);
+      try {
+        localStorage.setItem('theme', next);
+      } catch (e) {}
+    });
+  }
+
   // Experience — expand/collapse all
   var experienceTimeline = document.getElementById('experience-timeline');
   var experienceToggleAll = document.getElementById('experience-toggle-all');
