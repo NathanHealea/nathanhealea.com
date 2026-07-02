@@ -1,7 +1,7 @@
 - title: grimify.app
   slug: grimify
   description: "A social community platform for Warhammer miniature painters to create, discover, and share paint color palettes. Built as a full-stack TypeScript application with user authentication, palette management, and community interaction features."
-  tech: [TypeScript, React, Node.js]
+  tech: [TypeScript, React, Node.js, Vercel, Supabase]
   github: https://github.com/NathanHealea/grimify.app
   live: https://grimify.app
   featured: true
@@ -9,9 +9,9 @@
 - title: grimdark.nathanhealea.com
   slug: grimdark
   description: "A Warhammer 40k league management platform for organizing and tracking competitive gaming seasons. Features match recording, standings calculation, player statistics, and season management for tabletop gaming communities."
-  tech: [TypeScript, React, Node.js]
+  tech: [TypeScript, React, Node.js, Vercel, Supabase]
   github: https://github.com/NathanHealea/grimdark.nathanhealea.com
-  live: ""
+  live: "https://grimdark.nathanhealea.com"
   featured: true
 
 - title: budget-commander
@@ -19,5 +19,5 @@
   description: "A Magic: The Gathering Commander deck builder that enforces the Budget Commander format — builds and validates decks against a $100 total card price limit, helping players craft competitive decks within a budget constraint."
   tech: [TypeScript, React, Node.js]
   github: https://github.com/NathanHealea/budget-commander
-  live: ""
-  featured: false
+  live: "https://budget-commander.nathanhealea.com"
+  featured: true
