@@ -4,6 +4,49 @@
   var header = document.getElementById('site-header');
   var navToggle = document.getElementById('nav-toggle');
   var navList = document.getElementById('nav-list');
+  var themeToggle = document.getElementById('theme-toggle');
+
+  // Theme toggle — the inline head script has already set data-theme before paint.
+  var root = document.documentElement;
+
+  function currentTheme() {
+    return root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    if (themeToggle) {
+      themeToggle.setAttribute(
+        'aria-label',
+        theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+      );
+    }
+  }
+
+  applyTheme(currentTheme());
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var next = currentTheme() === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem('theme', next);
+      } catch (e) {}
+      applyTheme(next);
+    });
+  }
+
+  // Follow OS changes only while the user hasn't made an explicit choice.
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
+      var stored;
+      try {
+        stored = localStorage.getItem('theme');
+      } catch (err) {}
+      if (stored !== 'dark' && stored !== 'light') {
+        applyTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
 
   // Shadow header on scroll
   function onScroll() {

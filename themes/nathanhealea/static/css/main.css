@@ -320,6 +320,54 @@ button {
   color: #ffffff;
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  transition: color var(--transition), background-color var(--transition);
+}
+
+.theme-toggle:hover {
+  color: var(--color-text);
+  background-color: var(--color-bg-alt);
+}
+
+.theme-toggle__icon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Light mode shows the moon (tap → dark); dark mode shows the sun (tap → light). */
+.theme-toggle__icon--sun {
+  display: none;
+}
+
+.theme-toggle__icon--moon {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle__icon--sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle__icon--moon {
+    display: none;
+  }
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
