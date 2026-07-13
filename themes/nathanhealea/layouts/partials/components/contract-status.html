@@ -1,0 +1,8 @@
+{{- /* Contract-availability badge. Renders only when [params.available].contract is true.
+       Expects the page as context. */ -}}
+{{- if .Site.Params.available.contract }}
+<span class="hero-status">
+  <span class="dot" aria-hidden="true"></span>
+  Available for contract work
+</span>
+{{- end }}
