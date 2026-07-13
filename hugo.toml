@@ -11,6 +11,7 @@ theme = 'nathanhealea'
   tagline = "Building thoughtful web experiences with React, TypeScript, and Node.js."
   github = "https://github.com/NathanHealea"
   linkedin = "https://linkedin.com/in/nathanhealea"
+  email = "nhealea@uoregon.edu"
 
 [params.seo]
   keywords = ["software engineer", "full-stack developer", "React developer", "TypeScript", "Node.js", "Azure", "Eugene Oregon", "web developer", "JavaScript"]

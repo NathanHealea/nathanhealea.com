@@ -1,0 +1,25 @@
+{{- /*
+  Email / LinkedIn / GitHub buttons, sourced from site params
+  (email, linkedin, github). Each is rendered only if its param is set.
+  Context: a dict with
+    class (optional) - class applied to each anchor (default "btn btn-outline")
+*/ -}}
+{{- $btn := .class | default "btn btn-outline" -}}
+{{- with site.Params.email }}
+<a class="{{ $btn }}" href="mailto:{{ . }}">
+  {{ partial "icons/mail.html" "" }}
+  <span>Email</span>
+</a>
+{{- end }}
+{{- with site.Params.linkedin }}
+<a class="{{ $btn }}" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+  {{ partial "icons/linkedin.html" "" }}
+  <span>LinkedIn</span>
+</a>
+{{- end }}
+{{- with site.Params.github }}
+<a class="{{ $btn }}" href="{{ . }}" target="_blank" rel="noopener noreferrer">
+  {{ partial "icons/github.html" "" }}
+  <span>GitHub</span>
+</a>
+{{- end }}
