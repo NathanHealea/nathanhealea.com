@@ -1,33 +1,31 @@
-<section class="section experience" id="experience">
+{{- /* Career timeline, driven by data/experience.yaml. */ -}}
+<section class="section" id="experience">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">Experience</h2>
-      <p class="section-subtitle">My professional journey building software across healthcare, financial services, and higher education.</p>
-    </div>
+    {{ partial "components/section-header.html" (dict
+      "eyebrow" "01 — Experience"
+      "title" "Where I've built things"
+      "subtitle" "Seven teams, nine years — finance, healthcare, and higher education."
+    ) }}
     <div class="timeline">
       {{ range hugo.Data.experience }}
-      <article class="timeline-item{{ if .current }} timeline-item--current{{ end }}">
-        <div class="timeline-marker" aria-hidden="true"></div>
-        <div class="timeline-body">
-          <div class="timeline-header">
-            <div class="timeline-meta">
-              <h3 class="timeline-title">{{ .title }}</h3>
-              <p class="timeline-company">
-                {{ .company }}
-                {{ with .location }}&nbsp;·&nbsp;<span class="timeline-location">{{ . }}</span>{{ end }}
-              </p>
-            </div>
-            <span class="timeline-date">{{ .start }} – {{ .end }}</span>
-          </div>
+      <article class="timeline-item reveal">
+        <div>
+          <p class="timeline-period">{{ .start }} — {{ .end }}</p>
+          {{ with .location }}<p class="timeline-location">{{ . }}</p>{{ end }}
+        </div>
+        <div>
+          <h3 class="timeline-role">
+            {{ .title }}
+            {{ if .current }}<span class="timeline-badge-current">Current</span>{{ end }}
+          </h3>
+          <p class="timeline-company">{{ .company }}</p>
           {{ with .highlights }}
           <ul class="timeline-highlights">
             {{ range . }}<li>{{ . }}</li>{{ end }}
           </ul>
           {{ end }}
           {{ with .tech }}
-          <div class="tag-list">
-            {{ range . }}<span class="tag">{{ . }}</span>{{ end }}
-          </div>
+          {{ partial "components/badge-list.html" (dict "items" .) }}
           {{ end }}
         </div>
       </article>

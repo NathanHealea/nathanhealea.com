@@ -1,26 +1,13 @@
-<header class="site-header" id="site-header">
-  <div class="container">
-    <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Params.author }} — Home">NH</a>
-    <nav class="nav" aria-label="Main navigation">
-      <ul class="nav-list" id="nav-list">
-        <li><a href="#experience" class="nav-link">Experience</a></li>
-        <li><a href="#projects" class="nav-link">Projects</a></li>
-        <li><a href="#contact" class="nav-link nav-link--cta">Contact</a></li>
-      </ul>
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
-        <svg class="theme-toggle__icon theme-toggle__icon--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="4"></circle>
-          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
-        </svg>
-        <svg class="theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-        </svg>
-      </button>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+{{- /* Fixed site navbar. Gains a blurred background on scroll (see modules/nav.js). */ -}}
+<header class="navbar" data-navbar>
+  <div class="container navbar-inner">
+    <a class="navbar-brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Params.author }} — Home">
+      <span class="accent">$</span> nathan_healea
+    </a>
+    <nav class="navbar-menu" aria-label="Primary">
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link nav-link-cta" href="#contact">Contact</a>
     </nav>
   </div>
 </header>
