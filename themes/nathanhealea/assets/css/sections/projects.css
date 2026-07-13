@@ -1,0 +1,45 @@
+/* ==========================================================================
+   Section — projects (cards)
+   ========================================================================== */
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.15rem;
+}
+
+.project-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.project-description {
+  flex: 1;
+  color: var(--color-base-content-muted);
+  font-size: 0.86rem;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-base-content-muted);
+  transition: color var(--transition-fast);
+}
+
+.project-link:hover {
+  color: var(--color-primary);
+}
+
+.project-link-spacer {
+  margin-left: auto;
+}
+
+.projects-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}

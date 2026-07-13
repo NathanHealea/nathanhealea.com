@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Component — link (DaisyUI `.link`)
+   ========================================================================== */
+
+.link {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.link-hover {
+  text-decoration: none;
+}
+
+.link-hover:hover {
+  text-decoration: underline;
+}

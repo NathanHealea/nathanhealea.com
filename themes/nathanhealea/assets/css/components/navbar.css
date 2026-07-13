@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Component — navbar (DaisyUI `.navbar`)
+   ========================================================================== */
+
+.navbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition: background-color var(--transition-med), border-color var(--transition-med);
+}
+
+.navbar-scrolled {
+  background-color: rgba(6, 8, 16, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom-color: var(--color-border);
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-block: 1rem;
+}
+
+.navbar-brand {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.navbar-brand .accent {
+  color: var(--color-primary);
+}
+
+.navbar-menu {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--rounded-btn);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-base-content-muted);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.nav-link:hover,
+.nav-link-active {
+  color: var(--color-base-content);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link-cta {
+  color: var(--color-primary-content);
+  background-color: var(--color-primary);
+  font-weight: 600;
+}
+
+.nav-link-cta:hover,
+.nav-link-cta.nav-link-active {
+  color: var(--color-primary-content);
+  background-color: var(--color-primary-focus);
+}
+
+@media (max-width: 640px) {
+  .nav-link:not(.nav-link-cta) {
+    display: none;
+  }
+}
