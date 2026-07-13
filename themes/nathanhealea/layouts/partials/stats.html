@@ -1,0 +1,13 @@
+{{- /* Quick-glance stats strip. */ -}}
+<section class="section section-tight" aria-label="At a glance">
+  <div class="container">
+    <div class="stats reveal">
+      {{ range .Site.Params.stats }}
+      <div class="stat">
+        <div class="stat-value num">{{ .value }}</div>
+        <div class="stat-desc">{{ .desc }}</div>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

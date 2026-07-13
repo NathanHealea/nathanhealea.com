@@ -1,6 +1,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
 
   <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
 
@@ -27,7 +28,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="{{ "css/main.css" | relURL }}" />
+  <!-- Styles: bundled from assets/css in a fixed cascade order via Hugo Pipes -->
+  {{- $order := slice
+    "css/base/tokens.css"
+    "css/base/reset.css"
+    "css/base/typography.css"
+    "css/layout/container.css"
+    "css/layout/section.css"
+    "css/components/link.css"
+    "css/components/btn.css"
+    "css/components/badge.css"
+    "css/components/navbar.css"
+    "css/components/card.css"
+    "css/components/timeline.css"
+    "css/components/hero.css"
+    "css/components/stats.css"
+    "css/components/footer.css"
+    "css/sections/projects.css"
+    "css/sections/contact.css"
+    "css/utilities/reveal.css"
+    "css/utilities/helpers.css"
+  -}}
+  {{- $sheets := slice -}}
+  {{- range $order -}}
+    {{- $sheets = $sheets | append (resources.Get .) -}}
+  {{- end -}}
+  {{- $css := $sheets | resources.Concat "css/main.css" -}}
+  {{- if hugo.IsProduction -}}
+    {{- $css = $css | minify | fingerprint -}}
+  {{- end -}}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }} />
 
   {{ if .IsHome }}
   <script type="application/ld+json">

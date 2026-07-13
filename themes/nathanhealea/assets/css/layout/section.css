@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Layout — section + section header
+   ========================================================================== */
+
+.section {
+  padding-block: 6rem;
+}
+
+/* Reduced top padding — used for a section that sits directly under the hero */
+.section-tight {
+  padding-block: 4rem 0;
+}
+
+.section-header {
+  margin-bottom: 2.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  margin-top: 0.6rem;
+}
+
+.section-subtitle {
+  margin-top: 0.6rem;
+  max-width: 52ch;
+  color: var(--color-base-content-faint);
+  font-weight: 400;
+}

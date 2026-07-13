@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Component — hero with interactive particle-network canvas
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Vignette fade so particles dissolve into the page background */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 30%, var(--color-base-100) 92%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  text-align: center;
+  padding-block: 6rem;
+  pointer-events: none; /* let cursor reach the canvas */
+}
+
+.hero-content a,
+.hero-status {
+  pointer-events: auto;
+}
+
+.hero-badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.hero-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-base-content-muted);
+  background: rgba(12, 15, 26, 0.7);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  backdrop-filter: blur(6px);
+}
+
+.hero-status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+  animation: hero-pulse 2s infinite;
+}
+
+@keyframes hero-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.hero-title {
+  font-size: clamp(2.7rem, 8.5vw, 6rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 1.6rem auto 0;
+  max-width: 16ch;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  color: var(--color-base-content-muted);
+  max-width: 58ch;
+  margin: 1.4rem auto 0;
+  font-weight: 400;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: center;
+  margin-top: 2.1rem;
+}
+
+.hero-hint {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-base-content-faint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-status .dot {
+    animation: none;
+  }
+}

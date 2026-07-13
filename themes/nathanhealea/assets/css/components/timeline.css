@@ -1,0 +1,94 @@
+/* ==========================================================================
+   Component — timeline (DaisyUI `.timeline`) — career history
+   ========================================================================== */
+
+.timeline {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1.5rem;
+  padding: 1.6rem;
+  background-color: var(--color-base-200);
+  border: 1px solid var(--color-border);
+  border-radius: var(--rounded-box);
+  transition: transform var(--transition-med), border-color var(--transition-med),
+    background-color var(--transition-med);
+}
+
+.timeline-item:hover {
+  transform: translateX(6px);
+  border-color: var(--color-border-strong);
+  background-color: var(--color-base-300);
+}
+
+.timeline-period {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--color-primary);
+}
+
+.timeline-location {
+  font-size: 0.78rem;
+  color: var(--color-base-content-faint);
+  margin-top: 0.25rem;
+}
+
+.timeline-role {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.timeline-company {
+  color: var(--color-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  margin-top: 0.15rem;
+}
+
+.timeline-highlights {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+  color: var(--color-base-content-muted);
+  font-size: 0.9rem;
+}
+
+.timeline-highlights li {
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.timeline-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-primary);
+}
+
+.timeline-badge-current {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  border-radius: var(--rounded-badge);
+  padding: 0.12rem 0.55rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 640px) {
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 0.6rem;
+  }
+}

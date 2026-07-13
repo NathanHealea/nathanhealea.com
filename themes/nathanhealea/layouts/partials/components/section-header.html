@@ -1,0 +1,13 @@
+{{- /*
+  Section heading block.
+  Context: a dict with
+    eyebrow  (optional) - mono label above the title
+    title    (required) - section heading text
+    subtitle (optional) - supporting line below the title
+    id       (optional) - id applied to the title element
+*/ -}}
+<header class="section-header reveal">
+  {{- with .eyebrow }}<p class="eyebrow">{{ . }}</p>{{ end }}
+  <h2 class="section-title"{{ with .id }} id="{{ . }}"{{ end }}>{{ .title }}</h2>
+  {{- with .subtitle }}<p class="section-subtitle">{{ . }}</p>{{ end }}
+</header>

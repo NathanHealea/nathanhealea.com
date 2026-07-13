@@ -11,6 +11,29 @@ theme = 'nathanhealea'
   tagline = "Building thoughtful web experiences with React, TypeScript, and Node.js."
   github = "https://github.com/NathanHealea"
   linkedin = "https://linkedin.com/in/nathanhealea"
+  email = "nhealea@uoregon.edu"
+  looking = false
+  heroSubtitle = "eleven years shipping web applications across finance, healthcare, and higher education with React, TypeScript, Node.js, and Azure."
+
+[params.available]
+  contract = false
+  hire = false
+
+[params.hire]
+  position = "Senior"
+  roles = ["Full Stack", "Software Engineer", "Software Developer"]
+
+[[params.stats]]
+  value = "11"
+  desc = "Years shipping"
+
+[[params.stats]]
+  value = "10"
+  desc = "Engineering roles"
+
+[[params.stats]]
+  value = "3"
+  desc = "Products built"
 
 [params.seo]
   keywords = ["software engineer", "full-stack developer", "React developer", "TypeScript", "Node.js", "Azure", "Eugene Oregon", "web developer", "JavaScript"]

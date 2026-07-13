@@ -1,17 +1,13 @@
-<header class="site-header" id="site-header">
-  <div class="container">
-    <a href="{{ .Site.BaseURL }}" class="logo" aria-label="{{ .Site.Params.author }} — Home">NH</a>
-    <nav class="nav" aria-label="Main navigation">
-      <ul class="nav-list" id="nav-list">
-        <li class="nav-list-item"><a href="#experience" class="nav-link">Experience</a></li>
-        <li class="nav-list-item"><a href="#projects" class="nav-link">Projects</a></li>
-        <li class="nav-list-item"><a href="#contact" class="nav-link nav-link--cta">Contact</a></li>
-      </ul>
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-list">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+{{- /* Fixed site navbar. Gains a blurred background on scroll (see modules/nav.js). */ -}}
+<header class="navbar" data-navbar>
+  <div class="container navbar-inner">
+    <a class="navbar-brand" href="{{ "/" | relURL }}" aria-label="{{ .Site.Params.author }} — Home">
+      <span class="accent">$</span> nathan_healea
+    </a>
+    <nav class="navbar-menu" aria-label="Primary">
+      <a class="nav-link" href="#experience">Experience</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link nav-link-cta" href="#contact">Contact</a>
     </nav>
   </div>
 </header>

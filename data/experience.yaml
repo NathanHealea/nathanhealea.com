@@ -1,81 +1,124 @@
 - company: University of Oregon
-  title: Programmer Analyst II
+  title: Analyst Programmer II
   location: Eugene, OR
-  start: "2024"
-  end: "Present"
+  start: Jan 2023
+  end: Present
   current: true
   highlights:
-    - Develop and maintain enterprise web applications supporting university operations and academic programs
-    - Collaborate with cross-functional teams to deliver software solutions aligned with institutional requirements
-    - Contribute to technology modernization initiatives within the university's IT infrastructure
-  tech: [TypeScript, PHP, React, SQL]
-
-- company: Northwest Community Credit Union
-  title: Software Developer II
-  location: Eugene, OR
-  start: "2022"
-  end: "2024"
-  current: false
-  highlights:
-    - Architected the first public-facing serverless application hosted in Microsoft Cloud by a Pacific Northwest credit union, establishing a new cloud deployment standard for the organization
-    - Designed and built React/Redux single-page applications powering member-facing digital banking features
-    - Led Azure cloud deployment initiatives, driving migration from on-premises infrastructure and reducing operational overhead
-  tech: [React, Redux, TypeScript, Azure, Node.js, Serverless]
-
-- company: American Express
-  title: Software Engineer II
-  location: Remote
-  start: "2021"
-  end: "2022"
-  current: false
-  highlights:
-    - Maintained and enhanced enterprise-scale software serving millions of cardmember transactions
-    - Expanded ad-hoc report querying UI, improving data accessibility for internal business analysts
-    - Led a Node.js runtime version upgrade across multiple services, improving security posture and performance
-  tech: [Node.js, JavaScript, React, SQL]
+    - Migrated 70 websites from Aegir to Pantheon on a team of 5, owning the migration workflow, Jira tracking, and management status reporting
+    - Upgraded Drupal sites from Drupal 7 and 9 to Drupal 10 and provided ongoing end-user support
+    - Led COVID-19 research data archival to meet CLIA and university retention policies — auditing data, writing SQL against Microsoft Dataverse, and building a Node.js app to pull Qualtrics survey results via API
+    - Defined Jira standards, workflows, and adoption plans as a member of the Jira Subcommittee and Business Applications Change Management Board
+  tech: [Drupal, PHP, Node.js, C#, .NET Core, JavaScript, MySQL, Jira]
 
 - company: Providence Health Plan
   title: Software Engineer III
-  location: Portland, OR
-  start: "2020"
-  end: "2021"
+  location: Remote
+  start: Nov 2022
+  end: Jan 2023
   current: false
   highlights:
-    - Delivered full-stack features for health plan member portal serving thousands of Oregon members
-    - Collaborated with product and design teams to translate requirements into maintainable software solutions
-    - Mentored junior engineers and led code reviews to uphold engineering standards
-  tech: [React, Node.js, TypeScript, REST APIs]
+    - Reduced development complexity by piloting a new technology stack, building a centralized error-display application shared across apps and third-party integrations
+    - Implemented insurance card displays in the HealthTrio CMS to meet business end-of-year goals
+    - Deployed applications to on-prem and cloud environments via Azure DevOps and Octopus, and managed users through Auth0 and AWS DynamoDB
+    - Created onboarding documentation and onboarded new team members within their first weeks
+  tech: [TypeScript, Angular, React, Next.js, C#, .NET, AWS, Auth0]
 
 - company: Maps Credit Union
   title: Software Developer
   location: Salem, OR
-  start: "2019"
-  end: "2020"
+  start: Mar 2022
+  end: Oct 2022
   current: false
   highlights:
-    - Built and maintained web applications supporting credit union member services and internal operations
-    - Developed RESTful API integrations with third-party financial services platforms
-  tech: [JavaScript, PHP, REST APIs, SQL]
+    - Led a refactor of legacy React components — applying the DRY principle, simplifying state management, and converting class components to function components
+    - Expanded online banking features using test-driven development
+    - Deployed applications to Azure via Azure DevOps and authored new-employee onboarding documentation
+  tech: [React, C#, .NET, SCSS, Azure, MSSQL, Cosmos DB]
 
 - company: PacificSource Health Plans
   title: Full Stack Software Developer
-  location: Oregon
-  start: "2018"
-  end: "2019"
+  location: Eugene, OR
+  start: Aug 2021
+  end: Mar 2022
   current: false
   highlights:
-    - Designed and implemented full-stack features across member-facing and internal-facing health plan applications
-    - Contributed to front-end and back-end codebases serving Oregon and Idaho health plan members
-  tech: [JavaScript, PHP, React, SQL]
+    - Refactored the user interface to achieve AA accessibility compliance
+    - Collaborated across teams to standardize UI component designs
+    - Improved code readability and maintainability, and migrated onboarding documentation from Word to Azure DevOps
+  tech: [C#, .NET, JavaScript, Bootstrap, HTML/CSS, MSSQL, Azure DevOps]
+
+- company: American Express
+  title: Software Engineer II
+  location: Phoenix, AZ
+  start: Sep 2020
+  end: Aug 2021
+  current: false
+  highlights:
+    - Expanded an ad-hoc report-querying UI to support advanced nested group-by / order-by queries, with new server-side logic built to extend cleanly
+    - Maintained enterprise software with a team of six — feature work, bug fixes, code reviews, testing, and Docker deployments to Rancher
+    - Led a Node.js runtime upgrade for the platform and documented the local-environment upgrade process
+    - Established the team's branching strategy and release standards
+  tech: [React, TypeScript, C#, .NET Core, Node.js, Jest, Docker, PostgreSQL]
+
+- company: Northwest Community Credit Union
+  title: Software Developer II
+  location: Eugene, OR
+  start: Oct 2019
+  end: Sep 2020
+  current: false
+  highlights:
+    - Designed a single-page application architecture (Redux, React-Router, Re-Ducks) that became the standard for public-facing apps across 4 projects
+    - Introduced modern JavaScript frameworks (React, Vue) to the team and led their adoption
+    - Established a Software Development Life Cycle with source-code vulnerability scanning (SonarQube) used in a successful audit
+    - Built internal and member-facing applications and led deployments to Microsoft Azure
+  tech: [React, C#, .NET Core, Node.js, Express, Python, Azure, MSSQL]
+
+- company: Northwest Community Credit Union
+  title: Programmer Analyst
+  location: Eugene, OR
+  start: Aug 2017
+  end: Oct 2019
+  current: false
+  highlights:
+    - Architected and deployed the first public-facing serverless application hosted in Microsoft cloud by a Pacific Northwest credit union
+    - Replaced a 3-day, 2-person manual process with an under-10-minute automated full-stack web application
+    - Configured and implemented the Atlassian suite (Jira, Service Desk, Bitbucket, Bamboo) for 300+ employees, including MSSQL and Active Directory integration
+    - Designed MSSQL schemas and custom Bootstrap / Material UI themes used across new and legacy applications
+  tech: [React, C#, .NET Core, Node.js, Python, Azure, MSSQL, Jira]
 
 - company: Oregon State University
-  title: Software Engineer
+  title: Software Engineer, Technology Across the Curriculum
   location: Corvallis, OR
-  start: "2016"
-  end: "2018"
+  start: Jul 2015
+  end: Aug 2017
   current: false
   highlights:
-    - Built text analysis REST services to support academic research applications
-    - Redesigned user interfaces for improved mobile responsiveness across university web platforms
-    - Contributed to open-source educational tooling used by OSU faculty and students
-  tech: [PHP, JavaScript, REST APIs, Python]
+    - Built a text-analysis REST service on a LAMP stack with a companion Drupal module for data visualization, plus an admin portal
+    - Automated local development with Vagrant-built VMs replicating production, with documentation for the team
+    - Introduced source control, trained the team on Git branching and merging, and migrated legacy projects to GitHub
+    - Parsed XML into a MySQL schema with Python upload scripts to simplify data for researchers
+  tech: [PHP, Drupal, Python, jQuery, MySQL, Bootstrap, Git]
+
+- company: Oregon State University
+  title: Software Engineer, Integrated Plant Protection Center
+  location: Corvallis, OR
+  start: Mar 2015
+  end: Jul 2015
+  current: false
+  highlights:
+    - Redesigned an existing application's user interface to be mobile-friendly with Bootstrap
+    - Integrated the Google Maps API to display geographic location and relevant data for a selected parcel
+    - Architected new features from client requirements and supported the team on database configuration and data access
+  tech: [C#, .NET, SQL, jQuery, Bootstrap, Google Maps API]
+
+- company: Simplified Computing LLC
+  title: Web Developer
+  location: Eugene, OR
+  start: Mar 2014
+  end: Jun 2014
+  current: false
+  highlights:
+    - Built client websites to requirements, debugging and problem-solving alongside a team of developers
+    - Delivered projects on deadline and researched clients' businesses to inform accurate SEO
+  tech: [JavaScript, HTML/CSS]

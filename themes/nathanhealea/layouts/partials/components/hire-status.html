@@ -1,0 +1,8 @@
+{{- /* Hire-availability badge. Renders only when [params.available].hire is true,
+       pulling the seniority and role list from [params.hire]. Expects the page as context. */ -}}
+{{- if .Site.Params.available.hire }}
+<span class="hero-status">
+  <span class="dot" aria-hidden="true"></span>
+  Available for{{ with .Site.Params.hire.position }} {{ . }}{{ end }}{{ with .Site.Params.hire.roles }} {{ delimit . ", " " & " }}{{ end }} roles
+</span>
+{{- end }}
