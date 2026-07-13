@@ -2,18 +2,12 @@
 <section class="section section-tight" aria-label="At a glance">
   <div class="container">
     <div class="stats reveal">
+      {{ range .Site.Params.stats }}
       <div class="stat">
-        <div class="stat-value num">9</div>
-        <div class="stat-desc">Years shipping</div>
+        <div class="stat-value num">{{ .value }}</div>
+        <div class="stat-desc">{{ .desc }}</div>
       </div>
-      <div class="stat">
-        <div class="stat-value num">7</div>
-        <div class="stat-desc">Engineering roles</div>
-      </div>
-      <div class="stat">
-        <div class="stat-value num">3</div>
-        <div class="stat-desc">Products built</div>
-      </div>
+      {{ end }}
     </div>
   </div>
 </section>
