@@ -12,6 +12,15 @@ theme = 'nathanhealea'
   github = "https://github.com/NathanHealea"
   linkedin = "https://linkedin.com/in/nathanhealea"
   email = "nhealea@uoregon.edu"
+  looking = false
+
+[params.available]
+  contract = true
+  hire = true
+
+[params.hire]
+  position = "Senior"
+  roles = ["Full Stack", "Software Engineer", "Software Developer"]
 
 [params.seo]
   keywords = ["software engineer", "full-stack developer", "React developer", "TypeScript", "Node.js", "Azure", "Eugene Oregon", "web developer", "JavaScript"]
