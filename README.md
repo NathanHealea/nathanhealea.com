@@ -12,10 +12,10 @@ Personal portfolio site for Nathan Healea — a static site built with [Hugo](ht
 
 ## Prerequisites
 
-| Tool | Version | Notes |
-| --- | --- | --- |
+| Tool                                    | Version                            | Notes                                                                             |
+| --------------------------------------- | ---------------------------------- | --------------------------------------------------------------------------------- |
 | [Hugo](https://gohugo.io/installation/) | `0.160.0` extended (min `0.110.0`) | Pinned in `vercel.json` via `HUGO_VERSION`; match it locally to avoid build drift |
-| [Git](https://git-scm.com/) | any recent | |
+| [Git](https://git-scm.com/)             | any recent                         |                                                                                   |
 
 Node.js is **not** required. Hugo's embedded esbuild handles JavaScript bundling.
 
@@ -170,16 +170,16 @@ Most day-to-day changes are config or data edits — no templates required.
 
 ### Site params (`hugo.toml`)
 
-| Param | Purpose |
-| --- | --- |
-| `title`, `baseURL` | Site identity |
-| `params.description`, `params.seo.keywords` | Meta description and keywords |
-| `params.author`, `params.location`, `params.headline`, `params.tagline` | Identity shown across the page |
-| `params.heroSubtitle` | Hero paragraph copy |
-| `params.github`, `params.linkedin`, `params.email` | Social/contact links |
-| `params.stats` | Repeatable `[[params.stats]]` blocks (`value`, `desc`) for the stats band |
-| `params.available.hire` / `params.available.contract` | Toggle the availability badges on or off |
-| `params.hire.position`, `params.hire.roles` | Seniority and role list shown when `available.hire` is `true` |
+| Param                                                                   | Purpose                                                                   |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `title`, `baseURL`                                                      | Site identity                                                             |
+| `params.description`, `params.seo.keywords`                             | Meta description and keywords                                             |
+| `params.author`, `params.location`, `params.headline`, `params.tagline` | Identity shown across the page                                            |
+| `params.heroSubtitle`                                                   | Hero paragraph copy                                                       |
+| `params.github`, `params.linkedin`, `params.email`                      | Social/contact links                                                      |
+| `params.stats`                                                          | Repeatable `[[params.stats]]` blocks (`value`, `desc`) for the stats band |
+| `params.available.hire` / `params.available.contract`                   | Toggle the availability badges on or off                                  |
+| `params.hire.position`, `params.hire.roles`                             | Seniority and role list shown when `available.hire` is `true`             |
 
 ### Work history (`data/experience.yaml`)
 
