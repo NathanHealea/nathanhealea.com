@@ -1,0 +1,29 @@
+{
+  "name": "nathanhealea.com",
+  "version": "1.0.0",
+  "description": "Personal portfolio site for Nathan Healea — a static site built with [Hugo](https://gohugo.io/) and a custom in-repo theme (`themes/nathanhealea`). The site is a single-page layout assembled from partials (hero, stats, experience, projects, contact) driven by YAML data files and site params, deployed to Vercel.",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "start": "hugo server",
+    "dev": "hugo server -D",
+    "build": "hugo build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathanHealea/nathanhealea.com.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NathanHealea/nathanhealea.com/issues"
+  },
+  "homepage": "https://github.com/NathanHealea/nathanhealea.com#readme",
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "prettier-plugin-go-template": "^0.0.15"
+  }
+}
