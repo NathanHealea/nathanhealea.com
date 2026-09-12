@@ -20,7 +20,7 @@ export function initReveal() {
         io.unobserve(entry.target);
       });
     },
-    { threshold: 0.08 }
+    { threshold: 0.08 },
   );
 
   targets.forEach((el) => io.observe(el));

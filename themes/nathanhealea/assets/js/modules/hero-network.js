@@ -13,7 +13,11 @@ export function initHeroNetwork() {
   const ctx = canvas.getContext("2d");
   const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  let W, H, dpr, particles = [], raf;
+  let W,
+    H,
+    dpr,
+    particles = [],
+    raf;
   const mouse = { x: -999, y: -999 };
 
   const LINK = 130;

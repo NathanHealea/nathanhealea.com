@@ -10,7 +10,9 @@
   border: 1px solid var(--color-border);
   border-radius: var(--rounded-box);
   overflow: hidden;
-  transition: transform var(--transition-med), border-color var(--transition-med);
+  transition:
+    transform var(--transition-med),
+    border-color var(--transition-med);
 }
 
 .card-hover:hover {
@@ -50,7 +52,12 @@
   position: absolute;
   inset: 0 0 auto 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
+  background: linear-gradient(
+    90deg,
+    var(--color-primary),
+    var(--color-secondary),
+    var(--color-accent)
+  );
   opacity: 0;
   transition: opacity var(--transition-med);
 }

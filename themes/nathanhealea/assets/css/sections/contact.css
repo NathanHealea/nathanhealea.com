@@ -21,7 +21,11 @@
   transform: translateX(-50%);
   width: 140%;
   height: 80%;
-  background: radial-gradient(closest-side, rgba(56, 189, 248, 0.16), transparent 70%);
+  background: radial-gradient(
+    closest-side,
+    rgba(56, 189, 248, 0.16),
+    transparent 70%
+  );
   pointer-events: none;
 }
 

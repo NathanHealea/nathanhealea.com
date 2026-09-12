@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ .Site.LanguageCode | default "en" }}" data-theme="dark">
   {{- partial "head.html" . -}}
   <body>
@@ -13,6 +13,9 @@
     {{- if hugo.IsProduction -}}
       {{- $js = $js | fingerprint -}}
     {{- end -}}
-    <script src="{{ $js.RelPermalink }}"{{ with $js.Data.Integrity }} integrity="{{ . }}"{{ end }} defer></script>
+    <script
+      src="{{ $js.RelPermalink }}"
+      {{ with $js.Data.Integrity }}integrity="{{ . }}"{{ end }}
+      defer></script>
   </body>
 </html>

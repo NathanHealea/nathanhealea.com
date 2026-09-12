@@ -6,14 +6,20 @@
       {{ partial "components/hire-status.html" . }}
       {{ partial "components/contract-status.html" . }}
     </div>
-    <h1 class="hero-title">Full-stack engineer building <span class="text-gradient">connected systems.</span></h1>
+    <h1 class="hero-title">
+      Full-stack engineer building
+      <span class="text-gradient">connected systems.</span>
+    </h1>
     <p class="hero-subtitle">
-      I'm {{ .Site.Params.author }} — {{ .Site.Params.heroSubtitle }}
+      I'm {{ .Site.Params.author }} —
+      {{ .Site.Params.heroSubtitle }}
     </p>
     <div class="hero-actions">
       <a class="btn btn-primary" href="#projects">View my work</a>
       <a class="btn btn-outline" href="#contact">Get in touch</a>
     </div>
   </div>
-  <p class="hero-hint" aria-hidden="true">move your cursor · the network responds</p>
+  <p class="hero-hint" aria-hidden="true">
+    move your cursor · the network responds
+  </p>
 </section>

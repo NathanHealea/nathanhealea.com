@@ -34,7 +34,7 @@ export function initNav() {
         match.link.classList.add("nav-link-active");
       });
     },
-    { rootMargin: "-45% 0px -50% 0px", threshold: 0 }
+    { rootMargin: "-45% 0px -50% 0px", threshold: 0 },
   );
 
   sections.forEach(({ section }) => spy.observe(section));

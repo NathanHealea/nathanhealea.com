@@ -5,41 +5,62 @@
       "eyebrow" "02 — Projects"
       "title" "Things I've shipped"
       "subtitle" "Full-stack TypeScript products, built end to end."
-    ) }}
+      )
+    }}
     <div class="project-grid">
       {{ range where hugo.Data.projects "featured" true }}
-      {{ $title := .title }}
-      <article class="card card-hover card-accent-top reveal">
-        <div class="card-body">
-          <h3 class="card-title">
-            {{ with .icon }}<span class="project-icon" aria-hidden="true">{{ . }}</span>{{ end }}
-            {{ .title }}
-            {{ with .live }}{{ if . }}<span class="badge badge-accent">Live</span>{{ end }}{{ end }}
-          </h3>
-          <p class="project-description">{{ .description }}</p>
-          {{ with .tech }}
-          {{ partial "components/badge-list.html" (dict "items" .) }}
-          {{ end }}
-          <div class="card-actions">
-            {{ with .github }}
-            <a class="project-link" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="View {{ $title }} source on GitHub">
-              {{ partial "icons/github.html" "" }}
-              <span>Source</span>
-            </a>
+        {{ $title := .title }}
+        <article class="card card-hover card-accent-top reveal">
+          <div class="card-body">
+            <h3 class="card-title">
+              {{ with .icon }}
+                <span class="project-icon" aria-hidden="true">{{ . }}</span>
+              {{ end }}
+              {{ .title }}
+              {{ with .live }}
+                {{ if . }}<span class="badge badge-accent">Live</span>{{ end }}
+              {{ end }}
+            </h3>
+            <p class="project-description">{{ .description }}</p>
+            {{ with .tech }}
+              {{ partial "components/badge-list.html" (dict "items" .) }}
             {{ end }}
-            {{ with .live }}{{ if . }}
-            <a class="project-link project-link-spacer" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Visit {{ $title }}">
-              <span>Visit</span>
-              {{ partial "icons/external.html" "" }}
-            </a>
-            {{ end }}{{ end }}
+            <div class="card-actions">
+              {{ with .github }}
+                <a
+                  class="project-link"
+                  href="{{ . }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View {{ $title }} source on GitHub">
+                  {{ partial "icons/github.html" "" }}
+                  <span>Source</span>
+                </a>
+              {{ end }}
+              {{ with .live }}
+                {{ if . }}
+                  <a
+                    class="project-link project-link-spacer"
+                    href="{{ . }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit {{ $title }}">
+                    <span>Visit</span>
+                    {{ partial "icons/external.html" "" }}
+                  </a>
+                {{ end }}
+              {{ end }}
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
       {{ end }}
     </div>
     <div class="projects-more">
-      <a class="btn btn-outline" href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer">
+      <a
+        class="btn btn-outline"
+        href="{{ .Site.Params.github }}"
+        target="_blank"
+        rel="noopener noreferrer">
         {{ partial "icons/github.html" "" }}
         <span>View all on GitHub</span>
       </a>

@@ -17,8 +17,11 @@
   white-space: nowrap;
   background-color: var(--color-base-200);
   color: var(--color-base-content);
-  transition: transform var(--transition-fast), background-color var(--transition-fast),
-    border-color var(--transition-fast), color var(--transition-fast);
+  transition:
+    transform var(--transition-fast),
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .btn:hover {

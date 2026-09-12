@@ -1,15 +1,16 @@
 {{- /*
   Renders a wrapping row of tech badges.
   Context: a dict with
-    items (required) - slice of strings
-    class (optional) - extra class on each badge (e.g. "badge-primary")
-*/ -}}
+  items (required) - slice of strings
+  class (optional) - extra class on each badge (e.g. "badge-primary")
+  */
+-}}
 {{- $items := .items -}}
 {{- $extra := .class | default "" -}}
 {{- with $items -}}
-<ul class="badge-group">
-  {{- range . }}
-  <li class="badge {{ $extra }}">{{ . }}</li>
-  {{- end }}
-</ul>
+  <ul class="badge-group">
+    {{- range . }}
+      <li class="badge {{ $extra }}">{{ . }}</li>
+    {{- end }}
+  </ul>
 {{- end -}}

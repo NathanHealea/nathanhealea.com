@@ -3,30 +3,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
 
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+  <title>
+    {{ if .IsHome }}
+      {{ .Site.Title }}
+    {{ else }}
+      {{ .Title }} | {{ .Site.Title }}
+    {{ end }}
 
-  <meta name="description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  </title>
+
+  <meta
+    name="description"
+    content="{{ if .Params.description }}
+      {{ .Params.description }}
+    {{ else }}
+      {{ .Site.Params.description }}
+    {{ end }}" />
   <meta name="author" content="{{ .Site.Params.author }}" />
-  {{ with .Site.Params.seo.keywords }}<meta name="keywords" content="{{ delimit . ", " }}" />{{ end }}
+  {{ with .Site.Params.seo.keywords }}
+    <meta name="keywords" content="{{ delimit . ", " }}" />
+  {{ end }}
+
 
   <link rel="canonical" href="{{ .Permalink }}" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
-  <meta property="og:description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-  <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}" />
+  <meta
+    property="og:title"
+    content="{{ if .IsHome }}
+      {{ .Site.Title }}
+    {{ else }}
+      {{ .Title }}
+    {{ end }}" />
+  <meta
+    property="og:description"
+    content="{{ if .Params.description }}
+      {{ .Params.description }}
+    {{ else }}
+      {{ .Site.Params.description }}
+    {{ end }}" />
+  <meta
+    property="og:type"
+    content="{{ if .IsHome }}
+      website
+    {{ else }}
+      article
+    {{ end }}" />
   <meta property="og:url" content="{{ .Permalink }}" />
   <meta property="og:site_name" content="{{ .Site.Params.author }}" />
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
-  <meta name="twitter:description" content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+  <meta
+    name="twitter:title"
+    content="{{ if .IsHome }}
+      {{ .Site.Title }}
+    {{ else }}
+      {{ .Title }}
+    {{ end }}" />
+  <meta
+    name="twitter:description"
+    content="{{ if .Params.description }}
+      {{ .Params.description }}
+    {{ else }}
+      {{ .Site.Params.description }}
+    {{ end }}
+    " />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
 
   <!-- Styles: bundled from assets/css in a fixed cascade order via Hugo Pipes -->
   {{- $order := slice
@@ -57,7 +106,10 @@
   {{- if hugo.IsProduction -}}
     {{- $css = $css | minify | fingerprint -}}
   {{- end -}}
-  <link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }} />
+  <link
+    rel="stylesheet"
+    href="{{ $css.RelPermalink }}"
+    {{ with $css.Data.Integrity }}integrity="{{ . }}"{{ end }} />
 
   {{ if .IsHome }}
   <script type="application/ld+json">
