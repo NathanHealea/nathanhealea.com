@@ -132,6 +132,8 @@ describe('content schemas', () => {
       { name: 'featured as string', schema: projectSchema, input: { ...validProject, featured: 'yes' }, path: ['featured'] },
       { name: 'fractional order', schema: projectSchema, input: { ...validProject, order: 1.5 }, path: ['order'] },
       { name: 'resume without leading slash', schema: aboutSchema, input: { ...validAbout, resume: 'resume.pdf' }, path: ['resume'] },
+      { name: 'protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '//evil.example/x.pdf' }, path: ['resume'] },
+      { name: 'backslash protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '/\\evil.example/x.pdf' }, path: ['resume'] },
       {
         name: 'social javascript url',
         schema: aboutSchema,

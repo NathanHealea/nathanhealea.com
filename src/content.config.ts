@@ -39,7 +39,7 @@ export const aboutSchema = z.strictObject({
   social: z.array(z.strictObject({ label: z.string(), url: z.url({ protocol: /^(https|mailto)$/ }) })),
   skills: z.array(z.strictObject({ group: z.string(), items: z.array(z.string()).min(1) })),
   education: z.array(z.strictObject({ school: z.string(), credential: z.string(), year: z.int().optional() })),
-  resume: z.string().startsWith('/').optional(),
+  resume: z.string().regex(/^\/(?![/\\])/, 'Expected a site path such as /resume.pdf').optional(),
 });
 
 const experience = defineCollection({
