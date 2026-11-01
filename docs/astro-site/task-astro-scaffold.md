@@ -2,7 +2,7 @@
 type: task
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: astro-scaffold
-status: staged
+status: released
 branch: task/astro-scaffold
 worktree_path: /Users/nhealea/Personal/Development/nathanhealea-com-worktrees/task-astro-scaffold
 created: 2026-10-31
@@ -11,7 +11,7 @@ commit_type:         # optional override for the release subject type (default: 
 version: 0.0.2
 review_approved: 2026-10-31
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the branch's last commit
+tag: v0.0.2
 ---
 
 # Scaffold Astro project with test tooling
@@ -108,3 +108,4 @@ Create the Astro project on `v10` with TypeScript, npm scripts, Vitest, and Play
 - 2026-10-31 — Test audit: 6 of 15 mutants survived (three WCAG tags, experimental list, message completeness). Added T7 and strengthened T5; all 6 now killed.
 - 2026-10-31 — Staged: verification passed; version 0.0.1 → 0.0.2; no changelog file.
 - 2026-10-31 — Review approved.
+- 2026-10-31 — Released 0.0.2 as v0.0.2.
