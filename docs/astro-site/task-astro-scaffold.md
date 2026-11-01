@@ -76,12 +76,12 @@ Create the Astro project on `v10` with TypeScript, npm scripts, Vitest, and Play
 
 ## Implementation plan
 
-1. [ ] Scaffold Astro minimal template with TypeScript strict, set `site`, add `.gitignore`, delete the generated README, set `engines.node` — touches `package.json`, `package-lock.json`, `astro.config.mjs`, `tsconfig.json`, `.gitignore` — tests T1
-2. [ ] Add `@astrojs/check` and `typescript`, and the `typecheck` script — touches `package.json`, `package-lock.json` — tests T2
-3. [ ] Add Vitest with config and smoke test, and the `test` script — touches `package.json`, `package-lock.json`, `vitest.config.ts`, `tests/unit/smoke.test.ts` — tests T3
-4. [ ] Add Playwright (Chromium) and `@axe-core/playwright`, config serving `dist/` via `astro preview`, the axe helper, and the `test:e2e` script — touches `package.json`, `package-lock.json`, `playwright.config.ts`, `tests/e2e/helpers/a11y.ts`, `tests/e2e/a11y-helper.spec.ts` — tests T5
-5. [ ] Make the placeholder home page accessible and add the e2e smoke test — touches `src/pages/index.astro`, `tests/e2e/smoke.spec.ts` — tests T4
-6. [ ] Record `test_command` and `verify_commands` (`npm run typecheck`, `npm run build`, `npm test`, `npm run test:e2e`) in the Work Item Workflow section — touches `CLAUDE.md` — tests none (config only)
+1. [x] Scaffold Astro minimal template with TypeScript strict, set `site`, add `.gitignore`, delete the generated README, set `engines.node` — touches `package.json`, `package-lock.json`, `astro.config.mjs`, `tsconfig.json`, `.gitignore` — tests T1
+2. [x] Add `@astrojs/check` and `typescript`, and the `typecheck` script — touches `package.json`, `package-lock.json` — tests T2
+3. [x] Add Vitest with config and smoke test, and the `test` script — touches `package.json`, `package-lock.json`, `vitest.config.ts`, `tests/unit/smoke.test.ts` — tests T3
+4. [x] Add Playwright (Chromium) and `@axe-core/playwright`, config serving `dist/` via `astro preview`, the axe helper, and the `test:e2e` script — touches `package.json`, `package-lock.json`, `playwright.config.ts`, `tests/e2e/helpers/a11y.ts`, `tests/e2e/a11y-helper.spec.ts` — tests T5
+5. [x] Make the placeholder home page accessible and add the e2e smoke test — touches `src/pages/index.astro`, `tests/e2e/smoke.spec.ts` — tests T4
+6. [x] Record `test_command` and `verify_commands` (`npm run typecheck`, `npm run build`, `npm test`, `npm run test:e2e`) in the Work Item Workflow section — touches `CLAUDE.md` — tests none (config only)
 
 **Must not change:** `base_branch: v10` in `CLAUDE.md`.
 
@@ -100,3 +100,5 @@ Create the Astro project on `v10` with TypeScript, npm scripts, Vitest, and Play
 - 2026-10-31 — Planned.
 - 2026-10-31 — Plan approved.
 - 2026-10-31 — Started on branch task/astro-scaffold from v10.
+- 2026-10-31 — Steps 1-3: Astro 7.4.4 scaffolded, astro check and Vitest wired. T3 written inline rather than by test-engineer: it is a tooling smoke test with no behavior to specify, so a red phase is not meaningful (npx fetched vitest on the fly and it passed before install).
+- 2026-10-31 — Build complete. Steps 4-6: Playwright webServer uses astro preview --ignore-lock because Astro 7 auto-backgrounds preview under an agent shell (withastro/astro#17903). CLAUDE.md verify_commands take effect once merged to v10 (wi reads the main checkout's CLAUDE.md). npm blocks the fsevents install script (optional macOS watcher); build and tests unaffected. Full verify green from clean npm ci.
