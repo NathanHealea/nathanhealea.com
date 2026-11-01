@@ -2,13 +2,13 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: content-collections
-status: in-progress
+status: staged
 branch: story/content-collections
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-content-collections
 created: 2026-11-01
 approved: 2026-11-01
 commit_type:         # optional override for the merge commit type (default: story=feat, bug=fix, task=chore)
-version:             # set by `wi stage`
+version: 0.1.0
 review_approved:     # set by `wi accept`
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the merge commit
@@ -57,14 +57,14 @@ Verified against the Astro docs (docs.astro.build, content collections guide and
 
 - **R1** — `experience` entries live in `src/content/experience/*.md`. Frontmatter has `company`, `title`, `location` (strings), `start` (`YYYY-MM`), optional `end` (`YYYY-MM`; absent means current), `highlights` (at least one string), and `tech` (strings, default empty). The markdown body is the role's details and may be empty. An `end` earlier than `start` fails validation. Hugo's `current` flag is dropped because it is derivable from `end` and could contradict it.
 - **R2** — `projects` entries live in `src/content/projects/*.md`. Frontmatter has `title`, `description` (strings), `tech` (strings, default empty), optional `github` and `live` (absolute `https` URLs), `featured` (boolean, default false), and optional `order` (integer). A project's identity and URL segment is its file name, so `slug` is not a schema field.
-- **R3** — The `about` collection is a single entry, `src/content/about/about.md`. Frontmatter has `name`, `headline`, `tagline`, `location` (strings), `social` (list of `{ label, url }`, `url` an absolute URL using `https:` or `mailto:` only, since it becomes an `href`), `skills` (list of `{ group, items }`, at least one item per group), `education` (list of `{ school, credential, year? }`), and optional `resume` (a site path starting with `/`). The body is the bio.
-- **R4** — All three schemas are strict: a missing required field, a wrongly typed field, or an unknown field fails the build, and the error names the entry's file and the offending field. (Strict objects are what make a typo like `hilights:` fail instead of being silently dropped.)
+- **R3** — The `about` collection is a single entry, `src/content/about/about.md`. Frontmatter has `name`, `headline`, `tagline`, `location` (strings), `social` (list of `{ label, url }`, `url` an absolute URL using `https:` or `mailto:` only, since it becomes an `href`), `skills` (list of `{ group, items }`, at least one item per group), `education` (list of `{ school, credential, year? }`), and optional `resume` (a site path: starts with `/` and resolves to the site's own origin, so `//host`, `/\host`, and `/<tab>/host` are rejected). The body is the bio.
+- **R4** — All three schemas are strict, and every required text field (including list items) must be non-blank after trimming, because those values become headings and link text. A missing required field, a blank text field, a wrongly typed field, or an unknown field fails the build, and the error names the entry's file and the offending field. (Strict objects are what make a typo like `hilights:` fail instead of being silently dropped.)
 - **R5** — `getExperience()` returns every experience entry sorted by `start` descending; roles with the same `start` put the one without `end` (current) first, then later `end` first.
 - **R6** — `getProjects()` returns every project sorted by `order` ascending, with unordered projects after ordered ones, and ties broken by `title` (case-insensitive). `getFeaturedProjects()` returns the featured subset in the same order, and an empty array when none are featured.
 - **R7** — `getAbout()` returns the single about entry. If the collection has zero entries or more than one, it throws an error naming `src/content/about/` and the count found.
 - **R8** — `formatRange(start, end?)` returns `"Jan 2023 – Present"` when `end` is absent, `"Mar 2022 – Oct 2022"` for a range, and `"Mar 2022"` when start and end are the same month. Month names are English three-letter abbreviations, the separator is a spaced en dash, and the result does not depend on the machine's time zone.
 - **R9** — Placeholder entries exist so dependent stories can build: `experience/placeholder-current.md` (no `end`) and `experience/placeholder-past.md` (with `end` and a body); `projects/placeholder-alpha.md` (featured, with `github` and `live`, with a body) and `projects/placeholder-beta.md` (not featured, no links, empty body); and `about/about.md`. Every placeholder file name except `about.md` contains "placeholder", every placeholder's text says it is placeholder content, and none names a real person, employer, student, or record. `npm run build` succeeds with them.
-- **R10** — FERPA (epic R8): no schema has a field for people served (student names, IDs, grades, or records), and because schemas are strict, such a field cannot be added to an entry without a schema change that review would see. Placeholder content is fictional.
+- **R10** — FERPA (epic R8): no schema has a field for people served (student names, IDs, grades, or records), and because schemas are strict, such a *field* cannot be added to an entry without a schema change that review would see. This does not cover free text (`highlights`, `description`, markdown bodies); keeping people served out of those is a manual review step in `content-migration`. Placeholder content is fictional.
 
 ## Acceptance criteria
 
@@ -85,12 +85,12 @@ Unit tests run under Vitest (`tests/unit/**/*.test.ts`, the existing `getViteCon
 
 | ID | Covers | Test | File | Asserts |
 |----|--------|------|------|---------|
-| T1 | R1, R2, R3, R9 | `placeholder entries parse and get defaults` | `tests/unit/content-schemas.test.ts` | Every `src/content/**/*.md` frontmatter parses with its collection's schema; `placeholder-beta` gets `tech: []`; non-featured gets `featured: false` |
+| T1 | R1, R2, R3, R9 | `content entries parse and get defaults` | `tests/unit/content-schemas.test.ts` | Every `src/content/**/*.md` frontmatter parses with its collection's schema; experience and projects each have at least one entry and about has exactly `about.md`; a minimal project gets `tech: []` and `featured: false`. Does not name placeholder files, so it survives `content-migration` |
 | T2 | R1 | `experience rejects end before start` | `tests/unit/content-schemas.test.ts` | `start: 2023-05, end: 2023-01` fails with an issue whose path is `end` |
-| T3 | R1, R2, R3 | `schemas reject missing and mistyped fields` | `tests/unit/content-schemas.test.ts` | Table of cases: missing `company`; `highlights: []`; `start: Jan 2023`; `start: 2023-13`; project `github: not-a-url`; `github: http://…` (non-https); `featured: "yes"`; `order: 1.5`; about `resume: resume.pdf` (no leading `/`); social `url: javascript:alert(1)` and `url: http://…`; skill group with empty `items`. Each fails with the expected path |
+| T3 | R1, R2, R3, R4 | `schemas reject missing and mistyped fields` | `tests/unit/content-schemas.test.ts` | Table of cases: missing `company`; `highlights: []`; `start: Jan 2023`; `start: 2023-13`; project `github: not-a-url`; `github: http://…` (non-https); `featured: "yes"`; `order: 1.5`; about `resume: resume.pdf` (no leading `/`); social `url: javascript:alert(1)` and `url: http://…`; skill group with empty `items`; resume `//evil.example/x.pdf`, `/\evil.example/x.pdf`, and the same with a tab, LF, or CR after the first slash; blank `title`, `company`, highlight item, `name`, and social `label`. Each fails with the expected path |
 | T4 | R4 | `schemas reject unknown fields` | `tests/unit/content-schemas.test.ts` | `hilights` on experience, `slug` on projects, `email` at about top level each fail naming the key |
 | T5 | R10 | `schema fields match the allowlist` | `tests/unit/content-schemas.test.ts` | Top-level and nested object keys of each schema equal the field lists in R1–R3 exactly |
-| T6 | R4 | `build fails naming file and field for a malformed entry` | `tests/unit/content-build.test.ts` | Copies the project's config and `src/` into a temp dir (with `node_modules` symlinked), removes `title` from `placeholder-alpha.md`, runs `astro sync` (or `astro build` if sync does not validate). Asserts non-zero exit and output containing `placeholder-alpha` and `title`. Long timeout; temp dir removed afterward |
+| T6 | R4 | `build fails naming file and field for a malformed entry` | `tests/unit/content-build.test.ts` | Copies the project's config and `src/` into a temp dir (with `node_modules` symlinked and its own `cacheDir`), adds a fixture `projects/fixture-untitled.md` with no `title`, runs `astro sync`. Asserts non-zero exit and output containing `fixture-untitled` and `title`. A control run on the unmodified copy exits 0. Long timeout; temp dir removed afterward |
 | T7 | R5 | `sortExperience orders by start then current then end` | `tests/unit/content.test.ts` | AC5 case, plus input array not mutated |
 | T8 | R6 | `sortProjects orders by order then title` | `tests/unit/content.test.ts` | AC6 case; title tie-break is case-insensitive |
 | T9 | R6 | `selectFeatured keeps order and handles none` | `tests/unit/content.test.ts` | Featured subset keeps sort order; no featured → `[]` |
@@ -112,7 +112,7 @@ Unit tests run under Vitest (`tests/unit/**/*.test.ts`, the existing `getViteCon
 
 Step 1 goes first because it carries the most unknowns: whether `astro sync` validates schemas or only `astro build` does, the exact error text Astro 7 prints, and whether a temp-copy build works under Vitest in reasonable time.
 
-**Must not change:** `astro.config.mjs` (`site`), the Vitest and Playwright configs, `src/pages/index.astro`, `package.json` dependencies. After this lands, the field names in R1–R3 and the `get*` / `formatRange` signatures become the contract that children 3–9 build on.
+**Must not change:** `astro.config.mjs` (`site`), the Vitest and Playwright configs, `src/pages/index.astro`, `package.json` dependencies (exception: `@types/node` dev dependency, approved by Nathan during build). After this lands, the field names in R1–R3 and the `get*` / `formatRange` signatures become the contract that children 3–9 build on.
 
 **High-risk steps:** None.
 
@@ -123,6 +123,7 @@ Step 1 goes first because it carries the most unknowns: whether `astro sync` val
 - **Verified (2026-11-01) — `astro sync` validates.** A probe with a missing `title` and an unknown key exited 1 in about 2s with `InvalidContentEntryDataError: projects → placeholder-alpha data does not match collection schema`, `title: Required`, `Unrecognized key: "bogus"`, and the file path. T6 uses `astro sync`.
 - **Verify at build time — `vi.mock('astro:content')`.** Whether Vitest under `getViteConfig` can mock the virtual module. Fallback: inject `getCollection` as a parameter in `collections.ts` internals and test that seam.
 - **Verified (2026-11-01) — URL validation.** Zod 4 `z.url()` accepts `mailto:` but also `javascript:`, so plain `z.url()` would let a script URL into an `href`. Social URLs are restricted to `https:`/`mailto:` and project links to `https:`. Whether Nathan's email goes on the site is his call in `content-migration`.
+- **Open — `mailto:` in `social` vs. `seo`'s `sameAs`.** `story-seo.md` AC4 says Person JSON-LD `sameAs` matches `about.social` URLs. If an email goes in `social`, `sameAs` would publish a `mailto:` as structured data. Proposed: `seo` keeps only `https:` social URLs in `sameAs`. Decide when `seo` is picked up.
 - **Open — project icons.** Hugo had emoji icons per project. Dropped: emoji read aloud by screen readers unless marked decorative, and none of the page stories use them. Add later if wanted.
 - **Open — images.** No `image` field on projects or about. `projects-pages` and `about-page` both defer to this item; adding one later is a schema change that needs alt text required.
 - **Setup — this machine.** `node_modules` is absent and `wi` is not on `PATH` (it is at `~/.claude/workflow/bin/wi`). The build phase runs `npm ci` and installs the Playwright browser in the worktree.
@@ -135,3 +136,7 @@ Step 1 goes first because it carries the most unknowns: whether `astro sync` val
 - 2026-11-01 — Started on branch story/content-collections from origin/v10.
 - 2026-11-01 — Probes: astro sync validates schemas (T6 uses it); z.url() accepts javascript:, so social url restricted to https:/mailto: (R3, T3 updated).
 - 2026-11-01 — Added @types/node@^24 dev dependency (approved by Nathan) after step 1's build test broke astro check; no tsconfig change needed. Schema tests read frontmatter via @astrojs/internal-helpers/frontmatter, a transitive Astro dependency; an Astro upgrade could move it.
+- 2026-11-01 — Review cycle 1: fixed MED (tests depended on placeholder files content-migration must delete), LOW build-test cache written through the node_modules symlink, LOW protocol-relative resume paths, LOW blank text fields (empty link text). R4, R10, T1, T6 updated. Left for Nathan: mailto in social vs seo sameAs; lockfile version hunk duplicated with unpushed v10 commit.
+- 2026-11-01 — Review cycle 2: a11y and FERPA resolved. Security found the resume check still bypassable with tab/newline after the first slash; replaced it with an origin comparison and added tab/LF/CR tests. Review cycles complete.
+- 2026-11-01 — Test audit: 67 mutants, 20 survived; 18 now killed by added tests (nested strictness, blank fields, date boundaries, same-month range, live http, fractional year, experience tech default, same-start tie-breaks). 2 left: equal-end ties and case-only title ties, both unspecified by R5/R6.
+- 2026-11-01 — Staged: verification passed; version 0.0.2 → 0.1.0; no changelog file.
