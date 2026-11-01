@@ -2,11 +2,11 @@
 type: task
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: astro-scaffold
-status: planned      # planned | in-progress | changes-requested | staged | released
+status: in-progress
 branch: task/astro-scaffold
-worktree_path:       # set by `wi start`
+worktree_path: /Users/nhealea/Personal/Development/nathanhealea-com-worktrees/task-astro-scaffold
 created: 2026-10-31
-approved:            # set by `wi approve`
+approved: 2026-10-31
 commit_type:         # optional override for the release subject type (default: story=feat, bug=fix, task=chore)
 version:             # set by `wi stage`
 review_approved:     # set by `wi accept`
@@ -98,3 +98,5 @@ Create the Astro project on `v10` with TypeScript, npm scripts, Vitest, and Play
 ## Progress log
 
 - 2026-10-31 — Planned.
+- 2026-10-31 — Plan approved.
+- 2026-10-31 — Started on branch task/astro-scaffold from v10.
