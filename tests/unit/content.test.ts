@@ -35,6 +35,17 @@ describe('sortExperience', () => {
     expect(input.map((entry) => entry.id)).toEqual(snapshot);
     expect(sorted).not.toBe(input);
   });
+
+  it('sortExperience puts current first and later end first within the same start, in any input order', () => {
+    const roles = [
+      role('early-end', '2023-01', '2023-03'),
+      role('current', '2023-01'),
+      role('late-end', '2023-01', '2023-09'),
+    ];
+
+    expect(sortExperience(roles).map((entry) => entry.id)).toEqual(['current', 'late-end', 'early-end']);
+    expect(sortExperience([...roles].reverse()).map((entry) => entry.id)).toEqual(['current', 'late-end', 'early-end']);
+  });
 });
 
 describe('sortProjects', () => {

@@ -102,6 +102,15 @@ describe('content schemas', () => {
     const minimal = projectSchema.parse({ title: 'Minimal', description: 'No optional fields.' });
     expect(minimal.tech).toEqual([]);
     expect(minimal.featured).toBe(false);
+
+    const minimalRole = experienceSchema.parse({
+      company: 'Minimal Co',
+      title: 'Engineer',
+      location: 'Remote',
+      start: '2022-03',
+      highlights: ['Did work'],
+    });
+    expect(minimalRole.tech).toEqual([]);
   });
 
   it('experience rejects end before start', () => {
@@ -111,10 +120,17 @@ describe('content schemas', () => {
     expect(issuePaths(result)).toContainEqual(['end']);
   });
 
+  it('experience accepts end in the same month as start', () => {
+    const result = experienceSchema.safeParse({ ...validExperience, start: '2023-05', end: '2023-05' });
+
+    expect(result.success, JSON.stringify(result.error?.issues)).toBe(true);
+  });
+
   it('schemas reject missing and mistyped fields', () => {
     expect(experienceSchema.safeParse(validExperience).success).toBe(true);
     expect(projectSchema.safeParse(validProject).success).toBe(true);
     expect(aboutSchema.safeParse(validAbout).success).toBe(true);
+    expect(experienceSchema.safeParse({ ...validExperience, start: '2022-12', end: '2023-12' }).success).toBe(true);
 
     const { company: _company, ...withoutCompany } = validExperience;
     const cases = [
@@ -122,6 +138,16 @@ describe('content schemas', () => {
       { name: 'empty highlights', schema: experienceSchema, input: { ...validExperience, highlights: [] }, path: ['highlights'] },
       { name: 'start as month name', schema: experienceSchema, input: { ...validExperience, start: 'Jan 2023' }, path: ['start'] },
       { name: 'start month 13', schema: experienceSchema, input: { ...validExperience, start: '2023-13' }, path: ['start'] },
+      { name: 'start month 00', schema: experienceSchema, input: { ...validExperience, start: '2023-00' }, path: ['start'] },
+      { name: 'start with a day', schema: experienceSchema, input: { ...validExperience, start: '2022-03-15' }, path: ['start'] },
+      { name: 'start with a five-digit year', schema: experienceSchema, input: { ...validExperience, start: '12022-03' }, path: ['start'] },
+      { name: 'live over http', schema: projectSchema, input: { ...validProject, live: 'http://example.com' }, path: ['live'] },
+      {
+        name: 'fractional education year',
+        schema: aboutSchema,
+        input: { ...validAbout, education: [{ school: 'Example University', credential: 'B.S.', year: 2014.5 }] },
+        path: ['education', 0, 'year'],
+      },
       { name: 'github not a url', schema: projectSchema, input: { ...validProject, github: 'not-a-url' }, path: ['github'] },
       { name: 'github over http', schema: projectSchema, input: { ...validProject, github: 'http://github.com/example/example' }, path: ['github'] },
       { name: 'featured as string', schema: projectSchema, input: { ...validProject, featured: 'yes' }, path: ['featured'] },
@@ -160,6 +186,38 @@ describe('content schemas', () => {
         input: { ...validAbout, skills: [{ group: 'Languages', items: [] }] },
         path: ['skills', 0, 'items'],
       },
+      { name: 'blank experience title', schema: experienceSchema, input: { ...validExperience, title: ' ' }, path: ['title'] },
+      { name: 'blank experience location', schema: experienceSchema, input: { ...validExperience, location: ' ' }, path: ['location'] },
+      { name: 'blank experience tech item', schema: experienceSchema, input: { ...validExperience, tech: [' '] }, path: ['tech', 0] },
+      { name: 'blank project description', schema: projectSchema, input: { ...validProject, description: ' ' }, path: ['description'] },
+      { name: 'blank project tech item', schema: projectSchema, input: { ...validProject, tech: [' '] }, path: ['tech', 0] },
+      { name: 'blank about headline', schema: aboutSchema, input: { ...validAbout, headline: ' ' }, path: ['headline'] },
+      { name: 'blank about tagline', schema: aboutSchema, input: { ...validAbout, tagline: ' ' }, path: ['tagline'] },
+      { name: 'blank about location', schema: aboutSchema, input: { ...validAbout, location: ' ' }, path: ['location'] },
+      {
+        name: 'blank skill group',
+        schema: aboutSchema,
+        input: { ...validAbout, skills: [{ group: ' ', items: ['TypeScript'] }] },
+        path: ['skills', 0, 'group'],
+      },
+      {
+        name: 'blank skill item',
+        schema: aboutSchema,
+        input: { ...validAbout, skills: [{ group: 'Languages', items: [' '] }] },
+        path: ['skills', 0, 'items', 0],
+      },
+      {
+        name: 'blank education school',
+        schema: aboutSchema,
+        input: { ...validAbout, education: [{ school: ' ', credential: 'B.S.' }] },
+        path: ['education', 0, 'school'],
+      },
+      {
+        name: 'blank education credential',
+        schema: aboutSchema,
+        input: { ...validAbout, education: [{ school: 'Example University', credential: ' ' }] },
+        path: ['education', 0, 'credential'],
+      },
     ];
 
     for (const { name, schema, input, path } of cases) {
@@ -181,6 +239,31 @@ describe('content schemas', () => {
       expect(result.success, key).toBe(false);
       const unrecognized = result.error?.issues.find((issue) => issue.code === 'unrecognized_keys');
       expect(unrecognized, key).toMatchObject({ path: [], keys: [key] });
+    }
+
+    const nestedCases = [
+      {
+        input: { ...validAbout, social: [{ label: 'GitHub', url: 'https://github.com/example', icon: 'gh' }] },
+        path: ['social', 0],
+        key: 'icon',
+      },
+      {
+        input: { ...validAbout, skills: [{ group: 'Languages', items: ['TypeScript'], level: 'expert' }] },
+        path: ['skills', 0],
+        key: 'level',
+      },
+      {
+        input: { ...validAbout, education: [{ school: 'Example University', credential: 'B.S.', studentId: 'X000' }] },
+        path: ['education', 0],
+        key: 'studentId',
+      },
+    ];
+
+    for (const { input, path, key } of nestedCases) {
+      const result = aboutSchema.safeParse(input);
+      expect(result.success, key).toBe(false);
+      const unrecognized = result.error?.issues.find((issue) => issue.code === 'unrecognized_keys');
+      expect(unrecognized, key).toMatchObject({ path, keys: [key] });
     }
   });
 
