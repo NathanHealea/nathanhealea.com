@@ -9,9 +9,15 @@ const astroBin = join(projectRoot, 'node_modules', 'astro', 'bin', 'astro.mjs');
 
 function copyProject(): string {
   const dir = mkdtempSync(join(tmpdir(), 'content-build-'));
-  for (const file of ['package.json', 'astro.config.mjs', 'tsconfig.json']) {
+  for (const file of ['package.json', 'tsconfig.json']) {
     cpSync(join(projectRoot, file), join(dir, file));
   }
+  cpSync(join(projectRoot, 'astro.config.mjs'), join(dir, 'astro.config.project.mjs'));
+  // Without its own cacheDir, astro sync writes through the node_modules symlink into the real project's cache.
+  writeFileSync(
+    join(dir, 'astro.config.mjs'),
+    "import config from './astro.config.project.mjs';\nexport default { ...config, cacheDir: './.astro-test-cache' };\n",
+  );
   cpSync(join(projectRoot, 'src'), join(dir, 'src'), { recursive: true });
   symlinkSync(join(projectRoot, 'node_modules'), join(dir, 'node_modules'), 'dir');
   return dir;
