@@ -2,13 +2,13 @@
 type: task
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: astro-scaffold
-status: in-progress
+status: staged
 branch: task/astro-scaffold
 worktree_path: /Users/nhealea/Personal/Development/nathanhealea-com-worktrees/task-astro-scaffold
 created: 2026-10-31
 approved: 2026-10-31
 commit_type:         # optional override for the release subject type (default: story=feat, bug=fix, task=chore)
-version:             # set by `wi stage`
+version: 0.0.2
 review_approved:     # set by `wi accept`
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the branch's last commit
@@ -71,6 +71,8 @@ Create the Astro project on `v10` with TypeScript, npm scripts, Vitest, and Play
 | T3 | R3 | `vitest runs` | `tests/unit/smoke.test.ts` | Suite discovered and passes |
 | T4 | R4, R6 | `home page loads and is accessible` | `tests/e2e/smoke.spec.ts` | Status 200, `html[lang=en]`, one `main`, non-empty title, `expectNoA11yViolations` passes |
 | T5 | R5 | `axe helper reports violations` | `tests/e2e/a11y-helper.spec.ts` | `page.setContent('<img src="x.png">')` then helper throws with `image-alt` in the message |
+| T6 | R5 | `axe helper runs experimental WCAG rules` | `tests/e2e/a11y-helper.spec.ts` | A CSS orientation lock makes the helper throw with `css-orientation-lock` (added in review: axe skips experimental rules unless named) |
+| T7 | R5 | `axe helper reports <rule> (<tag>)` | `tests/e2e/a11y-helper.spec.ts` | One fixture per tag: color-contrast (wcag2aa), label-content-name-mismatch (wcag21a), autocomplete-valid (wcag21aa), td-has-header (experimental); T5 also asserts every violation id and both `#first`/`#second` targets (added after mutation audit) |
 
 **Not unit testable:** None.
 
@@ -102,3 +104,6 @@ Create the Astro project on `v10` with TypeScript, npm scripts, Vitest, and Play
 - 2026-10-31 — Started on branch task/astro-scaffold from v10.
 - 2026-10-31 — Steps 1-3: Astro 7.4.4 scaffolded, astro check and Vitest wired. T3 written inline rather than by test-engineer: it is a tooling smoke test with no behavior to specify, so a red phase is not meaningful (npx fetched vitest on the fly and it passed before install).
 - 2026-10-31 — Build complete. Steps 4-6: Playwright webServer uses astro preview --ignore-lock because Astro 7 auto-backgrounds preview under an agent shell (withastro/astro#17903). CLAUDE.md verify_commands take effect once merged to v10 (wi reads the main checkout's CLAUDE.md). npm blocks the fsevents install script (optional macOS watcher); build and tests unaffected. Full verify green from clean npm ci.
+- 2026-10-31 — Review cycle 1: fixed MED (experimental WCAG rules not run by the axe helper; added T6), LOW .env ignore gap, LOW e2e port collision with astro dev.
+- 2026-10-31 — Test audit: 6 of 15 mutants survived (three WCAG tags, experimental list, message completeness). Added T7 and strengthened T5; all 6 now killed.
+- 2026-10-31 — Staged: verification passed; version 0.0.1 → 0.0.2; no changelog file.
