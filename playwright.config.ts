@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
-const port = 4321;
+// Not 4321, so e2e runs do not collide with a running `astro dev`.
+const port = 4322;
 
 // Serves the existing dist/ build; run `npm run build` first.
 export default defineConfig({
