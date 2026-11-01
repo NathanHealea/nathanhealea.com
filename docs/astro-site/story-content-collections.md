@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: content-collections
-status: staged
+status: released
 branch: story/content-collections
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-content-collections
 created: 2026-11-01
@@ -11,7 +11,7 @@ commit_type:         # optional override for the merge commit type (default: sto
 version: 0.1.0
 review_approved: 2026-11-01
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the merge commit
+tag: v0.1.0
 ---
 
 # Define content collections and schemas
@@ -141,3 +141,4 @@ Step 1 goes first because it carries the most unknowns: whether `astro sync` val
 - 2026-11-01 — Test audit: 67 mutants, 20 survived; 18 now killed by added tests (nested strictness, blank fields, date boundaries, same-month range, live http, fractional year, experience tech default, same-start tie-breaks). 2 left: equal-end ties and case-only title ties, both unspecified by R5/R6.
 - 2026-11-01 — Staged: verification passed; version 0.0.2 → 0.1.0; no changelog file.
 - 2026-11-01 — Review approved.
+- 2026-11-01 — Released 0.1.0 as v0.1.0.
