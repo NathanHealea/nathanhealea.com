@@ -9,7 +9,7 @@ created: 2026-11-01
 approved: 2026-11-01
 commit_type:         # optional override for the merge commit type (default: story=feat, bug=fix, task=chore)
 version: 0.1.0
-review_approved:     # set by `wi accept`
+review_approved: 2026-11-01
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the merge commit
 ---
@@ -140,3 +140,4 @@ Step 1 goes first because it carries the most unknowns: whether `astro sync` val
 - 2026-11-01 — Review cycle 2: a11y and FERPA resolved. Security found the resume check still bypassable with tab/newline after the first slash; replaced it with an origin comparison and added tab/LF/CR tests. Review cycles complete.
 - 2026-11-01 — Test audit: 67 mutants, 20 survived; 18 now killed by added tests (nested strictness, blank fields, date boundaries, same-month range, live http, fractional year, experience tech default, same-start tie-breaks). 2 left: equal-end ties and case-only title ties, both unspecified by R5/R6.
 - 2026-11-01 — Staged: verification passed; version 0.0.2 → 0.1.0; no changelog file.
+- 2026-11-01 — Review approved.
