@@ -23,3 +23,13 @@ test('axe helper passes an accessible page', async ({ page }) => {
 
   await expect(expectNoA11yViolations(page)).resolves.toBeUndefined();
 });
+
+test('axe helper runs experimental WCAG rules', async ({ page }) => {
+  await page.setContent(
+    '<!doctype html><html lang="en"><head><title>Locked</title>' +
+      '<style>@media screen and (orientation: portrait) { html { transform: rotate(90deg); } }</style>' +
+      '</head><body><main><h1>Locked</h1></main></body></html>',
+  );
+
+  await expect(expectNoA11yViolations(page)).rejects.toThrow('css-orientation-lock');
+});
