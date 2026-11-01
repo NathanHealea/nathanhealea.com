@@ -146,6 +146,16 @@ describe('content schemas', () => {
         input: { ...validAbout, social: [{ label: 'Site', url: 'http://example.com' }] },
         path: ['social', 0, 'url'],
       },
+      { name: 'empty project title', schema: projectSchema, input: { ...validProject, title: '' }, path: ['title'] },
+      { name: 'whitespace company', schema: experienceSchema, input: { ...validExperience, company: '   ' }, path: ['company'] },
+      { name: 'empty highlight', schema: experienceSchema, input: { ...validExperience, highlights: [''] }, path: ['highlights', 0] },
+      { name: 'empty about name', schema: aboutSchema, input: { ...validAbout, name: '' }, path: ['name'] },
+      {
+        name: 'empty social label',
+        schema: aboutSchema,
+        input: { ...validAbout, social: [{ label: '', url: 'https://github.com/example' }] },
+        path: ['social', 0, 'label'],
+      },
       {
         name: 'skill group with no items',
         schema: aboutSchema,

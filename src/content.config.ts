@@ -3,17 +3,18 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const httpsUrl = z.url({ protocol: /^https$/ });
+const text = z.string().trim().min(1);
 const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'Expected YYYY-MM');
 
 export const experienceSchema = z
   .strictObject({
-    company: z.string(),
-    title: z.string(),
-    location: z.string(),
+    company: text,
+    title: text,
+    location: text,
     start: yearMonth,
     end: yearMonth.optional(),
-    highlights: z.array(z.string()).min(1),
-    tech: z.array(z.string()).default([]),
+    highlights: z.array(text).min(1),
+    tech: z.array(text).default([]),
   })
   .superRefine((entry, ctx) => {
     if (entry.end !== undefined && entry.end < entry.start) {
@@ -22,9 +23,9 @@ export const experienceSchema = z
   });
 
 export const projectSchema = z.strictObject({
-  title: z.string(),
-  description: z.string(),
-  tech: z.array(z.string()).default([]),
+  title: text,
+  description: text,
+  tech: z.array(text).default([]),
   github: httpsUrl.optional(),
   live: httpsUrl.optional(),
   featured: z.boolean().default(false),
@@ -32,13 +33,13 @@ export const projectSchema = z.strictObject({
 });
 
 export const aboutSchema = z.strictObject({
-  name: z.string(),
-  headline: z.string(),
-  tagline: z.string(),
-  location: z.string(),
-  social: z.array(z.strictObject({ label: z.string(), url: z.url({ protocol: /^(https|mailto)$/ }) })),
-  skills: z.array(z.strictObject({ group: z.string(), items: z.array(z.string()).min(1) })),
-  education: z.array(z.strictObject({ school: z.string(), credential: z.string(), year: z.int().optional() })),
+  name: text,
+  headline: text,
+  tagline: text,
+  location: text,
+  social: z.array(z.strictObject({ label: text, url: z.url({ protocol: /^(https|mailto)$/ }) })),
+  skills: z.array(z.strictObject({ group: text, items: z.array(text).min(1) })),
+  education: z.array(z.strictObject({ school: text, credential: text, year: z.int().optional() })),
   resume: z.string().regex(/^\/(?![/\\])/, 'Expected a site path such as /resume.pdf').optional(),
 });
 
