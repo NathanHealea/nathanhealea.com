@@ -7,3 +7,9 @@ The `main` branch holds the previous Hugo site, which is still live. The Astro r
 ## Work Item Workflow
 
 - base_branch: v10
+- test_command: npm test
+- verify_commands:
+  - npm run typecheck
+  - npm run build
+  - npm test
+  - npm run test:e2e
