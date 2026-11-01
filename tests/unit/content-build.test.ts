@@ -1,5 +1,5 @@
 import { spawnSync } from 'node:child_process';
-import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
+import { cpSync, mkdtempSync, rmSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -42,20 +42,14 @@ describe('content build', () => {
   it('build fails naming file and field for a malformed entry', () => {
     const dir = copyProject();
     try {
-      const entry = join(dir, 'src', 'content', 'projects', 'placeholder-alpha.md');
-      expect(existsSync(entry), 'src/content/projects/placeholder-alpha.md not found').toBe(true);
-
-      const original = readFileSync(entry, 'utf8');
-      const withoutTitle = original
-        .split('\n')
-        .filter((line) => !line.startsWith('title:'))
-        .join('\n');
-      expect(withoutTitle, 'placeholder-alpha.md has no title: line to remove').not.toBe(original);
-      writeFileSync(entry, withoutTitle);
+      writeFileSync(
+        join(dir, 'src', 'content', 'projects', 'fixture-untitled.md'),
+        '---\ndescription: Fixture project with no title.\n---\n',
+      );
 
       const { status, output } = astroSync(dir);
       expect(status, output).not.toBe(0);
-      expect(output).toContain('placeholder-alpha');
+      expect(output).toContain('fixture-untitled');
       expect(output).toMatch(/title.*Required/);
     } finally {
       rmSync(dir, { recursive: true, force: true });

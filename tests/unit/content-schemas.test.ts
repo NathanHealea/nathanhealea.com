@@ -80,21 +80,16 @@ function fieldTree(schema: unknown): FieldTree | null {
 }
 
 describe('content schemas', () => {
-  it('placeholder entries parse and get defaults', () => {
+  it('content entries parse and get defaults', () => {
     const files = readdirSync(contentRoot, { recursive: true, encoding: 'utf8' })
       .filter((file) => file.endsWith('.md'))
       .map((file) => file.split('\\').join('/'))
       .sort();
 
-    expect(files).toEqual(
-      expect.arrayContaining([
-        'about/about.md',
-        'experience/placeholder-current.md',
-        'experience/placeholder-past.md',
-        'projects/placeholder-alpha.md',
-        'projects/placeholder-beta.md',
-      ]),
-    );
+    for (const collection of ['experience', 'projects']) {
+      expect(files.some((file) => file.startsWith(`${collection}/`)), `no ${collection} entries`).toBe(true);
+    }
+    expect(files.filter((file) => file.startsWith('about/'))).toEqual(['about/about.md']);
 
     for (const file of files) {
       const collection = file.split('/')[0] as keyof typeof schemaByCollection;
@@ -104,9 +99,9 @@ describe('content schemas', () => {
       expect(result.success, `${file}: ${JSON.stringify(result.error?.issues)}`).toBe(true);
     }
 
-    const beta = projectSchema.parse(readFrontmatter('projects/placeholder-beta.md'));
-    expect(beta.tech).toEqual([]);
-    expect(beta.featured).toBe(false);
+    const minimal = projectSchema.parse({ title: 'Minimal', description: 'No optional fields.' });
+    expect(minimal.tech).toEqual([]);
+    expect(minimal.featured).toBe(false);
   });
 
   it('experience rejects end before start', () => {
