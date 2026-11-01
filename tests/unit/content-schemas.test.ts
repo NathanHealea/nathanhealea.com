@@ -129,6 +129,9 @@ describe('content schemas', () => {
       { name: 'resume without leading slash', schema: aboutSchema, input: { ...validAbout, resume: 'resume.pdf' }, path: ['resume'] },
       { name: 'protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '//evil.example/x.pdf' }, path: ['resume'] },
       { name: 'backslash protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '/\\evil.example/x.pdf' }, path: ['resume'] },
+      { name: 'tab protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '/\t/evil.example/x.pdf' }, path: ['resume'] },
+      { name: 'newline protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '/\n/evil.example/x.pdf' }, path: ['resume'] },
+      { name: 'carriage return protocol-relative resume', schema: aboutSchema, input: { ...validAbout, resume: '/\r/evil.example/x.pdf' }, path: ['resume'] },
       {
         name: 'social javascript url',
         schema: aboutSchema,

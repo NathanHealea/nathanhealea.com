@@ -3,6 +3,13 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const httpsUrl = z.url({ protocol: /^https$/ });
+const SITE_ORIGIN = 'https://site.invalid';
+
+// Compares origins instead of matching a pattern: URL parsing strips tabs and newlines, so /\t/host also escapes the site.
+function isSitePath(value: string): boolean {
+  return value.startsWith('/') && new URL(value, SITE_ORIGIN).origin === SITE_ORIGIN;
+}
+
 const text = z.string().trim().min(1);
 const yearMonth = z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/, 'Expected YYYY-MM');
 
@@ -40,7 +47,7 @@ export const aboutSchema = z.strictObject({
   social: z.array(z.strictObject({ label: text, url: z.url({ protocol: /^(https|mailto)$/ }) })),
   skills: z.array(z.strictObject({ group: text, items: z.array(text).min(1) })),
   education: z.array(z.strictObject({ school: text, credential: text, year: z.int().optional() })),
-  resume: z.string().regex(/^\/(?![/\\])/, 'Expected a site path such as /resume.pdf').optional(),
+  resume: z.string().refine(isSitePath, 'Expected a site path such as /resume.pdf').optional(),
 });
 
 const experience = defineCollection({
