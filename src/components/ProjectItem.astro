@@ -1,0 +1,88 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ProjectLinks from './ProjectLinks.astro';
+
+interface Props {
+	slug: string;
+	project: CollectionEntry<'projects'>['data'];
+}
+
+const { slug, project } = Astro.props;
+---
+
+<article class="project">
+	<div class="side">
+		{
+			project.tech.length > 0 && (
+				<ul class="tech" aria-label="Technology">
+					{project.tech.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			)
+		}
+	</div>
+	<div class="main">
+		<h2><a href={`/projects/${slug}/`}>{project.title}</a></h2>
+		<p class="description">{project.description}</p>
+		<ProjectLinks title={project.title} github={project.github} live={project.live} />
+	</div>
+</article>
+
+<style>
+	.side,
+	.main {
+		animation: enter var(--enter-duration) var(--ease-out) both;
+	}
+
+	.main {
+		animation-delay: var(--enter-stagger);
+	}
+
+	.side {
+		font-size: var(--text-small);
+		line-height: var(--leading-small);
+	}
+
+	.tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 16px;
+		margin-bottom: 16px;
+		padding: 0;
+		list-style: none;
+	}
+
+	@media (min-width: 960px) {
+		.project {
+			display: grid;
+			grid-template-columns: var(--axis) 1fr;
+			align-items: start;
+		}
+
+		.side {
+			margin-right: 32px;
+		}
+
+		.tech {
+			margin-bottom: 0;
+		}
+	}
+
+	h2 a {
+		text-decoration-line: none;
+	}
+
+	h2 a:hover,
+	h2 a:focus-visible {
+		text-decoration-line: underline;
+	}
+
+	.description {
+		margin-top: 16px;
+	}
+
+	.description + :global(.links) {
+		margin-top: 8px;
+	}
+</style>

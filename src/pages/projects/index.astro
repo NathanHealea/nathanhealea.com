@@ -1,0 +1,35 @@
+---
+import ProjectItem from '../../components/ProjectItem.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects } from '../../lib/collections';
+
+const projects = await getProjects();
+---
+
+<BaseLayout
+	title="Projects | Nathan Healea"
+	description="Projects Nathan Healea has built, with the technology used and links to the source and live sites."
+>
+	<h1>Projects</h1>
+	<div class="projects">
+		{projects.map((entry) => <ProjectItem slug={entry.id} project={entry.data} />)}
+	</div>
+</BaseLayout>
+
+<style>
+	h1 {
+		padding-top: var(--spacing-inner);
+	}
+
+	.projects {
+		display: grid;
+		gap: var(--spacing-section);
+		margin-top: var(--spacing-section);
+	}
+
+	@media (min-width: 960px) {
+		h1 {
+			padding-left: var(--axis);
+		}
+	}
+</style>
