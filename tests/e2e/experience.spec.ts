@@ -28,8 +28,16 @@ function readRoles(): Role[] {
     });
 }
 
+// Mirrors sortExperience: start descending, then open roles first, then end descending.
 function newestFirst(roles: Role[]): Role[] {
-  return [...roles].sort((a, b) => (a.start < b.start ? 1 : a.start > b.start ? -1 : 0));
+  const desc = (a: string, b: string) => (a < b ? 1 : a > b ? -1 : 0);
+  return [...roles].sort((a, b) => {
+    if (a.start !== b.start) return desc(a.start, b.start);
+    if (a.end === b.end) return 0;
+    if (a.end === undefined) return -1;
+    if (b.end === undefined) return 1;
+    return desc(a.end, b.end);
+  });
 }
 
 function headingText(role: Role): string {
@@ -182,9 +190,14 @@ test('marks only the current role', async ({ page }) => {
   for (const role of current) {
     const article = articleFor(page, role);
     await expect(article, role.title).toHaveCount(1);
-    const label = article.getByText('Current', { exact: true });
+    const label = sideNoteOf(article).getByText('Current', { exact: true });
     await expect(label, role.title).toBeVisible();
+    await expect(
+      article.getByRole('paragraph').filter({ hasText: /^Current$/ }),
+      `${role.title} label exposed to assistive tech`,
+    ).toHaveCount(1);
 
+    const dateSize = await article.locator('time').evaluate((element) => getComputedStyle(element).fontSize);
     const style = await label.evaluate((element) => {
       const computed = getComputedStyle(element);
       let ground: Element | null = element;
@@ -193,6 +206,7 @@ test('marks only the current role', async ({ page }) => {
         textTransform: computed.textTransform,
         letterSpacing: computed.letterSpacing,
         fontWeight: computed.fontWeight,
+        fontSize: computed.fontSize,
         color: computed.color,
         background: ground ? getComputedStyle(ground).backgroundColor : 'rgb(255, 255, 255)',
       };
@@ -200,6 +214,7 @@ test('marks only the current role', async ({ page }) => {
     expect(style.textTransform).toBe('none');
     expect(['normal', '0px']).toContain(style.letterSpacing);
     expect(style.fontWeight).toBe('600');
+    expect(style.fontSize, 'label at the side note size').toBe(dateSize);
     expect(contrast(style.color, style.background)).toBeGreaterThanOrEqual(4.5);
   }
 });
@@ -207,46 +222,55 @@ test('marks only the current role', async ({ page }) => {
 test('side note sits on the axis', async ({ page }) => {
   const roles = readRoles();
 
-  await page.setViewportSize({ width: 1280, height: 800 });
-  await page.goto(ROUTE);
-  await settleAnimations(page);
-  await expect(page.locator('article')).toHaveCount(roles.length);
+  for (const width of [1280, 960]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto(ROUTE);
+    await settleAnimations(page);
+    await expect(page.locator('article')).toHaveCount(roles.length);
 
-  const frame = await page.locator('main').evaluate((element) => {
-    const rect = element.getBoundingClientRect();
-    const style = getComputedStyle(element);
-    const left = rect.left + parseFloat(style.paddingLeft);
-    const right = rect.right - parseFloat(style.paddingRight);
-    return { left, width: right - left };
-  });
+    const frame = await page.locator('main').evaluate((element) => {
+      const rect = element.getBoundingClientRect();
+      const style = getComputedStyle(element);
+      const left = rect.left + parseFloat(style.paddingLeft);
+      const right = rect.right - parseFloat(style.paddingRight);
+      return { left, width: right - left };
+    });
 
-  for (const role of roles) {
-    const article = articleFor(page, role);
-    const side = sideNoteOf(article);
-    const heading = article.getByRole('heading', { level: 2 });
-    await expect(side, role.title).toHaveCount(1);
+    for (const role of roles) {
+      const label = `${role.title} at ${width}px`;
+      const article = articleFor(page, role);
+      const side = sideNoteOf(article);
+      const heading = article.getByRole('heading', { level: 2 });
+      await expect(side, label).toHaveCount(1);
+      await expect(side.getByText(role.location, { exact: true }), `${label} location in side note`).toHaveCount(1);
+      await expect(side.getByText('Current', { exact: true }), `${label} Current in side note`).toHaveCount(
+        role.end === undefined ? 1 : 0,
+      );
 
-    const sideBox = (await side.boundingBox())!;
-    const headingBox = (await heading.boundingBox())!;
-    expect(Math.abs(headingBox.x - (frame.left + 0.42 * frame.width)), `${role.title} h2 left`).toBeLessThanOrEqual(1);
-    expect(Math.abs(sideBox.x - frame.left), `${role.title} side note left`).toBeLessThanOrEqual(1);
-    expect(Math.abs(sideBox.y - headingBox.y), `${role.title} tops`).toBeLessThanOrEqual(2);
+      const sideBox = (await side.boundingBox())!;
+      const headingBox = (await heading.boundingBox())!;
+      expect(Math.abs(headingBox.x - (frame.left + 0.42 * frame.width)), `${label} h2 left`).toBeLessThanOrEqual(1);
+      expect(Math.abs(sideBox.x - frame.left), `${label} side note left`).toBeLessThanOrEqual(1);
+      expect(Math.abs(sideBox.y - headingBox.y), `${label} tops`).toBeLessThanOrEqual(2);
 
-    const sideFirst = await side.evaluate((element, headingElement) => {
-      return Boolean(element.compareDocumentPosition(headingElement!) & Node.DOCUMENT_POSITION_FOLLOWING);
-    }, await heading.elementHandle());
-    expect(sideFirst, `${role.title} DOM order`).toBe(true);
+      const sideFirst = await side.evaluate((element, headingElement) => {
+        return Boolean(element.compareDocumentPosition(headingElement!) & Node.DOCUMENT_POSITION_FOLLOWING);
+      }, await heading.elementHandle());
+      expect(sideFirst, `${label} DOM order`).toBe(true);
+    }
   }
 
-  await page.setViewportSize({ width: 320, height: 800 });
-  await page.goto(ROUTE);
-  await settleAnimations(page);
+  for (const width of [959, 320]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto(ROUTE);
+    await settleAnimations(page);
 
-  for (const role of roles) {
-    const article = articleFor(page, role);
-    const sideBox = (await sideNoteOf(article).boundingBox())!;
-    const headingBox = (await article.getByRole('heading', { level: 2 }).boundingBox())!;
-    expect(sideBox.y + sideBox.height, `${role.title} at 320px`).toBeLessThanOrEqual(headingBox.y);
+    for (const role of roles) {
+      const article = articleFor(page, role);
+      const sideBox = (await sideNoteOf(article).boundingBox())!;
+      const headingBox = (await article.getByRole('heading', { level: 2 }).boundingBox())!;
+      expect(sideBox.y + sideBox.height, `${role.title} at ${width}px`).toBeLessThanOrEqual(headingBox.y);
+    }
   }
 });
 
@@ -289,6 +313,7 @@ test.describe('role entry motion respects reduced motion', () => {
             const timing = effect.getTiming();
             return {
               iterations: timing.iterations,
+              fill: timing.fill,
               duration: timing.duration,
               delay: timing.delay ?? 0,
               keyframes: effect.getKeyframes().map((frame) => ({ ...frame })),
@@ -301,6 +326,7 @@ test.describe('role entry motion respects reduced motion', () => {
         for (const animation of animations) {
           expect(animation.iterations, label).toBe(1);
           expect(animation.duration, label).toBe(700);
+          expect(['both', 'backwards'], `${label} hides parts during their delay`).toContain(animation.fill);
 
           const animated = new Set(
             animation.keyframes.flatMap((frame) =>
