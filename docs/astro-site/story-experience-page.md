@@ -2,13 +2,13 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: experience-page
-status: in-progress
+status: staged
 branch: story/experience-page
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-experience-page
 created: 2026-10-31
 approved: 2026-11-01
 commit_type:         # optional override for the release subject type (default: story=feat, bug=fix, task=chore)
-version:             # set by `wi stage`
+version: 0.3.0
 review_approved:     # set by `wi accept`
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the merge commit
@@ -111,3 +111,5 @@ Design comes from `design/DESIGN-SYSTEM.md` ("The Public Report"). The Frame rul
 - 2026-11-01 — Plan correction: step 1 has no page for the e2e tests to load, so it is proved by T9 (unit, now also covering the disclosure); T2, T3, T4, T6 move to step 2. ExperienceItem takes the entry's data plus a hasDetails flag, with the rendered body in its default slot, so the unit test needs no content loading.
 - 2026-11-01 — Plan correction: T8's reduced-motion check passes through the global rule even without ENTER, so T8 gains a motion-allowed counterpart that checks ENTER's keyframes, duration and stagger.
 - 2026-11-01 — Build complete: both steps done, full verify green. Screenshots at 1280px and 320px checked against the pack.
+- 2026-11-01 — Review: security clean; a11y no AA failures (disclosure role and state verified in Chromium); code review LOW only. Mutation audit 21 mutants, 15 killed; the 6 survivors and the T1 tiebreak are now covered.
+- 2026-11-01 — Staged: verification passed; version 0.2.1 → 0.3.0; no changelog file.
