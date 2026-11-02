@@ -9,7 +9,7 @@ created: 2026-10-31
 approved: 2026-11-01
 commit_type:         # optional override for the release subject type (default: story=feat, bug=fix, task=chore)
 version: 0.2.0
-review_approved:     # set by `wi accept`
+review_approved: 2026-11-01
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the branch's last commit
 ---
@@ -129,3 +129,4 @@ Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`de
 - 2026-11-01 — Changes requested: Re-stage after pushing v10: the first stage bumped from a stale origin/v10 (0.0.2) to a taken 0.1.0.
 - 2026-11-01 — Resumed to address requested changes.
 - 2026-11-01 — Staged: verification passed; version 0.1.0 → 0.2.0; no changelog file.
+- 2026-11-01 — Review approved.
