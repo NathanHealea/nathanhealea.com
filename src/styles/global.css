@@ -14,10 +14,10 @@ html {
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-text);
-  font-size: var(--size-body);
+  font-size: var(--text-body);
   line-height: var(--leading-body);
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -41,27 +41,27 @@ h3 {
 }
 
 h1 {
-  font-size: var(--size-display);
+  font-size: var(--text-display);
   line-height: var(--leading-display);
   letter-spacing: var(--tracking-display);
   animation: rise var(--rise-duration) var(--ease-out) both;
 }
 
 h2 {
-  font-size: var(--size-section);
+  font-size: var(--text-section);
   line-height: var(--leading-section);
   letter-spacing: var(--tracking-section);
 }
 
 h3 {
-  font-size: var(--size-statement);
+  font-size: var(--text-statement);
   line-height: var(--leading-statement);
   font-weight: 600;
 }
 
 p,
 li {
-  max-width: var(--measure);
+  max-width: var(--container-measure);
 }
 
 a {
@@ -78,13 +78,13 @@ a:focus-visible {
 }
 
 :focus-visible {
-  outline: var(--focus-width) solid var(--fir);
+  outline: var(--focus-width) solid var(--color-fir);
   outline-offset: var(--focus-offset);
 }
 
 ::selection {
-  background: var(--fir);
-  color: var(--paper);
+  background: var(--color-fir);
+  color: var(--color-paper);
 }
 
 @keyframes rise {

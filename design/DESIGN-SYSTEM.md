@@ -6,7 +6,11 @@
 
 ## Tokens (one theme, no dark mode)
 
-`--paper #F5F5F1` (page ground; never pure white, report stock) · `--ink #151716` (all running text, 16.5:1 on paper) · `--fir #22402E` (color pages, current-page bar, focus ring on paper: 10.4:1) · `--slate #2E5266` (second color page, used at most once per page: 7.6:1 with paper) · `--stone #DCD8CC` (tone step for a raised block and mosaic tiles; never text ground below 16px) · `--sage #B9C4BB` (mosaic tile only, never behind text) · On fir/slate pages text and focus ring swap to `--paper`. No pure #FFF/#000. UO green/yellow (#154733, #FEE123) are banned so the site never reads as official university branding.
+`--color-paper #F5F5F1` (page ground; never pure white, report stock) · `--color-ink #151716` (all running text, 16.5:1 on paper) · `--color-fir #22402E` (color pages, current-page bar, focus ring on paper: 10.4:1) · `--color-slate #2E5266` (second color page, used at most once per page: 7.6:1 with paper) · `--color-stone #DCD8CC` (tone step for a raised block and mosaic tiles; never text ground below 16px) · `--color-sage #B9C4BB` (mosaic tile only, never behind text) · On fir/slate pages text and focus ring swap to `--color-paper`. No pure #FFF/#000. UO green/yellow (#154733, #FEE123) are banned so the site never reads as official university branding.
+
+### Token names
+
+Tokens in `src/styles/tokens.css` follow Tailwind v4's theme variable namespaces (tailwindcss.com/docs/theme), so the file could become a Tailwind `@theme` block with little change: the `@font-face` rules and the 960px override of `--spacing-section` would stay outside it. Colors are `--color-*`, typefaces `--font-*`, type sizes `--text-*`, line heights `--leading-*`, letter spacing `--tracking-*`, max widths (`--container-measure`, `--container-content`) `--container-*`, and the outer margin, section gap, inner gap and tap target (`--spacing-margin`, `--spacing-section`, `--spacing-inner`, `--spacing-tap`) `--spacing-*`. Timing curves are `--ease-*`. Tokens with no Tailwind namespace keep a plain project name: `--axis`, `--focus-*`, `--mark-*`, and the motion durations and staggers.
 
 ## Type
 
@@ -20,17 +24,17 @@ Outer margin `clamp(16px, 3vw, 40px)`, equal both sides at every width. The axis
 
 ## The report shell (header, nav, footer)
 
-Header: wordmark "Nathan Healea" (Source Serif 4 700, 20px) left; nav right: Experience, Projects, About (Public Sans 17px, ink, no underline). Current section: inset 4px `--fir` bar under the link (`box-shadow: inset 0 -4px 0`), plus `aria-current="page"`. Hover: the same bar at 2px. Below ~520px the nav wraps under the wordmark as one row of three links; no toggle, no script. No bar chrome, no sticky header, no pill, no blur.
-Footer: a full-bleed `--fir` page. The name returns at section size in paper; one line from `about.location`; social links from `about.social` in paper, underlined, same tab. Nothing else.
+Header: wordmark "Nathan Healea" (Source Serif 4 700, 20px) left; nav right: Experience, Projects, About (Public Sans 17px, ink, no underline). Current section: inset 4px `--color-fir` bar under the link (`box-shadow: inset 0 -4px 0`), plus `aria-current="page"`. Hover: the same bar at 2px. Below ~520px the nav wraps under the wordmark as one row of three links; no toggle, no script. No bar chrome, no sticky header, no pill, no blur.
+Footer: a full-bleed `--color-fir` page. The name returns at section size in paper; one line from `about.location`; social links from `about.social` in paper, underlined, same tab. Nothing else.
 Skip link: first focusable element, paper on ink, top-left inside the margin, visible only on focus.
 
 ## Material rules
 
-1. Surfaces separate by a tone step (`--paper` → `--stone`) or a whole color page; never by a line, border or shadow.
+1. Surfaces separate by a tone step (`--color-paper` → `--color-stone`) or a whole color page; never by a line, border or shadow.
 2. Zero shadows, zero gradients, zero blur, zero rotation. Corners square (radius 0) on everything.
 3. Mosaic (home and project pages only): gutterless 6-cell band, color tiles plus photographs in one treatment, `filter: grayscale(1) contrast(1.05)`.
-4. Buttons: flat `--ink` fill, `--paper` text, 600, radius 0, 48px min height. At most one per screen.
-5. Links in running text: ink, underline 1px offset 3px; hover 3px. Focus ring everywhere: 3px solid `--fir` (or `--paper` on color pages), offset 3px.
+4. Buttons: flat `--color-ink` fill, `--color-paper` text, 600, radius 0, 48px min height. At most one per screen.
+5. Links in running text: ink, underline 1px offset 3px; hover 3px. Focus ring everywhere: 3px solid `--color-fir` (or `--color-paper` on color pages), offset 3px.
 6. Banned (taste-skill house rules): eyebrows, 01/02 numbering, hairlines, tiny tracked caps, icon cards, glass, emoji, styled accent words, violet/indigo.
 
 ## Motion (four named moves; all drop to 0ms under `prefers-reduced-motion: reduce`)
