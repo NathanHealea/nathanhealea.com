@@ -1,0 +1,106 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { formatRange } from '../lib/content';
+
+interface Props {
+	role: CollectionEntry<'experience'>['data'];
+	hasDetails: boolean;
+}
+
+const { role, hasDetails } = Astro.props;
+const name = `${role.title} at ${role.company}`;
+---
+
+<article class="role">
+	<div class="side">
+		<p><time datetime={role.start}>{formatRange(role.start, role.end)}</time></p>
+		<p>{role.location}</p>
+		{role.end === undefined && <p class="status">Current</p>}
+	</div>
+	<div class="main">
+		<h2>{role.title} <span class="company">at {role.company}</span></h2>
+		<ul class="highlights">
+			{role.highlights.map((highlight) => <li>{highlight}</li>)}
+		</ul>
+		{
+			role.tech.length > 0 && (
+				<ul class="tech" aria-label="Technology">
+					{role.tech.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			)
+		}
+		{
+			hasDetails && (
+				<details>
+					<summary>Details: {name}</summary>
+					<div class="body">
+						<slot />
+					</div>
+				</details>
+			)
+		}
+	</div>
+</article>
+
+<style>
+	.side {
+		font-size: var(--text-small);
+		line-height: var(--leading-small);
+	}
+
+	.status {
+		font-weight: 600;
+	}
+
+	.company {
+		font-weight: 600;
+	}
+
+	.highlights {
+		margin-top: 24px;
+		padding-left: 1.25em;
+	}
+
+	.highlights li + li {
+		margin-top: 8px;
+	}
+
+	.tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 16px;
+		margin-top: 16px;
+		padding: 0;
+		list-style: none;
+		font-size: var(--text-small);
+		line-height: var(--leading-small);
+	}
+
+	details {
+		margin-top: 16px;
+	}
+
+	summary {
+		display: flex;
+		align-items: center;
+		min-height: var(--spacing-tap);
+		font-weight: 600;
+		cursor: pointer;
+	}
+
+	summary::before {
+		content: '+' / '';
+		width: 1.25em;
+		flex: none;
+	}
+
+	details[open] > summary::before {
+		content: '−' / '';
+	}
+
+	.body {
+		margin-top: 8px;
+	}
+</style>
