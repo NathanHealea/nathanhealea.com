@@ -69,6 +69,16 @@ function sideNoteOf(article: Locator): Locator {
 }
 
 // On a detail page the side note holds the tech and link lists; the main column's lists sit deeper, inside the body.
+// The title is in the link's name but clipped off screen; a 1px box proves the clipping applies.
+async function titleHiddenBox(link: Locator): Promise<{ width: number; height: number }> {
+  return link.evaluate((anchor) => {
+    const hidden = [...anchor.querySelectorAll('*')].filter((node) => node.textContent?.trim().startsWith(':'));
+    if (hidden.length !== 1) throw new Error(`expected one title span, found ${hidden.length}`);
+    const box = hidden[0].getBoundingClientRect();
+    return { width: Math.round(box.width), height: Math.round(box.height) };
+  });
+}
+
 function detailSideNoteOf(article: Locator): Locator {
   return article.locator(':scope > :not(:has(h1))');
 }
@@ -161,12 +171,16 @@ test('detail page renders project', async ({ page }) => {
       const github = main.getByRole('link', { name: /^View on GitHub/ });
       await expect(github, `${path} GitHub link`).toHaveCount(1);
       await expect(github, path).toHaveAttribute('href', project.github);
+      expect(await titleHiddenBox(github), `${path} GitHub title is hidden visually`).toEqual({ width: 1, height: 1 });
+      await expect(github, path).toHaveAccessibleName(new RegExp(project.title));
     }
     if (project.live !== undefined) {
       const host = new URL(project.live).host;
       const live = main.getByRole('link').filter({ hasText: `Visit ${host}` });
       await expect(live, `${path} live link`).toHaveCount(1);
       await expect(live, path).toHaveAttribute('href', project.live);
+      expect(await titleHiddenBox(live), `${path} live title is hidden visually`).toEqual({ width: 1, height: 1 });
+      await expect(live, path).toHaveAccessibleName(new RegExp(project.title));
     }
     if (project.github === undefined && project.live === undefined) {
       const external = await main.locator('a').evaluateAll(
@@ -423,7 +437,7 @@ test.describe('project entry motion runs when motion is allowed', () => {
         }),
       );
       const label = `article ${index}`;
-      expect(animations.length, label).toBeGreaterThan(0);
+      expect(animations.length, `${label} animates the side note and the main column`).toBe(2);
 
       for (const animation of animations) {
         expect(animation.iterations, label).toBe(1);
@@ -447,12 +461,8 @@ test.describe('project entry motion runs when motion is allowed', () => {
         expect(translateY, `${label} start transform ${start.transform}`).toBe(24);
       }
 
-      if (animations.length > 1) {
-        const delays = animations.map((animation) => animation.delay).sort((a, b) => a - b);
-        for (let step = 1; step < delays.length; step += 1) {
-          expect(delays[step] - delays[step - 1], `${label} stagger`).toBe(80);
-        }
-      }
+      const delays = animations.map((animation) => animation.delay).sort((a, b) => a - b);
+      expect(delays, `${label} stagger`).toEqual([0, 80]);
     }
   });
 });
