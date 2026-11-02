@@ -77,7 +77,7 @@ Status column by matching the Slug column, so keep slugs exact.
 |---|------|------|-------|--------|-----------|--------|
 | 1 | task | astro-scaffold | Scaffold Astro project with test tooling | R1 | — | released |
 | 2 | story | content-collections | Define content collections and schemas | R2, R8 | 1 | released |
-| 3 | story | base-layout | Base layout, design tokens, and navigation | R3, R5, R6 | 1 | in-progress |
+| 3 | story | base-layout | Base layout, design tokens, and navigation | R3, R5, R6 | 1 | staged |
 | 4 | story | experience-page | Work experience page | R3, R5, R6 | 2, 3 | planned |
 | 5 | story | projects-pages | Projects index and detail pages | R3, R5, R6 | 2, 3 | planned |
 | 6 | story | about-page | About page with résumé download | R3, R5, R6 | 2, 3 | planned |
