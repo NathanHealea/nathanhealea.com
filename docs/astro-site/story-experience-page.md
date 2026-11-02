@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: experience-page
-status: staged
+status: released
 branch: story/experience-page
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-experience-page
 created: 2026-10-31
@@ -11,7 +11,7 @@ commit_type:         # optional override for the release subject type (default: 
 version: 0.3.0
 review_approved: 2026-11-01
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the merge commit
+tag: v0.3.0
 ---
 
 # Work experience page
@@ -114,3 +114,4 @@ Design comes from `design/DESIGN-SYSTEM.md` ("The Public Report"). The Frame rul
 - 2026-11-01 — Review: security clean; a11y no AA failures (disclosure role and state verified in Chromium); code review LOW only. Mutation audit 21 mutants, 15 killed; the 6 survivors and the T1 tiebreak are now covered.
 - 2026-11-01 — Staged: verification passed; version 0.2.1 → 0.3.0; no changelog file.
 - 2026-11-01 — Review approved.
+- 2026-11-01 — Released 0.3.0 as v0.3.0.
