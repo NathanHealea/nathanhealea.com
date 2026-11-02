@@ -62,7 +62,7 @@ const { Content } = await render(entry);
 		list-style: none;
 	}
 
-	.side > * + * {
+	.tech + :global(.links) {
 		margin-top: 8px;
 	}
 
@@ -81,10 +81,13 @@ const { Content } = await render(entry);
 	}
 
 	.back {
-		display: flex;
+		margin-top: var(--spacing-inner);
+	}
+
+	.back a {
+		display: inline-flex;
 		align-items: center;
 		min-height: var(--spacing-tap);
-		margin-top: var(--spacing-inner);
 	}
 
 	@media (min-width: 960px) {
