@@ -1,0 +1,48 @@
+---
+import { render } from 'astro:content';
+import ExperienceItem from '../components/ExperienceItem.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getExperience } from '../lib/collections';
+
+const roles = await Promise.all(
+	(await getExperience()).map(async (entry) => ({
+		entry,
+		hasDetails: Boolean(entry.body?.trim()),
+		Content: (await render(entry)).Content,
+	})),
+);
+---
+
+<BaseLayout
+	title="Experience | Nathan Healea"
+	description="Nathan Healea's work history: roles, dates, and the technology used in each."
+>
+	<h1>Experience</h1>
+	<div class="roles">
+		{
+			roles.map(({ entry, hasDetails, Content }) => (
+				<ExperienceItem role={entry.data} hasDetails={hasDetails}>
+					{hasDetails && <Content />}
+				</ExperienceItem>
+			))
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	h1 {
+		padding-top: var(--spacing-inner);
+	}
+
+	.roles {
+		display: grid;
+		gap: var(--spacing-section);
+		margin-top: var(--spacing-section);
+	}
+
+	@media (min-width: 960px) {
+		h1 {
+			padding-left: var(--axis);
+		}
+	}
+</style>

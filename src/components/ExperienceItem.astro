@@ -45,9 +45,31 @@ const name = `${role.title} at ${role.company}`;
 </article>
 
 <style>
+	.side,
+	.main {
+		animation: enter var(--enter-duration) var(--ease-out) both;
+	}
+
+	.main {
+		animation-delay: var(--enter-stagger);
+	}
+
 	.side {
+		margin-bottom: 16px;
 		font-size: var(--text-small);
 		line-height: var(--leading-small);
+	}
+
+	@media (min-width: 960px) {
+		.role {
+			display: grid;
+			grid-template-columns: var(--axis) 1fr;
+			align-items: start;
+		}
+
+		.side {
+			margin: 0 32px 0 0;
+		}
 	}
 
 	.status {
