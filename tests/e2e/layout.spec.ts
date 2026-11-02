@@ -203,6 +203,21 @@ test.describe('at 320px', () => {
       }
     }
   });
+
+  test('narrow nav sits on one row under the wordmark', async ({ page }) => {
+    for (const route of LAYOUT_ROUTES) {
+      await page.goto(route);
+      const wordmark = await page.getByRole('link', { name: 'Nathan Healea', exact: true }).boundingBox();
+      const links = await Promise.all(
+        ['Experience', 'Projects', 'About'].map((name) =>
+          page.locator('nav[aria-label="Primary"]').getByRole('link', { name, exact: true }).boundingBox(),
+        ),
+      );
+      const tops = links.map((box) => Math.round(box!.y));
+      expect(new Set(tops).size, route).toBe(1);
+      expect(tops[0], route).toBeGreaterThanOrEqual(Math.floor(wordmark!.y + wordmark!.height));
+    }
+  });
 });
 
 test('footer social links have names', async ({ page }) => {
@@ -220,9 +235,58 @@ test('footer social links have names', async ({ page }) => {
       await expect(link, route).toHaveAttribute('href', url);
       await expect(link, route).toHaveAccessibleName(/\S/);
       await expect(link, route).toHaveAccessibleName(label);
-      await expect(link, route).not.toHaveAttribute('target', '_blank');
+      await expect(link, route).not.toHaveAttribute('target', /.+/);
     }
   }
+});
+
+function luminance(rgb: string): number {
+  const [r, g, b] = (rgb.match(/[\d.]+/g) ?? []).slice(0, 3).map((value) => {
+    const channel = Number(value) / 255;
+    return channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function contrast(a: string, b: string): number {
+  const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (light + 0.05) / (dark + 0.05);
+}
+
+test('every keyboard stop shows a focus ring with 3:1 contrast', async ({ page }) => {
+  for (const route of LAYOUT_ROUTES) {
+    await page.goto(route);
+    const stops = await page.locator('a, button').count();
+    for (let index = 0; index < stops; index += 1) {
+      await page.keyboard.press('Tab');
+      const ring = await page.evaluate(() => {
+        const element = document.activeElement as HTMLElement;
+        const style = getComputedStyle(element);
+        let ground = element.parentElement;
+        while (ground && getComputedStyle(ground).backgroundColor === 'rgba(0, 0, 0, 0)') ground = ground.parentElement;
+        return {
+          name: element.textContent?.trim(),
+          style: style.outlineStyle,
+          width: parseFloat(style.outlineWidth),
+          color: style.outlineColor,
+          background: ground ? getComputedStyle(ground).backgroundColor : 'rgb(255, 255, 255)',
+        };
+      });
+      expect(ring.style, `${route} ${ring.name}`).not.toBe('none');
+      expect(ring.width, `${route} ${ring.name}`).toBeGreaterThanOrEqual(2);
+      expect(contrast(ring.color, ring.background), `${route} ${ring.name}`).toBeGreaterThanOrEqual(3);
+    }
+  }
+});
+
+test('layout renders the page title and description', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle('Nathan Healea');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /\S/);
+
+  await page.goto('/404');
+  await expect(page).toHaveTitle('Page not found | Nathan Healea');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /\S/);
 });
 
 test('404 page renders', async ({ page }) => {
