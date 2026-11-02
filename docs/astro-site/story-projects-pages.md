@@ -2,13 +2,13 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: projects-pages
-status: in-progress
+status: staged
 branch: story/projects-pages
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-projects-pages
 created: 2026-10-31
 approved: 2026-11-02
 commit_type:         # optional override for the release subject type (default: story=feat, bug=fix, task=chore)
-version:             # set by `wi stage`
+version: 0.4.0
 review_approved:     # set by `wi accept`
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the branch's last commit
@@ -112,3 +112,5 @@ The shell's `currentSection()` matches by prefix, so on a detail page the nav's 
 - 2026-11-02 — Started implementation on branch story/projects-pages at e77e3fa.
 - 2026-11-02 — Step 2: the no-JS visibility test now waits for animations to settle before reading opacity, as the experience page's does; it had read opacity mid-ENTER.
 - 2026-11-02 — Build complete: three steps done. The detail side-note selector in projects.spec.ts was changed to ':scope > :not(:has(h1))' because Playwright did not match the relative ':has(> ul)' form. Screenshots of the index and both detail pages at 1280px and 320px checked against the pack.
+- 2026-11-02 — Review: security clean; a11y no AA failures (nav aria-current on detail pages, already in Risks); code review one LOW fixed with the back-link tap size. Mutation audit 31 mutants, 27 killed; the visually-hidden and stagger survivors are now covered; the .trim() and host-with-port survivors change nothing with current content.
+- 2026-11-02 — Staged: verification passed; version 0.3.0 → 0.4.0; no changelog file.
