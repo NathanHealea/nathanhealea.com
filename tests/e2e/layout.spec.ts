@@ -91,6 +91,15 @@ test.describe('with reduced motion', () => {
   });
 });
 
+test('page heading keeps every glyph after it rises', async ({ page }) => {
+  await page.goto('/');
+  const heading = page.locator('h1').first();
+  await heading.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+
+  const clipPath = await heading.evaluate((element) => getComputedStyle(element).clipPath);
+  expect(clipPath).toBe('none');
+});
+
 test.describe('without reduced motion', () => {
   test.use({ reducedMotion: 'no-preference' });
 
