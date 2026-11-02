@@ -35,7 +35,7 @@ Skip link: first focusable element, paper on ink, top-left inside the margin, vi
 
 ## Motion (four named moves; all drop to 0ms under `prefers-reduced-motion: reduce`)
 
-RISE (signature): page and section headings rise out of an overflow mask, `translateY(105%) → 0`, 1000ms `cubic-bezier(.2,.8,.2,1)`, lines staggered 120ms, once on entry. ENTER: a section's parts follow its heading (text, then figure) 24px up + opacity, 700ms, 80ms stagger, once; content is visible without script. MARK: nav current-bar and link underline thicken 150ms ease-out on hover/focus. TURN: a color page's statement fades in 400ms as it enters. Transform and opacity only.
+RISE (signature): page and section headings rise into place, `translateY(0.35em) → 0` with opacity `0 → 1`, on the heading element itself (no mask, so no glyph is ever clipped), 1000ms `cubic-bezier(.2,.8,.2,1)`, lines staggered 120ms, once on entry. ENTER: a section's parts follow its heading (text, then figure) 24px up + opacity, 700ms, 80ms stagger, once; content is visible without script. MARK: nav current-bar and link underline thicken 150ms ease-out on hover/focus. TURN: a color page's statement fades in 400ms as it enters. Transform and opacity only, except MARK, which animates the bar and underline thickness.
 
 ## Copy rules
 
