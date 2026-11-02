@@ -86,9 +86,9 @@ The shell's `currentSection()` matches by prefix, so on a detail page the nav's 
 
 ## Implementation plan
 
-1. [ ] Build `ProjectLinks` and `ProjectItem` — touches `src/components/ProjectLinks.astro`, `src/components/ProjectItem.astro`, `tests/unit/project-links.test.ts`, `tests/unit/project-item.test.ts` — tests T3, T4, T8
-2. [ ] Build the index page, its axis layout and ENTER motion — touches `src/pages/projects/index.astro`, `src/components/ProjectItem.astro`, `tests/e2e/projects.spec.ts` — tests T1, T5, T6, T7
-3. [ ] Build the detail pages with `getStaticPaths` — touches `src/pages/projects/[slug].astro`, `tests/e2e/projects.spec.ts` — tests T2, T5, T6
+1. [x] Build `ProjectLinks` and `ProjectItem` — touches `src/components/ProjectLinks.astro`, `src/components/ProjectItem.astro`, `tests/unit/project-links.test.ts`, `tests/unit/project-item.test.ts` — tests T3, T4, T8
+2. [x] Build the index page, its axis layout and ENTER motion — touches `src/pages/projects/index.astro`, `src/components/ProjectItem.astro`, `tests/e2e/projects.spec.ts` — tests T1, T5, T6, T7
+3. [x] Build the detail pages with `getStaticPaths` — touches `src/pages/projects/[slug].astro`, `tests/e2e/projects.spec.ts` — tests T2, T5, T6
 
 **Must not change:** project schema field names; URL pattern `/projects/<file-name>/`; token names and values in `src/styles/tokens.css`; the shell components; `ExperienceItem` and the `rise`/`enter` keyframes.
 
@@ -110,3 +110,5 @@ The shell's `currentSection()` matches by prefix, so on a detail page the nav's 
 - 2026-11-02 — Revised for the design pack and token names: projects are axis entries, not cards (`ProjectItem`); R4 link text and names made exact; R7 axis layout, R8 ENTER motion; unit tests T3, T4, T8; open questions moved to proposed answers.
 - 2026-11-02 — Plan approved.
 - 2026-11-02 — Started implementation on branch story/projects-pages at e77e3fa.
+- 2026-11-02 — Step 2: the no-JS visibility test now waits for animations to settle before reading opacity, as the experience page's does; it had read opacity mid-ENTER.
+- 2026-11-02 — Build complete: three steps done. The detail side-note selector in projects.spec.ts was changed to ':scope > :not(:has(h1))' because Playwright did not match the relative ':has(> ul)' form. Screenshots of the index and both detail pages at 1280px and 320px checked against the pack.
