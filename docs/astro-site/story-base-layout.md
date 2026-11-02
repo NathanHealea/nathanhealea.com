@@ -2,11 +2,11 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: base-layout
-status: planned      # planned | in-progress | changes-requested | staged | released
+status: in-progress
 branch: story/base-layout
-worktree_path:       # set by `wi start`
+worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-base-layout
 created: 2026-10-31
-approved:            # set by `wi approve`
+approved: 2026-11-01
 commit_type:         # optional override for the release subject type (default: story=feat, bug=fix, task=chore)
 version:             # set by `wi stage`
 review_approved:     # set by `wi accept`
@@ -22,26 +22,29 @@ Build the shared shell every page uses: the HTML document, design tokens, typogr
 
 ## Context
 
-Depends on `astro-scaffold`. Runs in parallel with `content-collections`. The Hugo site has a custom theme with dark mode and a mobile nav; none of its CSS carries over. The design direction is **not decided yet** and blocks approval of this plan (see open questions).
+Depends on `astro-scaffold`. `content-collections` has landed, so the `about` entry exists (placeholder content). The Hugo site's dark "Spatial" theme (Inter, cyan/indigo) does not carry over.
+
+Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`design-taste-frontend`) as the direction source: **The Public Report**. It's a public employee's annual report: one axis at 42%, paper and ink, fir and slate color pages, Source Serif 4 display with Public Sans text, one theme. The locked pack, `design/DESIGN-SYSTEM.md` and `design/VOICE.md`, is the contract for this story and children 4–7. Any deviation edits the pack in its own commit. The four explored directions are in the planning session's scratchpad, not in the repo.
 
 ## Scope
 
 **In scope**
 
+- The locked design pack committed at `design/DESIGN-SYSTEM.md` and `design/VOICE.md`
 - `BaseLayout.astro` with a `title`/`description` prop contract that `seo` extends later
-- Design tokens as CSS custom properties: color, type scale, spacing, radius, max width
-- Self-hosted font files (no third-party font CDN), if a custom font is chosen
+- Design tokens as CSS custom properties from the pack: color, type scale, spacing, frame and axis, motion
+- Self-hosted, unmodified upstream woff2 files for Source Serif 4 (adobe-fonts/source-serif) and Public Sans (uswds/public-sans), both OFL 1.1, with their license files
 - Header with site name linking home, and primary nav: Experience, Projects, About
-- Mobile navigation pattern for narrow viewports
-- Footer with social links
+- Narrow-viewport nav that wraps under the wordmark (no toggle, no script)
+- Footer as a fir color page: name, `about.location`, social links
 - Skip link, landmarks, focus styles, `prefers-reduced-motion` handling
 - A 404 page using the layout
 
 **Out of scope**
 
-- Page content (children 4–7)
+- Page content (children 4–7), including the mosaic band, color-page statements, and taste-skill's per-page floors (pictures, motion count, interactive element), which apply to content pages, not the shell
 - Meta tags beyond `<title>` and description (`seo`)
-- Dark mode, unless Nathan opts in (open question)
+- Dark mode and any theme toggle (decided: one theme)
 
 ## Requirements
 
@@ -51,11 +54,12 @@ Depends on `astro-scaffold`. Runs in parallel with `content-collections`. The Hu
 - **R4** — Every interactive element shows a visible focus indicator with at least 3:1 contrast against adjacent colors (WCAG 2.4.7, 1.4.11).
 - **R5** — Text meets 4.5:1 contrast (3:1 for large text) in every color theme shipped (WCAG 1.4.3).
 - **R6** — From 320px to 1920px wide, no page scrolls horizontally, and the content reflows at 400% zoom of a 1280px viewport (WCAG 1.4.10).
-- **R7** — Below the mobile breakpoint, the nav is reachable and operable by keyboard and screen reader. If it collapses behind a toggle, the toggle is a `<button>` with `aria-expanded` and `aria-controls`, and Escape closes it and returns focus to the toggle.
+- **R7** — At every width from 320px up, all three primary nav links are visible without a toggle, fit inside the viewport, and are reachable by Tab in reading order (wordmark, Experience, Projects, About).
 - **R8** — With `prefers-reduced-motion: reduce`, no transitions or animations longer than 0ms run.
 - **R9** — Unknown routes render a 404 page in the layout with a link home.
 - **R10** — No external requests are made for fonts, scripts, or styles at page load.
 - **R11** — Footer social links come from the `about` entry, open in the same tab, and have accessible names.
+- **R12** — Rendered pages use only the pack's typefaces: computed `font-family` resolves to Source Serif 4 on `h1` and to Public Sans on `body`, and both font files load from the site's own origin.
 
 ## Acceptance criteria
 
@@ -64,9 +68,10 @@ Depends on `astro-scaffold`. Runs in parallel with `content-collections`. The Hu
 - **AC3** (R3) — Given `/projects/`, when inspected, then only the Projects nav link has `aria-current="page"`.
 - **AC4** (R5, R4) — Given every route, when axe runs, then there are zero violations.
 - **AC5** (R6) — Given a 320px viewport, when any route loads, then `scrollWidth <= innerWidth`.
-- **AC6** (R7) — Given a 375px viewport, when the nav toggle is activated by keyboard, then `aria-expanded` becomes `true` and the links are focusable; when Escape is pressed, then it closes and the toggle has focus.
+- **AC6** (R7) — Given a 320px viewport, when the page loads, then all three nav links are visible with bounding boxes inside the viewport; when Tab is pressed after the skip link, then focus moves through wordmark, Experience, Projects, About in that order.
 - **AC7** (R9) — Given `/does-not-exist`, when requested on the preview server, then the 404 page renders with a link to `/`.
 - **AC8** (R10) — Given a page load, when network requests are recorded, then all are same-origin.
+- **AC9** (R12) — Given `/`, when fonts have loaded, then `document.fonts` reports Source Serif 4 and Public Sans as `loaded` and the `h1` and `body` computed families start with them.
 
 ## Test plan
 
@@ -77,33 +82,41 @@ Depends on `astro-scaffold`. Runs in parallel with `content-collections`. The Hu
 | T3 | R3 | `nav marks current section` | `tests/e2e/layout.spec.ts` | `aria-current` on the right link per route |
 | T4 | R4, R5 | `layout has no axe violations` | `tests/e2e/layout.spec.ts` | `expectNoA11yViolations` on `/` and `/404` |
 | T5 | R6 | `no horizontal scroll at 320px and 1920px` | `tests/e2e/layout.spec.ts` | `scrollWidth <= innerWidth` at both widths |
-| T6 | R7 | `mobile nav toggle is keyboard operable` | `tests/e2e/layout.spec.ts` | AC6 sequence at 375px (skip if nav does not collapse) |
-| T7 | R8 | `reduced motion disables transitions` | `tests/e2e/layout.spec.ts` | With `reducedMotion: 'reduce'`, computed `transition-duration` on nav links and toggle is `0s` |
+| T6 | R7 | `narrow nav stays visible and in tab order` | `tests/e2e/layout.spec.ts` | AC6 at 320px |
+| T7 | R8 | `reduced motion disables transitions` | `tests/e2e/layout.spec.ts` | With `reducedMotion: 'reduce'`, computed `transition-duration` and `animation-duration` on nav links and the page heading are `0s` |
 | T8 | R9 | `404 page renders` | `tests/e2e/layout.spec.ts` | AC7 |
 | T9 | R10 | `no third-party requests` | `tests/e2e/layout.spec.ts` | Every request URL origin equals the preview origin |
 | T10 | R11 | `footer social links have names` | `tests/e2e/layout.spec.ts` | Each footer link has non-empty accessible name and matches `about.social` |
+| T11 | R12 | `pack typefaces load from same origin` | `tests/e2e/layout.spec.ts` | AC9 |
 
-**Not unit testable:** R6's 400% zoom reflow and R4's focus contrast are partly beyond axe; verified manually at 1280px with browser zoom at 400% and with a focus-contrast check, recorded in the progress log.
+**Not unit testable:** R6's 400% zoom reflow and R4's focus contrast are partly beyond axe; verified manually at 1280px with browser zoom at 400% and with a focus-contrast check, recorded in the progress log. Fidelity to the design pack (tokens, frame, banned devices) is checked by screenshots at 1440, 768 and 390px of `/` and `/404`, critiqued against `design/DESIGN-SYSTEM.md` and taste-skill's house rules. This is taste-skill's no-inspector fallback, because auto mode blocks running its `inspect.mjs`/`lint.mjs` (downloaded code). The critique is recorded in the progress log.
 
 ## Implementation plan
 
-1. [ ] Write design tokens and base styles from the approved design direction — touches `src/styles/tokens.css`, `src/styles/global.css`, `public/fonts/*` — tests T4, T7
-2. [ ] Build `BaseLayout` with landmarks and the skip link — touches `src/layouts/BaseLayout.astro`, `src/pages/index.astro`, `tests/e2e/layout.spec.ts` — tests T1, T2
-3. [ ] Build header and primary nav with current-section marking and mobile behavior — touches `src/components/Header.astro`, `src/components/Nav.astro` — tests T3, T5, T6
-4. [ ] Build footer from the `about` entry — touches `src/components/Footer.astro` — tests T10
-5. [ ] Add the 404 page and the same-origin check — touches `src/pages/404.astro` — tests T8, T9
+1. [ ] Commit the locked design pack — touches `design/DESIGN-SYSTEM.md`, `design/VOICE.md` — tests none (documentation)
+2. [ ] Write design tokens, base styles, and self-hosted fonts from the pack — touches `src/styles/tokens.css`, `src/styles/global.css`, `public/fonts/*` (woff2 plus OFL license files fetched from the upstream GitHub releases) — tests T4, T7, T11
+3. [ ] Build `BaseLayout` with landmarks and the skip link — touches `src/layouts/BaseLayout.astro`, `src/pages/index.astro`, `tests/e2e/layout.spec.ts` — tests T1, T2
+4. [ ] Build header and primary nav with current-section marking and the wrapping narrow layout — touches `src/components/Header.astro`, `src/components/Nav.astro` — tests T3, T5, T6
+5. [ ] Build the footer color page from the `about` entry — touches `src/components/Footer.astro` — tests T10
+6. [ ] Add the 404 page and the same-origin check, then run the screenshot critique — touches `src/pages/404.astro` — tests T8, T9
 
-**Must not change:** The `BaseLayout` props `title` and `description` are the contract `seo` builds on; keep their names.
+**Must not change:** The `BaseLayout` props `title` and `description` are the contract `seo` builds on; keep their names. Token names and values come from `design/DESIGN-SYSTEM.md`; component code never introduces a color, size, or motion that is not in the pack.
 
 **High-risk steps:** None.
 
 ## Risks and open questions
 
-- **Open, blocks approval — design direction.** No visual direction given. Needed before step 1: tone (e.g. minimal/typographic, editorial, technical), color palette or brand colors, typeface preference, and any reference sites Nathan likes. Proposed process: Nathan answers these, then 2–3 token mockups are reviewed before building.
-- **Open — dark mode.** The Hugo site has a flicker-free dark mode with a toggle. Carry it forward (adds a theme script, a toggle, and both themes must pass R5), follow system preference only, or ship light only?
-- **Open — mobile nav pattern.** Three links may fit at 320px without a toggle, which is simpler and needs no JavaScript. Decide once the type scale exists; T6 is skipped if there is no toggle.
-- **Risk — layout depends on `about`.** Footer reads `content-collections`' `about` entry. If `base-layout` lands first, step 4 waits or uses the placeholder.
+- **Decided — design direction.** The Public Report, locked in `design/DESIGN-SYSTEM.md` and `design/VOICE.md` (2026-11-01).
+- **Decided — dark mode.** One theme, no toggle, no theme script.
+- **Decided — narrow nav.** No toggle. The nav wraps under the wordmark as one row of three links.
+- **Risk — taste-skill gate cannot run.** Auto mode blocks running taste-skill's `inspect.mjs` and `lint.mjs` as downloaded code. The screenshot critique replaces them. To use the real inspector, add a Bash permission rule for `node ~/.claude/skills/design-taste-frontend/scripts/*`.
+- **Risk — taste-skill floors vs. WCAG.** Its per-page minimum of 8 moving elements applies to children 4–7, not here. Every move in the pack drops to 0ms under reduced motion (R8), so the floor can only ever be met with motion allowed.
+- **Risk — font licensing.** Source Serif's Reserved Font Name "Source" means the woff2 files ship exactly as released. No subsetting or renaming without first checking OFL §3.
+- **Resolved — `about` dependency.** `content-collections` has landed. The footer reads the placeholder `about` entry until `content-migration`.
 
 ## Progress log
 
 - 2026-10-31 — Planned.
+- 2026-11-01 — Design direction decided via /hone:design + taste-skill: The Public Report (one theme, serif display + sans text, no-toggle nav). Plan revised: design pack step added, R7/AC6/T6 rewritten for no toggle, R12/AC9/T11 added for self-hosted pack fonts, open questions resolved.
+- 2026-11-01 — Plan approved.
+- 2026-11-01 — Started implementation on branch story/base-layout at e14e121.
