@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: base-layout
-status: staged
+status: released
 branch: story/base-layout
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-base-layout
 created: 2026-10-31
@@ -11,7 +11,7 @@ commit_type:         # optional override for the release subject type (default: 
 version: 0.2.0
 review_approved: 2026-11-01
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the branch's last commit
+tag: v0.2.0
 ---
 
 # Base layout, design tokens, and navigation
@@ -130,3 +130,4 @@ Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`de
 - 2026-11-01 — Resumed to address requested changes.
 - 2026-11-01 — Staged: verification passed; version 0.1.0 → 0.2.0; no changelog file.
 - 2026-11-01 — Review approved.
+- 2026-11-01 — Released 0.2.0 as v0.2.0.
