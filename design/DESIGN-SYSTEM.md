@@ -10,7 +10,7 @@
 
 ## Type
 
-Source Serif 4 600/700 (variable, opsz on) = page titles, section headings, statements on color pages; never below 24px, never in nav or body. Public Sans 400/600 (variable) = all running text, nav, footer, captions. Both self-hosted as unmodified upstream woff2 (OFL 1.1; Source Serif's Reserved Font Name forbids shipping a subset under its name), `font-display: swap`, fallbacks `Georgia, serif` / `system-ui, sans-serif`. No monospace outside `<pre>/<code>`.
+Source Serif 4 Display 600/700 (static cuts, 172KB for both; the variable file is 429KB) = page titles, section headings, statements on color pages; never below 24px, never in nav or body. Public Sans 400/600 (static cuts) = all running text, nav, footer, captions. Both self-hosted as unmodified upstream woff2 (OFL 1.1; Source Serif's Reserved Font Name forbids shipping a subset under its name), `font-display: swap`, fallbacks `Georgia, serif` / `system-ui, sans-serif`. No monospace outside `<pre>/<code>`.
 
 Scale (five sizes, the ceiling): display `clamp(40px, 6.4vw, 92px)` / 0.95 / -0.03em · section `clamp(30px, 3.6vw, 48px)` / 1.05 / -0.02em · statement `clamp(24px, 2.6vw, 34px)` / 1.2 (serif, color pages only) · standfirst `clamp(19px, 1.6vw, 21px)` / 1.45 · body 18px / 1.55, small 16px / 1.45 (side notes, footer). Body measure ≤ 62ch. Left-aligned everywhere; nothing centered.
 
