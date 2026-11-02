@@ -10,7 +10,7 @@
 
 ### Token names
 
-Tokens in `src/styles/tokens.css` follow Tailwind v4's theme variable namespaces (tailwindcss.com/docs/theme), so the file could become a Tailwind `@theme` block unchanged. Colors are `--color-*`, typefaces `--font-*`, type sizes `--text-*`, line heights `--leading-*`, letter spacing `--tracking-*`, max widths (`--container-measure`, `--container-content`) `--container-*`, and the outer margin, section gap, inner gap and tap target (`--spacing-margin`, `--spacing-section`, `--spacing-inner`, `--spacing-tap`) `--spacing-*`. Timing curves are `--ease-*`. Tokens with no Tailwind namespace keep a plain project name: `--axis`, `--focus-*`, `--mark-*`, and the motion durations and staggers.
+Tokens in `src/styles/tokens.css` follow Tailwind v4's theme variable namespaces (tailwindcss.com/docs/theme), so the file could become a Tailwind `@theme` block with little change: the `@font-face` rules and the 960px override of `--spacing-section` would stay outside it. Colors are `--color-*`, typefaces `--font-*`, type sizes `--text-*`, line heights `--leading-*`, letter spacing `--tracking-*`, max widths (`--container-measure`, `--container-content`) `--container-*`, and the outer margin, section gap, inner gap and tap target (`--spacing-margin`, `--spacing-section`, `--spacing-inner`, `--spacing-tap`) `--spacing-*`. Timing curves are `--ease-*`. Tokens with no Tailwind namespace keep a plain project name: `--axis`, `--focus-*`, `--mark-*`, and the motion durations and staggers.
 
 ## Type
 
