@@ -79,7 +79,7 @@ Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`de
 |----|--------|------|------|---------|
 | T1 | R1 | `layout renders landmarks` | `tests/e2e/layout.spec.ts` | Landmark counts on `/` and `/404` |
 | T2 | R2 | `skip link moves focus to main` | `tests/e2e/layout.spec.ts` | First Tab focuses skip link; it is visible; Enter moves focus into `main` |
-| T3 | R3 | `nav marks current section` | `tests/e2e/layout.spec.ts` | `aria-current` on the right link per route |
+| T3 | R3 | `nav marks current section` | `tests/unit/nav.test.ts`, `tests/e2e/layout.spec.ts` | Unit: `currentSection` maps each section path, slug paths and missing trailing slash to its link, and lookalike prefixes to none. E2E: on `/`, three links with the right names and hrefs, none current |
 | T4 | R4, R5 | `layout has no axe violations` | `tests/e2e/layout.spec.ts` | `expectNoA11yViolations` on `/` and `/404` |
 | T5 | R6 | `no horizontal scroll at 320px and 1920px` | `tests/e2e/layout.spec.ts` | `scrollWidth <= innerWidth` at both widths |
 | T6 | R7 | `narrow nav stays visible and in tab order` | `tests/e2e/layout.spec.ts` | AC6 at 320px |
@@ -93,12 +93,12 @@ Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`de
 
 ## Implementation plan
 
-1. [ ] Commit the locked design pack — touches `design/DESIGN-SYSTEM.md`, `design/VOICE.md` — tests none (documentation)
-2. [ ] Write design tokens, base styles, and self-hosted fonts from the pack — touches `src/styles/tokens.css`, `src/styles/global.css`, `public/fonts/*` (woff2 plus OFL license files fetched from the upstream GitHub releases) — tests T4, T7, T11
-3. [ ] Build `BaseLayout` with landmarks and the skip link — touches `src/layouts/BaseLayout.astro`, `src/pages/index.astro`, `tests/e2e/layout.spec.ts` — tests T1, T2
-4. [ ] Build header and primary nav with current-section marking and the wrapping narrow layout — touches `src/components/Header.astro`, `src/components/Nav.astro` — tests T3, T5, T6
-5. [ ] Build the footer color page from the `about` entry — touches `src/components/Footer.astro` — tests T10
-6. [ ] Add the 404 page and the same-origin check, then run the screenshot critique — touches `src/pages/404.astro` — tests T8, T9
+1. [x] Commit the locked design pack — touches `design/DESIGN-SYSTEM.md`, `design/VOICE.md` — tests none (documentation)
+2. [x] Write design tokens, base styles, and self-hosted fonts from the pack — touches `src/styles/tokens.css`, `src/styles/global.css`, `public/fonts/*` (woff2 plus OFL license files fetched from the upstream GitHub releases) — tests T4, T7, T11
+3. [x] Build `BaseLayout` with landmarks and the skip link — touches `src/layouts/BaseLayout.astro`, `src/pages/index.astro`, `tests/e2e/layout.spec.ts` — tests T1, T2
+4. [x] Build header and primary nav with current-section marking and the wrapping narrow layout — touches `src/components/Header.astro`, `src/components/Nav.astro` — tests T3, T5, T6
+5. [x] Build the footer color page from the `about` entry — touches `src/components/Footer.astro` — tests T10
+6. [x] Add the 404 page and the same-origin check, then run the screenshot critique — touches `src/pages/404.astro` — tests T8, T9
 
 **Must not change:** The `BaseLayout` props `title` and `description` are the contract `seo` builds on; keep their names. Token names and values come from `design/DESIGN-SYSTEM.md`; component code never introduces a color, size, or motion that is not in the pack.
 
@@ -120,3 +120,7 @@ Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`de
 - 2026-11-01 — Design direction decided via /hone:design + taste-skill: The Public Report (one theme, serif display + sans text, no-toggle nav). Plan revised: design pack step added, R7/AC6/T6 rewritten for no toggle, R12/AC9/T11 added for self-hosted pack fonts, open questions resolved.
 - 2026-11-01 — Plan approved.
 - 2026-11-01 — Started implementation on branch story/base-layout at e14e121.
+- 2026-11-01 — wi start branched from origin/v10 (e14e121), 19 commits behind local v10; merged local v10 (94e210b) to pick up content-collections. Epic status conflict resolved: content-collections released, base-layout in-progress.
+- 2026-11-01 — Step 2: T4, T7 passed before implementation (T4 is a regression guard; T7 is made meaningful by a motion-allowed counterpart test that failed first). T11 red until step 3: the home page has no body-font text yet.
+- 2026-11-01 — Step 4: T3 split into a unit test of currentSection (src/lib/nav.ts) plus an e2e check on /, because /experience/, /projects/ and /about/ don't exist until children 4-6. T5 passed before the nav rendered (nothing to overflow); it passes with the nav in place.
+- 2026-11-01 — Step 6 critique (screenshots of / and /404 at 1440, 768, 390, plus 320): fixed blank paper below the footer on short pages (sticky footer), an empty zone left of the axis on the 404 (side note), and a header shrink regression from the flex body. Manual checks: 320px reflow is equivalent to 1280px at 400% zoom with no horizontal scroll; focus rings are fir on paper 10.4:1, paper on fir 10.4:1, and ink around the ink skip link offset on paper 16.5:1. The home page is still a bare h1 placeholder until home-page (child 7).
