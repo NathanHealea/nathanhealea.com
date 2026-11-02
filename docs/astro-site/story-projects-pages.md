@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: projects-pages
-status: staged
+status: released
 branch: story/projects-pages
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-projects-pages
 created: 2026-10-31
@@ -11,7 +11,7 @@ commit_type:         # optional override for the release subject type (default: 
 version: 0.4.0
 review_approved: 2026-11-02
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the branch's last commit
+tag: v0.4.0
 ---
 
 # Projects index and detail pages
@@ -115,3 +115,4 @@ The shell's `currentSection()` matches by prefix, so on a detail page the nav's 
 - 2026-11-02 — Review: security clean; a11y no AA failures (nav aria-current on detail pages, already in Risks); code review one LOW fixed with the back-link tap size. Mutation audit 31 mutants, 27 killed; the visually-hidden and stagger survivors are now covered; the .trim() and host-with-port survivors change nothing with current content.
 - 2026-11-02 — Staged: verification passed; version 0.3.0 → 0.4.0; no changelog file.
 - 2026-11-02 — Review approved.
+- 2026-11-02 — Released 0.4.0 as v0.4.0.

@@ -79,7 +79,7 @@ Status column by matching the Slug column, so keep slugs exact.
 | 2 | story | content-collections | Define content collections and schemas | R2, R8 | 1 | released |
 | 3 | story | base-layout | Base layout, design tokens, and navigation | R3, R5, R6 | 1 | released |
 | 4 | story | experience-page | Work experience page | R3, R5, R6 | 2, 3 | released |
-| 5 | story | projects-pages | Projects index and detail pages | R3, R5, R6 | 2, 3 | staged |
+| 5 | story | projects-pages | Projects index and detail pages | R3, R5, R6 | 2, 3 | released |
 | 6 | story | about-page | About page with résumé download | R3, R5, R6 | 2, 3 | planned |
 | 7 | story | home-page | Home page | R3, R5, R6 | 4, 5, 6 | planned |
 | 8 | story | seo | SEO metadata, sitemap, and structured data | R4 | 3 | planned |
