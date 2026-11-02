@@ -1,0 +1,83 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+	</head>
+	<body>
+		<a class="skip-link" href="#main">Skip to main content</a>
+		<header class="site-header">
+			<a class="wordmark" href="/">Nathan Healea</a>
+			<nav aria-label="Primary"></nav>
+		</header>
+		<main id="main" tabindex="-1">
+			<slot />
+		</main>
+		<footer class="site-footer"></footer>
+	</body>
+</html>
+
+<style>
+	.skip-link {
+		position: absolute;
+		top: var(--margin);
+		left: var(--margin);
+		z-index: 10;
+		padding: 12px 16px;
+		background: var(--ink);
+		color: var(--paper);
+		font-size: var(--size-small);
+		font-weight: 600;
+		transform: translateY(calc(-100% - var(--margin) - 8px));
+	}
+
+	.skip-link:focus-visible {
+		transform: none;
+		outline-color: var(--ink);
+	}
+
+	.site-header {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: baseline;
+		gap: 12px 24px;
+		max-width: var(--content-max);
+		margin: 0 auto;
+		padding: 20px var(--margin);
+	}
+
+	.wordmark {
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: var(--size-wordmark);
+		text-decoration: none;
+	}
+
+	main {
+		display: block;
+		max-width: var(--content-max);
+		margin: 0 auto;
+		padding: 0 var(--margin);
+	}
+
+	main:focus {
+		outline: none;
+	}
+</style>

@@ -16,6 +16,55 @@ function unquote(family: string): string {
   return family.trim().replace(/^["']|["']$/g, '');
 }
 
+test('layout renders landmarks', async ({ page }) => {
+  for (const route of LAYOUT_ROUTES) {
+    await page.goto(route);
+
+    await expect(page.locator('html'), route).toHaveAttribute('lang', 'en');
+    await expect(page.locator('header'), route).toHaveCount(1);
+    await expect(page.locator('nav'), route).toHaveCount(1);
+    await expect(page.locator('nav[aria-label="Primary"]'), route).toHaveCount(1);
+    await expect(page.locator('main'), route).toHaveCount(1);
+    await expect(page.locator('main#main'), route).toHaveCount(1);
+    await expect(page.locator('footer'), route).toHaveCount(1);
+  }
+});
+
+test('skip link moves focus to main', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+
+  const skipLink = page.getByRole('link', { name: 'Skip to main content' });
+  await expect(skipLink).toBeFocused();
+
+  // A visually-hidden pattern can pass toBeVisible() at 1px, so require real size and no clipping.
+  await expect(skipLink).toBeVisible();
+  const box = await skipLink.boundingBox();
+  const viewport = page.viewportSize();
+  expect(box).not.toBeNull();
+  expect(viewport).not.toBeNull();
+  expect(box!.width).toBeGreaterThanOrEqual(8);
+  expect(box!.height).toBeGreaterThanOrEqual(8);
+  expect(box!.x).toBeGreaterThanOrEqual(0);
+  expect(box!.y).toBeGreaterThanOrEqual(0);
+  expect(box!.x + box!.width).toBeLessThanOrEqual(viewport!.width);
+  expect(box!.y + box!.height).toBeLessThanOrEqual(viewport!.height);
+  const clipping = await skipLink.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return { clip: style.clip, clipPath: style.clipPath, opacity: style.opacity };
+  });
+  expect(clipping.clip).toBe('auto');
+  expect(clipping.clipPath).toBe('none');
+  expect(clipping.opacity).toBe('1');
+
+  await page.keyboard.press('Enter');
+  const focusInMain = await page.evaluate(() => {
+    const main = document.querySelector('main#main');
+    return main !== null && main.contains(document.activeElement);
+  });
+  expect(focusInMain).toBe(true);
+});
+
 test('layout has no axe violations', async ({ page }) => {
   for (const route of LAYOUT_ROUTES) {
     await page.goto(route);
