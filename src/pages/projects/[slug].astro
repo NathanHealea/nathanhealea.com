@@ -1,0 +1,101 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import ProjectLinks from '../../components/ProjectLinks.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getProjects } from '../../lib/collections';
+
+export const getStaticPaths = (async () => {
+	return (await getProjects()).map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const project = entry.data;
+const hasBody = Boolean(entry.body?.trim());
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={`${project.title} | Nathan Healea`} description={project.description}>
+	<article class="project-detail">
+		<div class="side">
+			{
+				project.tech.length > 0 && (
+					<ul class="tech" aria-label="Technology">
+						{project.tech.map((item) => (
+							<li>{item}</li>
+						))}
+					</ul>
+				)
+			}
+			<ProjectLinks title={project.title} github={project.github} live={project.live} />
+		</div>
+		<div class="main">
+			<h1>{project.title}</h1>
+			<p class="description">{project.description}</p>
+			{
+				hasBody && (
+					<div class="body">
+						<Content />
+					</div>
+				)
+			}
+			<p class="back"><a href="/projects/">All projects</a></p>
+		</div>
+	</article>
+</BaseLayout>
+
+<style>
+	.project-detail {
+		padding-top: var(--spacing-inner);
+	}
+
+	.side {
+		font-size: var(--text-small);
+		line-height: var(--leading-small);
+	}
+
+	.tech {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 16px;
+		padding: 0;
+		list-style: none;
+	}
+
+	.side > * + * {
+		margin-top: 8px;
+	}
+
+	.side:not(:empty) {
+		margin-bottom: 24px;
+	}
+
+	.description {
+		margin-top: var(--spacing-inner);
+		font-size: var(--text-standfirst);
+		line-height: var(--leading-standfirst);
+	}
+
+	.body {
+		margin-top: var(--spacing-inner);
+	}
+
+	.back {
+		display: flex;
+		align-items: center;
+		min-height: var(--spacing-tap);
+		margin-top: var(--spacing-inner);
+	}
+
+	@media (min-width: 960px) {
+		.project-detail {
+			display: grid;
+			grid-template-columns: var(--axis) 1fr;
+			align-items: start;
+		}
+
+		.side {
+			margin: 0 32px 0 0;
+		}
+	}
+</style>

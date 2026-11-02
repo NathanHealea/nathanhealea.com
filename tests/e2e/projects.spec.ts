@@ -12,15 +12,22 @@ interface Project {
   title: string;
   description: string;
   tech?: string[];
+  github?: string;
+  live?: string;
   order?: number;
+  body: string;
 }
 
 function readProjects(): Project[] {
   return readdirSync(PROJECTS_DIR)
     .filter((file) => file.endsWith('.md'))
     .map((file) => {
-      const { frontmatter } = parseFrontmatter(readFileSync(resolve(PROJECTS_DIR, file), 'utf8'));
-      return { ...(frontmatter as Omit<Project, 'slug'>), slug: basename(file, '.md') };
+      const { frontmatter, content } = parseFrontmatter(readFileSync(resolve(PROJECTS_DIR, file), 'utf8'));
+      return {
+        ...(frontmatter as Omit<Project, 'slug' | 'body'>),
+        slug: basename(file, '.md'),
+        body: content.trim(),
+      };
     });
 }
 
@@ -38,6 +45,14 @@ function hasTech(project: Project): boolean {
   return (project.tech ?? []).length > 0;
 }
 
+function hasSideNote(project: Project): boolean {
+  return hasTech(project) || project.github !== undefined || project.live !== undefined;
+}
+
+function firstParagraph(project: Project): string {
+  return project.body.split(/\n\s*\n/)[0];
+}
+
 function detailPath(project: Project): string {
   return `/projects/${project.slug}/`;
 }
@@ -51,6 +66,11 @@ function articleFor(page: Page, project: Project): Locator {
 // The side note is identified by content (it holds the tech list), not by class.
 function sideNoteOf(article: Locator): Locator {
   return article.locator(':scope > :has([aria-label="Technology"])');
+}
+
+// On a detail page the side note holds the tech and link lists; the main column's lists sit deeper, inside the body.
+function detailSideNoteOf(article: Locator): Locator {
+  return article.locator(':scope > :not(:has(h1))');
 }
 
 async function settleAnimations(page: Page): Promise<void> {
@@ -105,8 +125,62 @@ test('index lists projects in order', async ({ page }) => {
   expect(projects.some((project) => !hasTech(project)), 'a placeholder project without tech').toBe(true);
 });
 
+test('detail page renders project', async ({ page }) => {
+  const projects = readProjects();
+  expect(projects.some((project) => project.body !== ''), 'a placeholder project with a body').toBe(true);
+  expect(projects.some((project) => project.body === ''), 'a placeholder project without a body').toBe(true);
+
+  for (const project of projects) {
+    const path = detailPath(project);
+    const response = await page.goto(path);
+    expect(response?.status(), path).toBe(200);
+
+    const main = page.locator('main');
+    await expect(page.locator('h1'), path).toHaveCount(1);
+    await expect(page.locator('h1'), path).toHaveText(project.title);
+    await expect(main.getByText(project.description, { exact: true }), path).toBeVisible();
+
+    const back = main.getByRole('link', { name: 'All projects', exact: true });
+    await expect(back, path).toHaveCount(1);
+    await expect(back, path).toHaveAttribute('href', INDEX);
+
+    const techList = main.getByRole('list', { name: 'Technology' });
+    if (hasTech(project)) {
+      await expect(techList.getByRole('listitem'), path).toHaveText(project.tech!);
+    } else {
+      await expect(techList, path).toHaveCount(0);
+    }
+
+    if (project.body !== '') {
+      await expect(main.locator('.body').getByText(firstParagraph(project)), `${path} body`).toBeVisible();
+    } else {
+      await expect(main.locator('.body'), `${path} empty body wrapper`).toHaveCount(0);
+    }
+
+    if (project.github !== undefined) {
+      const github = main.getByRole('link', { name: /^View on GitHub/ });
+      await expect(github, `${path} GitHub link`).toHaveCount(1);
+      await expect(github, path).toHaveAttribute('href', project.github);
+    }
+    if (project.live !== undefined) {
+      const host = new URL(project.live).host;
+      const live = main.getByRole('link').filter({ hasText: `Visit ${host}` });
+      await expect(live, `${path} live link`).toHaveCount(1);
+      await expect(live, path).toHaveAttribute('href', project.live);
+    }
+    if (project.github === undefined && project.live === undefined) {
+      const external = await main.locator('a').evaluateAll(
+        (anchors) =>
+          anchors.filter((anchor) => new URL((anchor as HTMLAnchorElement).href).origin !== window.location.origin)
+            .length,
+      );
+      expect(external, `${path} external anchors`).toBe(0);
+    }
+  }
+});
+
 test('projects pages are accessible and reflow', async ({ page }) => {
-  const paths = [INDEX];
+  const paths = [INDEX, ...readProjects().map(detailPath)];
 
   for (const path of paths) {
     await page.setViewportSize({ width: 1280, height: 800 });
@@ -189,6 +263,80 @@ test('projects sit on the axis', async ({ page }) => {
       const sideBox = (await sideNoteOf(article).boundingBox())!;
       const headingBox = (await article.getByRole('heading', { level: 2 }).boundingBox())!;
       expect(sideBox.y + sideBox.height, `${project.title} at ${width}px`).toBeLessThanOrEqual(headingBox.y);
+    }
+  }
+
+  const withSideNote = projects.filter(hasSideNote);
+  expect(withSideNote.length, 'a placeholder project with tech or links').toBeGreaterThan(0);
+
+  for (const width of [1280, 960]) {
+    await page.setViewportSize({ width, height: 800 });
+
+    for (const project of projects) {
+      const label = `${detailPath(project)} at ${width}px`;
+      const response = await page.goto(detailPath(project));
+      expect(response?.status(), label).toBe(200);
+      await settleAnimations(page);
+
+      const frame = await page.locator('main').evaluate((element) => {
+        const rect = element.getBoundingClientRect();
+        const style = getComputedStyle(element);
+        const left = rect.left + parseFloat(style.paddingLeft);
+        const right = rect.right - parseFloat(style.paddingRight);
+        return { left, width: right - left };
+      });
+      const axis = frame.left + 0.42 * frame.width;
+
+      const article = page.locator('main article');
+      const heading = page.locator('h1');
+      const parts: [string, Locator][] = [
+        ['h1', heading],
+        ['description', article.getByText(project.description, { exact: true })],
+        ['back link', article.getByRole('link', { name: 'All projects', exact: true })],
+      ];
+      if (project.body !== '') parts.push(['body', article.locator('.body')]);
+      for (const [name, part] of parts) {
+        const box = (await part.boundingBox())!;
+        expect(Math.abs(box.x - axis), `${label} ${name} left`).toBeLessThanOrEqual(1);
+      }
+
+      if (project.body !== '') {
+        const { width: paragraphWidth, ch } = await article
+          .locator('.body')
+          .getByText(firstParagraph(project))
+          .evaluate((element) => {
+            const context = document.createElement('canvas').getContext('2d')!;
+            context.font = getComputedStyle(element).font;
+            return { width: element.getBoundingClientRect().width, ch: context.measureText('0').width };
+          });
+        expect(paragraphWidth, `${label} body paragraph within 62ch`).toBeLessThanOrEqual(62 * ch + 1);
+      }
+
+      if (!hasSideNote(project)) continue;
+      const side = detailSideNoteOf(article);
+      await expect(side, label).toHaveCount(1);
+      const sideBox = (await side.boundingBox())!;
+      const headingBox = (await heading.boundingBox())!;
+      expect(Math.abs(sideBox.x - frame.left), `${label} side note left`).toBeLessThanOrEqual(1);
+      expect(Math.abs(sideBox.y - headingBox.y), `${label} tops`).toBeLessThanOrEqual(2);
+
+      const sideFirst = await side.evaluate((element, headingElement) => {
+        return Boolean(element.compareDocumentPosition(headingElement!) & Node.DOCUMENT_POSITION_FOLLOWING);
+      }, await heading.elementHandle());
+      expect(sideFirst, `${label} DOM order`).toBe(true);
+    }
+  }
+
+  for (const width of [959, 320]) {
+    await page.setViewportSize({ width, height: 800 });
+
+    for (const project of withSideNote) {
+      await page.goto(detailPath(project));
+      await settleAnimations(page);
+      const article = page.locator('main article');
+      const sideBox = (await detailSideNoteOf(article).boundingBox())!;
+      const headingBox = (await page.locator('h1').boundingBox())!;
+      expect(sideBox.y + sideBox.height, `${detailPath(project)} at ${width}px`).toBeLessThanOrEqual(headingBox.y);
     }
   }
 });
