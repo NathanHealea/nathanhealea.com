@@ -30,19 +30,19 @@ const current = currentSection(Astro.url.pathname);
 	a {
 		display: inline-flex;
 		align-items: center;
-		min-height: var(--tap-min);
-		font-size: var(--size-nav);
+		min-height: var(--spacing-tap);
+		font-size: var(--text-nav);
 		text-decoration: none;
-		box-shadow: inset 0 calc(-1 * var(--mark-rest)) 0 var(--fir);
+		box-shadow: inset 0 calc(-1 * var(--mark-rest)) 0 var(--color-fir);
 		transition: box-shadow var(--mark-duration) ease-out;
 	}
 
 	a:hover,
 	a:focus-visible {
-		box-shadow: inset 0 calc(-1 * var(--mark-hover)) 0 var(--fir);
+		box-shadow: inset 0 calc(-1 * var(--mark-hover)) 0 var(--color-fir);
 	}
 
 	a[aria-current='page'] {
-		box-shadow: inset 0 calc(-1 * var(--mark-current)) 0 var(--fir);
+		box-shadow: inset 0 calc(-1 * var(--mark-current)) 0 var(--color-fir);
 	}
 </style>

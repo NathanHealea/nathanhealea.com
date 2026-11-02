@@ -35,20 +35,20 @@ const { title, description } = Astro.props;
 <style>
 	.skip-link {
 		position: absolute;
-		top: var(--margin);
-		left: var(--margin);
+		top: var(--spacing-margin);
+		left: var(--spacing-margin);
 		z-index: 10;
 		padding: 12px 16px;
-		background: var(--ink);
-		color: var(--paper);
-		font-size: var(--size-small);
+		background: var(--color-ink);
+		color: var(--color-paper);
+		font-size: var(--text-small);
 		font-weight: 600;
-		transform: translateY(calc(-100% - var(--margin) - 8px));
+		transform: translateY(calc(-100% - var(--spacing-margin) - 8px));
 	}
 
 	.skip-link:focus-visible {
 		transform: none;
-		outline-color: var(--ink);
+		outline-color: var(--color-ink);
 	}
 
 	body {
@@ -61,9 +61,9 @@ const { title, description } = Astro.props;
 		display: block;
 		flex: 1 0 auto;
 		width: 100%;
-		max-width: var(--content-max);
+		max-width: var(--container-content);
 		margin: 0 auto;
-		padding: 0 var(--margin);
+		padding: 0 var(--spacing-margin);
 	}
 
 	main:focus {

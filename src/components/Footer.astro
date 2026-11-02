@@ -22,20 +22,20 @@ const about = await getAbout();
 
 <style>
 	.site-footer {
-		margin-top: var(--gap-section);
-		background: var(--fir);
-		color: var(--paper);
+		margin-top: var(--spacing-section);
+		background: var(--color-fir);
+		color: var(--color-paper);
 	}
 
 	.inner {
-		max-width: var(--content-max);
+		max-width: var(--container-content);
 		margin: 0 auto;
-		padding: var(--gap-inner) var(--margin);
+		padding: var(--spacing-inner) var(--spacing-margin);
 	}
 
 	.place {
 		margin-top: 16px;
-		font-size: var(--size-small);
+		font-size: var(--text-small);
 		line-height: var(--leading-small);
 	}
 
@@ -51,10 +51,10 @@ const about = await getAbout();
 	a {
 		display: inline-flex;
 		align-items: center;
-		min-height: var(--tap-min);
+		min-height: var(--spacing-tap);
 	}
 
 	a:focus-visible {
-		outline-color: var(--paper);
+		outline-color: var(--color-paper);
 	}
 </style>
