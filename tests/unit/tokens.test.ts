@@ -164,7 +164,14 @@ describe('tokens.css', () => {
     const expected = [...Object.values(renamed), ...unchanged];
 
     expect(expected).toHaveLength(43);
-    expect(expected.filter((name) => !declared.has(name))).toEqual([]);
+    expect([...declared].sort()).toEqual([...expected].sort());
+  });
+
+  it('keeps the desktop section gap override under its new name', () => {
+    const override = tokensCss.match(/@media \(min-width: 960px\)\s*\{([\s\S]*?)\n\}/);
+
+    expect(override?.[1]).toBeDefined();
+    expect([...declaredNames(override?.[1] ?? '')]).toEqual(['--spacing-section']);
   });
 
   it('declares none of the renamed old names', () => {
@@ -177,13 +184,21 @@ describe('tokens.css', () => {
 });
 
 describe('src styles', () => {
-  it('every var() reference resolves to a declared token', () => {
-    const paths = globSync('src/**/*.{css,astro}', { cwd: root });
-    expect(paths.length).toBeGreaterThan(0);
-    const files = Object.fromEntries(
-      paths.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]),
-    );
+  const paths = globSync('src/**/*.{css,astro}', { cwd: root });
+  const files = Object.fromEntries(paths.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]));
 
+  it('every var() reference resolves to a declared token', () => {
+    expect(paths).toContain('src/styles/tokens.css');
     expect(undeclaredReferences(files, 'src/styles/tokens.css')).toEqual([]);
+  });
+
+  it('no file under src declares a renamed old name', () => {
+    const oldNames = Object.keys(renamed);
+    const stale = Object.entries(files).flatMap(([file, source]) => {
+      const declared = declaredNames(source);
+      return oldNames.filter((name) => declared.has(name)).map((name) => `${file}: ${name}`);
+    });
+
+    expect(stale).toEqual([]);
   });
 });
