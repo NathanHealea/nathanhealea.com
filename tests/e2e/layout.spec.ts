@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { parseFrontmatter } from '@astrojs/internal-helpers/frontmatter';
 import { expect, test, type Locator } from '@playwright/test';
 import { expectNoA11yViolations } from './helpers/a11y';
 
@@ -191,4 +194,24 @@ test.describe('at 320px', () => {
       }
     }
   });
+});
+
+test('footer social links have names', async ({ page }) => {
+  const aboutSource = readFileSync(resolve(import.meta.dirname, '../../src/content/about/about.md'), 'utf8');
+  const social = parseFrontmatter(aboutSource).frontmatter.social as { label: string; url: string }[];
+  expect(social.length).toBeGreaterThan(0);
+
+  for (const route of LAYOUT_ROUTES) {
+    await page.goto(route);
+
+    const links = page.locator('footer').getByRole('link');
+    await expect(links, route).toHaveCount(social.length);
+    for (const [index, { label, url }] of social.entries()) {
+      const link = links.nth(index);
+      await expect(link, route).toHaveAttribute('href', url);
+      await expect(link, route).toHaveAccessibleName(/\S/);
+      await expect(link, route).toHaveAccessibleName(label);
+      await expect(link, route).not.toHaveAttribute('target', '_blank');
+    }
+  }
 });
