@@ -9,6 +9,15 @@ const WCAG_21_AA_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 const EXPERIMENTAL_WCAG_RULES = ['css-orientation-lock', 'p-as-heading', 'table-fake-caption', 'td-has-header'];
 
 export async function expectNoA11yViolations(page: Page): Promise<void> {
+  // Headings fade in on load; axe skips or fails text that is still part-transparent.
+  await page.evaluate(() =>
+    Promise.all(
+      document
+        .getAnimations()
+        .filter((animation) => animation.effect?.getComputedTiming().iterations !== Infinity)
+        .map((animation) => animation.finished),
+    ),
+  );
   const byTag = await new AxeBuilder({ page }).withTags(WCAG_21_AA_TAGS).analyze();
   const experimental = await new AxeBuilder({ page }).withRules(EXPERIMENTAL_WCAG_RULES).analyze();
   const violations = [...byTag.violations, ...experimental.violations];

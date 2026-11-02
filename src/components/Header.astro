@@ -1,0 +1,32 @@
+---
+import Nav from './Nav.astro';
+---
+
+<header class="site-header">
+	<a class="wordmark" href="/">Nathan Healea</a>
+	<Nav />
+</header>
+
+<style>
+	.site-header {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 0 24px;
+		width: 100%;
+		max-width: var(--content-max);
+		margin: 0 auto;
+		padding: 12px var(--margin);
+	}
+
+	.wordmark {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--tap-min);
+		font-family: var(--font-display);
+		font-weight: 700;
+		font-size: var(--size-wordmark);
+		text-decoration: none;
+	}
+</style>

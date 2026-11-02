@@ -1,0 +1,60 @@
+---
+import { getAbout } from '../lib/collections';
+
+const about = await getAbout();
+---
+
+<footer class="site-footer">
+	<div class="inner">
+		<h2>{about.data.name}</h2>
+		<p class="place">Published from {about.data.location}.</p>
+		<ul>
+			{
+				about.data.social.map((link) => (
+					<li>
+						<a href={link.url}>{link.label}</a>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: var(--gap-section);
+		background: var(--fir);
+		color: var(--paper);
+	}
+
+	.inner {
+		max-width: var(--content-max);
+		margin: 0 auto;
+		padding: var(--gap-inner) var(--margin);
+	}
+
+	.place {
+		margin-top: 16px;
+		font-size: var(--size-small);
+		line-height: var(--leading-small);
+	}
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 4px 24px;
+		margin-top: 24px;
+		padding: 0;
+		list-style: none;
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--tap-min);
+	}
+
+	a:focus-visible {
+		outline-color: var(--paper);
+	}
+</style>
