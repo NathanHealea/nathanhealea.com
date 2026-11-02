@@ -109,8 +109,8 @@ T4 is not committed because a committed snapshot of every computed style would b
 
 ## Implementation plan
 
-1. [ ] Rename the tokens in the design pack and add the naming convention section — touches `design/DESIGN-SYSTEM.md` — tests none (documentation; AC4 search)
-2. [ ] Capture the T4 baseline from `0af365a`, then rename every token and reference in one commit so no intermediate commit renders broken — touches `src/styles/tokens.css`, `src/styles/global.css`, `src/layouts/BaseLayout.astro`, `src/components/Header.astro`, `src/components/Nav.astro`, `src/components/Footer.astro`, `src/pages/404.astro`, `tests/unit/tokens.test.ts` — tests T1, T2, T3, T4, T5
+1. [x] Rename the tokens in the design pack and add the naming convention section — touches `design/DESIGN-SYSTEM.md` — tests none (documentation; AC4 search)
+2. [x] Capture the T4 baseline from `0af365a`, then rename every token and reference in one commit so no intermediate commit renders broken — touches `src/styles/tokens.css`, `src/styles/global.css`, `src/layouts/BaseLayout.astro`, `src/components/Header.astro`, `src/components/Nav.astro`, `src/components/Footer.astro`, `src/pages/404.astro`, `tests/unit/tokens.test.ts` — tests T1, T2, T3, T4, T5
 
 Step 2 touches eight files, more than the usual five. It is one mechanical rename: splitting it would leave commits where some `var()` references point to names that no longer exist.
 
@@ -131,3 +131,4 @@ Step 2 touches eight files, more than the usual five. It is one mechanical renam
 - 2026-11-01 — Merged local `v10` (`5c3b3de`): the branch was cut from `origin/v10`, which lacks `base-layout`.
 - 2026-11-01 — Plan approved.
 - 2026-11-01 — Started implementation on branch task/token-rename at 47aa3c4.
+- 2026-11-01 — Build complete. T4: computed styles on / and /404 at 320px and 1280px, 50 states (rest, hover on nav/body/footer links, keyboard focus on every link), 3690 element snapshots, identical to the pre-rename build. A deliberate missed reference (Nav.astro var(--fir)) failed both T3 and T4, then was restored.
