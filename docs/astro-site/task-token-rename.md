@@ -2,7 +2,7 @@
 type: task
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: token-rename
-status: planned      # planned | in-progress | changes-requested | staged | released
+status: in-progress
 branch: task/token-rename
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/task-token-rename
 created: 2026-11-01
@@ -130,3 +130,4 @@ Step 2 touches eight files, more than the usual five. It is one mechanical renam
 - 2026-11-01 — Planned.
 - 2026-11-01 — Merged local `v10` (`5c3b3de`): the branch was cut from `origin/v10`, which lacks `base-layout`.
 - 2026-11-01 — Plan approved.
+- 2026-11-01 — Started implementation on branch task/token-rename at 47aa3c4.
