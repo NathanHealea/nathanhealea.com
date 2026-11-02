@@ -4,7 +4,7 @@ import { parseFrontmatter } from '@astrojs/internal-helpers/frontmatter';
 import { expect, test, type Locator } from '@playwright/test';
 import { expectNoA11yViolations } from './helpers/a11y';
 
-const LAYOUT_ROUTES = ['/'];
+const LAYOUT_ROUTES = ['/', '/404'];
 
 async function motionDurations(locator: Locator): Promise<string[]> {
   return locator.evaluate((element) => {
@@ -212,6 +212,38 @@ test('footer social links have names', async ({ page }) => {
       await expect(link, route).toHaveAccessibleName(/\S/);
       await expect(link, route).toHaveAccessibleName(label);
       await expect(link, route).not.toHaveAttribute('target', '_blank');
+    }
+  }
+});
+
+test('404 page renders', async ({ page }) => {
+  const response = await page.goto('/does-not-exist');
+
+  expect(response).not.toBeNull();
+  expect(response!.status()).toBe(404);
+  await expect(page.locator('main#main')).toHaveCount(1);
+  await expect(page.locator('header')).toHaveCount(1);
+  await expect(page.locator('footer')).toHaveCount(1);
+  await expect(page.locator('h1')).toHaveCount(1);
+  await expect(page.locator('main#main a[href="/"]')).not.toHaveCount(0);
+});
+
+test('no third-party requests', async ({ page }) => {
+  for (const route of LAYOUT_ROUTES) {
+    const requestUrls: string[] = [];
+    const record = (request: { url(): string }) => requestUrls.push(request.url());
+    page.on('request', record);
+
+    await page.goto(route, { waitUntil: 'load' });
+    await page.evaluate(() => document.fonts.ready);
+    page.off('request', record);
+
+    const pageOrigin = new URL(page.url()).origin;
+    expect(requestUrls.length, route).toBeGreaterThan(0);
+    for (const url of requestUrls) {
+      // data: URLs are decoded in the browser and never reach a server, and their origin is always "null".
+      if (url.startsWith('data:')) continue;
+      expect(new URL(url).origin, `${route} requested ${url}`).toBe(pageOrigin);
     }
   }
 });
