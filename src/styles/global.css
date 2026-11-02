@@ -72,7 +72,8 @@ a {
   transition: text-decoration-thickness var(--mark-duration) ease-out;
 }
 
-a:hover {
+a:hover,
+a:focus-visible {
   text-decoration-thickness: 3px;
 }
 
