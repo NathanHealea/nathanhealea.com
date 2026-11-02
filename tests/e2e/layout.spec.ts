@@ -129,3 +129,66 @@ test('pack typefaces load from same origin', async ({ page }) => {
     expect(new URL(url).origin).toBe(pageOrigin);
   }
 });
+
+test('nav marks current section', async ({ page }) => {
+  await page.goto('/');
+
+  const nav = page.locator('nav[aria-label="Primary"]');
+  const expected = [
+    { name: 'Experience', href: '/experience/' },
+    { name: 'Projects', href: '/projects/' },
+    { name: 'About', href: '/about/' },
+  ];
+  await expect(nav.getByRole('link')).toHaveCount(expected.length);
+  for (const { name, href } of expected) {
+    const link = nav.getByRole('link', { name, exact: true });
+    await expect(link).toHaveAttribute('href', href);
+    await expect(link).not.toHaveAttribute('aria-current', /.*/);
+  }
+});
+
+test('no horizontal scroll at 320px and 1920px', async ({ page }) => {
+  for (const width of [320, 1920]) {
+    await page.setViewportSize({ width, height: 800 });
+    for (const route of LAYOUT_ROUTES) {
+      await page.goto(route);
+      const { scrollWidth, innerWidth } = await page.evaluate(() => ({
+        scrollWidth: document.documentElement.scrollWidth,
+        innerWidth: window.innerWidth,
+      }));
+      expect(scrollWidth, `${route} at ${width}px`).toBeLessThanOrEqual(innerWidth);
+    }
+  }
+});
+
+test.describe('at 320px', () => {
+  test.use({ viewport: { width: 320, height: 640 } });
+
+  test('narrow nav stays visible and in tab order', async ({ page }) => {
+    for (const route of LAYOUT_ROUTES) {
+      await page.goto(route);
+
+      const nav = page.locator('nav[aria-label="Primary"]');
+      const navLinks = ['Experience', 'Projects', 'About'].map((name) =>
+        nav.getByRole('link', { name, exact: true }),
+      );
+      for (const link of navLinks) {
+        await expect(link, route).toBeVisible();
+        const box = await link.boundingBox();
+        expect(box, route).not.toBeNull();
+        expect(box!.x, route).toBeGreaterThanOrEqual(0);
+        expect(box!.y, route).toBeGreaterThanOrEqual(0);
+        expect(box!.x + box!.width, route).toBeLessThanOrEqual(320);
+        expect(box!.y + box!.height, route).toBeLessThanOrEqual(640);
+      }
+
+      await page.keyboard.press('Tab');
+      await expect(page.getByRole('link', { name: 'Skip to main content' }), route).toBeFocused();
+      const tabOrder = [page.getByRole('link', { name: 'Nathan Healea', exact: true }), ...navLinks];
+      for (const link of tabOrder) {
+        await page.keyboard.press('Tab');
+        await expect(link, route).toBeFocused();
+      }
+    }
+  });
+});
