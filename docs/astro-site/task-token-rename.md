@@ -2,13 +2,13 @@
 type: task
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: token-rename
-status: in-progress
+status: staged
 branch: task/token-rename
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/task-token-rename
 created: 2026-11-01
 approved: 2026-11-01
 commit_type: refactor
-version:             # set by `wi stage`
+version: 0.2.1
 review_approved:     # set by `wi accept`
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the merge commit
@@ -86,7 +86,7 @@ The map renames 20 tokens and leaves 23 as they are. Tokens with no matching nam
 ## Acceptance criteria
 
 - **AC1** (R1) — Given the built branch, when `tokens.css` is read, then it declares every new name in the map, and no `--paper`, `--size-*`, `--gap-*`, `--margin`, `--measure`, `--content-max` or `--tap-min` declaration remains.
-- **AC2** (R2) — Given any `.css` or `.astro` file under `src/`, when its `var()` references are listed, then each name is declared somewhere under `src/`.
+- **AC2** (R2) — Given any `.css` or `.astro` file under `src/`, when its `var()` references are listed, then each name is declared in `src/styles/tokens.css` or in that same file.
 - **AC3** (R3) — Given `0af365a` and the branch head, when the computed-style capture runs against both, then the two captures are identical.
 - **AC4** (R4) — Given `design/DESIGN-SYSTEM.md`, when it is searched for the 20 old names, then none appears, and a naming section lists the namespace for each token group.
 - **AC5** (R5) — Given the branch, when `npm run test:e2e` runs, then all tests pass and `git diff 0af365a -- tests/e2e` is empty.
@@ -132,3 +132,6 @@ Step 2 touches eight files, more than the usual five. It is one mechanical renam
 - 2026-11-01 — Plan approved.
 - 2026-11-01 — Started implementation on branch task/token-rename at 47aa3c4.
 - 2026-11-01 — Build complete. T4: computed styles on / and /404 at 320px and 1280px, 50 states (rest, hover on nav/body/footer links, keyboard focus on every link), 3690 element snapshots, identical to the pre-rename build. A deliberate missed reference (Nav.astro var(--fir)) failed both T3 and T4, then was restored.
+- 2026-11-01 — Review: fixed MED, T3 resolved references against every file's declarations instead of tokens.css plus the same file (R2); AC2 wording aligned with R2. Fixed LOW, the design pack overstated the @theme conversion as unchanged.
+- 2026-11-01 — Mutation audit: 10 mutants, 6 killed. Closed M6 (old name redeclared in a component), M7 (960px override deleted) and M9 (stray token) with stronger T1/T2 checks; all three now fail. M8 and M10 (token value changes) are guarded only by T4, by design.
+- 2026-11-01 — Staged: verification passed; version 0.2.0 → 0.2.1; no changelog file.
