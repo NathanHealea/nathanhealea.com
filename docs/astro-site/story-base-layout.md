@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: base-layout
-status: staged
+status: changes-requested
 branch: story/base-layout
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/story-base-layout
 created: 2026-10-31
@@ -126,3 +126,4 @@ Design direction decided 2026-11-01 through `/hone:design` with taste-skill (`de
 - 2026-11-01 — Step 6 critique (screenshots of / and /404 at 1440, 768, 390, plus 320): fixed blank paper below the footer on short pages (sticky footer), an empty zone left of the axis on the 404 (side note), and a header shrink regression from the flex body. Manual checks: 320px reflow is equivalent to 1280px at 400% zoom with no horizontal scroll; focus rings are fir on paper 10.4:1, paper on fir 10.4:1, and ink around the ink skip link offset on paper 16.5:1. The home page is still a bare h1 placeholder until home-page (child 7).
 - 2026-11-01 — Stage review: code-reviewer MED (RISE vs pack, persistent clip) fixed via pack amendment 731dca4 + 8982156; a11y LOW (same clip) fixed; code LOW (404 offset) fixed 8f78151; cycle-2 a11y LOW (axe ran mid-fade) fixed 10bf3e7; cycle-2 code note (MARK on focus) fixed 409d92e; mutation audit: 18 mutants, 4 survived plus 2 weak assertions, all now caught (commit after 409d92e). Font binaries verified byte-identical to upstream release zips. No changelog file in the project; skipped.
 - 2026-11-01 — Staged: verification passed; version 0.0.2 → 0.1.0; no changelog file.
+- 2026-11-01 — Changes requested: Re-stage after pushing v10: the first stage bumped from a stale origin/v10 (0.0.2) to a taken 0.1.0.
