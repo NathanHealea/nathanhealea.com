@@ -80,14 +80,15 @@ Design comes from `design/DESIGN-SYSTEM.md` ("The Public Report"). The Frame rul
 | T6 | R7 | `marks only the current role` | `tests/e2e/experience.spec.ts` | Current article contains visible text "Current"; past article does not; label computed `text-transform: none`, `letter-spacing` normal or 0, `font-weight` 600; contrast ≥ 4.5:1 |
 | T7 | R8 | `side note sits on the axis` | `tests/e2e/experience.spec.ts` | At 1280px: `h2` left = frame left + 42% of frame width (±1px), side note left = frame left, tops aligned (±2px); at 320px: side note bottom ≤ `h2` top; DOM order side note before `h2` |
 | T8 | R9 | `role entry motion respects reduced motion` | `tests/e2e/experience.spec.ts` | Under `reducedMotion: 'reduce'`, each article's animation duration is 0s; with `javaScriptEnabled: false`, every article's `h2` and highlights are visible |
-| T9 | R2, R7 | `ExperienceItem renders fields and current label` | `tests/unit/experience-item.test.ts` | Via `experimental_AstroContainer` (as `nav-render.test.ts` does): an entry without `end` renders "Current" and "– Present"; one with `end` renders neither "Current" nor "Present" |
+| T8 | R9 | `role entry motion runs when motion is allowed` | `tests/e2e/experience.spec.ts` | With motion allowed, each article has finite animations whose keyframes touch only transform and opacity, start at opacity 0 and translateY 24px, run 700ms, and stagger by 80ms; guards against the global reduced-motion rule passing T8 without ENTER |
+| T9 | R2, R3, R4, R7 | `ExperienceItem renders fields, current label and disclosure` | `tests/unit/experience-item.test.ts` | Via `experimental_AstroContainer` (as `nav-render.test.ts` does): an entry without `end` renders "Current" and "– Present"; one with `end` renders neither. With `hasDetails` and slot content, renders `<details>` with the slot inside and a `<summary>` naming "Details: <title> at <company>"; without `hasDetails`, renders no `<details>` |
 
 **Not unit testable:** R8's visual alignment and R9's motion need a browser and are covered by T7 and T8 in Playwright.
 
 ## Implementation plan
 
-1. [ ] Build `ExperienceItem` with fields, side note, current label and disclosure — touches `src/components/ExperienceItem.astro`, `tests/unit/experience-item.test.ts` — tests T9, T2, T3, T4, T6
-2. [ ] Build the page, the axis layout and ENTER motion — touches `src/pages/experience.astro`, `src/components/ExperienceItem.astro`, `src/styles/global.css`, `tests/e2e/experience.spec.ts` — tests T1, T5, T7, T8
+1. [x] Build `ExperienceItem` with fields, side note, current label and disclosure — touches `src/components/ExperienceItem.astro`, `tests/unit/experience-item.test.ts` — tests T9
+2. [x] Build the page, the axis layout and ENTER motion — touches `src/pages/experience.astro`, `src/components/ExperienceItem.astro`, `src/styles/global.css`, `tests/e2e/experience.spec.ts` — tests T1, T2, T3, T4, T5, T6, T7, T8
 
 **Must not change:** experience schema field names; token names and values in `src/styles/tokens.css` (add a token only through the design pack first); the shell components.
 
@@ -107,3 +108,6 @@ Design comes from `design/DESIGN-SYSTEM.md` ("The Public Report"). The Frame rul
 - 2026-11-01 — Revised for the design pack and token names: R7 current label (requested), R8 axis layout, R9 ENTER motion, T6–T9; open questions resolved.
 - 2026-11-01 — Plan approved.
 - 2026-11-01 — Started implementation on branch story/experience-page at 7836622.
+- 2026-11-01 — Plan correction: step 1 has no page for the e2e tests to load, so it is proved by T9 (unit, now also covering the disclosure); T2, T3, T4, T6 move to step 2. ExperienceItem takes the entry's data plus a hasDetails flag, with the rendered body in its default slot, so the unit test needs no content loading.
+- 2026-11-01 — Plan correction: T8's reduced-motion check passes through the global rule even without ENTER, so T8 gains a motion-allowed counterpart that checks ENTER's keyframes, duration and stagger.
+- 2026-11-01 — Build complete: both steps done, full verify green. Screenshots at 1280px and 320px checked against the pack.
