@@ -1,0 +1,55 @@
+---
+interface Props {
+	title: string;
+	github?: string;
+	live?: string;
+}
+
+const { title, github, live } = Astro.props;
+---
+
+{
+	(github !== undefined || live !== undefined) && (
+		<ul class="links">
+			{github !== undefined && (
+				<li>
+					<a href={github}>
+						View on GitHub<span class="visually-hidden">: {title}</span>
+					</a>
+				</li>
+			)}
+			{live !== undefined && (
+				<li>
+					<a href={live}>
+						Visit {new URL(live).host}<span class="visually-hidden">: {title}</span>
+					</a>
+				</li>
+			)}
+		</ul>
+	)
+}
+
+<style>
+	.links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 24px;
+		padding: 0;
+		list-style: none;
+	}
+
+	a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--spacing-tap);
+	}
+
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+</style>
