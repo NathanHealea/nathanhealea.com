@@ -1,5 +1,5 @@
 import { globSync, readFileSync } from 'node:fs';
-import { relative, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 const root = resolve(import.meta.dirname, '../..');
@@ -66,11 +66,14 @@ function referencedNames(source: string): Set<string> {
   return new Set([...stripComments(source).matchAll(/var\(\s*(--[\w-]+)/g)].map((match) => match[1]));
 }
 
-function undeclaredReferences(files: Record<string, string>): string[] {
-  const declared = new Set(Object.values(files).flatMap((source) => [...declaredNames(source)]));
-  return Object.entries(files).flatMap(([file, source]) =>
-    [...referencedNames(source)].filter((name) => !declared.has(name)).map((name) => `${file}: ${name}`),
-  );
+function undeclaredReferences(files: Record<string, string>, tokensFile: string): string[] {
+  const global = declaredNames(files[tokensFile] ?? '');
+  return Object.entries(files).flatMap(([file, source]) => {
+    const local = declaredNames(source);
+    return [...referencedNames(source)]
+      .filter((name) => !global.has(name) && !local.has(name))
+      .map((name) => `${file}: ${name}`);
+  });
 }
 
 describe('token parsing helpers', () => {
@@ -128,20 +131,30 @@ describe('token parsing helpers', () => {
       'b.astro': '<style>@media (min-width: 960px) { b { gap: var(--missing-media); } }</style>',
     };
 
-    expect(undeclaredReferences(files)).toEqual([
+    expect(undeclaredReferences(files, 'tokens.css')).toEqual([
       'a.css: --missing-nested',
       'a.css: --missing-fallback',
       'b.astro: --missing-media',
     ]);
   });
 
-  it('accepts a reference declared in a component scope of another file', () => {
+  it('accepts a reference declared in tokens.css or in the same file', () => {
     const files = {
       'tokens.css': ':root { --a: 1px; }',
       'nav.astro': '<style>.nav { --local: 2px; gap: var(--local); margin: var(--a); }</style>',
     };
 
-    expect(undeclaredReferences(files)).toEqual([]);
+    expect(undeclaredReferences(files, 'tokens.css')).toEqual([]);
+  });
+
+  it('rejects a reference declared only in another component', () => {
+    const files = {
+      'tokens.css': ':root { --a: 1px; }',
+      'nav.astro': '<style>.nav { --margin: 2px; }</style>',
+      'footer.astro': '<style>footer { padding: var(--margin); }</style>',
+    };
+
+    expect(undeclaredReferences(files, 'tokens.css')).toEqual(['footer.astro: --margin']);
   });
 });
 
@@ -168,9 +181,9 @@ describe('src styles', () => {
     const paths = globSync('src/**/*.{css,astro}', { cwd: root });
     expect(paths.length).toBeGreaterThan(0);
     const files = Object.fromEntries(
-      paths.map((path) => [relative(root, resolve(root, path)), readFileSync(resolve(root, path), 'utf8')]),
+      paths.map((path) => [path, readFileSync(resolve(root, path), 'utf8')]),
     );
 
-    expect(undeclaredReferences(files)).toEqual([]);
+    expect(undeclaredReferences(files, 'src/styles/tokens.css')).toEqual([]);
   });
 });
