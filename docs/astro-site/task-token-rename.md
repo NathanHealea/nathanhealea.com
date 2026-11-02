@@ -2,7 +2,7 @@
 type: task
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: token-rename
-status: staged
+status: released
 branch: task/token-rename
 worktree_path: /home/nathan/development/nathanhealea-com/nathanhealea-com-worktrees/task-token-rename
 created: 2026-11-01
@@ -11,7 +11,7 @@ commit_type: refactor
 version: 0.2.1
 review_approved: 2026-11-01
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the merge commit
+tag: v0.2.1
 ---
 
 # Rename design tokens to Tailwind theme conventions
@@ -136,3 +136,4 @@ Step 2 touches eight files, more than the usual five. It is one mechanical renam
 - 2026-11-01 — Mutation audit: 10 mutants, 6 killed. Closed M6 (old name redeclared in a component), M7 (960px override deleted) and M9 (stray token) with stronger T1/T2 checks; all three now fail. M8 and M10 (token value changes) are guarded only by T4, by design.
 - 2026-11-01 — Staged: verification passed; version 0.2.0 → 0.2.1; no changelog file.
 - 2026-11-01 — Review approved.
+- 2026-11-01 — Released 0.2.1 as v0.2.1.
