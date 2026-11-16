@@ -40,6 +40,10 @@ describe('ProjectItem renders title link, description, tech and links', () => {
     const html = await render('lantern-board', linkedProject);
 
     expect(html.trim()).toMatch(/^<article\b[\s\S]*<\/article>$/);
+    expect(html.match(/<article\b/g)).toHaveLength(1);
+    const card = html.match(/^\s*<article\b([^>]*)>/)![1];
+    expect(card).toMatch(/\bclass="[^"]*\bproject\b[^"]*"/);
+    expect(card).toMatch(/\sdata-reveal(?=[\s=]|$)/);
     const headings = [...html.matchAll(/<h2\b[^>]*>([\s\S]*?)<\/h2>/g)].map((match) => match[1]);
     expect(headings).toHaveLength(1);
     const anchor = headings[0].trim().match(/^<a\b([^>]*)>([\s\S]*?)<\/a>$/);
