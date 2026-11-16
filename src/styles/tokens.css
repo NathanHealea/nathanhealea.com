@@ -16,60 +16,143 @@
 }
 
 :root {
-  --color-paper: #f5f5f1;
-  --color-ink: #151716;
-  --color-fir: #22402e;
-  --color-slate: #2e5266;
-  --color-stone: #dcd8cc;
-  --color-sage: #b9c4bb;
+  color-scheme: light;
 
-  --font-display: 'Geist', ui-sans-serif, system-ui, sans-serif;
-  --font-text: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --color-bg: #fbfbfa;
+  --color-surface: #f4f4f2;
+  --color-raised: #ffffff;
+  --color-line: #e5e5e1;
+  --color-line-strong: #d4d4cf;
+  --color-ink: #0f1012;
+  --color-ink-2: #3a3c42;
+  --color-muted: #5f616a;
+  --color-accent: #2b59ff;
+  --color-accent-hover: #1d47e6;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: #eaefff;
+  --color-ok: #157040;
+  --color-ok-soft: #e3f4ea;
+  --color-warn: #9a5b00;
+  --color-warn-soft: #fbf0dc;
+  --color-bad: #b42318;
+  --color-bad-soft: #fde8e6;
+  --shadow-window: 0 1px 2px rgb(16 17 20 / 0.04), 0 12px 32px -12px rgb(16 17 20 / 0.14);
+
+  --font-sans: 'Geist', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --text-display: clamp(40px, 6.4vw, 92px);
-  --text-section: clamp(30px, 3.6vw, 48px);
-  --text-statement: clamp(24px, 2.6vw, 34px);
-  --text-standfirst: clamp(19px, 1.6vw, 21px);
-  --text-body: 18px;
-  --text-small: 16px;
-  --text-wordmark: 20px;
-  --text-nav: 17px;
+  --text-display: clamp(2.5rem, 1.4rem + 4.2vw, 4.5rem);
+  --text-title: clamp(2.25rem, 1.3rem + 3.6vw, 4rem);
+  --text-section: clamp(1.875rem, 1.3rem + 2vw, 2.75rem);
+  --text-heading: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --text-card: clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem);
+  --text-lede: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+  --text-body: 17px;
+  --text-ui: 15px;
+  --text-small: 14px;
+  --text-caption: 13px;
 
-  --leading-display: 0.95;
-  --leading-section: 1.05;
-  --leading-statement: 1.2;
-  --leading-standfirst: 1.45;
-  --leading-body: 1.55;
-  --leading-small: 1.45;
-  --tracking-display: -0.03em;
-  --tracking-section: -0.02em;
-  --container-measure: 62ch;
+  --leading-tight: 1.04;
+  --leading-snug: 1.15;
+  --leading-body: 1.6;
+  --tracking-display: -0.045em;
+  --tracking-section: -0.035em;
+  --tracking-heading: -0.025em;
 
-  --spacing-margin: clamp(16px, 3vw, 40px);
-  --axis: 42%;
-  --container-content: 1280px;
-  --spacing-section: 96px;
-  --spacing-inner: 48px;
-  --spacing-tap: 48px;
+  --container-content: 1200px;
+  --container-measure: 68ch;
+  --spacing-gutter: clamp(20px, 4vw, 40px);
+  --spacing-section: clamp(80px, 10vw, 128px);
+  --spacing-header: 64px;
+  --spacing-tap: 44px;
 
-  --focus-width: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-full: 999px;
+
+  --focus-width: 2px;
   --focus-offset: 3px;
-  --mark-rest: 0px;
-  --mark-hover: 2px;
-  --mark-current: 4px;
 
-  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --rise-duration: 1000ms;
-  --rise-stagger: 120ms;
-  --enter-duration: 700ms;
-  --enter-stagger: 80ms;
-  --mark-duration: 150ms;
-  --turn-duration: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --reveal-duration: 700ms;
+  --reveal-stagger: 70ms;
+  --reveal-distance: 14px;
 }
 
-@media (min-width: 960px) {
-  :root {
-    --spacing-section: 160px;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --color-bg: #0b0c0e;
+    --color-surface: #121317;
+    --color-raised: #16171c;
+    --color-line: #24262c;
+    --color-line-strong: #30333a;
+    --color-ink: #ededef;
+    --color-ink-2: #c9cad0;
+    --color-muted: #9a9ca6;
+    --color-accent: #6d8bff;
+    --color-accent-hover: #8aa2ff;
+    --color-accent-ink: #0b0c0e;
+    --color-accent-soft: #1a2142;
+    --color-ok: #4cc38a;
+    --color-ok-soft: #10261b;
+    --color-warn: #e3a94a;
+    --color-warn-soft: #2a2010;
+    --color-bad: #ff7b6e;
+    --color-bad-soft: #2d1513;
+    --shadow-window: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px -12px rgb(0 0 0 / 0.6);
   }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #0b0c0e;
+  --color-surface: #121317;
+  --color-raised: #16171c;
+  --color-line: #24262c;
+  --color-line-strong: #30333a;
+  --color-ink: #ededef;
+  --color-ink-2: #c9cad0;
+  --color-muted: #9a9ca6;
+  --color-accent: #6d8bff;
+  --color-accent-hover: #8aa2ff;
+  --color-accent-ink: #0b0c0e;
+  --color-accent-soft: #1a2142;
+  --color-ok: #4cc38a;
+  --color-ok-soft: #10261b;
+  --color-warn: #e3a94a;
+  --color-warn-soft: #2a2010;
+  --color-bad: #ff7b6e;
+  --color-bad-soft: #2d1513;
+  --shadow-window: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px -12px rgb(0 0 0 / 0.6);
+}
+
+/* Public Report names still read by components; removed in step 8 of product-grade-design. */
+:root {
+  --color-paper: var(--color-bg);
+  --color-fir: var(--color-accent);
+  --font-display: var(--font-sans);
+  --font-text: var(--font-sans);
+  --text-statement: var(--text-card);
+  --text-standfirst: var(--text-lede);
+  --text-wordmark: var(--text-ui);
+  --text-nav: var(--text-ui);
+  --leading-display: var(--leading-tight);
+  --leading-section: var(--leading-snug);
+  --leading-statement: var(--leading-snug);
+  --leading-standfirst: var(--leading-body);
+  --leading-small: 1.5;
+  --spacing-margin: var(--spacing-gutter);
+  --spacing-inner: 48px;
+  --axis: 42%;
+  --mark-rest: 0px;
+  --mark-hover: 2px;
+  --mark-current: 2px;
+  --mark-duration: 150ms;
+  --rise-duration: 1000ms;
+  --enter-duration: 700ms;
+  --enter-stagger: 80ms;
 }
