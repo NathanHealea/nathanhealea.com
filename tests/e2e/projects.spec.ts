@@ -45,10 +45,6 @@ function hasTech(project: Project): boolean {
   return (project.tech ?? []).length > 0;
 }
 
-function hasSideNote(project: Project): boolean {
-  return hasTech(project) || project.github !== undefined || project.live !== undefined;
-}
-
 function firstParagraph(project: Project): string {
   return project.body.split(/\n\s*\n/)[0];
 }
@@ -63,7 +59,6 @@ function articleFor(page: Page, project: Project): Locator {
   });
 }
 
-// On a detail page the side note holds the tech and link lists; the main column's lists sit deeper, inside the body.
 // The title is in the link's name but clipped off screen; a 1px box proves the clipping applies.
 async function titleHiddenBox(link: Locator): Promise<{ width: number; height: number }> {
   return link.evaluate((anchor) => {
@@ -72,10 +67,6 @@ async function titleHiddenBox(link: Locator): Promise<{ width: number; height: n
     const box = hidden[0].getBoundingClientRect();
     return { width: Math.round(box.width), height: Math.round(box.height) };
   });
-}
-
-function detailSideNoteOf(article: Locator): Locator {
-  return article.locator(':scope > :not(:has(h1))');
 }
 
 async function settleAnimations(page: Page): Promise<void> {
@@ -264,81 +255,76 @@ test('projects pages are accessible and reflow', async ({ page }) => {
   }
 });
 
-test('project detail pages sit on the axis', async ({ page }) => {
+test('detail shows breadcrumb and toc', async ({ page }) => {
   const projects = readProjects();
-  const withSideNote = projects.filter(hasSideNote);
-  expect(withSideNote.length, 'a placeholder project with tech or links').toBeGreaterThan(0);
 
-  for (const width of [1280, 960]) {
-    await page.setViewportSize({ width, height: 800 });
+  for (const project of projects) {
+    const path = detailPath(project);
+    await page.goto(path);
 
-    for (const project of projects) {
-      const label = `${detailPath(project)} at ${width}px`;
-      const response = await page.goto(detailPath(project));
-      expect(response?.status(), label).toBe(200);
-      await settleAnimations(page);
+    const breadcrumb = page.getByRole('navigation', { name: 'Breadcrumb', exact: true });
+    await expect(breadcrumb, path).toHaveCount(1);
+    const items = breadcrumb.locator('ol > li');
+    await expect(items, path).toHaveCount(2);
+    const projectsLink = items.nth(0).getByRole('link', { name: 'Projects', exact: true });
+    await expect(projectsLink, path).toHaveAttribute('href', INDEX);
+    const current = items.nth(1).locator('span[aria-current="page"]');
+    await expect(current, path).toHaveText(project.title);
+    await expect(breadcrumb.locator('[aria-current]'), `${path} one current crumb`).toHaveCount(1);
 
-      const frame = await page.locator('main').evaluate((element) => {
-        const rect = element.getBoundingClientRect();
-        const style = getComputedStyle(element);
-        const left = rect.left + parseFloat(style.paddingLeft);
-        const right = rect.right - parseFloat(style.paddingRight);
-        return { left, width: right - left };
-      });
-      const axis = frame.left + 0.42 * frame.width;
-
-      const article = page.locator('main article');
-      const heading = page.locator('h1');
-      const parts: [string, Locator][] = [
-        ['h1', heading],
-        ['description', article.getByText(project.description, { exact: true })],
-        ['back link', article.getByRole('link', { name: 'All projects', exact: true })],
-      ];
-      if (project.body !== '') parts.push(['body', article.locator('.body')]);
-      for (const [name, part] of parts) {
-        const box = (await part.boundingBox())!;
-        expect(Math.abs(box.x - axis), `${label} ${name} left`).toBeLessThanOrEqual(1);
-      }
-
-      if (project.body !== '') {
-        const { width: paragraphWidth, ch } = await article
-          .locator('.body')
-          .getByText(firstParagraph(project))
-          .evaluate((element) => {
-            const context = document.createElement('canvas').getContext('2d')!;
-            context.font = getComputedStyle(element).font;
-            return { width: element.getBoundingClientRect().width, ch: context.measureText('0').width };
-          });
-        expect(paragraphWidth, `${label} body paragraph within 62ch`).toBeLessThanOrEqual(62 * ch + 1);
-      }
-
-      if (!hasSideNote(project)) continue;
-      const side = detailSideNoteOf(article);
-      await expect(side, label).toHaveCount(1);
-      const sideBox = (await side.boundingBox())!;
-      const headingBox = (await heading.boundingBox())!;
-      expect(Math.abs(sideBox.x - frame.left), `${label} side note left`).toBeLessThanOrEqual(1);
-      expect(Math.abs(sideBox.y - headingBox.y), `${label} tops`).toBeLessThanOrEqual(2);
-
-      const sideFirst = await side.evaluate((element, headingElement) => {
-        return Boolean(element.compareDocumentPosition(headingElement!) & Node.DOCUMENT_POSITION_FOLLOWING);
-      }, await heading.elementHandle());
-      expect(sideFirst, `${label} DOM order`).toBe(true);
-    }
+    const precedesH1 = await breadcrumb.evaluate(
+      (nav, h1) => Boolean(nav.compareDocumentPosition(h1!) & Node.DOCUMENT_POSITION_FOLLOWING),
+      await page.locator('h1').elementHandle(),
+    );
+    expect(precedesH1, `${path} breadcrumb before h1`).toBe(true);
   }
 
-  for (const width of [959, 320]) {
-    await page.setViewportSize({ width, height: 800 });
+  const alpha = projects.find((project) => project.slug === 'placeholder-alpha');
+  const beta = projects.find((project) => project.slug === 'placeholder-beta');
+  expect(alpha, 'placeholder-alpha fixture').toBeDefined();
+  expect(beta, 'placeholder-beta fixture').toBeDefined();
 
-    for (const project of withSideNote) {
-      await page.goto(detailPath(project));
-      await settleAnimations(page);
-      const article = page.locator('main article');
-      const sideBox = (await detailSideNoteOf(article).boundingBox())!;
-      const headingBox = (await page.locator('h1').boundingBox())!;
-      expect(sideBox.y + sideBox.height, `${detailPath(project)} at ${width}px`).toBeLessThanOrEqual(headingBox.y);
-    }
-  }
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.goto(detailPath(alpha!));
+
+  const sections = await page
+    .locator('main .body h2')
+    .evaluateAll((headings) => headings.map((heading) => ({ id: heading.id, text: heading.textContent!.trim() })));
+  expect(sections.map((section) => section.text), 'fixture h2s').toEqual(['Context', 'Approach', 'Outcome']);
+  for (const section of sections) expect(section.id, `${section.text} has an id`).not.toBe('');
+
+  const toc = page.getByRole('navigation', { name: 'On this page', exact: true });
+  await expect(toc).toHaveCount(1);
+  await expect(toc).toBeVisible();
+  const tocLinks = toc.locator('ul a');
+  await expect(tocLinks).toHaveText(sections.map((section) => section.text));
+  expect(await tocLinks.evaluateAll((anchors) => anchors.map((anchor) => anchor.getAttribute('href')))).toEqual(
+    sections.map((section) => `#${section.id}`),
+  );
+  expect(await toc.evaluate((element) => getComputedStyle(element).position), 'toc sticks at 1280px').toBe('sticky');
+
+  const approach = page.locator('main .body h2').nth(1);
+  const target = await approach.evaluate((heading) => {
+    const top = heading.getBoundingClientRect().top + window.scrollY - 0.25 * window.innerHeight;
+    window.scrollTo({ top, behavior: 'instant' });
+    return 0.25 * window.innerHeight;
+  });
+  await expect
+    .poll(async () => Math.abs((await approach.boundingBox())!.y - target), 'Approach at 25% (fixture long enough)')
+    .toBeLessThanOrEqual(2);
+  await expect
+    .poll(() => tocLinks.evaluateAll((anchors) => anchors.map((anchor) => anchor.getAttribute('aria-current'))))
+    .toEqual([null, 'true', null]);
+
+  await page.setViewportSize({ width: 999, height: 720 });
+  const tocElement = page.locator('nav[aria-label="On this page"]');
+  await expect(tocElement).toHaveCount(1);
+  await expect(tocElement, 'toc hidden below 1000px').toBeHidden();
+
+  await page.setViewportSize({ width: 1280, height: 720 });
+  await page.goto(detailPath(beta!));
+  await expect(page.getByRole('navigation', { name: 'On this page' }), 'placeholder-beta has no toc').toHaveCount(0);
+  await expect(page.locator('nav[aria-label="On this page"]'), 'no toc element at all').toHaveCount(0);
 });
 
 test.describe('project index without JavaScript', () => {
