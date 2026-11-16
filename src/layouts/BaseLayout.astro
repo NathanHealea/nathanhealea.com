@@ -17,11 +17,12 @@ const { title, description } = Astro.props;
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<script is:inline>
-			document.documentElement.classList.add('js');
 			try {
 				const stored = localStorage.getItem('theme');
 				if (stored === 'light' || stored === 'dark') document.documentElement.dataset.theme = stored;
-			} catch {}
+			} catch {
+				// Storage blocked: follow the system scheme.
+			}
 		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
@@ -40,6 +41,25 @@ const { title, description } = Astro.props;
 			import { initialTheme, nextTheme, themeToggleLabel, type Theme } from '../lib/theme';
 
 			const root = document.documentElement;
+
+			const reveals = [...document.querySelectorAll('[data-reveal]')];
+			const still = matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window);
+			for (const element of reveals) {
+				if (still || element.getBoundingClientRect().top < innerHeight) element.classList.add('in');
+			}
+			root.classList.add('js');
+			const pending = reveals.filter((element) => !element.classList.contains('in'));
+			if (pending.length > 0) {
+				const observer = new IntersectionObserver((entries) =>
+					entries.forEach((entry) => {
+						if (!entry.isIntersecting) return;
+						entry.target.classList.add('in');
+						observer.unobserve(entry.target);
+					}),
+				);
+				pending.forEach((element) => observer.observe(element));
+			}
+
 			const systemDark = matchMedia('(prefers-color-scheme: dark)');
 			const resolved = (): Theme => initialTheme(root.dataset.theme, systemDark.matches);
 
@@ -65,22 +85,6 @@ const { title, description } = Astro.props;
 			const onScroll = () => header?.classList.toggle('scrolled', scrollY > 8);
 			addEventListener('scroll', onScroll, { passive: true });
 			onScroll();
-
-			const reveals = document.querySelectorAll('[data-reveal]');
-			if (matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
-				reveals.forEach((element) => element.classList.add('in'));
-			} else {
-				const observer = new IntersectionObserver(
-					(entries) =>
-						entries.forEach((entry) => {
-							if (!entry.isIntersecting) return;
-							entry.target.classList.add('in');
-							observer.unobserve(entry.target);
-						}),
-					{ rootMargin: '0px 0px -8% 0px' },
-				);
-				reveals.forEach((element) => observer.observe(element));
-			}
 		</script>
 	</body>
 </html>

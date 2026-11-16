@@ -143,13 +143,18 @@ test.describe('without reduced motion', () => {
 
     const before = await reveal.evaluate((element) => {
       const style = getComputedStyle(element);
-      return { opacity: style.opacity, properties: style.transitionProperty.split(',').map((value) => value.trim()) };
+      return { opacity: style.opacity };
     });
     expect(before.opacity).toBe('0');
-    expect([...before.properties].sort()).toEqual(['opacity', 'transform']);
 
     await reveal.scrollIntoViewIfNeeded();
     await expect.poll(() => reveal.evaluate(settledOpacity)).toBe('1');
+    const properties = await reveal.evaluate((element) =>
+      getComputedStyle(element)
+        .transitionProperty.split(',')
+        .map((value) => value.trim()),
+    );
+    expect([...properties].sort()).toEqual(['opacity', 'transform']);
 
     await page.evaluate(() => window.scrollTo(0, 0));
     expect(await reveal.evaluate(settledOpacity)).toBe('1');
@@ -433,4 +438,58 @@ test('no third-party requests', async ({ page }) => {
       expect(new URL(url).origin, `${route} requested ${url}`).toBe(pageOrigin);
     }
   }
+});
+
+test.describe('reveal robustness', () => {
+  test.use({ reducedMotion: 'no-preference' });
+
+  test('footer is visible on a tall window', async ({ page }) => {
+    await page.setViewportSize({ width: 2560, height: 1440 });
+    for (const route of ['/', '/this-page-does-not-exist/', '/projects/']) {
+      await page.goto(route);
+      const footer = page.locator('footer [data-reveal]');
+      await expect
+        .poll(() => footer.evaluate((element) => getComputedStyle(element).opacity), { message: route })
+        .toBe('1');
+    }
+  });
+
+  test('content on screen at load does not fade in', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.goto('/projects/');
+    const fading = await page.evaluate(() =>
+      [...document.querySelectorAll('[data-reveal]')]
+        .filter((element) => element.getBoundingClientRect().top < innerHeight)
+        .filter((element) => getComputedStyle(element).opacity !== '1' || element.getAnimations().length > 0)
+        .map((element) => element.outerHTML.slice(0, 60)),
+    );
+    expect(fading).toEqual([]);
+  });
+
+  test('a focused element inside a hidden reveal is visible at once', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 400 });
+    await page.goto('/experience/');
+    const reveal = page.locator('footer [data-reveal]');
+    await expect.poll(() => reveal.evaluate((element) => getComputedStyle(element).opacity)).toBe('0');
+    await page.locator('footer a').first().focus();
+    expect(await reveal.evaluate((element) => getComputedStyle(element).opacity)).toBe('1');
+  });
+
+  test('content stays visible when the page script fails to load', async ({ page }) => {
+    await page.setViewportSize({ width: 1280, height: 400 });
+    for (const route of ['/experience/', '/projects/']) {
+      await page.route(`**${route}`, async (request) => {
+        const response = await request.fetch();
+        const html = (await response.text()).replace(/<script type="module"[\s\S]*?<\/script>/g, '');
+        await request.fulfill({ response, body: html });
+      });
+      await page.goto(route);
+      expect(await page.locator('script[type="module"]').count(), route).toBe(0);
+      const hidden = await page.evaluate(() =>
+        [...document.querySelectorAll('[data-reveal]')].filter((element) => getComputedStyle(element).opacity !== '1')
+          .length,
+      );
+      expect(hidden, route).toBe(0);
+    }
+  });
 });

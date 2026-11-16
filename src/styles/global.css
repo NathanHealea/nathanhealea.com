@@ -96,17 +96,21 @@ a:focus-visible {
   color: var(--color-accent-ink);
 }
 
-.js [data-reveal]:not(.in) {
+.js [data-reveal]:not(.in):not(:focus-within) {
   opacity: 0;
   transform: translateY(var(--reveal-distance));
 }
 
-.js [data-reveal] {
+.js [data-reveal].in {
   --reveal-order: 0;
   transition:
     opacity var(--reveal-duration) var(--ease-out),
     transform var(--reveal-duration) var(--ease-out);
   transition-delay: calc(var(--reveal-order) * var(--reveal-stagger));
+}
+
+.js [data-reveal]:focus-within {
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

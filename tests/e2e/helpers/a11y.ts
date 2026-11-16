@@ -9,9 +9,7 @@ const WCAG_21_AA_TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'];
 const EXPERIMENTAL_WCAG_RULES = ['css-orientation-lock', 'p-as-heading', 'table-fake-caption', 'td-has-header'];
 
 export async function expectNoA11yViolations(page: Page): Promise<void> {
-  // Sections fade in on reveal; axe skips or fails text that is still part-transparent.
-  // Reveal transitions start from an IntersectionObserver callback, so wait two frames for them to begin.
-  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+  // Headings fade in on load; axe skips or fails text that is still part-transparent.
   await page.evaluate(() =>
     Promise.all(
       document
