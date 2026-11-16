@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: product-grade-design
-status: planned      # planned | in-progress | changes-requested | staged | released
+status: in-progress
 branch: story/product-grade-design
 worktree_path: /Users/nhealea/Personal/Development/nathanhealea/nathanhealea-com-worktrees/story-product-grade-design
 created: 2026-11-16
@@ -166,3 +166,4 @@ The v2 token list is the contract T27 checks. Step 3 writes it into `tests/unit/
 
 - 2026-11-16 — Planned.
 - 2026-11-16 — Plan approved.
+- 2026-11-16 — Started implementation on branch story/product-grade-design at f3cba49.
