@@ -105,9 +105,12 @@ test.describe('with a light system scheme', () => {
         (element) =>
           element.tagName === 'SCRIPT' && !element.hasAttribute('src') && /localStorage/.test(element.textContent ?? ''),
       );
-      return { firstStylesheet, themeScript };
+      const script = children[themeScript] as HTMLScriptElement | undefined;
+      return { firstStylesheet, themeScript, deferred: script ? script.type === 'module' || script.defer || script.async : null };
     });
     expect(head.themeScript).toBeGreaterThanOrEqual(0);
+    // A module script is deferred until after parsing, so it would paint the system palette first.
+    expect(head.deferred, 'theme script is a classic parser-blocking script').toBe(false);
     expect(head.firstStylesheet).toBeGreaterThan(head.themeScript);
   });
 });
@@ -132,4 +135,13 @@ test.describe('without JavaScript', () => {
       }
     }
   });
+});
+
+test('toggle name follows a live system scheme change', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' });
+  await page.goto('/');
+  const toggle = page.locator('header button[data-theme-toggle]');
+  await expect(toggle).toHaveAccessibleName('Switch to dark theme');
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await expect(toggle).toHaveAccessibleName('Switch to light theme');
 });

@@ -393,3 +393,26 @@ test('paired project cards stagger their reveal', async ({ page }) => {
     .evaluateAll((cards) => cards.slice(0, 2).map((card) => getComputedStyle(card).transitionDelay));
   expect(delays).toEqual(['0s', '0.07s']);
 });
+
+test('toc sits beside the write-up and its targets clear the sticky header', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto('/projects/placeholder-alpha/');
+  const toc = page.getByRole('navigation', { name: 'On this page' });
+  const tocBox = (await toc.boundingBox())!;
+  const articleBox = (await page.locator('.article').boundingBox())!;
+  expect(tocBox.x + tocBox.width).toBeLessThanOrEqual(articleBox.x);
+  expect(Math.abs(tocBox.y - articleBox.y)).toBeLessThanOrEqual(24);
+
+  const header = page.locator('header.site-header');
+  for (const link of await toc.getByRole('link').all()) {
+    await link.click();
+    const target = page.locator(decodeURIComponent((await link.getAttribute('href'))!));
+    await expect
+      .poll(async () => {
+        const headerBox = (await header.boundingBox())!;
+        const targetBox = (await target.boundingBox())!;
+        return targetBox.y >= headerBox.y + headerBox.height;
+      })
+      .toBe(true);
+  }
+});

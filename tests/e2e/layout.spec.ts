@@ -357,7 +357,7 @@ test('every keyboard stop shows a focus ring with 3:1 contrast', async ({ page }
   ] as const;
   for (const { colorScheme, background } of themes) {
     await page.emulateMedia({ colorScheme });
-    for (const route of LAYOUT_ROUTES) {
+    for (const route of EVERY_ROUTE) {
       await page.goto(route);
       const where = `${route} ${colorScheme}`;
       const bodyBackground = await page.locator('body').evaluate((element) => getComputedStyle(element).backgroundColor);
