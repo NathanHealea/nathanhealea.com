@@ -22,7 +22,9 @@ Replace the placeholder `/` with the real home page: an introduction from the `a
 
 ## Context
 
-Depends on `experience-page` (`ExperienceItem`), `projects-pages` (`ProjectCard`), and `about-page`. Reuses those components instead of new markup.
+Depends on `experience-page` (`ExperienceItem`), `projects-pages` (`ProjectItem`), and `about-page`. Reuses those components instead of new markup.
+
+**Design (revised 2026-11-16 by `product-grade-design`).** Build to `design/DESIGN-SYSTEM.md` v2 and the home mockup on branch `design/product-grade` (`public/mockups/product-grade/index.html`). Its hero is a large `--text-display` headline, a muted lede, a primary and a ghost button, and an interface window built in HTML with sample data. Below it: selected work as two-column cards (copy left, an interface view right), experience as a sticky-header list, an about block with a portrait slot, and a contact card. The mockup's sample copy, projects, numbers and earlier employers are placeholders and do not ship. Interface views must say "Sample data", must not imitate a real UO screen, and must hold no student or personnel data. A contact section gives the header its "Get in touch" button, which `product-grade-design` left out for lack of a target.
 
 ## Scope
 
@@ -36,13 +38,13 @@ Depends on `experience-page` (`ExperienceItem`), `projects-pages` (`ProjectCard`
 **Out of scope**
 
 - New components beyond a compact variant of `ExperienceItem`
-- Animation or hero imagery (design direction may add it; not assumed)
+- Per-project interface views on cards: needs a schema field, a separate story
 
 ## Requirements
 
 - **R1** — `/` has one `<h1>` with `about.name`, and shows `headline` and `tagline`.
 - **R2** — A "Recent experience" section (`<h2>`) shows the first N roles from `getExperience()` in compact form, and links to `/experience/` with text that names the destination ("All experience").
-- **R3** — A "Featured projects" section (`<h2>`) shows every featured project as a `ProjectCard`, and links to `/projects/` ("All projects").
+- **R3** — A "Featured projects" section (`<h2>`) shows every featured project as a `ProjectItem` card, and links to `/projects/` ("All projects").
 - **R4** — When no project is featured, the featured section is omitted rather than rendered empty.
 - **R5** — The page passes the axe helper and the 320px check.
 

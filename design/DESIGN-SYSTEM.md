@@ -1,51 +1,82 @@
-# nathanhealea.com — Design System v1 ("The Public Report")
+# nathanhealea.com — Design System v2 ("Product-grade")
 
-*Source: /hone:design, 2026-11-01. Direction III of four explored (Paint Card, Valley Light, The Public Report, Plain Statement), picked by Nathan. Taste inputs: "technical portfolio for a full stack developer, software engineer"; warm, grounded; one theme; serif display + sans text. Composition from taste-skill direction `editorial-report`; house rules from taste-skill v2 (`~/.claude/skills/design-taste-frontend/SKILL.md`) apply on top.*
+*Replaces v1 ("The Public Report", 2026-11-01). Picked by Nathan on 2026-11-16 after reviewing mockups; reference mockup on branch `design/product-grade` at `9abb610`, `public/mockups/product-grade/`. Benchmark: product sites in the Linear, Vercel and Stripe mold, scaled to one person. Tone: a colleague talking about their work over beers; business casual with some personality. Built by work item `product-grade-design`.*
 
-**The rule:** the site is a public employee's annual report. One vertical axis at 42% organizes every page; paper and ink carry the reading; fir and slate arrive only as whole pages of flat color. Dates, employers and places are stated plainly, the way a report states findings. Nothing is decorated: no rules, no shadows, no gradients, no cards.
+**The rule:** the site reads like a well-made product, not a document. Quiet near-white or near-black ground, one blue accent, Geist type, thin lines and soft radii. Work is shown as working software wherever it can be: interface views built in HTML with sample data, never screenshots of internal systems. Personality lives in the words, not in ornaments.
 
-## Tokens (one theme, no dark mode)
+## Tokens
 
-`--color-paper #F5F5F1` (page ground; never pure white, report stock) · `--color-ink #151716` (all running text, 16.5:1 on paper) · `--color-fir #22402E` (color pages, current-page bar, focus ring on paper: 10.4:1) · `--color-slate #2E5266` (second color page, used at most once per page: 7.6:1 with paper) · `--color-stone #DCD8CC` (tone step for a raised block and mosaic tiles; never text ground below 16px) · `--color-sage #B9C4BB` (mosaic tile only, never behind text) · On fir/slate pages text and focus ring swap to `--color-paper`. No pure #FFF/#000. UO green/yellow (#154733, #FEE123) are banned so the site never reads as official university branding.
+Defined in `src/styles/tokens.css`. Names follow Tailwind v4's theme namespaces (tailwindcss.com/docs/theme), so the file could become a `@theme` block with little change; the `@font-face` rules and the dark blocks would stay outside it. `tests/unit/tokens.test.ts` checks that the file declares exactly this set and that every `var()` under `src/` resolves.
 
-### Token names
+### Color (light / dark)
 
-Tokens in `src/styles/tokens.css` follow Tailwind v4's theme variable namespaces (tailwindcss.com/docs/theme), so the file could become a Tailwind `@theme` block with little change: the `@font-face` rules and the 960px override of `--spacing-section` would stay outside it. Colors are `--color-*`, typefaces `--font-*`, type sizes `--text-*`, line heights `--leading-*`, letter spacing `--tracking-*`, max widths (`--container-measure`, `--container-content`) `--container-*`, and the outer margin, section gap, inner gap and tap target (`--spacing-margin`, `--spacing-section`, `--spacing-inner`, `--spacing-tap`) `--spacing-*`. Timing curves are `--ease-*`. Tokens with no Tailwind namespace keep a plain project name: `--axis`, `--focus-*`, `--mark-*`, and the motion durations and staggers.
+The dark palette applies when the system prefers dark (`@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) }`) or when `html[data-theme="dark"]` is set by the theme toggle. Both blocks hold identical values.
 
-## Type
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `--color-bg` | #fbfbfa | #0b0c0e | Page ground |
+| `--color-surface` | #f4f4f2 | #121317 | Tone step: chips, hover fills, figure stages |
+| `--color-raised` | #ffffff | #16171c | Cards, windows, controls |
+| `--color-line` | #e5e5e1 | #24262c | Dividers and card edges (decorative only) |
+| `--color-line-strong` | #d4d4cf | #30333a | Hover edges, breadcrumb separators (decorative only) |
+| `--color-ink` | #0f1012 | #ededef | Headings, primary text, primary button fill |
+| `--color-ink-2` | #3a3c42 | #c9cad0 | Running text in long reads, icons |
+| `--color-muted` | #5f616a | #9a9ca6 | Ledes, side notes, nav at rest, captions |
+| `--color-accent` | #2b59ff | #6d8bff | Focus ring, TOC marker, link hover, one accent button |
+| `--color-accent-hover` | #1d47e6 | #8aa2ff | Accent button hover |
+| `--color-accent-ink` | #ffffff | #0b0c0e | Text on accent |
+| `--color-accent-soft` | #eaefff | #1a2142 | Callouts |
+| `--color-ok` / `-soft` | #157040 / #e3f4ea | #4cc38a / #10261b | "Current" chip, passing states |
+| `--color-warn` / `-soft` | #9a5b00 / #fbf0dc | #e3a94a / #2a2010 | Warning states in interface views |
+| `--color-bad` / `-soft` | #b42318 / #fde8e6 | #ff7b6e / #2d1513 | Failing states in interface views |
+| `--shadow-window` | soft, two-layer | deeper, two-layer | Interface windows only |
 
-Source Serif 4 Display 600/700 (static cuts, 172KB for both; the variable file is 429KB) = page titles, section headings, statements on color pages; never below 24px, never in nav or body. Public Sans 400/600 (static cuts) = all running text, nav, footer, captions. Both self-hosted as unmodified upstream woff2 (OFL 1.1; Source Serif's Reserved Font Name forbids shipping a subset under its name), `font-display: swap`, fallbacks `Georgia, serif` / `system-ui, sans-serif`. No monospace outside `<pre>/<code>`.
+Contrast (tested): every text color on bg, surface and raised meets 4.5:1 in both palettes; status colors meet 4.5:1 on their soft grounds. `line` and `line-strong` never carry meaning on their own, so they are exempt from 3:1. UO green #154733 and yellow #FEE123 are banned so the site never reads as official university branding (tested).
 
-Scale (five sizes, the ceiling): display `clamp(40px, 6.4vw, 92px)` / 0.95 / -0.03em · section `clamp(30px, 3.6vw, 48px)` / 1.05 / -0.02em · statement `clamp(24px, 2.6vw, 34px)` / 1.2 (serif, color pages only) · standfirst `clamp(19px, 1.6vw, 21px)` / 1.45 · body 18px / 1.55, small 16px / 1.45 (side notes, footer). Body measure ≤ 62ch. Left-aligned everywhere; nothing centered.
+### Type
 
-## Frame
+Geist (text) and Geist Mono (dates, tech chips, code, the 404 code), self-hosted as the upstream v1.9.2 variable woff2 files under the OFL (`public/fonts/`), `font-display: swap`. No third-party requests.
 
-Outer margin `clamp(16px, 3vw, 40px)`, equal both sides at every width. The axis: at ≥ 960px, headings and body start at 42% of the frame; the 0–42% zone holds side notes (role, dates, place) at small size, top-aligned with the heading, or a figure. Below 960px the axis collapses to the left margin and side notes move above their heading. Section gap 160px desktop / 96px phone; inside a section ≤ 48px. Color pages run full-bleed. Max content width 1280px.
+`--font-sans`, `--font-mono` · sizes: `--text-display` clamp(2.5rem, 1.4rem + 4.2vw, 4.5rem) home hero only · `--text-title` clamp(2.25rem, 1.3rem + 3.6vw, 4rem) page and case-study `h1` · `--text-section` clamp(1.875rem, 1.3rem + 2vw, 2.75rem) section `h2` and index page titles · `--text-heading` clamp(1.5rem, 1.2rem + 1vw, 2rem) write-up `h2` · `--text-card` clamp(1.375rem, 1.1rem + 0.8vw, 1.75rem) card titles · `--text-lede` clamp(1.0625rem, 1rem + 0.35vw, 1.25rem) · `--text-body` 17px · `--text-ui` 15px (nav, buttons, role text) · `--text-small` 14px (side notes, footer) · `--text-caption` 13px.
 
-## The report shell (header, nav, footer)
+Leading `--leading-tight` 1.04, `--leading-snug` 1.15, `--leading-body` 1.6. Tracking `--tracking-display` -0.045em, `--tracking-section` -0.035em, `--tracking-heading` -0.025em. Headings weight 600; body 400; labels 500. Sentence case everywhere. Measure `--container-measure` 68ch; write-ups cap at 720px.
 
-Header: wordmark "Nathan Healea" (Source Serif 4 700, 20px) left; nav right: Experience, Projects, About (Public Sans 17px, ink, no underline). Current section: inset 4px `--color-fir` bar under the link (`box-shadow: inset 0 -4px 0`), plus `aria-current="page"`. Hover: the same bar at 2px. Below ~520px the nav wraps under the wordmark as one row of three links; no toggle, no script. No bar chrome, no sticky header, no pill, no blur.
-Footer: a full-bleed `--color-fir` page. The name returns at section size in paper; one line from `about.location`; social links from `about.social` in paper, underlined, same tab. Nothing else.
-Skip link: first focusable element, paper on ink, top-left inside the margin, visible only on focus.
+### Frame and shape
 
-## Material rules
+`--container-content` 1200px, `--spacing-gutter` clamp(20px, 4vw, 40px) both sides, `--spacing-section` clamp(80px, 10vw, 128px), `--spacing-header` 64px, `--spacing-tap` 44px minimum target. Radii `--radius-sm` 6px (controls), `--radius-md` 10px (windows), `--radius-lg` 14px (cards), `--radius-full` (chips). Two breakpoints: 1000px (two-column layouts collapse; TOC hides) and 720px (grids go to one column).
 
-1. Surfaces separate by a tone step (`--color-paper` → `--color-stone`) or a whole color page; never by a line, border or shadow.
-2. Zero shadows, zero gradients, zero blur, zero rotation. Corners square (radius 0) on everything.
-3. Mosaic (home and project pages only): gutterless 6-cell band, color tiles plus photographs in one treatment, `filter: grayscale(1) contrast(1.05)`.
-4. Buttons: flat `--color-ink` fill, `--color-paper` text, 600, radius 0, 48px min height. At most one per screen.
-5. Links in running text: ink, underline 1px offset 3px; hover 3px. Focus ring everywhere: 3px solid `--color-fir` (or `--color-paper` on color pages), offset 3px.
-6. Banned (taste-skill house rules): eyebrows, 01/02 numbering, hairlines, tiny tracked caps, icon cards, glass, emoji, styled accent words, violet/indigo.
+### Focus and motion
 
-## Motion (four named moves; all drop to 0ms under `prefers-reduced-motion: reduce`)
+Focus ring everywhere: `--focus-width` 2px solid `--color-accent`, `--focus-offset` 3px, 4px radius; ≥3:1 against the ground in both themes (tested).
 
-RISE (signature): page and section headings rise into place, `translateY(0.35em) → 0` with opacity `0 → 1`, on the heading element itself (no mask, so no glyph is ever clipped), 1000ms `cubic-bezier(.2,.8,.2,1)`, lines staggered 120ms, once on entry. ENTER: a section's parts follow its heading (text, then figure) 24px up + opacity, 700ms, 80ms stagger, once; content is visible without script. MARK: nav current-bar and link underline thicken 150ms ease-out on hover/focus. TURN: a color page's statement fades in 400ms as it enters. Transform and opacity only, except MARK, which animates the bar and underline thickness.
+One move, REVEAL: an element marked `data-reveal` fades in and rises `--reveal-distance` (14px) over `--reveal-duration` (700ms) on `--ease-out`, once, as it enters the viewport; siblings stagger by `--reveal-stagger` (70ms) × `--reveal-order`. Opacity and transform only. Content is hidden only when the inline head script has added `js` to `<html>`, so it is visible without script; under `prefers-reduced-motion: reduce` nothing moves. UI transitions (hover color, borders) run 150–200ms.
+
+## Shell
+
+**Header:** sticky, page ground, gains a bottom `--color-line` once scrolled. Wordmark ("NH" mark plus "Nathan Healea") left, then the primary nav (Experience, Projects, About) in `--color-muted`, then the theme toggle. Current section: `aria-current="page"`, ink color and a 2px ink underline (not color alone). Below 560px the nav wraps to its own row under the wordmark; no menu button.
+
+**Theme toggle:** an icon button (moon in light, sun in dark) named for the theme it switches to ("Switch to dark theme"). Overrides the system scheme and stores the choice in `localStorage`; an inline head script applies a stored choice before first paint. Ships `hidden` and is shown by script, so it never appears when it cannot work.
+
+**Footer:** one row under a `--color-line` rule: name, "Based in {location}.", social links from the about entry.
+
+**Skip link:** first focusable element, ink pill, visible only on focus.
+
+## Components
+
+- **Buttons:** primary (ink fill, bg text), ghost (raised, line edge), accent (at most one per screen). 40–44px tall, `--radius-sm`, weight 500.
+- **Chips:** pill, `--text-caption` or 12px mono for tech; status chips carry a dot and a text label.
+- **Cards:** `--color-raised`, 1px `--color-line`, `--radius-lg`; edge darkens on hover. Used for projects and contact.
+- **Interface windows:** raised panel with a title bar (three dots, a mono path), `--shadow-window`. Every one shows sample data, says so, and never imitates a real UO screen or holds student or personnel data.
+- **Breadcrumb, TOC:** muted 14px; the TOC marks the section being read with an accent left bar and `aria-current`.
 
 ## Copy rules
 
-Functional labels on controls ("Experience", "Download résumé", "View on GitHub"). Voice lives in standfirsts, side notes, color-page statements, the 404 and the footer line. State facts with their numbers and dates; never invent proof, metrics or quotes. Full voice: `design/VOICE.md`.
+Functional labels on controls ("Experience", "View on GitHub", "Switch to dark theme"). Voice lives in ledes, the 404 and the footer. State facts with their numbers and dates; never invent proof, metrics, logos or quotes. Full voice: `design/VOICE.md`.
 
-## Screen inventory (7)
+## Banned
 
-Shell: header + nav + footer (`navigation-shell`, `mobile-patterns`) · Home★ (`landing-pages`, `marketing-copy`) · Experience★ (`visual-foundations`, `microcopy`) · Projects index★ (`navigation-shell`, `states`) · Project detail (`visual-foundations`, `marketing-copy`) · About + résumé download (`marketing-copy`, `microcopy`) · 404 (`states`).
-(★ = the three a hiring manager hits in their first minute.)
+Gradients as decoration, glass and blur, emoji, eyebrow labels over every heading, 01/02 numbering, icon-in-a-tinted-square cards, violet as an accent, UO brand colors, screenshots of internal systems, and any image or interface view holding real student or personnel data.
+
+## Screen inventory
+
+Shell · Home (story `home-page`) · Experience · Projects index · Project detail · About (story `about-page`) · 404.

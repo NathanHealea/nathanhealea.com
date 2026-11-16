@@ -24,6 +24,8 @@ Add `/about/`, rendering Nathan's bio, grouped skills, education, social links, 
 
 Depends on `content-collections` (`getAbout()`, about schema) and `base-layout`. The Hugo site has no separate about page; identity lived in `hugo.toml` params.
 
+**Design (revised 2026-11-16 by `product-grade-design`).** Build to `design/DESIGN-SYSTEM.md` v2 and the about section of the mockup on branch `design/product-grade` (`public/mockups/product-grade/index.html`, `#about`): a portrait slot beside the bio (a placeholder showing initials until a photo exists), the bio in `--color-ink-2` at 18px, and a three-cell facts grid. Skills render as chips, education and social links as plain lists. The page header follows the Experience and Projects pattern (`h1` at `--text-section` with a muted lede). The résumé link is a ghost button.
+
 ## Scope
 
 **In scope**

@@ -85,14 +85,15 @@ Status column by matching the Slug column, so keep slugs exact.
 | 8 | story | seo | SEO metadata, sitemap, and structured data | R4 | 3 | planned |
 | 9 | task | content-migration | Enter real content from source files | R2, R8 | 2 | planned |
 | 10 | task | cloudflare-deploy | Deploy to Cloudflare Pages and cut over the domain | R7 | 7, 8, 9 | planned |
+| 11 | story | product-grade-design | Product-grade visual redesign | R3, R5, R6 | 3, 4, 5 | in-progress |
 
 **Independently shippable:** None to production; the domain cutover (10) waits on everything else. On `v10`, each child merges on its own. 3 and 2 can run in parallel after 1; 4, 5, 6, 8, and 9 can run in parallel once their dependencies land.
 
 ## Risks and open questions
 
 - **Open — content files.** Nathan has not supplied the source files yet. Child 9 is blocked on them. The Hugo `data/*.yaml` on `main` is a possible fallback or cross-check, but the stated source is Nathan's files.
-- **Open — design direction.** No visual direction, palette, typography, or reference sites given. Decided during child 3's planning pass.
-- **Open — dark mode.** The Hugo site has a dark-mode toggle. Whether to carry it forward is decided during child 3.
+- **Decided — design direction.** Child 3 shipped the Public Report design (v1). On 2026-11-16 Nathan replaced it with the product-grade design (v2, `design/DESIGN-SYSTEM.md`); child 11 re-skins the built pages and revises children 6 and 7 to match.
+- **Decided — dark mode.** Light and dark themes follow the system, with a header toggle to override (child 11).
 - **Open — performance targets.** No Lighthouse or Core Web Vitals targets given. None are invented here; add them to child 8 or 10 if wanted.
 - **Risk — domain cutover.** Moving nathanhealea.com from Vercel to Cloudflare means changing DNS, and possibly nameservers. A mistake takes the live site down, and DNS propagation delays any rollback. Child 10 is high-risk and needs sign-off before that step.
 - **Risk — Cloudflare product direction.** Cloudflare now also offers static assets on Workers alongside Pages. Confirm the current recommended path against Cloudflare's and Astro's docs when child 10 is planned; not verified here.
