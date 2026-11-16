@@ -5,9 +5,11 @@ const about = await getAbout();
 ---
 
 <footer class="site-footer">
-	<div class="inner">
-		<h2>{about.data.name}</h2>
-		<p class="place">Published from {about.data.location}.</p>
+	<div class="inner" data-reveal>
+		<div>
+			<h2>{about.data.name}</h2>
+			<p class="place">Based in {about.data.location}.</p>
+		</div>
 		<ul>
 			{
 				about.data.social.map((link) => (
@@ -23,27 +25,33 @@ const about = await getAbout();
 <style>
 	.site-footer {
 		margin-top: var(--spacing-section);
-		background: var(--color-fir);
-		color: var(--color-paper);
+		border-top: 1px solid var(--color-line);
+		color: var(--color-muted);
+		font-size: var(--text-small);
 	}
 
 	.inner {
-		max-width: var(--container-content);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		gap: 16px 32px;
+		max-width: calc(var(--container-content) + 2 * var(--spacing-gutter));
 		margin: 0 auto;
-		padding: var(--spacing-inner) var(--spacing-margin);
+		padding: 32px var(--spacing-gutter) 40px;
 	}
 
-	.place {
-		margin-top: 16px;
-		font-size: var(--text-small);
-		line-height: var(--leading-small);
+	h2 {
+		color: var(--color-ink);
+		font-size: var(--text-ui);
+		line-height: var(--leading-body);
+		letter-spacing: normal;
 	}
 
 	ul {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 4px 24px;
-		margin-top: 24px;
+		gap: 0 20px;
 		padding: 0;
 		list-style: none;
 	}
@@ -52,9 +60,10 @@ const about = await getAbout();
 		display: inline-flex;
 		align-items: center;
 		min-height: var(--spacing-tap);
+		text-decoration: none;
 	}
 
-	a:focus-visible {
-		outline-color: var(--color-paper);
+	a:hover {
+		color: var(--color-ink);
 	}
 </style>

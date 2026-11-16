@@ -47,7 +47,6 @@ h1 {
   font-size: var(--text-title);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-display);
-  animation: rise var(--rise-duration) var(--ease-out) both;
 }
 
 h2 {
@@ -97,17 +96,6 @@ a:focus-visible {
   color: var(--color-accent-ink);
 }
 
-@keyframes rise {
-  from {
-    transform: translateY(0.35em);
-    opacity: 0;
-  }
-  to {
-    transform: none;
-    opacity: 1;
-  }
-}
-
 @keyframes enter {
   from {
     transform: translateY(24px);
@@ -117,6 +105,19 @@ a:focus-visible {
     transform: none;
     opacity: 1;
   }
+}
+
+.js [data-reveal]:not(.in) {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+}
+
+.js [data-reveal] {
+  --reveal-order: 0;
+  transition:
+    opacity var(--reveal-duration) var(--ease-out),
+    transform var(--reveal-duration) var(--ease-out);
+  transition-delay: calc(var(--reveal-order) * var(--reveal-stagger));
 }
 
 @media (prefers-reduced-motion: reduce) {

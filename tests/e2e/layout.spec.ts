@@ -5,6 +5,7 @@ import { expect, test, type Locator } from '@playwright/test';
 import { expectNoA11yViolations } from './helpers/a11y';
 
 const LAYOUT_ROUTES = ['/', '/404'];
+const REVEAL_ROUTES = ['/', '/experience/', '/projects/', '/404'];
 
 async function motionDurations(locator: Locator): Promise<string[]> {
   return locator.evaluate((element) => {
@@ -75,42 +76,79 @@ test('layout has no axe violations', async ({ page }) => {
   }
 });
 
-test.describe('with reduced motion', () => {
-  test.use({ reducedMotion: 'reduce' });
+test.describe('without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
 
-  test('reduced motion disables transitions', async ({ page }) => {
-    await page.goto('/');
-
-    const targets = [page.locator('h1').first(), ...(await page.locator('nav a').all())];
-    await expect(targets[0]).toBeAttached();
-    for (const target of targets) {
-      for (const duration of await motionDurations(target)) {
-        expect(duration).toBe('0s');
+  test('reveal content is visible without JS', async ({ page }) => {
+    for (const route of REVEAL_ROUTES) {
+      await page.goto(route);
+      const reveals = await page.locator('[data-reveal]').all();
+      expect(reveals.length, route).toBeGreaterThan(0);
+      for (const reveal of reveals) {
+        const opacity = await reveal.evaluate((element) => getComputedStyle(element).opacity);
+        expect(opacity, route).toBe('1');
       }
     }
   });
 });
 
-test('page heading keeps every glyph after it rises', async ({ page }) => {
-  await page.goto('/');
-  const heading = page.locator('h1').first();
-  await heading.evaluate((element) => Promise.all(element.getAnimations().map((animation) => animation.finished)));
+test.describe('with reduced motion', () => {
+  test.use({ reducedMotion: 'reduce' });
 
-  const clipPath = await heading.evaluate((element) => getComputedStyle(element).clipPath);
-  expect(clipPath).toBe('none');
+  test('nothing animates', async ({ page }) => {
+    for (const route of REVEAL_ROUTES) {
+      await page.goto(route);
+
+      const reveals = await page.locator('[data-reveal]').all();
+      expect(reveals.length, route).toBeGreaterThan(0);
+      const targets = [
+        page.locator('h1').first(),
+        ...(await page.locator('nav a').all()),
+        page.locator('header button[data-theme-toggle]'),
+        ...reveals,
+      ];
+      for (const target of targets) {
+        for (const duration of await motionDurations(target)) {
+          expect(duration, route).toBe('0s');
+        }
+      }
+      for (const reveal of reveals) {
+        const opacity = await reveal.evaluate((element) => getComputedStyle(element).opacity);
+        expect(opacity, route).toBe('1');
+      }
+    }
+  });
 });
 
 test.describe('without reduced motion', () => {
-  test.use({ reducedMotion: 'no-preference' });
+  test.use({ reducedMotion: 'no-preference', viewport: { width: 1280, height: 400 } });
 
-  test('page heading animates when motion is allowed', async ({ page }) => {
-    await page.goto('/');
+  test('reveal runs once on transform and opacity', async ({ page }) => {
+    const settledOpacity = (element: Element) =>
+      new Promise<void>((done) => requestAnimationFrame(() => requestAnimationFrame(() => done())))
+        .then(() => Promise.all(element.getAnimations().map((animation) => animation.finished)))
+        .then(() => getComputedStyle(element).opacity);
 
-    const animationDuration = await page
-      .locator('h1')
-      .first()
-      .evaluate((element) => getComputedStyle(element).animationDuration);
-    expect(animationDuration.split(',').some((value) => value.trim() !== '0s')).toBe(true);
+    await page.goto('/experience/');
+    const reveal = page.locator('footer [data-reveal]');
+    await expect(reveal).toHaveCount(1);
+
+    const box = await reveal.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.y).toBeGreaterThan(400);
+
+    const before = await reveal.evaluate((element) => {
+      const style = getComputedStyle(element);
+      return { opacity: style.opacity, properties: style.transitionProperty.split(',').map((value) => value.trim()) };
+    });
+    expect(before.opacity).toBe('0');
+    expect([...before.properties].sort()).toEqual(['opacity', 'transform']);
+
+    await reveal.scrollIntoViewIfNeeded();
+    await expect.poll(() => reveal.evaluate(settledOpacity)).toBe('1');
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    expect(await reveal.evaluate(settledOpacity)).toBe('1');
   });
 });
 
@@ -158,6 +196,39 @@ test('nav marks current section', async ({ page }) => {
     await expect(link).toHaveAttribute('href', href);
     await expect(link).not.toHaveAttribute('aria-current', /.*/);
   }
+
+  // /about/ is not built yet (story about-page); nav-render.test.ts covers its marking.
+  for (const current of expected.filter(({ href }) => href !== '/about/')) {
+    await page.goto(current.href);
+    for (const { name, href } of expected) {
+      const link = nav.getByRole('link', { name, exact: true });
+      const boxShadow = await link.evaluate((element) => getComputedStyle(element).boxShadow);
+      if (href === current.href) {
+        await expect(link, current.href).toHaveAttribute('aria-current', 'page');
+        expect(boxShadow, `${current.href} ${name}`).not.toBe('none');
+      } else {
+        await expect(link, current.href).not.toHaveAttribute('aria-current', /.*/);
+        expect(boxShadow, `${current.href} ${name}`).toBe('none');
+      }
+    }
+  }
+});
+
+test('header stays in view', async ({ page }) => {
+  await page.goto('/experience/');
+  const header = page.locator('header.site-header');
+  const scrollable = await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight);
+  expect(scrollable).toBeGreaterThan(200);
+
+  await page.evaluate(() => window.scrollTo(0, document.documentElement.scrollHeight));
+  await expect.poll(() => page.evaluate(() => window.scrollY)).toBeGreaterThan(200);
+
+  const box = await header.boundingBox();
+  expect(box).not.toBeNull();
+  expect(Math.round(box!.y)).toBe(0);
+  await expect(header.getByRole('link', { name: 'Nathan Healea', exact: true })).toBeInViewport();
+  await expect(header.locator('nav[aria-label="Primary"]')).toBeInViewport();
+  await expect(header.locator('button[data-theme-toggle]')).toBeInViewport();
 });
 
 test('no horizontal scroll at 320px and 1920px', async ({ page }) => {
@@ -185,7 +256,8 @@ test.describe('at 320px', () => {
       const navLinks = ['Experience', 'Projects', 'About'].map((name) =>
         nav.getByRole('link', { name, exact: true }),
       );
-      for (const link of navLinks) {
+      const toggle = page.locator('header button[data-theme-toggle]');
+      for (const link of [...navLinks, toggle]) {
         await expect(link, route).toBeVisible();
         const box = await link.boundingBox();
         expect(box, route).not.toBeNull();
@@ -197,7 +269,7 @@ test.describe('at 320px', () => {
 
       await page.keyboard.press('Tab');
       await expect(page.getByRole('link', { name: 'Skip to main content' }), route).toBeFocused();
-      const tabOrder = [page.getByRole('link', { name: 'Nathan Healea', exact: true }), ...navLinks];
+      const tabOrder = [page.getByRole('link', { name: 'Nathan Healea', exact: true }), ...navLinks, toggle];
       for (const link of tabOrder) {
         await page.keyboard.press('Tab');
         await expect(link, route).toBeFocused();
@@ -241,6 +313,19 @@ test('footer social links have names', async ({ page }) => {
   }
 });
 
+test('footer shows location', async ({ page }) => {
+  const aboutSource = readFileSync(resolve(import.meta.dirname, '../../src/content/about/about.md'), 'utf8');
+  const { name, location } = parseFrontmatter(aboutSource).frontmatter as { name: string; location: string };
+  expect(location).toMatch(/\S/);
+
+  for (const route of LAYOUT_ROUTES) {
+    await page.goto(route);
+    const footer = page.locator('footer');
+    await expect(footer, route).toContainText(name);
+    await expect(footer.getByText(`Based in ${location}.`, { exact: true }), route).toBeVisible();
+  }
+});
+
 function luminance(rgb: string): number {
   const [r, g, b] = (rgb.match(/[\d.]+/g) ?? []).slice(0, 3).map((value) => {
     const channel = Number(value) / 255;
@@ -255,27 +340,43 @@ function contrast(a: string, b: string): number {
 }
 
 test('every keyboard stop shows a focus ring with 3:1 contrast', async ({ page }) => {
-  for (const route of LAYOUT_ROUTES) {
-    await page.goto(route);
-    const stops = await page.locator('a, button').count();
-    for (let index = 0; index < stops; index += 1) {
-      await page.keyboard.press('Tab');
-      const ring = await page.evaluate(() => {
-        const element = document.activeElement as HTMLElement;
-        const style = getComputedStyle(element);
-        let ground = element.parentElement;
-        while (ground && getComputedStyle(ground).backgroundColor === 'rgba(0, 0, 0, 0)') ground = ground.parentElement;
-        return {
-          name: element.textContent?.trim(),
-          style: style.outlineStyle,
-          width: parseFloat(style.outlineWidth),
-          color: style.outlineColor,
-          background: ground ? getComputedStyle(ground).backgroundColor : 'rgb(255, 255, 255)',
-        };
-      });
-      expect(ring.style, `${route} ${ring.name}`).not.toBe('none');
-      expect(ring.width, `${route} ${ring.name}`).toBeGreaterThanOrEqual(2);
-      expect(contrast(ring.color, ring.background), `${route} ${ring.name}`).toBeGreaterThanOrEqual(3);
+  const themes = [
+    { colorScheme: 'light', background: 'rgb(251, 251, 250)' },
+    { colorScheme: 'dark', background: 'rgb(11, 12, 14)' },
+  ] as const;
+  for (const { colorScheme, background } of themes) {
+    await page.emulateMedia({ colorScheme });
+    for (const route of LAYOUT_ROUTES) {
+      await page.goto(route);
+      const where = `${route} ${colorScheme}`;
+      const bodyBackground = await page.locator('body').evaluate((element) => getComputedStyle(element).backgroundColor);
+      expect(bodyBackground, where).toBe(background);
+      await expect(page.locator('header button[data-theme-toggle]'), where).toBeVisible();
+
+      const stops = await page.locator('a, button').count();
+      let reachedToggle = false;
+      for (let index = 0; index < stops; index += 1) {
+        await page.keyboard.press('Tab');
+        const ring = await page.evaluate(() => {
+          const element = document.activeElement as HTMLElement;
+          const style = getComputedStyle(element);
+          let ground = element.parentElement;
+          while (ground && getComputedStyle(ground).backgroundColor === 'rgba(0, 0, 0, 0)') ground = ground.parentElement;
+          return {
+            name: element.getAttribute('aria-label') ?? element.textContent?.trim(),
+            isToggle: element.hasAttribute('data-theme-toggle'),
+            style: style.outlineStyle,
+            width: parseFloat(style.outlineWidth),
+            color: style.outlineColor,
+            background: ground ? getComputedStyle(ground).backgroundColor : 'rgb(255, 255, 255)',
+          };
+        });
+        reachedToggle ||= ring.isToggle;
+        expect(ring.style, `${where} ${ring.name}`).not.toBe('none');
+        expect(ring.width, `${where} ${ring.name}`).toBeGreaterThanOrEqual(2);
+        expect(contrast(ring.color, ring.background), `${where} ${ring.name}`).toBeGreaterThanOrEqual(3);
+      }
+      expect(reachedToggle, where).toBe(true);
     }
   }
 });
