@@ -11,7 +11,7 @@ const { role, hasDetails } = Astro.props;
 const name = `${role.title} at ${role.company}`;
 ---
 
-<article class="role">
+<article class="role" data-reveal>
 	<div class="side">
 		<p><time datetime={role.start}>{formatRange(role.start, role.end)}</time></p>
 		<p>{role.location}</p>
@@ -45,77 +45,139 @@ const name = `${role.title} at ${role.company}`;
 </article>
 
 <style>
-	.side,
-	.main {
-		animation: enter var(--enter-duration) var(--ease-out) both;
+	.role {
+		padding: 28px 0;
+		border-top: 1px solid var(--color-line);
 	}
 
-	.main {
-		animation-delay: var(--enter-stagger);
+	.role:last-child {
+		border-bottom: 1px solid var(--color-line);
 	}
 
 	.side {
-		margin-bottom: 16px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 4px 12px;
+		margin-bottom: 8px;
+		color: var(--color-muted);
 		font-size: var(--text-small);
-		line-height: var(--leading-small);
+		font-variant-numeric: tabular-nums;
 	}
 
-	@media (min-width: 960px) {
+	@media (min-width: 1000px) {
 		.role {
 			display: grid;
-			grid-template-columns: var(--axis) 1fr;
-			align-items: start;
+			grid-template-columns: 180px 1fr;
+			gap: 24px;
 		}
 
 		.side {
-			margin: 0 32px 0 0;
+			flex-direction: column;
+			align-items: flex-start;
+			margin: 0;
+			padding-top: 3px;
 		}
 	}
 
 	.status {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 2px 8px;
+		border-radius: var(--radius-full);
+		background: var(--color-ok-soft);
+		color: var(--color-ok);
+		font-size: var(--text-small);
 		font-weight: 600;
+	}
+
+	.status::before {
+		content: '';
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: currentColor;
+	}
+
+	h2 {
+		font-size: 18px;
+		line-height: 1.4;
+		letter-spacing: -0.015em;
 	}
 
 	.company {
-		font-weight: 600;
+		display: block;
+		margin-top: 2px;
+		color: var(--color-muted);
+		font-size: var(--text-ui);
+		font-weight: 400;
+		letter-spacing: normal;
 	}
 
 	.highlights {
-		margin-top: 24px;
-		padding-left: 1.25em;
-	}
-
-	.highlights li + li {
-		margin-top: 8px;
+		display: grid;
+		gap: 6px;
+		margin-top: 14px;
+		padding-left: 18px;
+		color: var(--color-ink-2);
+		font-size: var(--text-ui);
 	}
 
 	.tech {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 4px 16px;
+		gap: 6px;
 		margin-top: 16px;
 		padding: 0;
 		list-style: none;
-		font-size: var(--text-small);
-		line-height: var(--leading-small);
+	}
+
+	.tech li {
+		padding: 2px 8px;
+		border-radius: var(--radius-full);
+		background: var(--color-surface);
+		color: var(--color-muted);
+		font-family: var(--font-mono);
+		font-size: 12px;
 	}
 
 	details {
-		margin-top: 16px;
+		margin-top: 12px;
 	}
 
 	summary {
 		display: flex;
 		align-items: center;
+		gap: 8px;
 		min-height: var(--spacing-tap);
-		font-weight: 600;
+		width: fit-content;
+		color: var(--color-ink);
+		font-size: var(--text-ui);
+		font-weight: 500;
 		cursor: pointer;
+	}
+
+	summary::-webkit-details-marker {
+		display: none;
+	}
+
+	summary {
+		list-style: none;
 	}
 
 	summary::before {
 		content: '+' / '';
-		width: 1.25em;
-		flex: none;
+		display: grid;
+		place-items: center;
+		width: 20px;
+		height: 20px;
+		border: 1px solid var(--color-line-strong);
+		border-radius: var(--radius-sm);
+		color: var(--color-muted);
+		font-family: var(--font-mono);
+		font-size: 13px;
+		line-height: 1;
 	}
 
 	details[open] > summary::before {
@@ -123,6 +185,10 @@ const name = `${role.title} at ${role.company}`;
 	}
 
 	.body {
-		margin-top: 8px;
+		display: grid;
+		gap: 12px;
+		margin-top: 4px;
+		color: var(--color-ink-2);
+		font-size: var(--text-ui);
 	}
 </style>

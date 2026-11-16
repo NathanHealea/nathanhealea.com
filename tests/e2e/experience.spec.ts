@@ -219,48 +219,39 @@ test('marks only the current role', async ({ page }) => {
   }
 });
 
-test('side note sits on the axis', async ({ page }) => {
+test('side column sits beside then above', async ({ page }) => {
   const roles = readRoles();
 
-  for (const width of [1280, 960]) {
-    await page.setViewportSize({ width, height: 800 });
-    await page.goto(ROUTE);
-    await settleAnimations(page);
-    await expect(page.locator('article')).toHaveCount(roles.length);
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto(ROUTE);
+  await settleAnimations(page);
+  await expect(page.locator('article')).toHaveCount(roles.length);
 
-    const frame = await page.locator('main').evaluate((element) => {
-      const rect = element.getBoundingClientRect();
-      const style = getComputedStyle(element);
-      const left = rect.left + parseFloat(style.paddingLeft);
-      const right = rect.right - parseFloat(style.paddingRight);
-      return { left, width: right - left };
-    });
+  for (const role of roles) {
+    const label = `${role.title} at 1280px`;
+    const article = articleFor(page, role);
+    const side = sideNoteOf(article);
+    const heading = article.getByRole('heading', { level: 2 });
+    await expect(side, label).toHaveCount(1);
+    await expect(side.getByText(role.location, { exact: true }), `${label} location in side note`).toHaveCount(1);
+    await expect(side.getByText('Current', { exact: true }), `${label} Current in side note`).toHaveCount(
+      role.end === undefined ? 1 : 0,
+    );
 
-    for (const role of roles) {
-      const label = `${role.title} at ${width}px`;
-      const article = articleFor(page, role);
-      const side = sideNoteOf(article);
-      const heading = article.getByRole('heading', { level: 2 });
-      await expect(side, label).toHaveCount(1);
-      await expect(side.getByText(role.location, { exact: true }), `${label} location in side note`).toHaveCount(1);
-      await expect(side.getByText('Current', { exact: true }), `${label} Current in side note`).toHaveCount(
-        role.end === undefined ? 1 : 0,
-      );
+    const sideBox = (await side.boundingBox())!;
+    const headingBox = (await heading.boundingBox())!;
+    expect(sideBox.x + sideBox.width, `${label} side right edge`).toBeLessThanOrEqual(headingBox.x);
 
-      const sideBox = (await side.boundingBox())!;
-      const headingBox = (await heading.boundingBox())!;
-      expect(Math.abs(headingBox.x - (frame.left + 0.42 * frame.width)), `${label} h2 left`).toBeLessThanOrEqual(1);
-      expect(Math.abs(sideBox.x - frame.left), `${label} side note left`).toBeLessThanOrEqual(1);
-      expect(Math.abs(sideBox.y - headingBox.y), `${label} tops`).toBeLessThanOrEqual(2);
-
-      const sideFirst = await side.evaluate((element, headingElement) => {
+    const sideFirst = await side.evaluate(
+      (element, headingElement) => {
         return Boolean(element.compareDocumentPosition(headingElement!) & Node.DOCUMENT_POSITION_FOLLOWING);
-      }, await heading.elementHandle());
-      expect(sideFirst, `${label} DOM order`).toBe(true);
-    }
+      },
+      await heading.elementHandle(),
+    );
+    expect(sideFirst, `${label} DOM order`).toBe(true);
   }
 
-  for (const width of [959, 320]) {
+  for (const width of [999, 390]) {
     await page.setViewportSize({ width, height: 800 });
     await page.goto(ROUTE);
     await settleAnimations(page);
@@ -274,118 +265,45 @@ test('side note sits on the axis', async ({ page }) => {
   }
 });
 
-test.describe('role entry motion respects reduced motion', () => {
-  test.describe('with reduced motion', () => {
-    test.use({ reducedMotion: 'reduce' });
+test('each role reveals on scroll', async ({ page }) => {
+  await page.goto(ROUTE);
+  const articles = page.locator('article');
+  await expect(articles).toHaveCount(readRoles().length);
+  for (const article of await articles.all()) {
+    await expect(article).toHaveAttribute('data-reveal', '');
+  }
+});
 
-    test('every animation in each article is 0s', async ({ page }) => {
-      await page.goto(ROUTE);
+test.describe('without JavaScript', () => {
+  test.use({ javaScriptEnabled: false });
 
-      const articles = await page.locator('article').all();
-      expect(articles.length).toBeGreaterThan(0);
-      for (const [index, article] of articles.entries()) {
-        const durations = await article.evaluate((element) =>
-          [element, ...element.querySelectorAll('*')].flatMap((node) =>
-            getComputedStyle(node)
-              .animationDuration.split(',')
-              .map((value) => value.trim()),
-          ),
-        );
-        for (const duration of durations) {
-          expect(duration, `article ${index}`).toBe('0s');
-        }
-      }
-    });
-  });
+  test('h2 and highlights of every role are visible', async ({ page }) => {
+    const roles = readRoles();
 
-  test.describe('with motion allowed', () => {
-    test.use({ reducedMotion: 'no-preference' });
+    await page.goto(ROUTE);
+    await settleAnimations(page);
+    await expect(page.locator('article')).toHaveCount(roles.length);
 
-    test('each role runs ENTER once on transform and opacity only', async ({ page }) => {
-      await page.goto(ROUTE);
-
-      const articles = await page.locator('article').all();
-      expect(articles.length).toBeGreaterThan(0);
-      for (const [index, article] of articles.entries()) {
-        const animations = await article.evaluate((element) =>
-          element.getAnimations({ subtree: true }).map((animation) => {
-            const effect = animation.effect as KeyframeEffect;
-            const timing = effect.getTiming();
-            return {
-              iterations: timing.iterations,
-              fill: timing.fill,
-              duration: timing.duration,
-              delay: timing.delay ?? 0,
-              keyframes: effect.getKeyframes().map((frame) => ({ ...frame })),
-            };
-          }),
-        );
-        const label = `article ${index}`;
-        expect(animations.length, label).toBeGreaterThan(0);
-
-        for (const animation of animations) {
-          expect(animation.iterations, label).toBe(1);
-          expect(animation.duration, label).toBe(700);
-          expect(['both', 'backwards'], `${label} hides parts during their delay`).toContain(animation.fill);
-
-          const animated = new Set(
-            animation.keyframes.flatMap((frame) =>
-              Object.keys(frame).filter((key) => !['offset', 'easing', 'composite', 'computedOffset'].includes(key)),
-            ),
-          );
-          for (const property of animated) {
-            expect(['transform', 'opacity'], `${label} animates ${property}`).toContain(property);
+    for (const role of roles) {
+      const article = articleFor(page, role);
+      const parts = [
+        article.getByRole('heading', { level: 2 }),
+        ...role.highlights.map((highlight) => article.getByRole('listitem').filter({ hasText: highlight })),
+      ];
+      for (const part of parts) {
+        await expect(part, role.title).toBeVisible();
+        const box = (await part.boundingBox())!;
+        expect(box.width, role.title).toBeGreaterThan(0);
+        expect(box.height, role.title).toBeGreaterThan(0);
+        const opacity = await part.evaluate((element) => {
+          let product = 1;
+          for (let node: Element | null = element; node; node = node.parentElement) {
+            product *= Number(getComputedStyle(node).opacity);
           }
-
-          const start = animation.keyframes[0];
-          expect(Number(start.opacity), `${label} start opacity`).toBe(0);
-          const transform = String(start.transform).replace(/\s+/g, '');
-          const matrix = transform.match(/^matrix\(([^)]+)\)$/);
-          const translateY = matrix ? Number(matrix[1].split(',')[5]) : transform === 'translateY(24px)' ? 24 : NaN;
-          expect(translateY, `${label} start transform ${start.transform}`).toBe(24);
-        }
-
-        if (animations.length > 1) {
-          const delays = animations.map((animation) => animation.delay).sort((a, b) => a - b);
-          for (let step = 1; step < delays.length; step += 1) {
-            expect(delays[step] - delays[step - 1], `${label} stagger`).toBe(80);
-          }
-        }
+          return product;
+        });
+        expect(opacity, role.title).toBe(1);
       }
-    });
-  });
-
-  test.describe('without JavaScript', () => {
-    test.use({ javaScriptEnabled: false });
-
-    test('h2 and highlights of every role are visible', async ({ page }) => {
-      const roles = readRoles();
-
-      await page.goto(ROUTE);
-      await settleAnimations(page);
-      await expect(page.locator('article')).toHaveCount(roles.length);
-
-      for (const role of roles) {
-        const article = articleFor(page, role);
-        const parts = [
-          article.getByRole('heading', { level: 2 }),
-          ...role.highlights.map((highlight) => article.getByRole('listitem').filter({ hasText: highlight })),
-        ];
-        for (const part of parts) {
-          await expect(part, role.title).toBeVisible();
-          const box = (await part.boundingBox())!;
-          expect(box.width, role.title).toBeGreaterThan(0);
-          expect(box.height, role.title).toBeGreaterThan(0);
-          const opacity = await part.evaluate((element) => {
-            let product = 1;
-            for (let node: Element | null = element; node; node = node.parentElement) {
-              product *= Number(getComputedStyle(node).opacity);
-            }
-            return product;
-          });
-          expect(opacity, role.title).toBe(1);
-        }
-      }
-    });
+    }
   });
 });

@@ -215,6 +215,7 @@ test('nav marks current section', async ({ page }) => {
 });
 
 test('header stays in view', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 400 });
   await page.goto('/experience/');
   const header = page.locator('header.site-header');
   const scrollable = await page.evaluate(() => document.documentElement.scrollHeight - window.innerHeight);
