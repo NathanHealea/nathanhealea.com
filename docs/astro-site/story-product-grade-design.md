@@ -9,7 +9,7 @@ created: 2026-11-16
 approved: 2026-11-16
 commit_type:         # optional override for the merge commit type (default: story=feat, bug=fix, task=chore)
 version: 0.5.0
-review_approved:     # set by `wi accept`
+review_approved: 2026-11-16
 pr:                  # set by `wi pr`
 tag:                 # set by `wi release`; the tag sits on the merge commit
 ---
@@ -174,3 +174,4 @@ The v2 token list is the contract T27 checks. Step 3 writes it into `tests/unit/
 - 2026-11-16 — Review fixes: the a11y.ts two-frame wait is reverted; tests/e2e/helpers/a11y.ts now matches v10 again. Root cause addressed in a262efa: the reveal module marks anything on screen at load as shown before adding the js class, and hiding is instant with only the reveal animated, so nothing on screen at load is ever mid-fade when axe runs. 168/168 e2e passed across three repeats.
 - 2026-11-16 — Mutation audit: 40 mutants, 30 killed. Closed with tests: is:inline dropped from the head theme script (HIGH), TOC grid stacking, scroll-padding-top 0, toggle label not following a live scheme change; focus-ring check now covers every route. Remaining survivors are cosmetic (scrolled-header border, initial onScroll, narrow nav indent and wrap rule), near-equivalent (observer.unobserve, :focus-within transition), or LOW and left for the reviewer (forced-dark sun icon, color-scheme on the dark override, header background).
 - 2026-11-16 — Staged: verification passed; version 0.4.0 → 0.5.0; no changelog file.
+- 2026-11-16 — Review approved.
