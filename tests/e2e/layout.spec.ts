@@ -1,11 +1,15 @@
-import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { readdirSync, readFileSync } from 'node:fs';
+import { basename, resolve } from 'node:path';
 import { parseFrontmatter } from '@astrojs/internal-helpers/frontmatter';
 import { expect, test, type Locator } from '@playwright/test';
 import { expectNoA11yViolations } from './helpers/a11y';
 
 const LAYOUT_ROUTES = ['/', '/404'];
 const REVEAL_ROUTES = ['/', '/experience/', '/projects/', '/404'];
+const PROJECT_ROUTES = readdirSync(resolve(import.meta.dirname, '../../src/content/projects'))
+  .filter((file) => file.endsWith('.md'))
+  .map((file) => `/projects/${basename(file, '.md')}/`);
+const EVERY_ROUTE = ['/', '/experience/', '/projects/', ...PROJECT_ROUTES, '/this-page-does-not-exist/'];
 
 async function motionDurations(locator: Locator): Promise<string[]> {
   return locator.evaluate((element) => {
@@ -235,7 +239,8 @@ test('header stays in view', async ({ page }) => {
 test('no horizontal scroll at 320px and 1920px', async ({ page }) => {
   for (const width of [320, 1920]) {
     await page.setViewportSize({ width, height: 800 });
-    for (const route of LAYOUT_ROUTES) {
+    expect(PROJECT_ROUTES.length).toBeGreaterThan(0);
+    for (const route of EVERY_ROUTE) {
       await page.goto(route);
       const { scrollWidth, innerWidth } = await page.evaluate(() => ({
         scrollWidth: document.documentElement.scrollWidth,
@@ -401,7 +406,13 @@ test('404 page renders', async ({ page }) => {
   await expect(page.locator('header')).toHaveCount(1);
   await expect(page.locator('footer')).toHaveCount(1);
   await expect(page.locator('h1')).toHaveCount(1);
-  await expect(page.locator('main#main a[href="/"]')).not.toHaveCount(0);
+  await expect(page.locator('h1')).toHaveText('Nothing here.');
+  await expect(
+    page.locator('main#main').getByText("This page doesn't exist, or it moved when the site was rebuilt.", { exact: true }),
+  ).toBeVisible();
+  const home = page.locator('main#main').getByRole('link', { name: 'Return to the home page', exact: true });
+  await expect(home).toHaveAttribute('href', '/');
+  await expect(page.getByText('Not in the record.')).toHaveCount(0);
 });
 
 test('no third-party requests', async ({ page }) => {

@@ -65,8 +65,8 @@ const finalTokens = [
   '--reveal-distance',
 ];
 
-// Public Report names still read by components; step 8 deletes this list and the alias block.
-const temporaryAliases = [
+// Public Report names retired with the alias block; nothing may declare or read them again.
+const removedAliases = [
   '--color-paper',
   '--color-fir',
   '--font-display',
@@ -232,11 +232,9 @@ describe('token parsing helpers', () => {
 describe('tokens.css', () => {
   it('declares the documented token set', () => {
     const declared = declaredNames(tokensCss);
-    const expected = [...finalTokens, ...temporaryAliases];
 
     expect(finalTokens).toHaveLength(53);
-    expect(temporaryAliases).toHaveLength(23);
-    expect([...declared].sort()).toEqual([...expected].sort());
+    expect([...declared].sort()).toEqual([...finalTokens].sort());
   });
 
   it('dark palette declared for system and override', () => {
@@ -302,6 +300,29 @@ describe('src styles', () => {
   it('every var() reference resolves to a declared token', () => {
     expect(paths).toContain('src/styles/tokens.css');
     expect(undeclaredReferences(files, 'src/styles/tokens.css')).toEqual([]);
+  });
+
+  it('no file references a removed alias', () => {
+    const everyFile = globSync('src/**/*', { cwd: root, withFileTypes: true })
+      .filter((entry) => entry.isFile())
+      .map((entry) => resolve(entry.parentPath, entry.name));
+    const hits = everyFile.flatMap((path) => {
+      const source = stripComments(readFileSync(path, 'utf8'));
+      return removedAliases
+        .filter((name) => new RegExp(`(?<![\\w-])${name}(?![\\w-])`).test(source))
+        .map((name) => `${path.slice(root.length + 1)}: ${name}`);
+    });
+
+    expect(everyFile.length).toBeGreaterThan(0);
+    expect(removedAliases).toHaveLength(23);
+    expect(hits).toEqual([]);
+  });
+
+  it('global.css has no enter or rise keyframes', () => {
+    const globalCss = stripComments(files['src/styles/global.css'] ?? '');
+
+    expect(globalCss).not.toBe('');
+    expect(globalCss).not.toMatch(/@keyframes\s+(enter|rise)\b/);
   });
 
   it('no UO colors', () => {
