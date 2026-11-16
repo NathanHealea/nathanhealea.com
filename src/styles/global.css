@@ -59,6 +59,12 @@ h3 {
   font-weight: 600;
 }
 
+time,
+code,
+pre {
+  font-family: var(--font-mono);
+}
+
 p,
 li {
   max-width: var(--container-measure);

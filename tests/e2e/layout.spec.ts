@@ -114,31 +114,32 @@ test.describe('without reduced motion', () => {
   });
 });
 
-test('pack typefaces load from same origin', async ({ page }) => {
+test('typefaces load from same origin', async ({ page }) => {
   const fontUrls: string[] = [];
   page.on('response', (response) => {
     if (response.request().resourceType() === 'font') fontUrls.push(response.url());
   });
+  const loadedFamilies = () =>
+    page.evaluate(async () => {
+      await document.fonts.ready;
+      return [...document.fonts].filter((face) => face.status === 'loaded').map((face) => face.family);
+    });
+  const firstFamily = (locator: Locator) =>
+    locator.evaluate((element) => getComputedStyle(element).fontFamily).then((family) => unquote(family.split(',')[0]));
 
   await page.goto('/');
-  await page.evaluate(() => document.fonts.ready);
+  expect((await loadedFamilies()).map(unquote)).toContain('Geist');
+  expect(await firstFamily(page.locator('body'))).toBe('Geist');
+  expect(await firstFamily(page.locator('h1').first())).toBe('Geist');
 
-  const loadedFamilies = await page.evaluate(() =>
-    [...document.fonts].filter((face) => face.status === 'loaded').map((face) => face.family),
-  );
-  const loaded = loadedFamilies.map(unquote);
-  expect(loaded).toContain('Source Serif 4');
-  expect(loaded).toContain('Public Sans');
-
-  const headingFamily = await page.locator('h1').first().evaluate((element) => getComputedStyle(element).fontFamily);
-  const bodyFamily = await page.locator('body').evaluate((element) => getComputedStyle(element).fontFamily);
-  expect(unquote(headingFamily.split(',')[0])).toBe('Source Serif 4');
-  expect(unquote(bodyFamily.split(',')[0])).toBe('Public Sans');
+  await page.goto('/experience/');
+  expect((await loadedFamilies()).map(unquote)).toContain('Geist Mono');
+  expect(await firstFamily(page.locator('time').first())).toBe('Geist Mono');
 
   const pageOrigin = new URL(page.url()).origin;
   expect(fontUrls.length).toBeGreaterThanOrEqual(2);
   for (const url of fontUrls) {
-    expect(new URL(url).origin).toBe(pageOrigin);
+    expect(new URL(url).origin, url).toBe(pageOrigin);
   }
 });
 

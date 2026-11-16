@@ -1,32 +1,16 @@
 /* Values from design/DESIGN-SYSTEM.md; change the pack first, then this file. */
 @font-face {
-  font-family: 'Source Serif 4';
-  src: url('/fonts/SourceSerif4Display-Semibold.ttf.woff2') format('woff2');
-  font-weight: 600;
+  font-family: 'Geist';
+  src: url('/fonts/Geist-Variable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Source Serif 4';
-  src: url('/fonts/SourceSerif4Display-Bold.ttf.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Public Sans';
-  src: url('/fonts/PublicSans-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Public Sans';
-  src: url('/fonts/PublicSans-SemiBold.woff2') format('woff2');
-  font-weight: 600;
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono-Variable.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
@@ -39,8 +23,9 @@
   --color-stone: #dcd8cc;
   --color-sage: #b9c4bb;
 
-  --font-display: 'Source Serif 4', Georgia, serif;
-  --font-text: 'Public Sans', system-ui, sans-serif;
+  --font-display: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-text: 'Geist', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --text-display: clamp(40px, 6.4vw, 92px);
   --text-section: clamp(30px, 3.6vw, 48px);

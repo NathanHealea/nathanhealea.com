@@ -31,6 +31,7 @@ const renamed: Record<string, string> = {
 const unchanged = [
   '--font-display',
   '--font-text',
+  '--font-mono',
   '--leading-display',
   '--leading-section',
   '--leading-statement',
@@ -163,7 +164,7 @@ describe('tokens.css', () => {
     const declared = declaredNames(tokensCss);
     const expected = [...Object.values(renamed), ...unchanged];
 
-    expect(expected).toHaveLength(43);
+    expect(expected).toHaveLength(44);
     expect([...declared].sort()).toEqual([...expected].sort());
   });
 
@@ -180,6 +181,15 @@ describe('tokens.css', () => {
 
     expect(oldNames).toHaveLength(20);
     expect(oldNames.filter((name) => declared.has(name))).toEqual([]);
+  });
+  it('old typefaces are gone', () => {
+    const faceFamilies = [...stripComments(tokensCss).matchAll(/@font-face\s*\{[^}]*?font-family:\s*([^;]+);/g)].map(
+      (match) => match[1].trim().replace(/^["']|["']$/g, ''),
+    );
+    const oldFiles = globSync('public/fonts/{SourceSerif,PublicSans}*', { cwd: root });
+
+    expect(faceFamilies.filter((family) => family === 'Source Serif 4' || family === 'Public Sans')).toEqual([]);
+    expect(oldFiles).toEqual([]);
   });
 });
 
