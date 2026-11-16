@@ -360,3 +360,36 @@ test.describe('project index without JavaScript', () => {
     }
   });
 });
+
+test('toc marks the last section once the page is scrolled to the end', async ({ page }) => {
+  await page.setViewportSize({ width: 1920, height: 1080 });
+  await page.goto('/projects/placeholder-alpha/');
+  const toc = page.getByRole('navigation', { name: 'On this page' });
+  const links = toc.getByRole('link');
+  await links.last().click();
+  await expect.poll(() => links.evaluateAll((all) => all.map((link) => link.getAttribute('aria-current')))).toEqual([
+    null,
+    null,
+    'true',
+  ]);
+});
+
+test('breadcrumb separator is not announced', async ({ page }) => {
+  await page.goto('/projects/placeholder-alpha/');
+  await expect(page.getByRole('navigation', { name: 'Breadcrumb' })).toMatchAriaSnapshot(`
+    - navigation "Breadcrumb":
+      - list:
+        - listitem:
+          - link "Projects"
+        - listitem: Placeholder Alpha
+  `);
+});
+
+test('paired project cards stagger their reveal', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto(INDEX);
+  const delays = await page
+    .locator('main article.project')
+    .evaluateAll((cards) => cards.slice(0, 2).map((card) => getComputedStyle(card).transitionDelay));
+  expect(delays).toEqual(['0s', '0.07s']);
+});

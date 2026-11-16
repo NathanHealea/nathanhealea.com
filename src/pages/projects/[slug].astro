@@ -80,7 +80,10 @@ const toc = headingsForToc(headings);
 		const mark = () => {
 			queued = false;
 			const line = innerHeight * 0.35;
-			const current = sections.findLast(({ heading }) => heading.getBoundingClientRect().top <= line) ?? sections[0];
+			const atEnd = scrollY + innerHeight >= document.documentElement.scrollHeight - 2;
+			const current = atEnd
+				? sections[sections.length - 1]
+				: (sections.findLast(({ heading }) => heading.getBoundingClientRect().top <= line) ?? sections[0]);
 			for (const { link } of sections) {
 				if (link === current.link) link.setAttribute('aria-current', 'true');
 				else link.removeAttribute('aria-current');
@@ -116,7 +119,7 @@ const toc = headingsForToc(headings);
 	}
 
 	.crumbs li + li::before {
-		content: '/';
+		content: '/' / '';
 		margin-right: 8px;
 		color: var(--color-line-strong);
 	}
