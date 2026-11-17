@@ -2,7 +2,7 @@
 type: story
 epic: astro-site    # removed by `wi new` when there is no parent epic
 slug: product-grade-design
-status: staged
+status: released
 branch: story/product-grade-design
 worktree_path: /Users/nhealea/Personal/Development/nathanhealea/nathanhealea-com-worktrees/story-product-grade-design
 created: 2026-11-16
@@ -11,7 +11,7 @@ commit_type:         # optional override for the merge commit type (default: sto
 version: 0.5.0
 review_approved: 2026-11-16
 pr:                  # set by `wi pr`
-tag:                 # set by `wi release`; the tag sits on the merge commit
+tag: v0.5.0
 ---
 
 # Product-grade visual redesign
@@ -175,3 +175,4 @@ The v2 token list is the contract T27 checks. Step 3 writes it into `tests/unit/
 - 2026-11-16 — Mutation audit: 40 mutants, 30 killed. Closed with tests: is:inline dropped from the head theme script (HIGH), TOC grid stacking, scroll-padding-top 0, toggle label not following a live scheme change; focus-ring check now covers every route. Remaining survivors are cosmetic (scrolled-header border, initial onScroll, narrow nav indent and wrap rule), near-equivalent (observer.unobserve, :focus-within transition), or LOW and left for the reviewer (forced-dark sun icon, color-scheme on the dark override, header background).
 - 2026-11-16 — Staged: verification passed; version 0.4.0 → 0.5.0; no changelog file.
 - 2026-11-16 — Review approved.
+- 2026-11-17 — Released 0.5.0 as v0.5.0.

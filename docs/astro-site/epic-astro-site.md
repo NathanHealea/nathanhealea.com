@@ -85,7 +85,7 @@ Status column by matching the Slug column, so keep slugs exact.
 | 8 | story | seo | SEO metadata, sitemap, and structured data | R4 | 3 | planned |
 | 9 | task | content-migration | Enter real content from source files | R2, R8 | 2 | planned |
 | 10 | task | cloudflare-deploy | Deploy to Cloudflare Pages and cut over the domain | R7 | 7, 8, 9 | planned |
-| 11 | story | product-grade-design | Product-grade visual redesign | R3, R5, R6 | 3, 4, 5 | staged |
+| 11 | story | product-grade-design | Product-grade visual redesign | R3, R5, R6 | 3, 4, 5 | released |
 
 **Independently shippable:** None to production; the domain cutover (10) waits on everything else. On `v10`, each child merges on its own. 3 and 2 can run in parallel after 1; 4, 5, 6, 8, and 9 can run in parallel once their dependencies land.
 
