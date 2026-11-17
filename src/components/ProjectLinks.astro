@@ -33,7 +33,7 @@ const { title, github, live } = Astro.props;
 	.links {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0 24px;
+		gap: 0 20px;
 		padding: 0;
 		list-style: none;
 	}
@@ -42,6 +42,18 @@ const { title, github, live } = Astro.props;
 		display: inline-flex;
 		align-items: center;
 		min-height: var(--spacing-tap);
+		color: var(--color-ink);
+		font-size: var(--text-ui);
+		font-weight: 500;
+		text-decoration-line: underline;
+		text-decoration-color: var(--color-line-strong);
+		text-decoration-thickness: 1px;
+		text-underline-offset: 4px;
+	}
+
+	a:hover {
+		color: var(--color-accent);
+		text-decoration-color: currentColor;
 	}
 
 	.visually-hidden {

@@ -16,6 +16,14 @@ const { title, description } = Astro.props;
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<script is:inline>
+			try {
+				const stored = localStorage.getItem('theme');
+				if (stored === 'light' || stored === 'dark') document.documentElement.dataset.theme = stored;
+			} catch {
+				// Storage blocked: follow the system scheme.
+			}
+		</script>
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
@@ -29,26 +37,76 @@ const { title, description } = Astro.props;
 			<slot />
 		</main>
 		<Footer />
+		<script>
+			import { initialTheme, nextTheme, themeToggleLabel, type Theme } from '../lib/theme';
+
+			const root = document.documentElement;
+
+			const reveals = [...document.querySelectorAll('[data-reveal]')];
+			const still = matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window);
+			for (const element of reveals) {
+				if (still || element.getBoundingClientRect().top < innerHeight) element.classList.add('in');
+			}
+			root.classList.add('js');
+			const pending = reveals.filter((element) => !element.classList.contains('in'));
+			if (pending.length > 0) {
+				const observer = new IntersectionObserver((entries) =>
+					entries.forEach((entry) => {
+						if (!entry.isIntersecting) return;
+						entry.target.classList.add('in');
+						observer.unobserve(entry.target);
+					}),
+				);
+				pending.forEach((element) => observer.observe(element));
+			}
+
+			const systemDark = matchMedia('(prefers-color-scheme: dark)');
+			const resolved = (): Theme => initialTheme(root.dataset.theme, systemDark.matches);
+
+			const toggle = document.querySelector<HTMLButtonElement>('[data-theme-toggle]');
+			if (toggle) {
+				const label = () => toggle.setAttribute('aria-label', themeToggleLabel(resolved()));
+				label();
+				toggle.hidden = false;
+				systemDark.addEventListener('change', label);
+				toggle.addEventListener('click', () => {
+					const next = nextTheme(resolved());
+					root.dataset.theme = next;
+					try {
+						localStorage.setItem('theme', next);
+					} catch {
+						// Storage blocked: the choice lasts for this page only.
+					}
+					label();
+				});
+			}
+
+			const header = document.querySelector('.site-header');
+			const onScroll = () => header?.classList.toggle('scrolled', scrollY > 8);
+			addEventListener('scroll', onScroll, { passive: true });
+			onScroll();
+		</script>
 	</body>
 </html>
 
 <style>
 	.skip-link {
 		position: absolute;
-		top: var(--spacing-margin);
-		left: var(--spacing-margin);
-		z-index: 10;
-		padding: 12px 16px;
+		top: 12px;
+		left: var(--spacing-gutter);
+		z-index: 50;
+		padding: 10px 14px;
+		border-radius: var(--radius-sm);
 		background: var(--color-ink);
-		color: var(--color-paper);
-		font-size: var(--text-small);
-		font-weight: 600;
-		transform: translateY(calc(-100% - var(--spacing-margin) - 8px));
+		color: var(--color-bg);
+		font-size: var(--text-ui);
+		font-weight: 500;
+		text-decoration: none;
+		transform: translateY(calc(-100% - 24px));
 	}
 
 	.skip-link:focus-visible {
 		transform: none;
-		outline-color: var(--color-ink);
 	}
 
 	body {
@@ -61,9 +119,9 @@ const { title, description } = Astro.props;
 		display: block;
 		flex: 1 0 auto;
 		width: 100%;
-		max-width: var(--container-content);
+		max-width: calc(var(--container-content) + 2 * var(--spacing-gutter));
 		margin: 0 auto;
-		padding: 0 var(--spacing-margin);
+		padding: 0 var(--spacing-gutter);
 	}
 
 	main:focus {

@@ -4,44 +4,49 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="Page not found | Nathan Healea" description="This page isn't on nathanhealea.com.">
 	<div class="not-found">
-		<p class="side">Error 404. Page not found.</p>
-		<h1>Not in the record.</h1>
-		<p>This page isn't here. It may have moved when the site was rebuilt.</p>
-		<p><a href="/">Return to the home page</a></p>
+		<p class="code">404</p>
+		<h1>Nothing here.</h1>
+		<p class="lede">This page doesn't exist, or it moved when the site was rebuilt.</p>
+		<p class="home"><a href="/">Return to the home page</a></p>
 	</div>
 </BaseLayout>
 
 <style>
 	.not-found {
-		padding-top: var(--spacing-inner);
+		padding-top: clamp(64px, 10vw, 128px);
 	}
 
-	.side {
-		margin: 0 0 24px;
+	.code {
+		margin-bottom: 20px;
+		color: var(--color-muted);
+		font-family: var(--font-mono);
 		font-size: var(--text-small);
-		line-height: var(--leading-small);
 	}
 
-	@media (min-width: 960px) {
-		.not-found {
-			display: grid;
-			grid-template-columns: var(--axis) 1fr;
-			align-items: baseline;
-		}
-
-		.not-found > :not(.side) {
-			grid-column: 2;
-		}
-
-		.side {
-			grid-row: 1;
-			margin: 0 32px 0 0;
-		}
+	.lede {
+		margin-top: 20px;
+		color: var(--color-muted);
+		font-size: var(--text-lede);
 	}
 
-	p {
-		margin-top: 24px;
-		font-size: var(--text-standfirst);
-		line-height: var(--leading-standfirst);
+	.home {
+		margin-top: 32px;
+	}
+
+	.home a {
+		display: inline-flex;
+		align-items: center;
+		min-height: var(--spacing-tap);
+		padding: 0 16px;
+		border-radius: var(--radius-sm);
+		background: var(--color-ink);
+		color: var(--color-bg);
+		font-size: var(--text-ui);
+		font-weight: 500;
+		text-decoration: none;
+	}
+
+	.home a:hover {
+		background: var(--color-ink-2);
 	}
 </style>
